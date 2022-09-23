@@ -1,4 +1,4 @@
-# ToDO GUI
+# ToDo GUI
 
 ## Language
 
