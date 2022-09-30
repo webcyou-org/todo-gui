@@ -45,6 +45,16 @@ class _TodoListPageState extends State<TodoListPage> {
     CheckBoxListTileModel(title: "Task 4", isCheck: true),
   ];
 
+  List<CheckBoxListTileModel> _foundTodoList = [];
+  String _menu;
+
+  @override
+  initState() {
+    _foundTodoList = todoList;
+    _menu = "All";
+    super.initState();
+  }
+
   List<MenuListModel> menuList = [
     MenuListModel(title: "All", isActive: true, width: 30),
     MenuListModel(title: "Active", isActive: false, width: 50),
@@ -53,6 +63,12 @@ class _TodoListPageState extends State<TodoListPage> {
 
   final TextEditingController _textFormController =
       new TextEditingController(text: '');
+
+  List<CheckBoxListTileModel> filterDisplayTodoList(type) {
+    if (type == "Active") return todoList.where((i) => !i.isCheck).toList();
+    if (type == "Completed") return todoList.where((i) => i.isCheck).toList();
+    return todoList;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,6 +111,7 @@ class _TodoListPageState extends State<TodoListPage> {
                         todoList.add(
                           CheckBoxListTileModel(title: value, isCheck: false),
                         );
+                        _foundTodoList = filterDisplayTodoList(_menu);
                       });
                       _textFormController.clear();
                     }
@@ -110,6 +127,8 @@ class _TodoListPageState extends State<TodoListPage> {
                           setState(() {
                             resetMenuActive();
                             menu.isActive = true;
+                            _menu = menu.title;
+                            _foundTodoList = filterDisplayTodoList(_menu);
                           });
                         },
                         child: Card(
@@ -136,10 +155,8 @@ class _TodoListPageState extends State<TodoListPage> {
               ),
               Expanded(
                 child: ListView.builder(
-                  itemCount: todoList.length,
+                  itemCount: _foundTodoList.length,
                   itemBuilder: (BuildContext context, int index) {
-                    bool _isChecked = false;
-
                     return Card(
                         color: Color.fromRGBO(42, 42, 42, 1),
                         elevation: 0,
@@ -149,19 +166,20 @@ class _TodoListPageState extends State<TodoListPage> {
                                 Color.fromRGBO(217, 217, 217, 1),
                           ),
                           child: CheckboxListTile(
-                            value: todoList[index].isCheck,
+                            value: _foundTodoList[index].isCheck,
                             controlAffinity: ListTileControlAffinity.leading,
-                            title: Text(todoList[index].title,
+                            title: Text(_foundTodoList[index].title,
                                 style: TextStyle(
                                   color: Color.fromRGBO(210, 210, 210, 1),
                                   decorationThickness: 2,
-                                  decoration: todoList[index].isCheck
+                                  decoration: _foundTodoList[index].isCheck
                                       ? TextDecoration.lineThrough
                                       : TextDecoration.none,
                                 )),
                             onChanged: (value) {
                               setState(() {
-                                todoList[index].isCheck = value;
+                                _foundTodoList[index].isCheck = value;
+                                _foundTodoList = filterDisplayTodoList(_menu);
                               });
                             },
                           ),
