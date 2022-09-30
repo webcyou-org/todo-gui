@@ -17,11 +17,11 @@ class ToDo extends StatelessWidget {
   }
 }
 
-class CheckBoxListTileModel {
+class TodoListModel {
   String title;
   bool isCheck;
 
-  CheckBoxListTileModel({this.title, this.isCheck});
+  TodoListModel({this.title, this.isCheck});
 }
 
 class MenuListModel {
@@ -38,14 +38,14 @@ class TodoListPage extends StatefulWidget {
 }
 
 class _TodoListPageState extends State<TodoListPage> {
-  List<CheckBoxListTileModel> todoList = [
-    CheckBoxListTileModel(title: "Task 1", isCheck: true),
-    CheckBoxListTileModel(title: "Task 2", isCheck: false),
-    CheckBoxListTileModel(title: "Task 3", isCheck: false),
-    CheckBoxListTileModel(title: "Task 4", isCheck: true),
+  List<TodoListModel> todoList = [
+    TodoListModel(title: "Task 1", isCheck: true),
+    TodoListModel(title: "Task 2", isCheck: false),
+    TodoListModel(title: "Task 3", isCheck: false),
+    TodoListModel(title: "Task 4", isCheck: true),
   ];
 
-  List<CheckBoxListTileModel> _foundTodoList = [];
+  List<TodoListModel> _foundTodoList = [];
   String _menu;
 
   @override
@@ -64,7 +64,7 @@ class _TodoListPageState extends State<TodoListPage> {
   final TextEditingController _textFormController =
       new TextEditingController(text: '');
 
-  List<CheckBoxListTileModel> filterDisplayTodoList(type) {
+  List<TodoListModel> filterDisplayTodoList(type) {
     if (type == "Active") return todoList.where((i) => !i.isCheck).toList();
     if (type == "Completed") return todoList.where((i) => i.isCheck).toList();
     return todoList;
@@ -109,7 +109,7 @@ class _TodoListPageState extends State<TodoListPage> {
                     if (!value.isEmpty) {
                       setState(() {
                         todoList.add(
-                          CheckBoxListTileModel(title: value, isCheck: false),
+                          TodoListModel(title: value, isCheck: false),
                         );
                         _foundTodoList = filterDisplayTodoList(_menu);
                       });
