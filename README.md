@@ -19,6 +19,7 @@
   - WinForms
   - GTK#
   - WPF
+  - Avalonia UI
   - Unity
 
 - Go
