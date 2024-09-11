@@ -33,5 +33,5 @@
 
 - JavaScript
   - Electron
-  - Tauri
+  - [Tauri](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/tauri/vite/todo-gui)
 
