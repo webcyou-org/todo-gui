@@ -21,7 +21,7 @@ class TodoListModel {
   String title;
   bool isCheck;
 
-  TodoListModel({this.title, this.isCheck});
+  TodoListModel({required this.title, required this.isCheck});
 }
 
 class MenuListModel {
@@ -29,7 +29,8 @@ class MenuListModel {
   bool isActive;
   double width;
 
-  MenuListModel({this.title, this.isActive, this.width});
+  MenuListModel(
+      {required this.title, required this.isActive, required this.width});
 }
 
 class TodoListPage extends StatefulWidget {
@@ -46,7 +47,7 @@ class _TodoListPageState extends State<TodoListPage> {
   ];
 
   List<TodoListModel> _foundTodoList = [];
-  String _menu;
+  late String _menu;
 
   @override
   initState() {
@@ -185,7 +186,7 @@ class _TodoListPageState extends State<TodoListPage> {
                                 )),
                             onChanged: (value) {
                               setState(() {
-                                _foundTodoList[index].isCheck = value;
+                                _foundTodoList[index].isCheck = value!;
                                 _foundTodoList = filterDisplayTodoList(_menu);
                               });
                             },
