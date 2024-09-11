@@ -27,7 +27,8 @@
   - Wails 
 
 - Rust
-  - Iced  
+  - Iced
+  - gtk-rs  
 
 - JavaScript
   - Electron
