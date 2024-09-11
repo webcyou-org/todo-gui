@@ -28,7 +28,8 @@
 
 - Rust
   - Iced
-  - gtk-rs  
+  - gtk-rs
+  - egui  
 
 - JavaScript
   - Electron
