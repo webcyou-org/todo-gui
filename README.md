@@ -8,24 +8,52 @@ ToDo Applications created using various GUI tools.
 
 - Dart
   - [Flutter](https://github.com/webcyou-org/todo-gui/tree/main/Dart/Flutter/todo)
+  - Rikulo UI
 
 - Python
+  - Flet
   - tkinter
   - Kivy
+  - Remi
+  - PyQt
+  - PySimpleGUI
+  - Toga
+  - PyForms
+  - PyGTK
+  - wxPython
   
 - C++
   - QT
+  - ImGui (Immediate Mode GUI)
+  - wxWidgets
+  - GTKmm
+  - FLTK (Fast Light Toolkit)
+  - NanoGUI
+  - Ultimate++ (U++)
+  - CEGUI (Crazy Eddie's GUI)
 
 - C#
+  - Avalonia UI
+  - Uno Platform
+  - WPF
   - WinForms
   - GTK#
-  - WPF
-  - Avalonia UI
+  - MAUI
+  - Xamarin.Forms
+  - Electron.NET
+  - OpenTK
 
 - Go
   - Fyne
   - Lorca
-  - Wails 
+  - Wails
+  - Gio
+  - Walk
+  - Go-GTK
+  - shiny
+  - Qt for Go
+  - go-sciter
+  - nuklear
 
 - Rust
   - [Druid](https://github.com/webcyou-org/todo-gui/tree/main/Rust/Druid/todo)
@@ -38,6 +66,10 @@ ToDo Applications created using various GUI tools.
 - JavaScript
   - Electron
   - [Tauri](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/tauri/vite/todo-gui)
+  - Neutralino.js
+  - NW.js
+  - AppJS
+  - React Native
 
 ## Architecture
 
