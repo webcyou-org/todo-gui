@@ -1,9 +1,0 @@
-/Volumes/Samsung SSD 990 PRO 2TB Media/development/private/todo-gui/Rust/Druid/todo/target/debug/deps/libcore_graphics_types-cfc99fa9a174441a.rmeta: /Users/takayamadaisuke/.cargo/registry/src/index.crates.io-6f17d22bba15001f/core-graphics-types-0.1.3/src/lib.rs /Users/takayamadaisuke/.cargo/registry/src/index.crates.io-6f17d22bba15001f/core-graphics-types-0.1.3/src/base.rs /Users/takayamadaisuke/.cargo/registry/src/index.crates.io-6f17d22bba15001f/core-graphics-types-0.1.3/src/geometry.rs
-
-/Volumes/Samsung SSD 990 PRO 2TB Media/development/private/todo-gui/Rust/Druid/todo/target/debug/deps/libcore_graphics_types-cfc99fa9a174441a.rlib: /Users/takayamadaisuke/.cargo/registry/src/index.crates.io-6f17d22bba15001f/core-graphics-types-0.1.3/src/lib.rs /Users/takayamadaisuke/.cargo/registry/src/index.crates.io-6f17d22bba15001f/core-graphics-types-0.1.3/src/base.rs /Users/takayamadaisuke/.cargo/registry/src/index.crates.io-6f17d22bba15001f/core-graphics-types-0.1.3/src/geometry.rs
-
-/Volumes/Samsung SSD 990 PRO 2TB Media/development/private/todo-gui/Rust/Druid/todo/target/debug/deps/core_graphics_types-cfc99fa9a174441a.d: /Users/takayamadaisuke/.cargo/registry/src/index.crates.io-6f17d22bba15001f/core-graphics-types-0.1.3/src/lib.rs /Users/takayamadaisuke/.cargo/registry/src/index.crates.io-6f17d22bba15001f/core-graphics-types-0.1.3/src/base.rs /Users/takayamadaisuke/.cargo/registry/src/index.crates.io-6f17d22bba15001f/core-graphics-types-0.1.3/src/geometry.rs
-
-/Users/takayamadaisuke/.cargo/registry/src/index.crates.io-6f17d22bba15001f/core-graphics-types-0.1.3/src/lib.rs:
-/Users/takayamadaisuke/.cargo/registry/src/index.crates.io-6f17d22bba15001f/core-graphics-types-0.1.3/src/base.rs:
-/Users/takayamadaisuke/.cargo/registry/src/index.crates.io-6f17d22bba15001f/core-graphics-types-0.1.3/src/geometry.rs:
