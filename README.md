@@ -48,4 +48,7 @@
 * <https://github.com/panicdragon>
 * <http://www.webcyou.com/>
 
+### License
 
+Copyright (c) 2024 Daisuke Takayama
+Released under the [MIT license](http://opensource.org/licenses/mit-license.php)
