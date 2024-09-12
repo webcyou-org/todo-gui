@@ -39,6 +39,9 @@ ToDo Applications created using various GUI tools.
   - Electron
   - [Tauri](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/tauri/vite/todo-gui)
 
+## Architecture
+
+## Tools official website
 
 ## Author
 
