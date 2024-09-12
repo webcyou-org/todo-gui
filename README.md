@@ -28,7 +28,7 @@
   - Wails 
 
 - Rust
-  - Druid
+  - [Druid](https://github.com/webcyou-org/todo-gui/tree/main/Rust/Druid/todo)
   - Slint
   - Iced
   - gtk-rs
