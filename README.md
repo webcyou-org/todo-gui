@@ -7,7 +7,6 @@
 - Dart
   - [Flutter](https://github.com/webcyou-org/todo-gui/tree/main/Dart/Flutter/todo)
 
-
 - Python
   - tkinter
   - Kivy
@@ -29,10 +28,11 @@
 
 - Rust
   - [Druid](https://github.com/webcyou-org/todo-gui/tree/main/Rust/Druid/todo)
-  - Slint
+  - [Slint](https://github.com/webcyou-org/todo-gui/tree/main/Rust/Slint/todo)
+  - [Tauri](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/tauri/vite/todo-gui)
   - Iced
   - gtk-rs
-  - egui  
+  - egui
 
 - JavaScript
   - Electron
