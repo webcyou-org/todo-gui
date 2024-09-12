@@ -19,7 +19,6 @@
   - GTK#
   - WPF
   - Avalonia UI
-  - Unity
 
 - Go
   - Fyne
@@ -37,4 +36,16 @@
 - JavaScript
   - Electron
   - [Tauri](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/tauri/vite/todo-gui)
+
+
+## Author
+
+**Daisuke Takayama**
+* [@webcyou](https://twitter.com/webcyou)
+* [@panicdragon](https://twitter.com/panicdragon)
+* <https://github.com/webcyou>
+* <https://github.com/webcyou-org>
+* <https://github.com/panicdragon>
+* <http://www.webcyou.com/>
+
 
