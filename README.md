@@ -28,6 +28,8 @@
   - Wails 
 
 - Rust
+  - Druid
+  - Slint
   - Iced
   - gtk-rs
   - egui  
