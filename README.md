@@ -45,7 +45,7 @@ ToDo Applications created using various GUI tools.
   - OpenTK
 
 - Go
-  - Fyne
+  - [Fyne](https://github.com/webcyou-org/todo-gui/tree/main/Go/Fyne)
   - Lorca
   - Wails
   - Gio
