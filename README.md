@@ -64,7 +64,7 @@ ToDo Applications created using various GUI tools.
   - egui
 
 - JavaScript
-  - Electron
+  - [Electron](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/Electron/todo)
   - [Tauri](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/tauri/vite/todo-gui)
   - Neutralino.js
   - NW.js
