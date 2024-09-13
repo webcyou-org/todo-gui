@@ -13,7 +13,7 @@ ToDo Applications created using various GUI tools.
 - Python
   - [Flet](https://github.com/webcyou-org/todo-gui/tree/main/Python/Flet)
   - [tkinter](https://github.com/webcyou-org/todo-gui/tree/main/Python/tkinter)
-  - Kivy
+  - [Kivy](https://github.com/webcyou-org/todo-gui/tree/main/Python/Kivy)
   - Remi
   - Reflex
   - PyQt
@@ -37,10 +37,11 @@ ToDo Applications created using various GUI tools.
   - [Avalonia](https://github.com/webcyou-org/todo-gui/tree/main/C%23/Avalonia/ToDo)
   - Uno Platform
   - WPF
+  - Prism
+  - Xamarin.Forms
   - WinForms
   - GTK#
   - MAUI
-  - Xamarin.Forms
   - Electron.NET
   - OpenTK
 
