@@ -48,7 +48,7 @@ ToDo Applications created using various GUI tools.
 - Go
   - [Fyne](https://github.com/webcyou-org/todo-gui/tree/main/Go/Fyne)
   - [Lorca](https://github.com/webcyou-org/todo-gui/tree/main/Go/Lorca)
-  - Wails
+  - [Wails](https://github.com/webcyou-org/todo-gui/tree/main/Go/Wails/todo)
   - Gio
   - Walk
   - Go-GTK
@@ -72,7 +72,9 @@ ToDo Applications created using various GUI tools.
   - NW.js
   - AppJS
   - React Native
-
+  - [Wails](https://github.com/webcyou-org/todo-gui/tree/main/Go/Wails/todo)
+  - [Lorca](https://github.com/webcyou-org/todo-gui/tree/main/Go/Lorca)
+ 
 ## Architecture
 
 ## Tools official website
