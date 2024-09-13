@@ -37,10 +37,11 @@ ToDo Applications created using various GUI tools.
   - [Avalonia](https://github.com/webcyou-org/todo-gui/tree/main/C%23/Avalonia/ToDo)
   - Uno Platform
   - WPF
+  - Prism
+  - Xamarin.Forms
   - WinForms
   - GTK#
   - MAUI
-  - Xamarin.Forms
   - Electron.NET
   - OpenTK
 
