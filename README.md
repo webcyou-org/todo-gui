@@ -11,7 +11,7 @@ ToDo Applications created using various GUI tools.
   - Rikulo UI
 
 - Python
-  - Flet
+  - [Flet](https://github.com/webcyou-org/todo-gui/tree/main/Python/Flet)
   - tkinter
   - Kivy
   - Remi
