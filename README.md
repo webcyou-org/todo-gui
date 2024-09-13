@@ -24,7 +24,7 @@ ToDo Applications created using various GUI tools.
   - wxPython
   
 - C++
-  - QT
+  - [QT](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/QT)
   - ImGui (Immediate Mode GUI)
   - wxWidgets
   - GTKmm
