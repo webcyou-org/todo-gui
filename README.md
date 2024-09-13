@@ -12,7 +12,7 @@ ToDo Applications created using various GUI tools.
 
 - Python
   - [Flet](https://github.com/webcyou-org/todo-gui/tree/main/Python/Flet)
-  - tkinter
+  - [tkinter](https://github.com/webcyou-org/todo-gui/tree/main/Python/tkinter)
   - Kivy
   - Remi
   - Reflex
