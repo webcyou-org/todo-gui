@@ -46,7 +46,7 @@ ToDo Applications created using various GUI tools.
 
 - Go
   - [Fyne](https://github.com/webcyou-org/todo-gui/tree/main/Go/Fyne)
-  - Lorca
+  - [Lorca](https://github.com/webcyou-org/todo-gui/tree/main/Go/Lorca)
   - Wails
   - Gio
   - Walk
