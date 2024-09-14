@@ -50,7 +50,7 @@ ToDo Applications created using various GUI tools.
   - [Fyne](https://github.com/webcyou-org/todo-gui/tree/main/Go/Fyne)
   - [Lorca](https://github.com/webcyou-org/todo-gui/tree/main/Go/Lorca)
   - [Wails](https://github.com/webcyou-org/todo-gui/tree/main/Go/Wails/todo)
-  - Gio
+  - [Gio](https://github.com/webcyou-org/todo-gui/tree/main/Go/Gio)
   - Walk
   - Go-GTK
   - shiny
