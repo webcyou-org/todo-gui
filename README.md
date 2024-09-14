@@ -16,7 +16,7 @@ ToDo Applications created using various GUI tools.
   - [Kivy](https://github.com/webcyou-org/todo-gui/tree/main/Python/Kivy)
   - [Remi](https://github.com/webcyou-org/todo-gui/tree/main/Python/remi)
   - [Reflex](https://github.com/webcyou-org/todo-gui/tree/main/Python/reflex/todo)
-  - PyQt
+  - [PyQt](https://github.com/webcyou-org/todo-gui/tree/main/Python/pyqt)
   - PySimpleGUI
   - Toga
   - PyForms
