@@ -27,8 +27,8 @@ ToDo Applications created using various GUI tools.
   - [QT](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/QT)
   - [wxWidgets](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/wxWidgets)
   - [GTKmm](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/GTKmm)
-  - FLTK (Fast Light Toolkit)
-  - NanoGUI
+  - [FLTK (Fast Light Toolkit)](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/FLTK)
+  - [NanoGUI](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/NanoGUI)
   - Ultimate++ (U++)
   - CEGUI (Crazy Eddie's GUI)
   - Cinder
