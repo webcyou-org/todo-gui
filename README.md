@@ -15,7 +15,7 @@ ToDo Applications created using various GUI tools.
   - [tkinter](https://github.com/webcyou-org/todo-gui/tree/main/Python/tkinter)
   - [Kivy](https://github.com/webcyou-org/todo-gui/tree/main/Python/Kivy)
   - [Remi](https://github.com/webcyou-org/todo-gui/tree/main/Python/remi)
-  - Reflex
+  - [Reflex](https://github.com/webcyou-org/todo-gui/tree/main/Python/reflex/todo)
   - PyQt
   - PySimpleGUI
   - Toga
@@ -75,7 +75,9 @@ ToDo Applications created using various GUI tools.
   - React Native
   - [Wails](https://github.com/webcyou-org/todo-gui/tree/main/Go/Wails/todo)
   - [Lorca](https://github.com/webcyou-org/todo-gui/tree/main/Go/Lorca)
- 
+  - [Remi](https://github.com/webcyou-org/todo-gui/tree/main/Python/remi)
+  - [Reflex](https://github.com/webcyou-org/todo-gui/tree/main/Python/reflex/todo) 
+
 ## Architecture
 
 ## Tools official website
