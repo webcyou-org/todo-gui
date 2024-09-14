@@ -14,7 +14,7 @@ ToDo Applications created using various GUI tools.
   - [Flet](https://github.com/webcyou-org/todo-gui/tree/main/Python/Flet)
   - [tkinter](https://github.com/webcyou-org/todo-gui/tree/main/Python/tkinter)
   - [Kivy](https://github.com/webcyou-org/todo-gui/tree/main/Python/Kivy)
-  - Remi
+  - [Remi](https://github.com/webcyou-org/todo-gui/tree/main/Python/remi)
   - Reflex
   - PyQt
   - PySimpleGUI
