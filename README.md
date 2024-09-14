@@ -17,12 +17,12 @@ ToDo Applications created using various GUI tools.
   - [Remi](https://github.com/webcyou-org/todo-gui/tree/main/Python/remi)
   - [Reflex](https://github.com/webcyou-org/todo-gui/tree/main/Python/reflex/todo)
   - [PyQt](https://github.com/webcyou-org/todo-gui/tree/main/Python/pyqt)
-  - PySimpleGUI
-  - Toga
-  - PyForms
-  - PyGTK
-  - wxPython
-  
+  - [TkEasyGUI](https://github.com/webcyou-org/todo-gui/tree/main/Python/TkEasyGUI)
+  - [Toga](https://github.com/webcyou-org/todo-gui/tree/main/Python/Toga)
+  - [PyForms](https://github.com/webcyou-org/todo-gui/tree/main/Python/PyForms)
+  - [PyGTK](https://github.com/webcyou-org/todo-gui/tree/main/Python/PyGTK)
+  - [wxPython](https://github.com/webcyou-org/todo-gui/tree/main/Python/wxPython)
+
 - C++
   - [QT](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/QT)
   - ImGui (Immediate Mode GUI)
@@ -33,18 +33,17 @@ ToDo Applications created using various GUI tools.
   - Ultimate++ (U++)
   - CEGUI (Crazy Eddie's GUI)
 
-- C#
-  - [Avalonia](https://github.com/webcyou-org/todo-gui/tree/main/C%23/Avalonia/ToDo)
-  - [Uno Platform](https://github.com/webcyou-org/todo-gui/tree/main/C%23/UnoPlatform/ToDo)
-  - WPF
-  - UWP
-  - Prism
-  - Xamarin.Forms
-  - WinForms
-  - GTK#
-  - [MAUI](https://github.com/webcyou-org/todo-gui/tree/main/C%23/MAUI/ToDo)
-  - Electron.NET
-  - OpenTK
+- JavaScript
+  - [Electron](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/Electron/todo)
+  - [Tauri](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/tauri/vite/todo-gui)
+  - Neutralino.js
+  - NW.js
+  - AppJS
+  - React Native
+  - [Wails](https://github.com/webcyou-org/todo-gui/tree/main/Go/Wails/todo)
+  - [Lorca](https://github.com/webcyou-org/todo-gui/tree/main/Go/Lorca)
+  - [Remi](https://github.com/webcyou-org/todo-gui/tree/main/Python/remi)
+  - [Reflex](https://github.com/webcyou-org/todo-gui/tree/main/Python/reflex/todo)
 
 - Go
   - [Fyne](https://github.com/webcyou-org/todo-gui/tree/main/Go/Fyne)
@@ -66,17 +65,18 @@ ToDo Applications created using various GUI tools.
   - gtk-rs
   - egui
 
-- JavaScript
-  - [Electron](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/Electron/todo)
-  - [Tauri](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/tauri/vite/todo-gui)
-  - Neutralino.js
-  - NW.js
-  - AppJS
-  - React Native
-  - [Wails](https://github.com/webcyou-org/todo-gui/tree/main/Go/Wails/todo)
-  - [Lorca](https://github.com/webcyou-org/todo-gui/tree/main/Go/Lorca)
-  - [Remi](https://github.com/webcyou-org/todo-gui/tree/main/Python/remi)
-  - [Reflex](https://github.com/webcyou-org/todo-gui/tree/main/Python/reflex/todo) 
+- C#
+  - [Avalonia](https://github.com/webcyou-org/todo-gui/tree/main/C%23/Avalonia/ToDo)
+  - [Uno Platform](https://github.com/webcyou-org/todo-gui/tree/main/C%23/UnoPlatform/ToDo)
+  - WPF
+  - UWP
+  - Prism
+  - Xamarin.Forms
+  - WinForms
+  - GTK#
+  - [MAUI](https://github.com/webcyou-org/todo-gui/tree/main/C%23/MAUI/ToDo)
+  - Electron.NET
+  - OpenTK
 
 ## Architecture
 
