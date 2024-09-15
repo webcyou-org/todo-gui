@@ -69,7 +69,7 @@ ToDo Applications created using various GUI tools.
   - [Iced](https://github.com/webcyou-org/todo-gui/tree/main/Rust/Iced/todo/)
   - [Dioxus](https://github.com/webcyou-org/todo-gui/tree/main/Rust/Dioxus/todo/)
   - Xilem
-  - gtk-rs
+  - [gtk-rs](https://github.com/webcyou-org/todo-gui/tree/main/Rust/gtk-rs/todo/)
   - egui
   - OrbTk
   - fltk-rs
