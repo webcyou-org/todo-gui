@@ -39,8 +39,12 @@ ToDo Applications created using various GUI tools.
   - [Tauri](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/tauri/vite/todo-gui)
   - [Neutralino.js](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/Neutralinojs/todo/)
   - [NW.js](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/NWjs/)
-  - AppJS
   - React Native
+  - Proton Native
+  - Ultralight
+  - DeskGap
+  - Carlo
+  - Sciter
   - [Wails](https://github.com/webcyou-org/todo-gui/tree/main/Go/Wails/todo)
   - [Lorca](https://github.com/webcyou-org/todo-gui/tree/main/Go/Lorca)
   - [Remi](https://github.com/webcyou-org/todo-gui/tree/main/Python/remi)
@@ -62,9 +66,17 @@ ToDo Applications created using various GUI tools.
   - [Druid](https://github.com/webcyou-org/todo-gui/tree/main/Rust/Druid/todo)
   - [Slint](https://github.com/webcyou-org/todo-gui/tree/main/Rust/Slint/todo)
   - [Tauri](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/tauri/vite/todo-gui)
-  - Iced
+  - [Iced](https://github.com/webcyou-org/todo-gui/tree/main/Rust/Iced/todo/)
+  - Dioxus
+  - Xilem
   - gtk-rs
   - egui
+  - OrbTk
+  - fltk-rs
+  - KAS
+  - silvia
+  - Conrod
+  - Azul
 
 - C#
   - [Avalonia](https://github.com/webcyou-org/todo-gui/tree/main/C%23/Avalonia/ToDo)
