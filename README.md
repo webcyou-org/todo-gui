@@ -70,13 +70,15 @@ ToDo Applications created using various GUI tools.
   - [Dioxus](https://github.com/webcyou-org/todo-gui/tree/main/Rust/Dioxus/todo/)
   - Xilem
   - [gtk-rs](https://github.com/webcyou-org/todo-gui/tree/main/Rust/gtk-rs/todo/)
-  - egui
+  - [egui](https://github.com/webcyou-org/todo-gui/tree/main/Rust/egui/)
   - OrbTk
   - fltk-rs
   - KAS
-  - silvia
   - Conrod
+  - vizia
   - Azul
+  - rui
+  - silvia
 
 - C#
   - [Avalonia](https://github.com/webcyou-org/todo-gui/tree/main/C%23/Avalonia/ToDo)
