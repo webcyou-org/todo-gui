@@ -38,7 +38,7 @@ ToDo Applications created using various GUI tools.
   - [Electron](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/Electron/todo)
   - [Tauri](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/tauri/vite/todo-gui)
   - [Neutralino.js](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/Neutralinojs/todo/)
-  - NW.js
+  - [NW.js](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/NWjs/)
   - AppJS
   - React Native
   - [Wails](https://github.com/webcyou-org/todo-gui/tree/main/Go/Wails/todo)

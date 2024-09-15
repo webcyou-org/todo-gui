@@ -1,0 +1,9 @@
+{
+  "name": "todo",
+  "main": "views/main.html",
+  "window": {
+    "min_width": 400,
+    "min_height": 400,
+    "icon": "assets/icon.png"
+  }
+}
