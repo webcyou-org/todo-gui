@@ -67,7 +67,7 @@ ToDo Applications created using various GUI tools.
   - [Slint](https://github.com/webcyou-org/todo-gui/tree/main/Rust/Slint/todo)
   - [Tauri](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/tauri/vite/todo-gui)
   - [Iced](https://github.com/webcyou-org/todo-gui/tree/main/Rust/Iced/todo/)
-  - Dioxus
+  - [Dioxus](https://github.com/webcyou-org/todo-gui/tree/main/Rust/Dioxus/todo/)
   - Xilem
   - gtk-rs
   - egui
@@ -94,6 +94,8 @@ ToDo Applications created using various GUI tools.
 ## Application Specification
 
 ## Architecture
+
+## Design
 
 ## Tools official website
 
