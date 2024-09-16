@@ -77,7 +77,7 @@ ToDo Applications created using various GUI tools.
   - [egui](https://github.com/webcyou-org/todo-gui/tree/main/Rust/egui/)
   - OrbTk
   - [fltk-rs](https://github.com/webcyou-org/todo-gui/tree/main/Rust/fltk-rs/todo/)
-  - Relm4
+  - [Relm4](https://github.com/webcyou-org/todo-gui/tree/main/Rust/Relm4/todo/)
   - KAS
   - Conrod
   - [vizia](https://github.com/webcyou-org/todo-gui/tree/main/Rust/vizia/todo/)
