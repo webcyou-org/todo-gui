@@ -1,0 +1,7 @@
+{
+  "name": "todo",
+  "main": "index.js",
+  "scripts": {
+    "start": "deskgap ."
+  }
+}

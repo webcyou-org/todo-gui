@@ -1,0 +1,8 @@
+{
+  "name": "todo",
+  "main": "index.js",
+  "dependencies": {
+    "carlo": "^0.9.46",
+    "puppeteer": "^23.3.1"
+  }
+}
