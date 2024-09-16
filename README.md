@@ -43,7 +43,6 @@ ToDo Applications created using various GUI tools.
   - [Neutralino.js](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/Neutralinojs/todo/)
   - [NW.js](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/NWjs/)
   - [React Native](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/ReactNative/todo)
-  - Proton Native
   - Ultralight
   - DeskGap
   - Carlo
@@ -53,6 +52,7 @@ ToDo Applications created using various GUI tools.
   - [Remi](https://github.com/webcyou-org/todo-gui/tree/main/Python/remi)
   - [Reflex](https://github.com/webcyou-org/todo-gui/tree/main/Python/reflex/todo)
   - [Dioxus](https://github.com/webcyou-org/todo-gui/tree/main/Rust/Dioxus/todo/)
+  - [Proton Native](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/ProtonNative/todo)
   
 - Go
   - [Fyne](https://github.com/webcyou-org/todo-gui/tree/main/Go/Fyne)
