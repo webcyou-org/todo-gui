@@ -22,6 +22,7 @@ ToDo Applications created using various GUI tools.
   - [PyForms](https://github.com/webcyou-org/todo-gui/tree/main/Python/PyForms)
   - [PyGTK](https://github.com/webcyou-org/todo-gui/tree/main/Python/PyGTK)
   - [wxPython](https://github.com/webcyou-org/todo-gui/tree/main/Python/wxPython)
+  - Azul
 
 - C++
   - [QT](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/QT)
@@ -34,6 +35,7 @@ ToDo Applications created using various GUI tools.
   - CEGUI (Crazy Eddie's GUI)
   - Cinder
   - ImGui (Immediate Mode GUI)
+  - Azul
 
 - JavaScript
   - [Electron](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/Electron/todo)
@@ -80,7 +82,7 @@ ToDo Applications created using various GUI tools.
   - Conrod
   - [vizia](https://github.com/webcyou-org/todo-gui/tree/main/Rust/vizia/todo/)
   - Azul
-  - rui
+  - [rui](https://github.com/webcyou-org/todo-gui/tree/main/Rust/rui/todo/)
   - fui
   - silvia
   - Leptos
