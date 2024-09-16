@@ -26,6 +26,7 @@ ToDo Applications created using various GUI tools.
 - C++
   - [QT](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/QT)
   - [wxWidgets](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/wxWidgets)
+  - GTK
   - [GTKmm](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/GTKmm)
   - [FLTK (Fast Light Toolkit)](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/FLTK)
   - [NanoGUI](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/NanoGUI)
@@ -49,7 +50,8 @@ ToDo Applications created using various GUI tools.
   - [Lorca](https://github.com/webcyou-org/todo-gui/tree/main/Go/Lorca)
   - [Remi](https://github.com/webcyou-org/todo-gui/tree/main/Python/remi)
   - [Reflex](https://github.com/webcyou-org/todo-gui/tree/main/Python/reflex/todo)
-
+  - [Dioxus](https://github.com/webcyou-org/todo-gui/tree/main/Rust/Dioxus/todo/)
+  
 - Go
   - [Fyne](https://github.com/webcyou-org/todo-gui/tree/main/Go/Fyne)
   - [Lorca](https://github.com/webcyou-org/todo-gui/tree/main/Go/Lorca)
@@ -73,11 +75,13 @@ ToDo Applications created using various GUI tools.
   - [egui](https://github.com/webcyou-org/todo-gui/tree/main/Rust/egui/)
   - OrbTk
   - [fltk-rs](https://github.com/webcyou-org/todo-gui/tree/main/Rust/fltk-rs/todo/)
+  - Relm4
   - KAS
   - Conrod
-  - vizia
+  - [vizia](https://github.com/webcyou-org/todo-gui/tree/main/Rust/vizia/todo/)
   - Azul
   - rui
+  - fui
   - silvia
   - Leptos
 
