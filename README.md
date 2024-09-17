@@ -102,9 +102,31 @@ ToDo Applications created using various GUI tools.
 
 ## Application Specification
 
+- Default Window Size 
+  - width: 480px
+  - height: 560px
+
+
 ## Architecture
 
 ## Design
+
+- BackGroundColor
+  - #1C1C1C
+- InputBackGroundColor
+  - #303030
+- ToDoItemBackGroundColor
+  - #2A2A2A
+- TextColor
+  - #FFFFFF
+  - #9B9B9B
+  - #D2D2D2
+- ObjectRoundedCorners
+  - 4px
+- TitleTextSize
+  - 18px
+- padding
+  - 24px
 
 ## Tools official website
 
