@@ -103,8 +103,8 @@ ToDo Applications created using various GUI tools.
 ## Application Specification
 
 - Default Window Size 
-  - width: 480px
-  - height: 560px
+  - width: 800px
+  - height: 600px
 
 
 ## Architecture
