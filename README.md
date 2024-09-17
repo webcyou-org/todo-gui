@@ -60,8 +60,8 @@ ToDo Applications created using various GUI tools.
   - [Wails](https://github.com/webcyou-org/todo-gui/tree/main/Go/Wails/todo)
   - [Gio](https://github.com/webcyou-org/todo-gui/tree/main/Go/Gio)
   - Walk
-  - Go-GTK
-  - shiny
+  - [Go-GTK](https://github.com/webcyou-org/todo-gui/tree/main/Go/Go-GTK)
+  - [shiny](https://github.com/webcyou-org/todo-gui/tree/main/Go/shiny)
   - Qt for Go
   - go-sciter
   - nuklear
