@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    cursor: default;
+}
+
+body {
+    padding: 10px 24px;
+    background: #1C1C1C;
+}
+
+input, textarea, select, button, img {
+    -webkit-user-drag: none;
+    border: none;
+}
+
+.draggable {
+    -webkit-app-region: drag;
+}
+
+.selectable {
+    -webkit-user-select: auto;
+    cursor: auto;
+}
+
+h1 {
+    margin-bottom: 14px;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 28px;
+    color: #FFFFFF;
+}
+
+.input.todo {
+    margin-bottom: 14px;
+}
+.input.todo input {
+    width: 100%;
+    min-width: 430px;
+    height: 35px;
+    padding: 4px 16px;
+    background: #303030;
+    border-radius: 4px;
+    color: #FFFFFF;
+}
+
+.list.menu {
+    display: flex;
+    list-style: none;
+    margin-bottom: 3px;
+}
+.list.menu > li {
+    height: 28px;
+    padding: 0 8px;
+    font-size: 14px;
+    line-height: 28px;
+    align-items: center;
+    justify-content: center;
+}
+
+.list.menu > li.isActive {
+    font-weight: bold;
+}
+
+.list.menu a {
+    color: #D2D2D2;
+    text-decoration: none;
+}
+
+.list.task {
+    list-style: none;
+}
+.list.task > li {
+    display: flex;
+    width: 100%;
+    min-width: 430px;
+    height: 35px;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    background: #2A2A2A;
+    align-items: center;
+    cursor: pointer;
+}
+.list.task > li .checkbox {
+    height: 20px;
+    margin-right: 18px;
+}
+.list.task > li .checkbox input {
+    position: relative;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    border: 2px solid #D9D9D9;
+}
+.list.task > li .checkbox input:checked::before {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 1px;
+    display: block;
+    width: 4px;
+    height: 6px;
+    border: 2px solid #5DC2AF;
+    border-top: transparent;
+    border-left: transparent;
+    transform: rotate(45deg);
+}
+
+.list.task > li .text {
+    font-size: 14px;
+    color: #D2D2D2;
+    line-height: 20px;
+}
+
+.list.task > li.isCompleted .text {
+    text-decoration: line-through;
+}
