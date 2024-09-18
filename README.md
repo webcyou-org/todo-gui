@@ -110,23 +110,65 @@ ToDo Applications created using various GUI tools.
 ## Architecture
 
 ## Design
+- Contents
+  - BackGroundColor
+    - #1C1C1C
+  - padding
+    - Top, Bottom 10px
+    - Left, Right 24px
+- Title
+  - Color #FFFFFF
+  - FontSize 18px
+  - MarginBottom 14px
+- ToDoInput
+  - Padding 
+    - Top, Bottom 4px
+    - Left, Right 16px
+  - TextColor #FFFFFF
+  - PlaceHolderText
+    - Add Task
+  - PlaceHolderTextColor #9B9B9B
+  - BackGroundColor #303030
+  - MinWidth 430px
+  - Height 35px 
+  - RoundedCorners 4px
+  - MarginBottom 14px
+- TabMenu
+  - MenuText
+    - All
+    - Active
+    - Completed
+  - TextColor #D2D2D2
+  - FontSize 14px
+  - lineHeight 28px
+  - ActiveStyle
+    - FontBold
+  - MenuItemPadding
+    - Left, Right 8px
+  - MarginBottom 3px 
+- ToDoItem
+  - MinWidth 430px
+  - Height 35px
+  - Padding 10px
+  - RoundedCorners 4px
+  - BackGroundColor #2A2A2A
+  - MarginBottom 5px
+  - ToDoItemCheckBox
+    - Width 16px
+    - Height 16px
+    - RoundedCorners 8px 
+    - borderColor 2px #D9D9D9
+    - MarginRight 18px
+    - CheckedBorder 2px solid 
+    - CheckedBorderColor #5DC2AF
+  - FontSize 14px
+  - TextColor #D2D2D2
 
-- BackGroundColor
-  - #1C1C1C
-- InputBackGroundColor
-  - #303030
-- ToDoItemBackGroundColor
-  - #2A2A2A
-- TextColor
-  - #FFFFFF
-  - #9B9B9B
-  - #D2D2D2
-- ObjectRoundedCorners
-  - 4px
-- TitleTextSize
-  - 18px
-- padding
-  - 24px
+### CSS
+
+```css
+
+```
 
 ## Tools official website
 
