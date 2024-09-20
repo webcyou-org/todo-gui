@@ -1,4 +1,4 @@
-const tabMenuData = require('./tabMenuData')
+const { tabMenuData} = require('../const/tabMenuData')
 
 class TabMenu {
     constructor(data) {
@@ -12,10 +12,6 @@ class MenuModel {
         this.tabList = tabsData.map(tabData => new TabMenu(tabData))
         this.activeTab = this.tabList.find(tab => tab.isActive) || this.tabList[0]
     }
-
-    // findActiveTab() {
-    //     return this.tabList.find(tab => tab.isActive) || this.tabList[0]
-    // }
 
     setActiveTab(tabItem) {
         this.tabList.forEach(tab => {

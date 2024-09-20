@@ -1,7 +1,7 @@
-const { TodoModel } = require('./TodoModel');
-const { TodoView } = require('./TodoView');
-const { MenuModel } = require('./MenuModel');
-const { MenuView } = require('./MenuView');
+const { TodoModel } = require('./Model/TodoModel');
+const { MenuModel } = require('./Model/MenuModel');
+const { TodoView } = require('./View/TodoView');
+const { MenuView } = require('./View/MenuView');
 
 class AppController {
     constructor(todoModel, todoView, menuModel, menuView) {

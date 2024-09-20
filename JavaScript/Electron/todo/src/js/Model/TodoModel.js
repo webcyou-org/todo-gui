@@ -1,3 +1,6 @@
+const { TAB_MENU_TEXT } = require('../const/tabMenuData')
+const { defaultTodoData } = require('../const/todoData')
+
 class Todo {
     constructor(data) {
         this.task = data.task ? data.task : "";
@@ -6,7 +9,7 @@ class Todo {
 }
 
 class TodoModel {
-    constructor(todos) {
+    constructor(todos = defaultTodoData) {
         this.list = [];
         todos.forEach((todo) => {
             this.list.push(new Todo(todo));
@@ -30,11 +33,11 @@ class TodoModel {
     }
 
     getFilteredTodos(tab) {
-        if (tab.text === 'All') {
+        if (tab.text === TAB_MENU_TEXT.ALL) {
             return this.list;
-        } else if (tab.text === 'Active') {
+        } else if (tab.text === TAB_MENU_TEXT.ACTIVE) {
             return this.list.filter(todo => !todo.isCompleted);
-        } else if (tab.text === 'Completed') {
+        } else if (tab.text === TAB_MENU_TEXT.COMPLETED) {
             return this.list.filter(todo => todo.isCompleted);
         }
     }
