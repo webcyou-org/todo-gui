@@ -12,7 +12,7 @@ class TodoView {
             const li = createTaskElement(todo);
             this.list.appendChild(li);
             li.addEventListener('click', () => {
-                this.onToggleCompleted(index);
+                this.onToggleCompleted(todo);
             });
         });
     }

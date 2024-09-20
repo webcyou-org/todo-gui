@@ -25,9 +25,8 @@ class AppController {
         this.updateTodoView();
     }
 
-    handleToggleCompleted(index) {
-        const currentTodo = this.todoModel.getData()[index];
-        this.todoModel.changeCompleted(index, !currentTodo.isCompleted);
+    handleToggleCompleted(todo) {
+        this.todoModel.changeCompleted(todo);
         this.updateTodoView();
     }
 

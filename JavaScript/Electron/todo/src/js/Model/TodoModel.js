@@ -2,7 +2,8 @@ const { TAB_MENU_TEXT } = require('../const/tabMenuData')
 const { defaultTodoData } = require('../const/todoData')
 
 class Todo {
-    constructor(data) {
+    constructor(data, index) {
+        this.id = index ? index : 0;
         this.task = data.task ? data.task : "";
         this.isCompleted = data.isCompleted != null ? data.isCompleted : false;
     }
@@ -11,8 +12,8 @@ class Todo {
 class TodoModel {
     constructor(todos = defaultTodoData) {
         this.list = [];
-        todos.forEach((todo) => {
-            this.list.push(new Todo(todo));
+        todos.forEach((todo, index) => {
+            this.list.push(new Todo(todo, index + 1));
         })
     }
 
@@ -21,24 +22,36 @@ class TodoModel {
     }
 
     addData(task) {
-        this.list.push(new Todo({
-            task
-        }));
+        this.list.push(
+            new Todo({
+                    task
+                },
+                this.list.length + 1
+            )
+        );
     }
 
-    changeCompleted(index, isCompleted) {
-        if (this.list[index]) {
-            this.list[index].isCompleted = isCompleted;
+    findById(id) {
+        return this.list.find(todo => todo.id === id)
+    }
+
+    changeCompleted(todo) {
+        let targetTodo = this.findById(todo.id)
+        if (targetTodo) {
+            targetTodo.isCompleted = !targetTodo.isCompleted;
         }
     }
 
     getFilteredTodos(tab) {
-        if (tab.text === TAB_MENU_TEXT.ALL) {
-            return this.list;
-        } else if (tab.text === TAB_MENU_TEXT.ACTIVE) {
-            return this.list.filter(todo => !todo.isCompleted);
-        } else if (tab.text === TAB_MENU_TEXT.COMPLETED) {
-            return this.list.filter(todo => todo.isCompleted);
+        switch (tab.text) {
+            case TAB_MENU_TEXT.ALL:
+                return this.list;
+            case TAB_MENU_TEXT.ACTIVE:
+                return this.list.filter(todo => !todo.isCompleted);
+            case TAB_MENU_TEXT.COMPLETED:
+                return this.list.filter(todo => todo.isCompleted);
+            default:
+                return this.list;
         }
     }
 
