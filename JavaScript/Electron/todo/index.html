@@ -9,9 +9,9 @@
 </head>
 <body>
 <h1>ToDo</h1>
-<p class="input todo"><input type="text" placeholder="Add Task" /></p>
+<p class="input todo"><input id="todoInput" type="text" placeholder="Add Task" /></p>
 
-<ul class="list menu">
+<ul class="list menu" id="menuList">
     <li class="isActive">
         <p>
             <a href="">All</a>
@@ -29,7 +29,7 @@
     </li>
 </ul>
 <div>
-    <ul class="list task">
+    <ul class="list task" id="todoList">
         <li>
             <p class="checkbox"><input type="checkbox"></p>
             <p class="text">Task1</p>
@@ -48,6 +48,6 @@
         </li>
     </ul>
 </div>
-
+<script src="./renderer.js"></script>
 </body>
 </html>
