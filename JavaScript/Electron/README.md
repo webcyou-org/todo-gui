@@ -1,30 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <title>ToDo Application</title>
-    <link href="./style.css" rel="stylesheet" type="text/css" media="all">
-</head>
-<body>
+## Todo GUI in Electron
+
+![todo](https://user-images.githubusercontent.com/1584153/191999399-373be546-9667-4e0b-92c1-c644bd7ff922.png)
+
+### Contents
+
+- [VanillaJS](VanillaJS)
+- [Vue](Vue)
+- [React](React)
+
+### Template HTML
+
+```html
 <h1>ToDo</h1>
 <p class="input todo"><input id="todoInput" type="text" placeholder="Add Task" /></p>
 
 <ul class="list menu" id="menuList">
     <li class="isActive">
         <p>
-            <a href="">All</a>
+            <a href="#">All</a>
         </p>
     </li>
     <li>
         <p>
-            <a href="">Active</a>
+            <a href="#">Active</a>
         </p>
     </li>
     <li>
         <p>
-            <a href="">Completed</a>
+            <a href="#">Completed</a>
         </p>
     </li>
 </ul>
@@ -48,6 +51,6 @@
         </li>
     </ul>
 </div>
-<script src="./renderer.js"></script>
-</body>
-</html>
+```
+
+### Template CSS
