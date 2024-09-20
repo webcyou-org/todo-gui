@@ -26,8 +26,18 @@ class TodoView {
     }
 
     bindAddItem(handler) {
+        let isComposing = false;
+        // Japanese input started
+        this.input.addEventListener('compositionstart', () => {
+            isComposing = true;
+        });
+        // Japanese input confirmed.
+        this.input.addEventListener('compositionend', () => {
+            isComposing = false;
+        });
+
         this.input.addEventListener('keydown', event => {
-            if (event.key === 'Enter') {
+            if (event.key === 'Enter' && !isComposing) {
                 event.preventDefault();
                 handler(this.getInputValue());
                 this.clearInput();
