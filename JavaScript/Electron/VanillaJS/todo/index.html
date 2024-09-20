@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <title>ToDo Application</title>
+    <link href="src/css/style.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body>
+<h1>ToDo</h1>
+<p class="input todo"><input id="todoInput" type="text" placeholder="Add Task" /></p>
+
+<ul class="list menu" id="menuList">
+    <li class="isActive">
+        <p>
+            <a href="">All</a>
+        </p>
+    </li>
+    <li>
+        <p>
+            <a href="">Active</a>
+        </p>
+    </li>
+    <li>
+        <p>
+            <a href="">Completed</a>
+        </p>
+    </li>
+</ul>
+<div>
+    <ul class="list task" id="todoList">
+        <li>
+            <p class="checkbox"><input type="checkbox"></p>
+            <p class="text">Task1</p>
+        </li>
+        <li class="isCompleted">
+            <p class="checkbox"><input type="checkbox" checked></p>
+            <p class="text">Task2</p>
+        </li>
+        <li>
+            <p class="checkbox"><input type="checkbox"></p>
+            <p class="text">Task3</p>
+        </li>
+        <li>
+            <p class="checkbox"><input type="checkbox"></p>
+            <p class="text">Task4</p>
+        </li>
+    </ul>
+</div>
+<script src="renderer.js"></script>
+</body>
+</html>

@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 html {
     -webkit-user-select: none;
     -webkit-user-drag: none;
@@ -39,6 +40,7 @@ h1 {
 .input.todo {
     margin-bottom: 14px;
 }
+
 .input.todo input {
     width: 100%;
     min-width: 430px;
@@ -54,6 +56,7 @@ h1 {
     list-style: none;
     margin-bottom: 3px;
 }
+
 .list.menu > li {
     height: 28px;
     padding: 0 8px;
@@ -75,6 +78,7 @@ h1 {
 .list.task {
     list-style: none;
 }
+
 .list.task > li {
     display: flex;
     width: 100%;
@@ -87,10 +91,12 @@ h1 {
     align-items: center;
     cursor: pointer;
 }
+
 .list.task > li .checkbox {
     height: 20px;
     margin-right: 18px;
 }
+
 .list.task > li .checkbox input {
     position: relative;
     appearance: none;
@@ -99,6 +105,7 @@ h1 {
     border-radius: 8px;
     border: 2px solid #D9D9D9;
 }
+
 .list.task > li .checkbox input:checked::before {
     content: "";
     position: absolute;

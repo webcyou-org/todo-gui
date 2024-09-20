@@ -38,7 +38,7 @@ ToDo Applications created using various GUI tools.
   - Azul
 
 - JavaScript
-  - [Electron](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/Electron/todo)
+  - [Electron](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/Electron)
   - [Tauri](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/tauri/vite/todo-gui)
   - [Neutralino.js](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/Neutralinojs/todo/)
   - [NW.js](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/NWjs/)
