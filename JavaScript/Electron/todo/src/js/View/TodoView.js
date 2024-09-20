@@ -1,4 +1,4 @@
-const { createTaskElement } = require('./component/todoComponent')
+const { createTaskElement } = require('../component/todoComponent')
 
 class TodoView {
     constructor() {

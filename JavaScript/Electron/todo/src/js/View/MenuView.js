@@ -1,4 +1,4 @@
-const { createMenuItem } = require('./component/menuComponent')
+const { createMenuItem } = require('../component/menuComponent')
 
 class MenuView {
     constructor() {
