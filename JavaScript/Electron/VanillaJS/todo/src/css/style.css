@@ -20,6 +20,15 @@ input, textarea, select, button, img {
     border: none;
 }
 
+input {
+    border: 1px solid transparent;
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid #5DC2AF;
+}
+
 .draggable {
     -webkit-app-region: drag;
 }
