@@ -147,6 +147,13 @@ classDiagram
     MenuModel "1" --> "1" TabMenu : activeTab
 ```
 
+### Architecture Style
+
+It is based on the MVC pattern and adapted to the architectural style of each framework.
+
+This may be the MVC pattern, MVP pattern, MVVM pattern, etc., but at a minimum, it should be done in the MV** format.
+
+
 ## Design
 - Contents
   - BackGroundColor
