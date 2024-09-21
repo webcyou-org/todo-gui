@@ -106,8 +106,46 @@ ToDo Applications created using various GUI tools.
   - width: 800px
   - height: 600px
 
-
 ## Architecture
+
+### Class Diagram
+
+```mermaid
+classDiagram
+    class Todo {
+      + int id
+      + string task
+      + boolean isCompleted
+    }
+    
+    class TodoModel {
+      + List~Todo~ list
+      + addTodo(string task)
+      + getData() List~Todo~
+      + findById(int id) Todo
+      + changeCompleted(Todo todo) void
+      + getFilteredTodos(TabMenu tab) List~Todo~
+      + removeData(int id) void
+    }
+    
+    TodoModel "1" --> "*" Todo : has
+    
+    class TabMenu {
+      + string text
+      + boolean isActive
+    }
+    
+    class MenuModel {
+      + List~TabMenu~ tabList
+      + TabMenu activeTab
+      + setActiveTab(TabMenu tabItem)
+      + getActiveTab() TabMenu
+      + getTabList() List~TabMenu~
+    }
+    
+    MenuModel "1" --> "*" TabMenu : has
+    MenuModel "1" --> "1" TabMenu : activeTab
+```
 
 ## Design
 - Contents
@@ -164,13 +202,116 @@ ToDo Applications created using various GUI tools.
   - FontSize 14px
   - TextColor #D2D2D2
 
-### CSS
+### Style CSS
 
 ```css
+/* Input Style */
+input {
+    border: 1px solid transparent;
+}
 
+input:focus {
+    outline: none;
+    border: 1px solid #5DC2AF;
+}
+
+.input.todo {
+    margin-bottom: 14px;
+}
+
+.input.todo input {
+    width: 100%;
+    min-width: 430px;
+    height: 35px;
+    padding: 4px 16px;
+    background: #303030;
+    border-radius: 4px;
+    color: #FFFFFF;
+}
+
+/* Menu List Style */
+.list.menu {
+    display: flex;
+    list-style: none;
+    margin-bottom: 3px;
+}
+
+.list.menu > li {
+    height: 28px;
+    padding: 0 8px;
+    font-size: 14px;
+    line-height: 28px;
+    align-items: center;
+    justify-content: center;
+}
+
+.list.menu > li.isActive {
+    font-weight: bold;
+}
+
+.list.menu a {
+    color: #D2D2D2;
+    text-decoration: none;
+}
+
+/* Task List Style */
+.list.task {
+    list-style: none;
+}
+
+.list.task > li {
+    display: flex;
+    width: 100%;
+    min-width: 430px;
+    height: 35px;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    background: #2A2A2A;
+    align-items: center;
+    cursor: pointer;
+}
+
+.list.task > li .checkbox {
+    height: 20px;
+    margin-right: 18px;
+}
+
+.list.task > li .checkbox input {
+    position: relative;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    border: 2px solid #D9D9D9;
+}
+
+.list.task > li .checkbox input:checked::before {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 1px;
+    display: block;
+    width: 4px;
+    height: 6px;
+    border: 2px solid #5DC2AF;
+    border-top: transparent;
+    border-left: transparent;
+    transform: rotate(45deg);
+}
+
+.list.task > li .text {
+    font-size: 14px;
+    color: #D2D2D2;
+    line-height: 20px;
+}
+
+.list.task > li.isCompleted .text {
+    text-decoration: line-through;
+}
 ```
 
-## Tools official website
+## GUI Tools official website
 
 ## Author
 

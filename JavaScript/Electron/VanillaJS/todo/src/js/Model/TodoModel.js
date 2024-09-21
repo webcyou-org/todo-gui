@@ -55,8 +55,13 @@ class TodoModel {
         }
     }
 
-    removeData(index) {
-        this.list.splice(index, 1);
+    removeData(id) {
+        const index = this.list.findIndex(todo => todo.id === id);
+        if (index !== -1) {
+            this.list.splice(index, 1);
+        } else {
+            console.log("Todo not found");
+        }
     }
 }
 

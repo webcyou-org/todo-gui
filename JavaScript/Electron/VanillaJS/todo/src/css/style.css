@@ -20,15 +20,6 @@ input, textarea, select, button, img {
     border: none;
 }
 
-input {
-    border: 1px solid transparent;
-}
-
-input:focus {
-    outline: none;
-    border: 1px solid #5DC2AF;
-}
-
 .draggable {
     -webkit-app-region: drag;
 }
@@ -46,6 +37,16 @@ h1 {
     color: #FFFFFF;
 }
 
+/* Input Style */
+input {
+    border: 1px solid transparent;
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid #5DC2AF;
+}
+
 .input.todo {
     margin-bottom: 14px;
 }
@@ -60,6 +61,7 @@ h1 {
     color: #FFFFFF;
 }
 
+/* Menu List Style */
 .list.menu {
     display: flex;
     list-style: none;
@@ -84,6 +86,7 @@ h1 {
     text-decoration: none;
 }
 
+/* Task List Style */
 .list.task {
     list-style: none;
 }
