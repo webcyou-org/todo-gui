@@ -1,0 +1,65 @@
+import { TodoItem } from "../types.slint";
+
+export component TodoRow {
+    in property <TodoItem> item;
+    callback toggle();
+
+    height: 35px;
+
+    Rectangle {
+        background: #2A2A2A;
+        border-radius: 4px;
+
+        HorizontalLayout {
+            padding-left: 10px;
+            padding-right: 10px;
+            spacing: 8px;
+            alignment: start;
+
+            // Circular checkbox
+            Rectangle {
+                width: 16px;
+                height: 16px;
+                y: (parent.height - self.height) / 2;
+                border-radius: 8px;
+                border-width: 1.5px;
+                border-color: item.is-completed ? #5DC2AF : #D9D9D9;
+                background: item.is-completed ? #5DC2AF : transparent;
+
+                if item.is-completed: Path {
+                    width: 10px;
+                    height: 8px;
+                    x: (parent.width - self.width) / 2;
+                    y: (parent.height - self.height) / 2;
+                    stroke: white;
+                    stroke-width: 1.5px;
+                    commands: "M 1 4 L 4 7 L 9 1";
+                }
+            }
+
+            // Task text with strikethrough overlay
+            Rectangle {
+                vertical-stretch: 1;
+                height: parent.height;
+
+                task-text := Text {
+                    text: item.task;
+                    color: item.is-completed ? #9B9B9B : #D2D2D2;
+                    font-size: 14px;
+                    y: (parent.height - self.preferred-height) / 2;
+                }
+
+                if item.is-completed: Rectangle {
+                    y: task-text.y + task-text.preferred-height / 2 - 0.5px;
+                    width: task-text.preferred-width;
+                    height: 1px;
+                    background: #9B9B9B;
+                }
+            }
+        }
+
+        TouchArea {
+            clicked => { root.toggle(); }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+export component TabMenu {
+    in property <int> active-tab: 0;
+    callback set-tab(int);
+    height: 28px;
+
+    HorizontalLayout {
+        spacing: 0px;
+        alignment: start;
+
+        for tab-text[idx] in ["All", "Active", "Completed"]: Rectangle {
+            width: self.preferred-width + 16px;
+            height: 28px;
+
+            Text {
+                text: tab-text;
+                color: #D2D2D2;
+                font-size: 14px;
+                font-weight: root.active-tab == idx ? 700 : 400;
+                vertical-alignment: center;
+                horizontal-alignment: center;
+            }
+
+            TouchArea {
+                clicked => { root.set-tab(idx); }
+            }
+        }
+    }
+}

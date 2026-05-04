@@ -1,0 +1,36 @@
+export component TodoInput {
+    callback add-todo(string);
+    height: 35px;
+
+    Rectangle {
+        background: #303030;
+        border-radius: 4px;
+        border-width: input-field.has-focus ? 1px : 0px;
+        border-color: #5DC2AF;
+
+        placeholder := Text {
+            visible: input-field.text == "";
+            text: "Add Task";
+            color: #9B9B9B;
+            font-size: 14px;
+            x: 10px;
+            y: (parent.height - self.preferred-height) / 2;
+        }
+
+        input-field := TextInput {
+            x: 10px;
+            y: (parent.height - self.preferred-height) / 2;
+            width: parent.width - 20px;
+            color: #FFFFFF;
+            font-size: 14px;
+            single-line: true;
+
+            accepted => {
+                if (self.text != "") {
+                    root.add-todo(self.text);
+                    self.text = "";
+                }
+            }
+        }
+    }
+}
