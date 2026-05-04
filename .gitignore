@@ -1,2 +1,129 @@
+# =============================================================================
+# OS / Editor
+# =============================================================================
 .DS_Store
+Thumbs.db
+desktop.ini
+
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# =============================================================================
+# Dart / Flutter
+# =============================================================================
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+
+# Flutter build outputs
+**/flutter/build/
+**/flutter/todo/build/
+
+# macOS / iOS CocoaPods (generated during build)
+**/macos/Podfile
+**/macos/Podfile.lock
+**/macos/Pods/
+**/ios/Podfile.lock
+**/ios/Pods/
+
+# Generated plugin registrant
+**/Flutter/GeneratedPluginRegistrant.swift
+**/Flutter/GeneratedPluginRegistrant.h
+**/Flutter/GeneratedPluginRegistrant.m
+
+# Flutter ephemeral directory
+**/flutter/ephemeral/
+
+# =============================================================================
+# Python
+# =============================================================================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Distribution / packaging
+*.egg-info/
+dist/
+*.egg
+
+# Reflex (Next.js generated web dir)
+.web/
+.reflex/
+
+# =============================================================================
+# Rust / Cargo
+# =============================================================================
+target/
+
+# =============================================================================
+# Go
+# =============================================================================
+# Wails generated JS bindings
+**/frontend/wailsjs/
+
+# Go compiled binaries
+*.exe
+*.test
+*.out
+
+# =============================================================================
+# JavaScript / Node.js
+# =============================================================================
 node_modules/
+
+# Build outputs
+.next/
+out/
+
+# =============================================================================
+# C# / .NET
+# =============================================================================
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# =============================================================================
+# C++
+# =============================================================================
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+!CMakeLists.txt
+
+# =============================================================================
+# Logs / Temp
+# =============================================================================
+*.log
+*.tmp
+*.temp
