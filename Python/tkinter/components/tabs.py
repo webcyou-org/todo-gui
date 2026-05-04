@@ -1,8 +1,8 @@
 import tkinter as tk
 from typing import Callable
 
-from ..data import MenuModel, TabFilter
-from ..theme import C_BG, C_TEXT, FONT_NORMAL, FONT_BOLD
+from data import MenuModel, TabFilter
+from theme import C_BG, C_TEXT, FONT_NORMAL, FONT_BOLD
 
 
 class TabMenu(tk.Frame):
