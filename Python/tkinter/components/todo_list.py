@@ -1,9 +1,9 @@
 import tkinter as tk
 
-from ..data import MenuModel, Todo, TodoModel
-from ..theme import (
+from data import MenuModel, Todo, TodoModel
+from theme import (
     C_BG, C_SURFACE, C_TEXT, C_MUTED, C_ACCENT, C_WHITE, C_CB_BORDER,
-    FONT_NORMAL, FONT_STRIKE,
+    FONT_NORMAL, FONT_STRIKE, rounded_rect,
 )
 
 
@@ -35,7 +35,9 @@ class TodoList(tk.Frame):
         def on_wheel(e):
             self._canvas.yview_scroll(int(-1 * (e.delta / 120)), "units")
 
-        self._canvas.bind_all("<MouseWheel>", on_wheel)
+        # bind_all は IMK と競合するため、カーソルが乗った時だけ有効化する
+        self._canvas.bind("<Enter>", lambda _: self._canvas.bind_all("<MouseWheel>", on_wheel))
+        self._canvas.bind("<Leave>", lambda _: self._canvas.unbind_all("<MouseWheel>"))
 
         self.refresh()
 
@@ -61,34 +63,45 @@ class TodoList(tk.Frame):
             self._scrollbar.pack_forget()
 
 
+_ROW_H = 35
+
+
 def _make_todo_row(parent: tk.Widget, todo: Todo, on_toggle):
-    row = tk.Frame(parent, bg=C_SURFACE, height=35)
+    row = tk.Canvas(parent, height=_ROW_H, bg=C_BG, highlightthickness=0)
     row.pack(fill=tk.X, pady=(0, 5))
-    row.pack_propagate(False)
 
-    # Circular checkbox
-    cb = tk.Canvas(row, width=16, height=16, bg=C_SURFACE, highlightthickness=0)
-    cb.pack(side=tk.LEFT, padx=(10, 8))
+    def _draw(event=None):
+        row.delete("all")
+        w = row.winfo_width()
+        h = _ROW_H
 
-    if todo.is_completed:
-        cb.create_oval(1, 1, 15, 15, fill=C_ACCENT, outline=C_ACCENT)
-        cb.create_line(4, 8, 7, 11, fill=C_WHITE, width=1.5, capstyle=tk.ROUND)
-        cb.create_line(7, 11, 12, 5, fill=C_WHITE, width=1.5, capstyle=tk.ROUND)
-    else:
-        cb.create_oval(1, 1, 15, 15, fill="", outline=C_CB_BORDER, width=1.5)
+        rounded_rect(row, 0, 0, w, h, fill=C_SURFACE, outline="")
 
-    label = tk.Label(
-        row,
-        text=todo.task,
-        bg=C_SURFACE,
-        fg=C_MUTED if todo.is_completed else C_TEXT,
-        font=FONT_STRIKE if todo.is_completed else FONT_NORMAL,
-        anchor="w",
-    )
-    label.pack(side=tk.LEFT, fill=tk.X, expand=True)
+        # Circular checkbox
+        cb = tk.Canvas(row, width=16, height=16, bg=C_SURFACE, highlightthickness=0)
+        if todo.is_completed:
+            cb.create_oval(1, 1, 15, 15, fill=C_ACCENT, outline=C_ACCENT)
+            cb.create_line(4, 8, 7, 11, fill=C_WHITE, width=1.5, capstyle=tk.ROUND)
+            cb.create_line(7, 11, 12, 5, fill=C_WHITE, width=1.5, capstyle=tk.ROUND)
+        else:
+            cb.create_oval(1, 1, 15, 15, fill="", outline=C_CB_BORDER, width=1.5)
 
-    def toggle(_=None, t=todo):
-        on_toggle(t)
+        row.create_window(10, h // 2, window=cb, anchor="w")
 
-    for w in (row, cb, label):
-        w.bind("<Button-1>", toggle)
+        label = tk.Label(
+            row,
+            text=todo.task,
+            bg=C_SURFACE,
+            fg=C_MUTED if todo.is_completed else C_TEXT,
+            font=FONT_STRIKE if todo.is_completed else FONT_NORMAL,
+            anchor="w",
+        )
+        row.create_window(36, h // 2, window=label, anchor="w", width=w - 46)
+
+        def toggle(_=None, t=todo):
+            on_toggle(t)
+
+        for w_widget in (row, cb, label):
+            w_widget.bind("<Button-1>", toggle)
+
+    row.bind("<Configure>", _draw)

@@ -19,6 +19,7 @@ class App(tk.Tk):
         self.menu_model = MenuModel()
 
         self._build()
+        self.after(100, self._bring_to_front)
 
     def _build(self):
         main = tk.Frame(self, bg=C_BG)
@@ -53,6 +54,12 @@ class App(tk.Tk):
         self.menu_model.set_active_tab(tab)
         self._tab_menu.refresh()
         self._todo_list.refresh()
+
+    def _bring_to_front(self):
+        self.lift()
+        self.attributes("-topmost", True)
+        self.focus_force()
+        self.after(200, lambda: self.attributes("-topmost", False))
 
 
 if __name__ == "__main__":
