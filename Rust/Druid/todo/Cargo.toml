@@ -4,4 +4,4 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-druid = "0.8.3"
+druid = { version = "0.8.3", features = ["im"] }
