@@ -1,17 +1,58 @@
-import { Button, VerticalBox } from "std-widgets.slint";
+import { TodoItem } from "types.slint";
+import { TodoInput } from "components/input.slint";
+import { TabMenu } from "components/tabs.slint";
+import { TodoRow } from "components/todo_row.slint";
+
+export { TodoItem }
 
 export component AppWindow inherits Window {
-    in-out property <int> counter: 42;
-    callback request-increase-value();
-    VerticalBox {
+    title: "ToDo";
+    width: 800px;
+    height: 600px;
+    background: #1C1C1C;
+
+    in-out property <[TodoItem]> todos;
+    in-out property <int> active-tab: 0;
+
+    callback add-todo(string);
+    callback toggle-todo(int);
+    callback set-tab(int);
+
+    VerticalLayout {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 24px;
+        padding-right: 24px;
+        spacing: 10px;
+
         Text {
-            text: "Counter: \{root.counter}";
+            text: "ToDo";
+            color: #FFFFFF;
+            font-size: 18px;
+            font-weight: 700;
         }
 
-        Button {
-            text: "Increase value";
-            clicked => {
-                root.request-increase-value();
+        TodoInput {
+            add-todo(task) => { root.add-todo(task); }
+        }
+
+        TabMenu {
+            active-tab: root.active-tab;
+            set-tab(idx) => { root.set-tab(idx); }
+        }
+
+        Flickable {
+            vertical-stretch: 1;
+            viewport-height: todo-list.preferred-height;
+
+            todo-list := VerticalLayout {
+                spacing: 5px;
+                alignment: start;
+
+                for item in root.todos: TodoRow {
+                    item: item;
+                    toggle => { root.toggle-todo(item.id); }
+                }
             }
         }
     }
