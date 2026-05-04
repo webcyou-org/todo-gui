@@ -1,6 +1,17 @@
 use druid::im::Vector;
-use druid::{AppLauncher, Data, Lens, Widget, WindowDesc};
-use druid::widget::Label;
+use druid::widget::{Flex, Label, Padding};
+use druid::{
+    AppLauncher, Color, Data, FontDescriptor, FontFamily, FontWeight,
+    Lens, Widget, WidgetExt, WindowDesc,
+};
+
+// ---------------------------------------------------------------------------
+// Design tokens
+// ---------------------------------------------------------------------------
+
+const BG: Color = Color::rgb8(0x1C, 0x1C, 0x1C);
+const TEXT_WHITE: Color = Color::rgb8(0xFF, 0xFF, 0xFF);
+const TEXT_MAIN: Color = Color::rgb8(0xD2, 0xD2, 0xD2);
 
 // ---------------------------------------------------------------------------
 // Data Model
@@ -96,11 +107,36 @@ impl AppState {
 }
 
 // ---------------------------------------------------------------------------
-// UI (placeholder — will be built in next steps)
+// UI
 // ---------------------------------------------------------------------------
 
 fn build_ui() -> impl Widget<AppState> {
-    Label::new("Step 1 complete — data model ready")
+    let title_font = FontDescriptor::new(FontFamily::SYSTEM_UI)
+        .with_weight(FontWeight::BOLD)
+        .with_size(18.0);
+
+    let title = Label::new("ToDo")
+        .with_font(title_font)
+        .with_text_color(TEXT_WHITE);
+
+    // placeholders — replaced in later steps
+    let input_placeholder = Label::new("[Input]").with_text_color(TEXT_MAIN);
+    let tab_placeholder = Label::new("[Tabs]").with_text_color(TEXT_MAIN);
+    let list_placeholder = Label::new("[Todo List]").with_text_color(TEXT_MAIN);
+
+    let column = Flex::column()
+        .cross_axis_alignment(druid::widget::CrossAxisAlignment::Start)
+        .with_child(title)
+        .with_spacer(14.0)
+        .with_child(input_placeholder)
+        .with_spacer(14.0)
+        .with_child(tab_placeholder)
+        .with_spacer(3.0)
+        .with_flex_child(list_placeholder, 1.0);
+
+    Padding::new((24.0, 10.0), column)
+        .background(BG)
+        .expand()
 }
 
 fn main() {
