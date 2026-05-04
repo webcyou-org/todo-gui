@@ -41,17 +41,22 @@ export component AppWindow inherits Window {
             set-tab(idx) => { root.set-tab(idx); }
         }
 
-        Flickable {
+        Rectangle {
             vertical-stretch: 1;
-            viewport-height: todo-list.preferred-height;
 
-            todo-list := VerticalLayout {
-                spacing: 5px;
-                alignment: start;
+            Flickable {
+                width: parent.width;
+                height: parent.height;
+                viewport-height: todo-list.preferred-height;
 
-                for item in root.todos: TodoRow {
-                    item: item;
-                    toggle => { root.toggle-todo(item.id); }
+                todo-list := VerticalLayout {
+                    spacing: 5px;
+                    alignment: start;
+
+                    for item in root.todos: TodoRow {
+                        item: item;
+                        toggle => { root.toggle-todo(item.id); }
+                    }
                 }
             }
         }
