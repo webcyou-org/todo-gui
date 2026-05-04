@@ -1,5 +1,6 @@
 from typing import Callable
 
+from kivy.metrics import dp
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.widget import Widget
@@ -10,37 +11,41 @@ from kivy.input.motionevent import MotionEvent
 from data import MenuModel, Todo, TodoModel, TabFilter
 from theme import (
     C_BG, C_SURFACE, C_TEXT, C_MUTED, C_ACCENT, C_WHITE, C_CB_BORDER,
-    FONT_SIZE_NORMAL,
+    FONT_SIZE_NORMAL, FONT_NAME,
 )
+
+
+_CB_SIZE = dp(16)
+_ROW_H   = dp(40)
 
 
 class _CircleCheckbox(Widget):
     def __init__(self, is_completed: bool, **kwargs):
-        super().__init__(size_hint=(None, None), size=(16, 16), **kwargs)
+        super().__init__(size_hint=(None, None), size=(_CB_SIZE, _CB_SIZE), **kwargs)
         self.is_completed = is_completed
         self.bind(pos=self._draw, size=self._draw)
 
     def _draw(self, *_):
         self.canvas.clear()
+        s = self.width  # actual rendered size (dp-scaled)
         with self.canvas:
             if self.is_completed:
                 Color(*C_ACCENT)
                 Ellipse(pos=self.pos, size=self.size)
                 Color(*C_WHITE)
-                cx, cy = self.center_x, self.center_y
                 Line(
                     points=[
-                        self.x + 4,  self.y + 8,
-                        self.x + 7,  self.y + 5,
-                        self.x + 12, self.y + 11,
+                        self.x + s * 0.25, self.y + s * 0.50,
+                        self.x + s * 0.44, self.y + s * 0.31,
+                        self.x + s * 0.75, self.y + s * 0.69,
                     ],
-                    width=1.5,
+                    width=dp(1.5),
                     cap='round',
                     joint='round',
                 )
             else:
                 Color(*C_CB_BORDER)
-                Line(ellipse=(*self.pos, *self.size), width=1.5)
+                Line(ellipse=(*self.pos, *self.size), width=dp(1.5))
 
 
 class _TodoRow(BoxLayout):
@@ -48,9 +53,9 @@ class _TodoRow(BoxLayout):
         super().__init__(
             orientation='horizontal',
             size_hint=(1, None),
-            height=35,
-            padding=[10, 0],
-            spacing=8,
+            height=_ROW_H,
+            padding=[dp(10), 0],
+            spacing=dp(8),
             **kwargs,
         )
         self._todo = todo
@@ -65,23 +70,25 @@ class _TodoRow(BoxLayout):
             RoundedRectangle(pos=self.pos, size=self.size, radius=[4])
 
     def _build(self):
-        self._cb = _CircleCheckbox(is_completed=self._todo.is_completed)
-        # Wrap checkbox in a container to vertically center it
-        cb_box = BoxLayout(size_hint=(None, 1), width=16)
-        cb_box.add_widget(self._cb)
-        self.add_widget(cb_box)
+        self._cb = _CircleCheckbox(
+            is_completed=self._todo.is_completed,
+            pos_hint={'center_y': 0.5},
+        )
+        self.add_widget(self._cb)
 
         text = self._make_label_text()
         self._label = Label(
             text=text,
             markup=True,
+            font_name=FONT_NAME,
             font_size=FONT_SIZE_NORMAL,
             color=C_MUTED if self._todo.is_completed else C_TEXT,
             halign='left',
             valign='middle',
             size_hint=(1, 1),
         )
-        self._label.bind(size=lambda w, _: setattr(w, 'text_size', (w.width, None)))
+        # text_size must include height for valign='middle' to work
+        self._label.bind(size=lambda w, _: setattr(w, 'text_size', (w.width, w.height)))
         self.add_widget(self._label)
 
     def _make_label_text(self) -> str:
