@@ -1,5 +1,5 @@
 use druid::widget::{Controller, TextBox};
-use druid::{Color, Env, Event, EventCtx, KbKey, Widget, WidgetExt, theme};
+use druid::{Color, Env, Event, EventCtx, Insets, KbKey, Widget, WidgetExt, theme};
 
 use crate::data::AppState;
 use crate::theme::{ACCENT, INPUT_BG, TEXT_HINT, TEXT_WHITE};
@@ -40,5 +40,7 @@ pub fn build_input() -> impl Widget<AppState> {
             env.set(theme::TEXT_COLOR,            TEXT_WHITE);
             env.set(theme::PLACEHOLDER_COLOR,     TEXT_HINT);
             env.set(theme::TEXTBOX_BORDER_RADIUS, 4.0_f64);
+            // 高さ 35px に対して上下均等にインセットを設定し垂直中央揃え
+            env.set(theme::TEXTBOX_INSETS, Insets::new(16.0, 9.0, 16.0, 9.0));
         })
 }
