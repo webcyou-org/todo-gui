@@ -1,3 +1,11 @@
+from kivy.core.text import LabelBase
+
+LabelBase.register(
+    name='UI',
+    fn_regular='/System/Library/Fonts/ヒラギノ角ゴシック W3.ttc',
+    fn_bold='/System/Library/Fonts/ヒラギノ角ゴシック W6.ttc',
+)
+
 def _hex(h: str):
     h = h.lstrip('#')
     r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
@@ -15,3 +23,4 @@ C_CB_BORDER = _hex('#D9D9D9')
 
 FONT_SIZE_TITLE  = '18sp'
 FONT_SIZE_NORMAL = '14sp'
+FONT_NAME        = 'UI'

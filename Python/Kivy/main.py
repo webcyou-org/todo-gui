@@ -2,13 +2,15 @@ from kivy.config import Config
 Config.set('graphics', 'width', '800')
 Config.set('graphics', 'height', '600')
 Config.set('graphics', 'resizable', '0')
+Config.set('kivy', 'keyboard_mode', 'system')
+Config.set('input', 'mouse', 'mouse,disable_multitouch')
 
 from kivy.app import App
 from kivy.core.window import Window
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 
-from theme import C_BG, C_WHITE, FONT_SIZE_TITLE
+from theme import C_BG, C_WHITE, FONT_SIZE_TITLE, FONT_NAME
 from data import TodoModel, MenuModel, TabFilter
 from components.todo_input import TodoInput
 from components.tabs import TabMenu
@@ -28,6 +30,7 @@ class RootWidget(BoxLayout):
     def _build(self):
         title = Label(
             text='ToDo',
+            font_name=FONT_NAME,
             font_size=FONT_SIZE_TITLE,
             bold=True,
             color=C_WHITE,

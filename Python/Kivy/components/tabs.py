@@ -1,11 +1,12 @@
 from typing import Callable
 
+from kivy.metrics import dp
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.input.motionevent import MotionEvent
 
 from data import MenuModel, TabFilter
-from theme import C_TEXT, FONT_SIZE_NORMAL
+from theme import C_TEXT, FONT_SIZE_NORMAL, FONT_NAME
 
 
 class _TabLabel(Label):
@@ -13,6 +14,7 @@ class _TabLabel(Label):
                  on_change: Callable[[TabFilter], None], **kwargs):
         super().__init__(
             text=tab.value,
+            font_name=FONT_NAME,
             font_size=FONT_SIZE_NORMAL,
             bold=active,
             color=C_TEXT,
@@ -26,8 +28,8 @@ class _TabLabel(Label):
 
     @staticmethod
     def _text_width(text: str, bold: bool) -> int:
-        base = {'All': 32, 'Active': 60, 'Completed': 96}
-        return base.get(text, len(text) * 10) + 16  # +16 for padding
+        base = {'All': 40, 'Active': 72, 'Completed': 112}
+        return dp(base.get(text, len(text) * 10) + 16)
 
     def on_touch_down(self, touch: MotionEvent):
         if self.collide_point(*touch.pos):
@@ -42,7 +44,7 @@ class TabMenu(BoxLayout):
         super().__init__(
             orientation='horizontal',
             size_hint=(1, None),
-            height=28,
+            height=dp(32),
             spacing=0,
             **kwargs,
         )
