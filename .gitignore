@@ -125,6 +125,8 @@ Makefile
 .qmake.stash
 .tmp/
 *.app/
+moc_*.cpp
+moc_predefs.h
 
 # =============================================================================
 # Logs / Temp
