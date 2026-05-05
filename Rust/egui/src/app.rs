@@ -1,106 +1,287 @@
-/// We derive Deserialize/Serialize so we can persist app state on shutdown.
+use egui::{FontId, RichText, Sense, Stroke};
+
+use crate::data::{TabFilter, Todo};
+use crate::theme::*;
+
 #[derive(serde::Deserialize, serde::Serialize)]
-#[serde(default)] // if we add new fields, give them default values when deserializing old state
+#[serde(default)]
 pub struct ToDoApp {
-    label: String,
+    todos: Vec<Todo>,
+    next_id: usize,
+    active_tab: TabFilter,
     #[serde(skip)]
-    value: f32,
+    input_text: String,
 }
 
 impl Default for ToDoApp {
     fn default() -> Self {
-        Self {
-            label: "Hello World!".to_owned(),
-            value: 2.7,
-        }
+        let mut app = Self {
+            todos: Vec::new(),
+            next_id: 1,
+            active_tab: TabFilter::default(),
+            input_text: String::new(),
+        };
+        app.add_todo("Task 1".into());
+        app.todos.push(Todo { id: app.next_id, task: "Task 2".into(), is_completed: true });
+        app.next_id += 1;
+        app.add_todo("Task 3".into());
+        app.add_todo("Task 4".into());
+        app
     }
 }
 
 impl ToDoApp {
-    /// Called once before the first frame.
     pub fn new(cc: &eframe::CreationContext<'_>) -> Self {
-        // This is also where you can customize the look and feel of egui using
-        // `cc.egui_ctx.set_visuals` and `cc.egui_ctx.set_fonts`.
-
-        // Load previous app state (if any).
-        // Note that you must enable the `persistence` feature for this to work.
+        Self::apply_theme(&cc.egui_ctx);
         if let Some(storage) = cc.storage {
             return eframe::get_value(storage, eframe::APP_KEY).unwrap_or_default();
         }
-
         Default::default()
+    }
+
+    fn apply_theme(ctx: &egui::Context) {
+        let mut v = egui::Visuals::dark();
+        v.panel_fill = C_BG;
+        v.window_fill = C_BG;
+        v.extreme_bg_color = C_INPUT;
+        v.selection.bg_fill = C_ACCENT.linear_multiply(0.4);
+        v.widgets.noninteractive.fg_stroke = Stroke::new(1.0, C_TEXT);
+        v.widgets.inactive.fg_stroke = Stroke::new(1.0, C_TEXT);
+        v.widgets.hovered.fg_stroke = Stroke::new(1.0, C_WHITE);
+        v.widgets.active.fg_stroke = Stroke::new(1.0, C_WHITE);
+        v.widgets.noninteractive.bg_fill = C_BG;
+        v.widgets.inactive.bg_fill = C_BG;
+        v.widgets.hovered.bg_fill = C_SURFACE;
+        ctx.set_visuals(v);
+    }
+
+    fn add_todo(&mut self, task: String) {
+        self.todos.push(Todo { id: self.next_id, task, is_completed: false });
+        self.next_id += 1;
+    }
+
+    // ── Title ──────────────────────────────────────────────────────────────
+
+    fn show_title(&self, ui: &mut egui::Ui) {
+        ui.label(RichText::new("ToDo").size(18.0).color(C_WHITE).strong());
+    }
+
+    // ── Input ──────────────────────────────────────────────────────────────
+
+    fn show_input(&mut self, ui: &mut egui::Ui) {
+        let available_w = ui.available_width();
+
+        // Allocate fixed 35px row; paint custom background manually
+        let (bg_rect, _) = ui.allocate_exact_size(
+            egui::vec2(available_w, 35.0),
+            Sense::hover(),
+        );
+        ui.painter().rect_filled(bg_rect, 4.0, C_INPUT);
+
+        // Inset TextEdit with spec padding: left/right 16px, top/bottom 4px
+        let inner_rect = bg_rect.shrink2(egui::vec2(16.0, 4.0));
+        let input_response = ui.put(
+            inner_rect,
+            egui::TextEdit::singleline(&mut self.input_text)
+                .frame(false)
+                .hint_text(RichText::new("Add Task").color(C_MUTED))
+                .font(FontId::proportional(14.0))
+                .text_color(C_WHITE)
+                .desired_width(f32::INFINITY),
+        );
+
+        // Focus border
+        if input_response.has_focus() {
+            ui.painter()
+                .rect_stroke(bg_rect, 4.0, Stroke::new(1.0, C_ACCENT));
+        }
+
+        // Submit on Enter
+        if input_response.lost_focus()
+            && ui.input(|i| i.key_pressed(egui::Key::Enter))
+        {
+            let task = self.input_text.trim().to_string();
+            if !task.is_empty() {
+                self.add_todo(task);
+                self.input_text.clear();
+            }
+        }
+    }
+
+    // ── Tabs ───────────────────────────────────────────────────────────────
+
+    fn show_tabs(&mut self, ui: &mut egui::Ui) {
+        ui.horizontal(|ui| {
+            ui.set_min_height(28.0);
+            ui.spacing_mut().item_spacing.x = 0.0;
+
+            for tab in TabFilter::all() {
+                ui.add_space(8.0);
+                let text = RichText::new(tab.label()).size(14.0).color(C_TEXT);
+                let text = if self.active_tab == tab {
+                    text.strong()
+                } else {
+                    text
+                };
+                if ui
+                    .add(egui::Label::new(text).sense(Sense::click()))
+                    .clicked()
+                {
+                    self.active_tab = tab;
+                }
+                ui.add_space(8.0);
+            }
+        });
+    }
+
+    // ── Todo list ──────────────────────────────────────────────────────────
+
+    fn show_list(&mut self, ui: &mut egui::Ui) {
+        let filtered_ids: Vec<usize> = self
+            .todos
+            .iter()
+            .filter(|t| self.active_tab.matches(t))
+            .map(|t| t.id)
+            .collect();
+
+        let mut toggle_id: Option<usize> = None;
+
+        egui::ScrollArea::vertical()
+            .auto_shrink([false, false])
+            .show(ui, |ui| {
+                let available_w = ui.available_width();
+                ui.spacing_mut().item_spacing.y = 5.0;
+
+                for &id in &filtered_ids {
+                    let (task, is_completed) = {
+                        let t = self.todos.iter().find(|t| t.id == id).unwrap();
+                        (t.task.clone(), t.is_completed)
+                    };
+
+                    let (rect, response) = ui.allocate_exact_size(
+                        egui::vec2(available_w, 35.0),
+                        Sense::click(),
+                    );
+
+                    if ui.is_rect_visible(rect) {
+                        paint_todo_row(ui.painter(), rect, &task, is_completed);
+                    }
+
+                    if response.clicked() {
+                        toggle_id = Some(id);
+                    }
+                }
+            });
+
+        if let Some(id) = toggle_id {
+            if let Some(t) = self.todos.iter_mut().find(|t| t.id == id) {
+                t.is_completed = !t.is_completed;
+            }
+        }
     }
 }
 
+// ── Custom todo row painter ────────────────────────────────────────────────
+
+fn paint_todo_row(
+    painter: &egui::Painter,
+    rect: egui::Rect,
+    task: &str,
+    is_completed: bool,
+) {
+    // Background
+    painter.rect_filled(rect, 4.0, C_SURFACE);
+
+    // Checkbox: center at (rect.min.x + padL + radius, rect.center.y)
+    let cb_radius = 8.0_f32;
+    let cb_center = egui::pos2(rect.min.x + 10.0 + cb_radius, rect.center().y);
+
+    if is_completed {
+        painter.circle_filled(cb_center, cb_radius, C_ACCENT);
+        let stroke = Stroke::new(1.5, C_WHITE);
+        // Checkmark proportions matching Fyne/Kivy implementations
+        painter.line_segment(
+            [
+                egui::pos2(cb_center.x - 4.0, cb_center.y),
+                egui::pos2(cb_center.x - 1.0, cb_center.y + 3.0),
+            ],
+            stroke,
+        );
+        painter.line_segment(
+            [
+                egui::pos2(cb_center.x - 1.0, cb_center.y + 3.0),
+                egui::pos2(cb_center.x + 4.0, cb_center.y - 3.0),
+            ],
+            stroke,
+        );
+    } else {
+        // Stroke radius is inset by half stroke-width so outer edge = cb_radius
+        painter.circle_stroke(
+            cb_center,
+            cb_radius - 0.75,
+            Stroke::new(1.5, C_CB_BORDER),
+        );
+    }
+
+    // Label: padL(10) + cbSize(16) + cbMarginRight(18) = 44
+    let text_x = rect.min.x + 44.0;
+    let font_id = FontId::proportional(14.0);
+    let text_color = if is_completed { C_MUTED } else { C_TEXT };
+
+    if is_completed {
+        // Layout text to measure width for strikethrough line
+        let galley = painter
+            .ctx()
+            .fonts(|f| f.layout_no_wrap(task.to_string(), font_id, text_color));
+        let text_w = galley.size().x;
+        let text_top = rect.center().y - galley.size().y / 2.0;
+        painter.galley(egui::pos2(text_x, text_top), galley, text_color);
+        // Strikethrough
+        painter.line_segment(
+            [
+                egui::pos2(text_x, rect.center().y),
+                egui::pos2(text_x + text_w, rect.center().y),
+            ],
+            Stroke::new(1.0, C_MUTED),
+        );
+    } else {
+        painter.text(
+            egui::pos2(text_x, rect.center().y),
+            egui::Align2::LEFT_CENTER,
+            task,
+            font_id,
+            text_color,
+        );
+    }
+}
+
+// ── eframe::App ────────────────────────────────────────────────────────────
+
 impl eframe::App for ToDoApp {
-    /// Called by the frame work to save state before shutdown.
     fn save(&mut self, storage: &mut dyn eframe::Storage) {
         eframe::set_value(storage, eframe::APP_KEY, self);
     }
 
-    /// Called each time the UI needs repainting, which may be many times per second.
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
-        // Put your widgets into a `SidePanel`, `TopBottomPanel`, `CentralPanel`, `Window` or `Area`.
-        // For inspiration and more examples, go to https://emilk.github.io/egui
-
-        egui::TopBottomPanel::top("top_panel").show(ctx, |ui| {
-            // The top panel is often a good place for a menu bar:
-
-            egui::menu::bar(ui, |ui| {
-                // NOTE: no File->Quit on web pages!
-                let is_web = cfg!(target_arch = "wasm32");
-                if !is_web {
-                    ui.menu_button("File", |ui| {
-                        if ui.button("Quit").clicked() {
-                            ctx.send_viewport_cmd(egui::ViewportCommand::Close);
-                        }
+        egui::CentralPanel::default()
+            .frame(egui::Frame::none().fill(C_BG))
+            .show(ctx, |ui| {
+                egui::Frame::none()
+                    .inner_margin(egui::Margin {
+                        left: 24.0,
+                        right: 24.0,
+                        top: 10.0,
+                        bottom: 10.0,
+                    })
+                    .show(ui, |ui| {
+                        self.show_title(ui);
+                        ui.add_space(14.0);
+                        self.show_input(ui);
+                        ui.add_space(14.0);
+                        self.show_tabs(ui);
+                        ui.add_space(3.0);
+                        self.show_list(ui);
                     });
-                    ui.add_space(16.0);
-                }
-
-                egui::widgets::global_dark_light_mode_buttons(ui);
             });
-        });
-
-        egui::CentralPanel::default().show(ctx, |ui| {
-            // The central panel the region left after adding TopPanel's and SidePanel's
-            ui.heading("ToDo Application");
-
-            ui.horizontal(|ui| {
-                ui.label("Write something: ");
-                ui.text_edit_singleline(&mut self.label);
-            });
-
-            ui.add(egui::Slider::new(&mut self.value, 0.0..=10.0).text("value"));
-            if ui.button("Increment").clicked() {
-                self.value += 1.0;
-            }
-
-            ui.separator();
-
-            ui.add(egui::github_link_file!(
-                "https://github.com/emilk/eframe_template/blob/main/",
-                "Source code."
-            ));
-
-            ui.with_layout(egui::Layout::bottom_up(egui::Align::LEFT), |ui| {
-                powered_by_egui_and_eframe(ui);
-                egui::warn_if_debug_build(ui);
-            });
-        });
     }
-}
-
-fn powered_by_egui_and_eframe(ui: &mut egui::Ui) {
-    ui.horizontal(|ui| {
-        ui.spacing_mut().item_spacing.x = 0.0;
-        ui.label("Powered by ");
-        ui.hyperlink_to("egui", "https://github.com/emilk/egui");
-        ui.label(" and ");
-        ui.hyperlink_to(
-            "eframe",
-            "https://github.com/emilk/egui/tree/master/crates/eframe",
-        );
-        ui.label(".");
-    });
 }
