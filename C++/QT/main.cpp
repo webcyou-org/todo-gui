@@ -1,9 +1,10 @@
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QLabel>
+#include "mainwindow.h"
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
-    QLabel *label = new QLabel("Hello World!");
-    label->show();
+    MainWindow w;
+    w.setWindowTitle("ToDo");
+    w.show();
     return app.exec();
 }
