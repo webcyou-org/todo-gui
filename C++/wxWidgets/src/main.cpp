@@ -1,68 +1,125 @@
-// wxWidgets "Hello world" Program
-// For compilers that support precompilation, includes "wx/wx.h".
 #include <wx/wxprec.h>
 #ifndef WX_PRECOMP
 #include <wx/wx.h>
 #endif
-class MyApp : public wxApp
-{
+#include "data.h"
+#include "theme.h"
+#include "widgets/todo_input.h"
+#include "widgets/tab_menu.h"
+#include "widgets/todo_item.h"
+
+// ── TodoApp ───────────────────────────────────────────────────────────────────
+
+class TodoApp : public wxApp {
 public:
-    virtual bool OnInit();
+    bool OnInit() override;
 };
-class MyFrame : public wxFrame
-{
+
+// ── MainFrame ─────────────────────────────────────────────────────────────────
+
+class MainFrame : public wxFrame {
 public:
-    MyFrame(const wxString &title, const wxPoint &pos, const wxSize &size);
+    MainFrame();
 
 private:
-    void OnHello(wxCommandEvent &event);
-    void OnExit(wxCommandEvent &event);
-    void OnAbout(wxCommandEvent &event);
-    wxDECLARE_EVENT_TABLE();
+    void BuildUi();
+    void OnAddTodo(wxCommandEvent& e);
+    void OnTabChanged(wxCommandEvent& e);
+    void OnToggleTodo(wxCommandEvent& e);
+    void RefreshList();
+
+    TodoModel   m_todoModel;
+    MenuModel   m_menuModel;
+    wxPanel*    m_root    = nullptr;
+    wxBoxSizer* m_col     = nullptr;
+    TodoInput*  m_input   = nullptr;
+    TabMenu*    m_tabMenu  = nullptr;
+    TodoList*   m_todoList = nullptr;
 };
-enum
-{
-    ID_Hello = 1
-};
-wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
-    EVT_MENU(ID_Hello, MyFrame::OnHello)
-        EVT_MENU(wxID_EXIT, MyFrame::OnExit)
-            EVT_MENU(wxID_ABOUT, MyFrame::OnAbout)
-                wxEND_EVENT_TABLE()
-                    wxIMPLEMENT_APP(MyApp);
-bool MyApp::OnInit()
-{
-    MyFrame *frame = new MyFrame("Hello World", wxPoint(50, 50), wxSize(450, 340));
+
+wxIMPLEMENT_APP(TodoApp);
+
+bool TodoApp::OnInit() {
+    auto* frame = new MainFrame();
     frame->Show(true);
     return true;
 }
-MyFrame::MyFrame(const wxString &title, const wxPoint &pos, const wxSize &size)
-    : wxFrame(NULL, wxID_ANY, title, pos, size)
+
+MainFrame::MainFrame()
+    : wxFrame(nullptr, wxID_ANY, "ToDo", wxDefaultPosition, wxSize(800, 600))
 {
-    wxMenu *menuFile = new wxMenu;
-    menuFile->Append(ID_Hello, "&Hello...\tCtrl-H",
-                     "Help string shown in status bar for this menu item");
-    menuFile->AppendSeparator();
-    menuFile->Append(wxID_EXIT);
-    wxMenu *menuHelp = new wxMenu;
-    menuHelp->Append(wxID_ABOUT);
-    wxMenuBar *menuBar = new wxMenuBar;
-    menuBar->Append(menuFile, "&File");
-    menuBar->Append(menuHelp, "&Help");
-    SetMenuBar(menuBar);
-    CreateStatusBar();
-    SetStatusText("Welcome to wxWidgets!");
+    SetMinSize(wxSize(800, 600));
+    SetMaxSize(wxSize(800, 600));
+    BuildUi();
 }
-void MyFrame::OnExit(wxCommandEvent &event)
-{
-    Close(true);
+
+void MainFrame::BuildUi() {
+    m_root = new wxPanel(this);
+    m_root->SetBackgroundColour(Theme::BG);
+
+    auto* root = new wxBoxSizer(wxVERTICAL);
+    root->AddSpacer(Theme::CONTENT_V);
+    auto* hrow = new wxBoxSizer(wxHORIZONTAL);
+    root->Add(hrow, 1, wxEXPAND);
+    root->AddSpacer(Theme::CONTENT_V);
+    hrow->AddSpacer(Theme::CONTENT_H);
+    m_col = new wxBoxSizer(wxVERTICAL);
+    hrow->Add(m_col, 1, wxEXPAND);
+    hrow->AddSpacer(Theme::CONTENT_H);
+    m_root->SetSizer(root);
+
+    // Title
+    auto* title = new wxStaticText(m_root, wxID_ANY, "ToDo");
+    title->SetFont(wxFont(wxFontInfo(wxSize(0, 18)).Bold()));
+    title->SetForegroundColour(Theme::WHITE);
+    title->SetBackgroundColour(Theme::BG);
+    m_col->Add(title, 0, wxEXPAND);
+    m_col->AddSpacer(14);
+
+    // Input
+    m_input = new TodoInput(m_root);
+    m_input->GetTextCtrl()->Bind(wxEVT_TEXT_ENTER, &MainFrame::OnAddTodo, this);
+    m_col->Add(m_input, 0, wxEXPAND);
+    m_col->AddSpacer(14);
+
+    // Tabs
+    m_tabMenu = new TabMenu(m_root);
+    m_tabMenu->Bind(EVT_TAB_CHANGED, &MainFrame::OnTabChanged, this);
+    m_col->Add(m_tabMenu, 0, wxEXPAND);
+    m_col->AddSpacer(3);
+
+    // Todo list
+    m_todoList = new TodoList(m_root);
+    m_todoList->Bind(EVT_TOGGLE_TODO, &MainFrame::OnToggleTodo, this);
+    m_col->Add(m_todoList, 1, wxEXPAND);
+
+    auto* frameSizer = new wxBoxSizer(wxVERTICAL);
+    frameSizer->Add(m_root, 1, wxEXPAND);
+    SetSizer(frameSizer);
+
+    RefreshList();
 }
-void MyFrame::OnAbout(wxCommandEvent &event)
-{
-    wxMessageBox("This is a wxWidgets' Hello world sample",
-                 "About Hello World", wxOK | wxICON_INFORMATION);
+
+void MainFrame::OnAddTodo(wxCommandEvent&) {
+    wxString text = m_input->GetTextCtrl()->GetValue().Trim();
+    if (text.empty()) return;
+    m_todoModel.addTodo(text);
+    m_input->GetTextCtrl()->Clear();
+    RefreshList();
 }
-void MyFrame::OnHello(wxCommandEvent &event)
-{
-    wxLogMessage("Hello world from wxWidgets!");
+
+void MainFrame::OnTabChanged(wxCommandEvent& e) {
+    m_menuModel.activeTab = static_cast<TabFilter>(e.GetInt());
+    m_tabMenu->SetActive(m_menuModel.activeTab);
+    RefreshList();
+}
+
+void MainFrame::OnToggleTodo(wxCommandEvent& e) {
+    m_todoModel.toggleCompleted(e.GetInt());
+    RefreshList();
+}
+
+void MainFrame::RefreshList() {
+    if (!m_todoList) return;
+    m_todoList->Refresh(m_todoModel.filteredTodos(m_menuModel.activeTab));
 }
