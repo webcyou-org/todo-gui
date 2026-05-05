@@ -1,0 +1,15 @@
+package main
+
+import "github.com/lxn/walk"
+
+// Design tokens — source of truth: design/tokens.md
+var (
+	colorBG       = walk.RGB(0x1C, 0x1C, 0x1C)
+	colorSurface  = walk.RGB(0x2A, 0x2A, 0x2A)
+	colorInput    = walk.RGB(0x30, 0x30, 0x30)
+	colorText     = walk.RGB(0xD2, 0xD2, 0xD2)
+	colorWhite    = walk.RGB(0xFF, 0xFF, 0xFF)
+	colorMuted    = walk.RGB(0x9B, 0x9B, 0x9B)
+	colorAccent   = walk.RGB(0x5D, 0xC2, 0xAF)
+	colorCBBorder = walk.RGB(0xD9, 0xD9, 0xD9)
+)
