@@ -16,7 +16,7 @@ from theme import (
 
 
 _CB_SIZE = dp(16)
-_ROW_H   = dp(40)
+_ROW_H   = dp(35)
 
 
 class _CircleCheckbox(Widget):
@@ -55,7 +55,7 @@ class _TodoRow(BoxLayout):
             size_hint=(1, None),
             height=_ROW_H,
             padding=[dp(10), 0],
-            spacing=dp(8),
+            spacing=dp(18),
             **kwargs,
         )
         self._todo = todo

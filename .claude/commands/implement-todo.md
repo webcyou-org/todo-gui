@@ -9,6 +9,7 @@
 - `ai_docs/architecture.md` — クラス構成・データフロー
 - `ai_docs/data-struture.md` — データモデル詳細
 - `ai_docs/step-implementation-guide.md` — 過去実装の知見・注意点
+- `design/tokens.md` — **デザイントークン正典（色・スペーシング・サイズはここが唯一の正）**
 - `design/todo@1.png` — UIデザイン参照画像
 
 引数でフレームワーク名が渡された場合（例: `/implement-todo Slint`）はそのフレームワークを対象とする。
@@ -77,14 +78,38 @@ src/
 
 ## デザイントークン早見表
 
-| トークン | 値 |
-|----------|----|
-| 背景色 | `#1C1C1C` |
-| 入力フィールド背景 | `#303030` |
-| Todo アイテム背景 | `#2A2A2A` |
-| タイトル文字色 | `#FFFFFF` |
-| 一般テキスト色 | `#D2D2D2` |
-| プレースホルダー色 | `#9B9B9B` |
-| アクセントカラー | `#5DC2AF` |
-| チェックボックスボーダー | `#D9D9D9` |
-| コンテンツパディング | 上下 `10px` / 左右 `24px` |
+> 詳細・最新値は必ず `design/tokens.md` を参照すること。
+
+### Colors
+
+| トークン | 値 | 用途 |
+|----------|----|------|
+| `C_BG` | `#1C1C1C` | ウィンドウ背景 |
+| `C_SURFACE` | `#2A2A2A` | Todo アイテム背景 |
+| `C_INPUT` | `#303030` | 入力フィールド背景 |
+| `C_TEXT` | `#D2D2D2` | 一般テキスト |
+| `C_WHITE` | `#FFFFFF` | タイトル・入力テキスト |
+| `C_MUTED` | `#9B9B9B` | プレースホルダー・完了テキスト |
+| `C_ACCENT` | `#5DC2AF` | フォーカスボーダー・チェック済み |
+| `C_CB_BORDER` | `#D9D9D9` | チェックボックスボーダー |
+
+### Spacing & Sizes
+
+| 箇所 | 値 |
+|------|----|
+| コンテンツ padding | 上下 `10px` / 左右 `24px` |
+| Title margin-bottom | `14px` |
+| TodoInput margin-bottom | `14px` |
+| TabMenu margin-bottom | `3px` |
+| TodoItem margin-bottom | `5px` |
+| TodoInput height | `35px` |
+| TodoInput padding | 上下 `4px` / 左右 `16px` |
+| TodoInput border-radius | `4px` |
+| TabMenu item padding | 左右 `8px` |
+| TabMenu line-height | `28px` |
+| TodoItem height | `35px` |
+| TodoItem padding | `10px` |
+| TodoItem border-radius | `4px` |
+| CheckBox size | `16px` |
+| CheckBox border-radius | `8px`（円形） |
+| CheckBox margin-right | `18px` |

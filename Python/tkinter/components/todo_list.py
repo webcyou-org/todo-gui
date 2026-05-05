@@ -96,7 +96,8 @@ def _make_todo_row(parent: tk.Widget, todo: Todo, on_toggle):
             font=FONT_STRIKE if todo.is_completed else FONT_NORMAL,
             anchor="w",
         )
-        row.create_window(36, h // 2, window=label, anchor="w", width=w - 46)
+        # x = padL(10) + cbSize(16) + cbMarginRight(18) = 44
+        row.create_window(44, h // 2, window=label, anchor="w", width=w - 54)
 
         def toggle(_=None, t=todo):
             on_toggle(t)

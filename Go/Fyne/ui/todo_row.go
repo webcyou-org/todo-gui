@@ -63,7 +63,7 @@ func (r *todoRowRenderer) Layout(size fyne.Size) {
 	const cbSize = float32(16)
 	const padL = float32(10)
 	const padR = float32(10)
-	const gap = float32(8)
+	const gap = float32(18)
 
 	cbY := (size.Height - cbSize) / 2
 	r.check.Move(fyne.NewPos(padL, cbY))
