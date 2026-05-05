@@ -50,7 +50,7 @@ class TodoInput(tk.Canvas):
         )
 
         if self._win_id is None:
-            pad = 10
+            pad = 16
             self._win_id = self.create_window(
                 pad, h // 2,
                 window=self._entry,
@@ -59,7 +59,7 @@ class TodoInput(tk.Canvas):
                 height=h - 6,
             )
         else:
-            pad = 10
+            pad = 16
             self.itemconfig(self._win_id, width=w - pad * 2)
 
     def _draw_border(self, color: str):

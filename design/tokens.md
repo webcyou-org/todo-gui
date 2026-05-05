@@ -153,7 +153,9 @@
 
 | 箇所 | 仕様値 | 現状 | 対象実装 |
 |------|--------|------|----------|
-| Todo Item Height | `35px` | `dp(40)` | Kivy |
-| CheckBox Margin Right | `18px` | `8px` 前後 | tkinter / Kivy / Fyne |
-| Input Padding Left/Right | `16px` | `10px` | tkinter / Fyne |
-| Input Padding Top/Bottom | `4px` | `8-11px` | tkinter / Kivy / Fyne |
+| Todo Item Height | `35px` | ✅ 修正済み (`dp(35)`) | Kivy |
+| CheckBox Margin Right | `18px` | ✅ 修正済み | tkinter / Kivy / Fyne |
+| Input Padding Left/Right | `16px` | ✅ 修正済み | tkinter / Kivy |
+| Input Padding Top/Bottom | `4px` | ✅ 修正済み (`dp(4)`) | Kivy |
+| Input Padding Left/Right | `16px` | ⚠️ Fyne は Theme API 制約で横縦一括管理 | Fyne |
+| Input Padding Top/Bottom | `4px` | ⚠️ Fyne は Theme API 制約で横縦一括管理 | Fyne |

@@ -7,7 +7,7 @@ from kivy.graphics import Color, RoundedRectangle, Line
 
 from theme import C_INPUT, C_MUTED, C_WHITE, C_ACCENT, FONT_SIZE_NORMAL, FONT_NAME
 
-_HEIGHT = dp(40)
+_HEIGHT = dp(35)
 
 
 class TodoInput(BoxLayout):
@@ -38,7 +38,7 @@ class TodoInput(BoxLayout):
             font_name=FONT_NAME,
             font_size=FONT_SIZE_NORMAL,
             multiline=False,
-            padding=[dp(10), dp(11), dp(10), dp(11)],
+            padding=[dp(16), dp(4), dp(16), dp(4)],
             size_hint=(1, 1),
         )
         self._ti.bind(
