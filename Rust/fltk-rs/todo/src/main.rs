@@ -43,7 +43,7 @@ fn main() {
 
     // Input border (visible on focus)
     let mut input_border = frame::Frame::new(x - 1, y - 1, w + 2, 37, "");
-    input_border.set_frame(enums::FrameType::FlatBox);
+    input_border.set_frame(enums::FrameType::RFlatBox);
     input_border.set_color(C_BG);
 
     // Input field
@@ -51,7 +51,7 @@ fn main() {
     input_field.set_color(C_INPUT);
     input_field.set_text_color(C_MUTED);
     input_field.set_text_size(14);
-    input_field.set_frame(enums::FrameType::FlatBox);
+    input_field.set_frame(enums::FrameType::RFlatBox);
     input_field.set_cursor_color(C_WHITE);
     input_field.set_value("Add Task");
     y += 35 + 14;
@@ -193,7 +193,7 @@ fn build_todo_list(
         let mut row = group::Flex::default().with_size(pack_w, item_h);
         row.set_type(group::FlexType::Row);
         row.set_color(C_SURFACE);
-        row.set_frame(enums::FrameType::RFlatBox);
+        row.set_frame(enums::FrameType::FlatBox);
 
         // Left padding
         let pad_left = frame::Frame::default();
