@@ -5,4 +5,4 @@ edition = "2021"
 
 [dependencies]
 relm4 = "0.9"
-relm4-components = "0.9"
+gtk = { version = "0.9", package = "gtk4" }
