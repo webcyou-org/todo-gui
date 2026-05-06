@@ -1,26 +1,41 @@
-"""TodoInput widget."""
+"""TodoInput widget — Panel wrapper for vertical centering."""
 from typing import Callable
 
 import wx
 
-from theme import C_INPUT, C_WHITE, FONT_SZ, ITEM_H, font
+from theme import C_BG, C_INPUT, C_WHITE, FONT_SZ, ITEM_H, font
 
 
-def make_input(parent: wx.Window, on_add: Callable[[str], None]) -> wx.TextCtrl:
-    task_input = wx.TextCtrl(
-        parent, style=wx.TE_PROCESS_ENTER | wx.BORDER_NONE,
-        size=(-1, ITEM_H),
-    )
-    task_input.SetHint("Add Task")
-    task_input.SetBackgroundColour(C_INPUT)
-    task_input.SetForegroundColour(C_WHITE)
-    task_input.SetFont(font(FONT_SZ))
+class TodoInputPanel(wx.Panel):
+    """Panel that contains a vertically centered TextCtrl with dark styling."""
 
-    def on_enter(_event: wx.CommandEvent) -> None:
-        task = task_input.GetValue().strip()
+    def __init__(self, parent: wx.Window, on_add: Callable[[str], None]) -> None:
+        super().__init__(parent, size=(-1, ITEM_H))
+        self.SetBackgroundColour(C_INPUT)
+        self.SetMinSize((-1, ITEM_H))
+
+        self._ctrl = wx.TextCtrl(self, style=wx.TE_PROCESS_ENTER | wx.BORDER_NONE)
+        self._ctrl.SetBackgroundColour(C_INPUT)
+        self._ctrl.SetForegroundColour(C_WHITE)
+        self._ctrl.SetFont(font(FONT_SZ))
+        self._ctrl.SetHint("Add Task")
+
+        # Stretch spacers push ctrl to the vertical centre
+        sizer = wx.BoxSizer(wx.VERTICAL)
+        sizer.AddStretchSpacer(1)
+        sizer.Add(self._ctrl, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 16)
+        sizer.AddStretchSpacer(1)
+        self.SetSizer(sizer)
+
+        self._ctrl.Bind(wx.EVT_TEXT_ENTER, self._on_enter)
+        self._on_add = on_add
+
+    def _on_enter(self, _event: wx.CommandEvent) -> None:
+        task = self._ctrl.GetValue().strip()
         if task:
-            task_input.SetValue("")
-            on_add(task)
+            self._ctrl.SetValue("")
+            self._on_add(task)
 
-    task_input.Bind(wx.EVT_TEXT_ENTER, on_enter)
-    return task_input
+
+def make_input(parent: wx.Window, on_add: Callable[[str], None]) -> TodoInputPanel:
+    return TodoInputPanel(parent, on_add)

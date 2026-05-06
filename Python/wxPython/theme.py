@@ -15,7 +15,7 @@ CB_PAD_L = 10
 CB_MR    = 18
 ITEM_H   = 35
 ITEM_MB  = 5
-FONT_SZ  = 11
+FONT_SZ  = 14
 
 
 def font(size: int = FONT_SZ, bold: bool = False) -> wx.Font:

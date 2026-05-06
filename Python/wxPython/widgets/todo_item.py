@@ -19,6 +19,7 @@ class TodoItem(wx.Panel):
         self._todo = todo
         self._on_toggle = on_toggle
         self.SetBackgroundColour(C_BG)
+        self.SetBackgroundStyle(wx.BG_STYLE_PAINT)
         self.SetMinSize((-1, ITEM_H))
         self.Bind(wx.EVT_PAINT, self._on_paint)
         self.Bind(wx.EVT_LEFT_DOWN, self._on_click)
