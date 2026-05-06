@@ -23,6 +23,11 @@ ToDo Applications created using various GUI tools.
   - [PyGTK](https://github.com/webcyou-org/todo-gui/tree/main/Python/PyGTK)
   - [wxPython](https://github.com/webcyou-org/todo-gui/tree/main/Python/wxPython)
   - Azul
+  - Dear PyGui
+  - BeeWare
+  - PySide
+  - Flexx
+  - Eel
 
 - C++
   - [QT](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/QT)
@@ -36,6 +41,22 @@ ToDo Applications created using various GUI tools.
   - Cinder
   - ImGui (Immediate Mode GUI)
   - Azul
+  - Dear ImGui
+  - raylib
+  - bgfx + ImGui
+  - Nuklear
+  - CEF（Chromium Embedded Framework）
+
+- Java
+  - JavaFX
+  - Swing
+  - Compose Multiplatform（Kotlin）
+  - Skiko
+
+- Swift / macOS
+  - SwiftUI
+  - AppKit
+  - Catalyst
 
 - JavaScript
   - [Electron](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/Electron)
@@ -53,6 +74,8 @@ ToDo Applications created using various GUI tools.
   - [Carlo](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/Carlo/todo)
   - Sciter
   - Ultralight
+  - Capacitor
+  - Quasar
   
 - Go
   - [Fyne](https://github.com/webcyou-org/todo-gui/tree/main/Go/Fyne)
@@ -86,6 +109,12 @@ ToDo Applications created using various GUI tools.
   - fui
   - silvia
   - Leptos
+  - Makepad
+  - Freya
+  - Ribir
+  - Masonry
+  - Floem
+  - 
 
 - C#
   - [Avalonia](https://github.com/webcyou-org/todo-gui/tree/main/C%23/Avalonia/ToDo)
@@ -99,6 +128,21 @@ ToDo Applications created using various GUI tools.
   - [MAUI](https://github.com/webcyou-org/todo-gui/tree/main/C%23/MAUI/ToDo)
   - Electron.NET
   - OpenTK
+  - Blazor Hybrid
+  - ReactiveUI
+  - Eto.Forms
+
+- zig
+  - Dear ImGui
+  - raylib
+  - Nuklear
+  - GTK
+  - Qt
+  - wxWidgets
+  - zgui
+  - zig-imgui bindings
+  - capy
+  - dvui
 
 ## Application Specification
 
