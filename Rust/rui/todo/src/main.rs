@@ -39,7 +39,7 @@ impl AppState {
     }
 }
 
-fn checkbox_view(is_completed: bool) -> impl View {
+fn checkbox_canvas(is_completed: bool) -> impl View {
     canvas(move |_, rect, vger| {
         let size = 16.0;
         let cx = rect.origin.x + (rect.size.width - size) / 2.0;
@@ -64,13 +64,13 @@ fn main() {
         vstack((
             text("ToDo")
                 .font_size(18)
-                .color(C_WHITE),
+                .color(C_WHITE)
+                .padding(Auto),
             state(
                 || String::new(),
                 move |input, _| {
                     hstack((
-                        text_editor(input)
-                            .padding(Auto),
+                        text_editor(input).flex(),
                         button("Add", move |cx| {
                             let txt = cx[input].trim().to_string();
                             if !txt.is_empty() {
@@ -90,7 +90,6 @@ fn main() {
                             .corner_radius(4.0)
                             .color(C_INPUT),
                     )
-                    .size([0.0, 35.0])
                 },
             ),
             hstack((
@@ -103,6 +102,7 @@ fn main() {
                 button("Completed", move |cx| {
                     cx[app].active_tab = TabFilter::Completed;
                 }),
+                spacer(),
             )),
             list(
                 filtered.iter().map(|t| t.id as usize).collect(),
@@ -124,7 +124,7 @@ fn main() {
                         let text_color = if is_completed { C_MUTED } else { C_TEXT };
 
                         hstack((
-                            checkbox_view(is_completed)
+                            checkbox_canvas(is_completed)
                                 .tap(move |cx| {
                                     cx[app].toggle_todo(id);
                                 }),
@@ -138,12 +138,12 @@ fn main() {
                                 .corner_radius(4.0)
                                 .color(C_SURFACE),
                         )
-                        .size([0.0, 35.0])
                     })
                 },
-            ),
+            )
+            .flex(),
         ))
-        .padding(10.0)
+        .padding(24.0)
         .background(rectangle().color(C_BG))
     })
     .window_title("ToDo")
