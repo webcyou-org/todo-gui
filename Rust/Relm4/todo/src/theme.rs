@@ -63,7 +63,7 @@ button.tab-button-active {
     background-color: #2A2A2A;
     border-radius: 4px;
     min-height: 35px;
-    padding: 10px;
+    padding: 6px 10px;
 }
 
 .todo-text {

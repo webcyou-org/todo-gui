@@ -13,14 +13,12 @@ struct App {
     todos: Vec<Todo>,
     todos_factory: FactoryVecDeque<components::todo_item::TodoItem>,
     active_tab: TabFilter,
-    input_text: String,
     next_id: u32,
 }
 
 #[derive(Debug)]
 enum AppMsg {
-    AddTodo,
-    SetInput(String),
+    AddTodo(String),
     SetTab(TabFilter),
     ToggleTodo(u32),
 }
@@ -57,12 +55,11 @@ impl SimpleComponent for App {
                     add_css_class: "todo-input",
                     set_hexpand: true,
                     set_margin_bottom: 14,
-                    #[watch]
-                    set_text: &model.input_text,
-                    connect_changed[sender] => move |entry| {
-                        sender.input(AppMsg::SetInput(entry.text().to_string()));
+                    connect_activate[sender] => move |entry| {
+                        let text = entry.text().to_string();
+                        sender.input(AppMsg::AddTodo(text));
+                        entry.set_text("");
                     },
-                    connect_activate => AppMsg::AddTodo,
                 },
 
                 // Tabs
@@ -148,7 +145,6 @@ impl SimpleComponent for App {
             todos: default,
             todos_factory,
             active_tab: TabFilter::All,
-            input_text: String::new(),
             next_id,
         };
 
@@ -160,11 +156,8 @@ impl SimpleComponent for App {
 
     fn update(&mut self, msg: Self::Input, _sender: ComponentSender<Self>) {
         match msg {
-            AppMsg::SetInput(text) => {
-                self.input_text = text;
-            }
-            AppMsg::AddTodo => {
-                let task = self.input_text.trim().to_string();
+            AppMsg::AddTodo(text) => {
+                let task = text.trim().to_string();
                 if task.is_empty() {
                     return;
                 }
@@ -174,7 +167,6 @@ impl SimpleComponent for App {
                     is_completed: false,
                 });
                 self.next_id += 1;
-                self.input_text.clear();
                 self.rebuild_list();
             }
             AppMsg::SetTab(tab) => {
