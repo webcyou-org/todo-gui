@@ -61,90 +61,93 @@ fn main() {
     rui(state(AppState::new, |app, cx| {
         let filtered = cx[app].filtered_todos();
 
-        vstack((
-            text("ToDo")
-                .font_size(18)
-                .color(C_WHITE)
-                .padding(Auto),
-            state(
-                || String::new(),
-                move |input, _| {
-                    hstack((
-                        text_editor(input).flex(),
-                        button("Add", move |cx| {
-                            let txt = cx[input].trim().to_string();
-                            if !txt.is_empty() {
-                                let id = cx[app].next_id;
-                                cx[app].next_id += 1;
-                                cx[app].todos.push(Todo {
-                                    id,
-                                    task: txt,
-                                    is_completed: false,
-                                });
-                                cx[input].clear();
-                            }
-                        }),
-                    ))
-                    .background(
-                        rectangle()
-                            .corner_radius(4.0)
-                            .color(C_INPUT),
-                    )
-                },
-            ),
-            hstack((
-                button("All", move |cx| {
-                    cx[app].active_tab = TabFilter::All;
-                }),
-                button("Active", move |cx| {
-                    cx[app].active_tab = TabFilter::Active;
-                }),
-                button("Completed", move |cx| {
-                    cx[app].active_tab = TabFilter::Completed;
-                }),
-                spacer(),
-            )),
-            list(
-                filtered.iter().map(|t| t.id as usize).collect(),
-                move |idx| {
-                    let todo_id = *idx as u32;
-                    with_ref(app, move |state| {
-                        let todo = state
-                            .filtered_todos()
-                            .into_iter()
-                            .find(|t| t.id == todo_id)
-                            .unwrap_or(Todo {
-                                id: 0,
-                                task: String::new(),
-                                is_completed: false,
-                            });
-                        let id = todo.id;
-                        let task = todo.task.clone();
-                        let is_completed = todo.is_completed;
-                        let text_color = if is_completed { C_MUTED } else { C_TEXT };
-
+        zstack((
+            rectangle().color(C_BG),
+            vstack((
+                text("ToDo")
+                    .font_size(18)
+                    .color(C_WHITE),
+                state(
+                    || String::new(),
+                    move |input, _| {
                         hstack((
-                            checkbox_canvas(is_completed)
-                                .tap(move |cx| {
-                                    cx[app].toggle_todo(id);
-                                }),
-                            text(&task)
-                                .font_size(14)
-                                .color(text_color),
-                            spacer(),
+                            text_editor(input).flex(),
+                            button("Add", move |cx| {
+                                let txt = cx[input].trim().to_string();
+                                if !txt.is_empty() {
+                                    let id = cx[app].next_id;
+                                    cx[app].next_id += 1;
+                                    cx[app].todos.push(Todo {
+                                        id,
+                                        task: txt,
+                                        is_completed: false,
+                                    });
+                                    cx[input].clear();
+                                }
+                            }),
                         ))
                         .background(
                             rectangle()
                                 .corner_radius(4.0)
-                                .color(C_SURFACE),
+                                .color(C_INPUT),
                         )
-                    })
-                },
-            )
-            .flex(),
+                        .size([0.0, 35.0])
+                    },
+                ),
+                hstack((
+                    button("All", move |cx| {
+                        cx[app].active_tab = TabFilter::All;
+                    }),
+                    button("Active", move |cx| {
+                        cx[app].active_tab = TabFilter::Active;
+                    }),
+                    button("Completed", move |cx| {
+                        cx[app].active_tab = TabFilter::Completed;
+                    }),
+                    spacer(),
+                )),
+                list(
+                    filtered.iter().map(|t| t.id as usize).collect(),
+                    move |idx| {
+                        let todo_id = *idx as u32;
+                        with_ref(app, move |state| {
+                            let todo = state
+                                .filtered_todos()
+                                .into_iter()
+                                .find(|t| t.id == todo_id)
+                                .unwrap_or(Todo {
+                                    id: 0,
+                                    task: String::new(),
+                                    is_completed: false,
+                                });
+                            let id = todo.id;
+                            let task = todo.task.clone();
+                            let is_completed = todo.is_completed;
+                            let text_color = if is_completed { C_MUTED } else { C_TEXT };
+
+                            hstack((
+                                checkbox_canvas(is_completed)
+                                    .tap(move |cx| {
+                                        cx[app].toggle_todo(id);
+                                    }),
+                                text(&task)
+                                    .font_size(14)
+                                    .color(text_color),
+                                spacer(),
+                            ))
+                            .background(
+                                rectangle()
+                                    .corner_radius(4.0)
+                                    .color(C_SURFACE),
+                            )
+                        })
+                    },
+                )
+                .flex(),
+                spacer(),
+            ))
+            .padding(24.0),
         ))
-        .padding(24.0)
-        .background(rectangle().color(C_BG))
     })
     .window_title("ToDo")
     .size([800.0, 600.0]));
