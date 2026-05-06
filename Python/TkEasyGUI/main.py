@@ -53,8 +53,17 @@ def main():
         # ── ウィンドウ全体の背景を上書き ────────────────────────────────
         win_root: tk.Toplevel = window.window
         win_root.configure(bg=Theme.BG)
-        if hasattr(window, "frame"):
-            window.frame.configure(bg=Theme.BG)
+
+        def apply_bg(widget: tk.Widget) -> None:
+            try:
+                if widget.winfo_class() in ("Frame", "TFrame", "Label", "Labelframe"):
+                    widget.configure(bg=Theme.BG)
+            except tk.TclError:
+                pass
+            for child in widget.winfo_children():
+                apply_bg(child)
+
+        apply_bg(win_root)
 
         # ── Input スタイル ────────────────────────────────────────────────
         input_widget: tk.Entry = window["new_task"].widget
