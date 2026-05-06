@@ -5,3 +5,4 @@ edition = "2021"
 
 [dependencies]
 rui = "0.6.1"
+vger = "0.2.7"
