@@ -14,8 +14,26 @@ enum Message {
     ToggleTodo(u32),
 }
 
+fn draw_rounded_box_4px(x: i32, y: i32, w: i32, h: i32, color: enums::Color) {
+    let r = 4;
+    draw::set_draw_color(color);
+    draw::draw_rectf(x + r, y, w - 2 * r, h);
+    draw::draw_rectf(x, y + r, w, h - 2 * r);
+    draw::draw_pie(x, y, 2 * r, 2 * r, 90.0, 180.0);
+    draw::draw_pie(x + w - 2 * r, y, 2 * r, 2 * r, 0.0, 90.0);
+    draw::draw_pie(x, y + h - 2 * r, 2 * r, 2 * r, 180.0, 270.0);
+    draw::draw_pie(x + w - 2 * r, y + h - 2 * r, 2 * r, 2 * r, 270.0, 360.0);
+}
+
 fn main() {
     let app = app::App::default();
+
+    // Register custom 4px rounded box frame type
+    app::set_frame_type_cb(
+        enums::FrameType::OFlatBox,
+        draw_rounded_box_4px,
+        0, 0, 0, 0,
+    );
     let (s, r) = app::channel::<Message>();
 
     let mut todos = default_todos();
@@ -43,7 +61,7 @@ fn main() {
 
     // Input border (visible on focus)
     let mut input_border = frame::Frame::new(x - 1, y - 1, w + 2, 37, "");
-    input_border.set_frame(enums::FrameType::RFlatBox);
+    input_border.set_frame(enums::FrameType::OFlatBox);
     input_border.set_color(C_BG);
 
     // Input field
@@ -51,7 +69,7 @@ fn main() {
     input_field.set_color(C_INPUT);
     input_field.set_text_color(C_MUTED);
     input_field.set_text_size(14);
-    input_field.set_frame(enums::FrameType::RFlatBox);
+    input_field.set_frame(enums::FrameType::OFlatBox);
     input_field.set_cursor_color(C_WHITE);
     input_field.set_value("Add Task");
     y += 35 + 14;
@@ -193,7 +211,7 @@ fn build_todo_list(
         let mut row = group::Flex::default().with_size(pack_w, item_h);
         row.set_type(group::FlexType::Row);
         row.set_color(C_SURFACE);
-        row.set_frame(enums::FrameType::FlatBox);
+        row.set_frame(enums::FrameType::OFlatBox);
 
         // Left padding
         let pad_left = frame::Frame::default();
