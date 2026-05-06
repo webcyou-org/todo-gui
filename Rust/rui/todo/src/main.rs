@@ -39,6 +39,26 @@ impl AppState {
     }
 }
 
+#[derive(Clone)]
+struct InputField {
+    text: String,
+    cursor: usize,
+}
+
+impl InputField {
+    fn new() -> Self {
+        Self {
+            text: String::new(),
+            cursor: 0,
+        }
+    }
+
+    fn clear(&mut self) {
+        self.text.clear();
+        self.cursor = 0;
+    }
+}
+
 fn checkbox_canvas(is_completed: bool) -> impl View {
     let accent = c_accent();
     let border = c_cb_border();
@@ -83,12 +103,85 @@ fn main() {
                     spacer(),
                 )),
                 state(
-                    || String::new(),
+                    InputField::new,
                     move |input, _| {
                         hstack((
-                            text_editor(input).flex(),
+                            focus(move |has_focus| {
+                                let text_color = text_c;
+                                let cursor_color = white;
+                                canvas(move |cx, rect, vger| {
+                                    let state = &cx[input];
+                                    let txt = &state.text;
+                                    let cursor = state.cursor;
+
+                                    vger.translate([4.0, rect.height()]);
+                                    let font_size = 14;
+                                    vger.text(txt, font_size, text_color, None);
+
+                                    if has_focus {
+                                        let rects = vger.glyph_positions(txt, font_size, None);
+                                        let p = if rects.is_empty() {
+                                            [0.0, -18.0].into()
+                                        } else if cursor >= rects.len() {
+                                            let r = &rects[rects.len() - 1];
+                                            [r.origin.x + r.size.width, r.origin.y].into()
+                                        } else {
+                                            rects[cursor].origin
+                                        };
+                                        let paint = vger.color_paint(cursor_color);
+                                        vger.fill_rect(
+                                            LocalRect::new(p, [2.0, 18.0].into()),
+                                            0.0,
+                                            paint,
+                                        );
+                                    }
+                                })
+                                .key(move |cx, k| {
+                                    if has_focus {
+                                        match k {
+                                            Key::ArrowLeft => {
+                                                if cx[input].cursor > 0 {
+                                                    cx[input].cursor -= 1;
+                                                }
+                                            }
+                                            Key::ArrowRight => {
+                                                let len = cx[input].text.len();
+                                                if cx[input].cursor < len {
+                                                    cx[input].cursor += 1;
+                                                }
+                                            }
+                                            Key::Backspace => {
+                                                let cur = cx[input].cursor;
+                                                if cur > 0 {
+                                                    cx[input].text.remove(cur - 1);
+                                                    cx[input].cursor -= 1;
+                                                }
+                                            }
+                                            Key::Character(c) => {
+                                                let cur = cx[input].cursor;
+                                                let s = format!("{}", c);
+                                                cx[input].text.insert_str(cur, &s);
+                                                cx[input].cursor += s.len();
+                                            }
+                                            Key::Space => {
+                                                let cur = cx[input].cursor;
+                                                cx[input].text.insert(cur, ' ');
+                                                cx[input].cursor += 1;
+                                            }
+                                            Key::Home => {
+                                                cx[input].cursor = 0;
+                                            }
+                                            Key::End => {
+                                                cx[input].cursor = cx[input].text.len();
+                                            }
+                                            _ => {}
+                                        }
+                                    }
+                                })
+                            })
+                            .flex(),
                             button("Add", move |cx| {
-                                let txt = cx[input].trim().to_string();
+                                let txt = cx[input].text.trim().to_string();
                                 if !txt.is_empty() {
                                     let id = cx[app].next_id;
                                     cx[app].next_id += 1;
