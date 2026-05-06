@@ -76,9 +76,12 @@ fn main() {
         zstack((
             rectangle().color(bg),
             vstack((
-                text("ToDo")
-                    .font_size(18)
-                    .color(white),
+                hstack((
+                    text("ToDo")
+                        .font_size(18)
+                        .color(white),
+                    spacer(),
+                )),
                 state(
                     || String::new(),
                     move |input, _| {
@@ -103,6 +106,7 @@ fn main() {
                                 .corner_radius(4.0)
                                 .color(input_bg),
                         )
+                        .size([752.0, 35.0])
                     },
                 ),
                 hstack((
