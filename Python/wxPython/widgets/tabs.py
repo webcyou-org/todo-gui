@@ -21,6 +21,7 @@ class TabMenuPanel(wx.Panel):
         self._on_switch = on_switch
         self._boundaries: List[Tuple[float, float, TabFilter]] = []
         self.SetBackgroundColour(C_BG)
+        self.SetBackgroundStyle(wx.BG_STYLE_PAINT)
         self.Bind(wx.EVT_PAINT, self._on_paint)
         self.Bind(wx.EVT_LEFT_DOWN, self._on_click)
 
