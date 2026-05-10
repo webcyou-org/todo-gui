@@ -1,0 +1,147 @@
+/* Design Tokens */
+:root {
+  --c-bg:        #1C1C1C;
+  --c-surface:   #2A2A2A;
+  --c-input:     #303030;
+  --c-text:      #D2D2D2;
+  --c-white:     #FFFFFF;
+  --c-muted:     #9B9B9B;
+  --c-accent:    #5DC2AF;
+  --c-cb-border: #D9D9D9;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--c-bg);
+  color: var(--c-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  width: 800px;
+  height: 600px;
+  overflow: hidden;
+}
+
+#app {
+  padding: 10px 24px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#title {
+  color: var(--c-white);
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 14px;
+}
+
+/* Todo List */
+#list-area {
+  list-style: none;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  background-color: var(--c-surface);
+  height: 35px;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+
+.todo-item .checkbox {
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  border: 2px solid var(--c-cb-border);
+  margin-right: 18px;
+  flex-shrink: 0;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: transparent;
+  position: relative;
+}
+
+.todo-item .checkbox:checked {
+  background-color: var(--c-accent);
+  border-color: var(--c-accent);
+}
+
+.todo-item .checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 1px;
+  width: 4px;
+  height: 7px;
+  border: 2px solid var(--c-white);
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
+.todo-item .task-text {
+  font-size: 14px;
+  color: var(--c-text);
+}
+
+.todo-item.completed .task-text {
+  text-decoration: line-through;
+  color: var(--c-muted);
+}
+
+/* Tabs */
+#tabs-area {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 3px;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  color: var(--c-text);
+  font-size: 14px;
+  line-height: 28px;
+  padding: 0 8px;
+  cursor: pointer;
+  font-weight: normal;
+}
+
+.tab-btn.active {
+  font-weight: bold;
+}
+
+/* Input */
+#input-area {
+  margin-bottom: 14px;
+}
+
+#todo-input {
+  width: 100%;
+  height: 35px;
+  background-color: var(--c-input);
+  color: var(--c-white);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 4px 16px;
+  font-size: 14px;
+  outline: none;
+}
+
+#todo-input::placeholder {
+  color: var(--c-muted);
+}
+
+#todo-input:focus {
+  border-color: var(--c-accent);
+}
