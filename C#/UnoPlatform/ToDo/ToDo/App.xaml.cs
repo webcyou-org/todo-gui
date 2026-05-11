@@ -47,7 +47,6 @@ public partial class App : Application
         }
 
         MainWindow.SetWindowIcon();
-        // Ensure the current window is active
         MainWindow.Activate();
     }
 
