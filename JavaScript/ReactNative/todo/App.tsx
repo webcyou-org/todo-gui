@@ -1,117 +1,61 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import type React from 'react';
+import {useState} from 'react';
+import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import {TabMenu as TabMenuBar} from './src/components/TabMenu';
+import {TodoInput} from './src/components/TodoInput';
+import {TodoList} from './src/components/TodoList';
+import {MenuModel, TodoModel} from './src/data/models';
+import type {TabMenu, Todo} from './src/data/types';
+import {C, S, T} from './src/theme';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+const todoModel = new TodoModel();
+const menuModel = new MenuModel();
 
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+  const [, setRevision] = useState(0);
+  const [tabs, setTabs] = useState<TabMenu[]>(menuModel.getTabList());
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const refresh = () => setRevision(r => r + 1);
+  const activeTab = tabs.find(t => t.isActive) ?? tabs[0];
+  const filteredTodos = todoModel.getFilteredTodos(activeTab);
+
+  const handleAddTodo = (task: string) => {
+    todoModel.addTodo(task);
+    refresh();
+  };
+
+  const handleToggle = (todo: Todo) => {
+    todoModel.changeCompleted(todo);
+    refresh();
+  };
+
+  const handleChangeTab = (tab: TabMenu) => {
+    menuModel.setActiveTab(tab);
+    setTabs(menuModel.getTabList());
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
+    <SafeAreaView style={styles.root}>
+      <Text style={styles.title}>ToDo</Text>
+      <TodoInput onAddTodo={handleAddTodo} />
+      <TabMenuBar tabs={tabs} onChangeTab={handleChangeTab} />
+      <TodoList todos={filteredTodos} onToggle={handleToggle} />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  root: {
+    flex: 1,
+    backgroundColor: C.BG,
+    paddingHorizontal: S.CONTENT_H,
+    paddingVertical: S.CONTENT_V,
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
+  title: {
+    color: C.WHITE,
+    fontSize: T.FONT_SIZE_TITLE,
+    fontWeight: 'bold',
+    marginBottom: S.TITLE_MB,
   },
 });
 

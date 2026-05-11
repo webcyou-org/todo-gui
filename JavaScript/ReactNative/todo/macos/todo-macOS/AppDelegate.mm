@@ -7,20 +7,26 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
   self.moduleName = @"todo";
-  // You can add your custom initial props in the dictionary below.
-  // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
 
-  return [super applicationDidFinishLaunching:notification];
+  [super applicationDidFinishLaunching:notification];
+
+  [self.window setContentSize:NSMakeSize(800, 600)];
+  [self.window center];
+}
+
+- (NSURL *)bundleURL
+{
+#if DEBUG
+  return [NSURL URLWithString:@"http://localhost:8081/index.bundle?platform=macos&dev=true&minify=false"];
+#else
+  return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+#endif
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {
-#if DEBUG
-  return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"];
-#else
-  return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
-#endif
+  return [self bundleURL];
 }
 
 /// This method controls whether the `concurrentRoot`feature of React18 is turned on or off.
