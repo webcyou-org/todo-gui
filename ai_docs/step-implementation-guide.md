@@ -171,6 +171,151 @@ src/
 
 ---
 
+---
+
+## Rust / Vizia (git HEAD 7dccf72)
+
+Cargo.toml: `vizia = {git = "https://github.com/vizia/vizia"}`
+
+### 各ステップの要点
+
+**Step 1 — データモデル**
+- `#[derive(Lens, Clone, PartialEq, Debug)]` が必要
+- `TabFilter` は `usize`（0=All, 1=Active, 2=Completed）で管理するか enum で定義
+- `AppData` に `filtered_todos: Vec<Todo>` を派生フィールドとして持ち、`todos`/`active_tab` 変更時に `recompute_filtered()` で同期
+- イベントは `AppEvent` enum で定義し、`impl Model for AppData` の `event()` でハンドル
+
+**Step 2 — ウィンドウ設定**
+```rust
+Application::new(|cx| {
+    AppData::new().build(cx);
+    // UI...
+})
+.title("ToDo")
+.inner_size((800, 600))
+.run()
+```
+- 背景色は CSS で設定（後述）
+
+**Step 3 — Input フィールド**
+- `Textbox::new(cx, AppData::input_text)` でレンズバインド
+- `.placeholder("Add Task")` でプレースホルダー
+- `.on_edit(|cx, text| cx.emit(AppEvent::SetInputText(text)))` で入力同期
+- `.on_submit(|cx, _text, enter| { if enter { cx.emit(AppEvent::AddTodo); } })` で Enter のみ追加
+  - `bool` が `true` = Enter キー、`false` = blur（フォーカス外れ）
+- モデル側で `self.input_text = String::new()` するとテキストボックスが自動的にクリア
+- スタイルはインライン CSS 文字列で上書き（詳細は後述）
+
+**Step 4 — Tab メニュー**
+- `HStack::new` の中で `Button::new` を3つ並べる
+- アクティブタブの Bold は `AppData::active_tab` への `Binding` で切り替え、または `font_weight` を lens でバインド
+- クリック: `Button::on_press(|cx| cx.emit(AppEvent::SetActiveTab(i)))`
+
+**Step 5 — Todo リスト**
+- `ScrollView::new(cx, 0.0, 0.0, false, true, |cx| { List::new(cx, AppData::filtered_todos, ...) })` で縦スクロール対応
+- `List::new` のアイテムレンダリング:
+  ```rust
+  List::new(cx, AppData::filtered_todos, |cx, _idx, item| {
+      Binding::new(cx, item, |cx, todo_lens| {
+          let todo = todo_lens.get(cx).clone();
+          let id = todo.id;
+          let is_completed = todo.is_completed;
+          HStack::new(cx, |cx| {
+              // カスタム円形チェックボックス
+              Element::new(cx)
+                  .size(Pixels(16.0))
+                  .corner_radius(Pixels(8.0))
+                  .border_width(Pixels(2.0))
+                  .border_color(if is_completed { C_ACCENT } else { C_CB_BORDER })
+                  .background_color(if is_completed { C_ACCENT } else { Color::rgba(0,0,0,0) })
+                  .on_press(move |cx| cx.emit(AppEvent::ToggleTodo(id)));
+              // テキスト + 打ち消し線
+              Label::new(cx, &todo.task)
+                  .color(if is_completed { C_MUTED } else { C_TEXT })
+                  .text_decoration_line(if is_completed {
+                      TextDecorationLine::Strikethrough
+                  } else {
+                      TextDecorationLine::empty()
+                  });
+          });
+      });
+  });
+  ```
+- Vizia は `text-decoration-line: strikethrough` を CSS と Rust 両方でサポートしている
+
+**Step 6 — ファイル分割**
+```
+src/
+├── main.rs          # Application::new + build_ui + main()
+├── data.rs          # Todo / AppData / AppEvent / Model impl
+├── theme.rs         # Color 定数 + CSS 文字列定数
+└── components/
+    ├── mod.rs
+    ├── input.rs     # build_input()
+    ├── tabs.rs      # build_tabs()
+    └── todo_list.rs # build_todo_list() + todo_item()
+```
+
+### CSS スタイリングの要点
+
+Vizia はインライン CSS 文字列でテーマを上書きできる:
+```rust
+cx.add_stylesheet(STYLE).expect("Failed to add stylesheet");
+```
+
+主要な CSS プロパティ名（`border-radius` ではなく `corner-radius`）:
+```css
+/* ウィンドウ背景 */
+* { background-color: #1C1C1C; }
+
+/* TextBox カスタム */
+textbox {
+    background-color: #303030;
+    border-color: transparent;
+    border-width: 1px;
+    corner-radius: 4px;
+    color: #FFFFFF;
+    height: 35px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+textbox:checked,
+textbox:focus-visible {
+    border-color: #5DC2AF;
+}
+textbox > label.placeholder {
+    color: #9B9B9B;
+}
+
+/* Todo アイテム */
+.todo-item {
+    background-color: #2A2A2A;
+    height: 35px;
+    corner-radius: 4px;
+    padding: 10px;
+}
+```
+
+### Vizia 固有の注意点
+
+- **`corner-radius`** が正しい CSS プロパティ名（`border-radius` は機能しない場合あり）
+- **`textbox:checked`** = テキスト入力中（フォーカス+編集状態）の擬似クラス（Web の `:focus` 相当）
+- **`Binding::new`** の中でウィジェットを作ると変化のたびにサブツリーが再構築される（正常動作）
+- **`Data` トレイト**: `Binding::new(cx, lens, ...)` を使う場合、lens の Target 型が `Data` を実装している必要がある。カスタム構造体は以下で対応:
+  ```rust
+  impl Data for Todo {
+      fn same(&self, other: &Self) -> bool { self == other }
+  }
+  ```
+- `on_submit` の `bool` 引数: `true` = Enter、`false` = blur（Enter のみ追加したい場合は `if enter` で分岐）
+- `List::new` の `item` 引数はレンズ — 直接 `.map()` や `Binding::new` に使える
+- `Color::rgb(r, g, b)` は `const fn` なので定数に使える
+- `FontWeight(700)` が Bold
+- `TextDecorationLine::Strikethrough` で打ち消し線（`vizia::prelude::*` でインポート可能）
+- `ScrollView::new(cx, 0.0, 0.0, false, true, content_fn)` で縦スクロール
+
+---
+
 ## DruidとDioxusの実装量比較
 
 | 機能 | Druid | Dioxus |
