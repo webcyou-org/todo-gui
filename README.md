@@ -43,10 +43,6 @@ ToDo Applications created using various GUI tools.
   - Nuklear
   - CEF（Chromium Embedded Framework）
 
-- Dart
-  - [Flutter](https://github.com/webcyou-org/todo-gui/tree/main/Dart/Flutter/todo)
-  - Rikulo UI
-
 - JavaScript
   - [Electron](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/Electron)
   - [Tauri](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/tauri/vite/todo-gui)
@@ -123,13 +119,23 @@ ToDo Applications created using various GUI tools.
 - Java
   - JavaFX
   - Swing
-  - Compose Multiplatform（Kotlin）
   - Skiko
+
+- Kotlin
+  - Compose Multiplatform
+  - Korge
+  - fritz2
+  - Kvision
+  - Kobweb
 
 - Swift / macOS
   - SwiftUI
   - AppKit
   - Catalyst
+
+- Dart
+  - [Flutter](https://github.com/webcyou-org/todo-gui/tree/main/Dart/Flutter/todo)
+  - Rikulo UI
 
 - zig
   - Dear ImGui
