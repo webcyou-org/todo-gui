@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using Microsoft.Extensions.Logging;
 using Uno.Resizetizer;
 
@@ -24,30 +25,38 @@ public partial class App : Application
         MainWindow.EnableHotReload();
 #endif
 
-
-        // Do not repeat app initialization when the Window already has content,
-        // just ensure that the window is active
         if (MainWindow.Content is not Frame rootFrame)
         {
-            // Create a Frame to act as the navigation context and navigate to the first page
             rootFrame = new Frame();
-
-            // Place the frame in the current Window
             MainWindow.Content = rootFrame;
-
             rootFrame.NavigationFailed += OnNavigationFailed;
         }
 
         if (rootFrame.Content == null)
         {
-            // When the navigation stack isn't restored navigate to the first page,
-            // configuring the new page by passing required information as a navigation
-            // parameter
             rootFrame.Navigate(typeof(MainPage), args.Arguments);
         }
 
         MainWindow.SetWindowIcon();
         MainWindow.Activate();
+
+        if (OperatingSystem.IsMacOS())
+        {
+            try { MacOSResizeAndCenter(800, 600); } catch { }
+
+            foreach (var ms in new[] { 300, 800, 1500 })
+            {
+                var delay = ms;
+                _ = Task.Run(async () =>
+                {
+                    await Task.Delay(delay);
+                    MainWindow.DispatcherQueue.TryEnqueue(() =>
+                    {
+                        try { MacOSResizeAndCenter(800, 600); } catch { }
+                    });
+                });
+            }
+        }
     }
 
     /// <summary>
@@ -58,6 +67,72 @@ public partial class App : Application
     void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
     {
         throw new InvalidOperationException($"Failed to load {e.SourcePageType.FullName}: {e.Exception}");
+    }
+
+    // ── macOS AppKit P/Invoke でウィンドウをリサイズ＋センタリング ──────────
+
+    [DllImport("libobjc.dylib", EntryPoint = "objc_getClass")]
+    private static extern IntPtr ObjcGetClass(string name);
+
+    [DllImport("libobjc.dylib", EntryPoint = "sel_registerName")]
+    private static extern IntPtr SelRegisterName(string name);
+
+    [DllImport("libobjc.dylib", EntryPoint = "objc_msgSend")]
+    private static extern IntPtr ObjcMsgSend(IntPtr self, IntPtr sel);
+
+    [DllImport("libobjc.dylib", EntryPoint = "objc_msgSend")]
+    private static extern void ObjcMsgSendVoid(IntPtr self, IntPtr sel);
+
+    [DllImport("libobjc.dylib", EntryPoint = "objc_msgSend")]
+    private static extern void ObjcMsgSendSize(IntPtr self, IntPtr sel, MacSize size);
+
+    [DllImport("libobjc.dylib", EntryPoint = "objc_msgSend")]
+    private static extern void ObjcMsgSendPoint(IntPtr self, IntPtr sel, MacPoint point);
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct MacSize { public double Width, Height; }
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct MacPoint { public double X, Y; }
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct MacRect { public double X, Y, Width, Height; }
+
+    [DllImport("libobjc.dylib", EntryPoint = "objc_msgSend")]
+    private static extern IntPtr ObjcMsgSendIdx(IntPtr self, IntPtr sel, ulong idx);
+
+    [DllImport("/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics")]
+    private static extern uint CGMainDisplayID();
+
+    [DllImport("/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics")]
+    private static extern MacRect CGDisplayBounds(uint display);
+
+    private static void MacOSResizeAndCenter(double width, double height)
+    {
+        var nsApp = ObjcMsgSend(ObjcGetClass("NSApplication"), SelRegisterName("sharedApplication"));
+
+        // mainWindow → keyWindow → windows[0] の順でウィンドウを取得
+        var win = ObjcMsgSend(nsApp, SelRegisterName("mainWindow"));
+        if (win == IntPtr.Zero)
+            win = ObjcMsgSend(nsApp, SelRegisterName("keyWindow"));
+        if (win == IntPtr.Zero)
+        {
+            var arr = ObjcMsgSend(nsApp, SelRegisterName("windows"));
+            if (arr != IntPtr.Zero)
+            {
+                var cnt = (long)ObjcMsgSend(arr, SelRegisterName("count"));
+                if (cnt > 0)
+                    win = ObjcMsgSendIdx(arr, SelRegisterName("objectAtIndex:"), 0UL);
+            }
+        }
+        if (win == IntPtr.Zero) { Console.Error.WriteLine("[Center] no window found"); return; }
+
+        ObjcMsgSendSize(win, SelRegisterName("setContentSize:"), new MacSize { Width = width, Height = height });
+
+        var screen = CGDisplayBounds(CGMainDisplayID());
+        var x = screen.X + (screen.Width - width) / 2;
+        var y = screen.Y + (screen.Height - height) / 2;
+        ObjcMsgSendPoint(win, SelRegisterName("setFrameOrigin:"), new MacPoint { X = x, Y = y });
     }
 
     /// <summary>

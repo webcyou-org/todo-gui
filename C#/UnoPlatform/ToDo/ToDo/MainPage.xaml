@@ -3,78 +3,84 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:ToDo"
       xmlns:converters="using:ToDo.Converters"
+      RequestedTheme="Dark"
       Background="#1C1C1C">
 
   <Page.Resources>
-    <converters:BoolToCheckboxBackgroundConverter x:Key="CheckboxBgConverter"/>
+    <!-- TextBox 内部テンプレートのブラシを上書き -->
+    <SolidColorBrush x:Key="TextControlBackground"                      Color="#303030"/>
+    <SolidColorBrush x:Key="TextControlBackgroundPointerOver"           Color="#303030"/>
+    <SolidColorBrush x:Key="TextControlBackgroundFocused"               Color="#303030"/>
+    <SolidColorBrush x:Key="TextControlBackgroundDisabled"              Color="#303030"/>
+    <SolidColorBrush x:Key="TextControlForeground"                      Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="TextControlForegroundPointerOver"           Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="TextControlForegroundFocused"               Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="TextControlPlaceholderForeground"           Color="#9B9B9B"/>
+    <SolidColorBrush x:Key="TextControlPlaceholderForegroundPointerOver" Color="#9B9B9B"/>
+    <SolidColorBrush x:Key="TextControlPlaceholderForegroundFocused"    Color="#9B9B9B"/>
+    <SolidColorBrush x:Key="TextControlBorderBrush"                     Color="Transparent"/>
+    <SolidColorBrush x:Key="TextControlBorderBrushPointerOver"          Color="Transparent"/>
+    <SolidColorBrush x:Key="TextControlBorderBrushFocused"              Color="#5DC2AF"/>
+
+    <!-- 値コンバーター -->
+    <converters:BoolToCheckboxBackgroundConverter  x:Key="CheckboxBgConverter"/>
     <converters:BoolToCheckboxBorderBrushConverter x:Key="CheckboxBorderConverter"/>
-    <converters:BoolToTextDecorationsConverter x:Key="TextDecorationsConverter"/>
-    <converters:BoolToForegroundConverter x:Key="ForegroundConverter"/>
+    <converters:BoolToTextDecorationsConverter     x:Key="TextDecorationsConverter"/>
+    <converters:BoolToForegroundConverter          x:Key="ForegroundConverter"/>
   </Page.Resources>
 
-  <Grid Padding="24,10,24,10">
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto"/>
-      <RowDefinition Height="Auto"/>
-      <RowDefinition Height="Auto"/>
-      <RowDefinition Height="*"/>
-    </Grid.RowDefinitions>
+  <!-- ScrollViewer > StackPanel: Uno Platform Desktop で最も信頼性が高いレイアウト -->
+  <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <StackPanel Padding="24,10,24,10">
 
-    <!-- Title -->
-    <TextBlock Grid.Row="0"
-               Text="ToDo"
-               Foreground="#FFFFFF"
-               FontSize="18"
-               FontWeight="Bold"
-               Margin="0,0,0,14"/>
+      <!-- Title -->
+      <TextBlock Text="ToDo"
+                 Foreground="#FFFFFF"
+                 FontSize="18"
+                 FontWeight="Bold"
+                 Margin="0,0,0,14"/>
 
-    <!-- Input -->
-    <TextBox Grid.Row="1"
-             x:Name="TaskInput"
-             PlaceholderText="Add Task"
-             Background="#303030"
-             Foreground="#FFFFFF"
-             PlaceholderForeground="#9B9B9B"
-             Height="35"
-             CornerRadius="4"
-             BorderBrush="Transparent"
-             BorderThickness="1"
-             Padding="16,4,16,4"
-             Margin="0,0,0,14"
-             KeyDown="TaskInput_KeyDown"
-             GotFocus="TaskInput_GotFocus"
-             LostFocus="TaskInput_LostFocus"/>
+      <!-- Input -->
+      <TextBox x:Name="TaskInput"
+               PlaceholderText="Add Task"
+               Height="35"
+               CornerRadius="4"
+               BorderThickness="1"
+               Padding="16,4,16,4"
+               Margin="0,0,0,14"
+               KeyDown="TaskInput_KeyDown"
+               GotFocus="TaskInput_GotFocus"
+               LostFocus="TaskInput_LostFocus"/>
 
-    <!-- Tabs -->
-    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,3">
-      <Border Padding="8,0" Height="28" Background="Transparent" Tapped="AllTab_Tapped">
-        <TextBlock x:Name="AllTabText"
-                   Text="All"
-                   FontSize="14"
-                   FontWeight="Bold"
-                   Foreground="#D2D2D2"
-                   VerticalAlignment="Center"/>
-      </Border>
-      <Border Padding="8,0" Height="28" Background="Transparent" Tapped="ActiveTab_Tapped">
-        <TextBlock x:Name="ActiveTabText"
-                   Text="Active"
-                   FontSize="14"
-                   FontWeight="Normal"
-                   Foreground="#D2D2D2"
-                   VerticalAlignment="Center"/>
-      </Border>
-      <Border Padding="8,0" Height="28" Background="Transparent" Tapped="CompletedTab_Tapped">
-        <TextBlock x:Name="CompletedTabText"
-                   Text="Completed"
-                   FontSize="14"
-                   FontWeight="Normal"
-                   Foreground="#D2D2D2"
-                   VerticalAlignment="Center"/>
-      </Border>
-    </StackPanel>
+      <!-- Tabs -->
+      <StackPanel Orientation="Horizontal" Margin="0,0,0,3">
+        <Border Padding="8,0" Height="28" Background="Transparent" Tapped="AllTab_Tapped">
+          <TextBlock x:Name="AllTabText"
+                     Text="All"
+                     FontSize="14"
+                     FontWeight="Bold"
+                     Foreground="#D2D2D2"
+                     VerticalAlignment="Center"/>
+        </Border>
+        <Border Padding="8,0" Height="28" Background="Transparent" Tapped="ActiveTab_Tapped">
+          <TextBlock x:Name="ActiveTabText"
+                     Text="Active"
+                     FontSize="14"
+                     FontWeight="Normal"
+                     Foreground="#D2D2D2"
+                     VerticalAlignment="Center"/>
+        </Border>
+        <Border Padding="8,0" Height="28" Background="Transparent" Tapped="CompletedTab_Tapped">
+          <TextBlock x:Name="CompletedTabText"
+                     Text="Completed"
+                     FontSize="14"
+                     FontWeight="Normal"
+                     Foreground="#D2D2D2"
+                     VerticalAlignment="Center"/>
+        </Border>
+      </StackPanel>
 
-    <!-- Todo List -->
-    <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
+      <!-- Todo リスト -->
       <ItemsControl ItemsSource="{Binding FilteredTodos}">
         <ItemsControl.ItemTemplate>
           <DataTemplate>
@@ -84,7 +90,6 @@
                     Padding="10"
                     Margin="0,0,0,5">
               <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <!-- Circular checkbox -->
                 <Border Width="16"
                         Height="16"
                         CornerRadius="8"
@@ -93,7 +98,6 @@
                         Background="{Binding IsCompleted, Converter={StaticResource CheckboxBgConverter}}"
                         BorderBrush="{Binding IsCompleted, Converter={StaticResource CheckboxBorderConverter}}"
                         Tapped="Checkbox_Tapped"/>
-                <!-- Task text -->
                 <TextBlock Text="{Binding Task}"
                            FontSize="14"
                            VerticalAlignment="Center"
@@ -104,6 +108,7 @@
           </DataTemplate>
         </ItemsControl.ItemTemplate>
       </ItemsControl>
-    </ScrollViewer>
-  </Grid>
+
+    </StackPanel>
+  </ScrollViewer>
 </Page>

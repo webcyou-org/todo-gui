@@ -64,8 +64,8 @@ public sealed partial class MainPage : Page
 
     private void UpdateTabFontWeights(TabFilter active)
     {
-        AllTabText.FontWeight = active == TabFilter.All ? FontWeights.Bold : FontWeights.Normal;
-        ActiveTabText.FontWeight = active == TabFilter.Active ? FontWeights.Bold : FontWeights.Normal;
+        AllTabText.FontWeight       = active == TabFilter.All       ? FontWeights.Bold : FontWeights.Normal;
+        ActiveTabText.FontWeight    = active == TabFilter.Active    ? FontWeights.Bold : FontWeights.Normal;
         CompletedTabText.FontWeight = active == TabFilter.Completed ? FontWeights.Bold : FontWeights.Normal;
     }
 
