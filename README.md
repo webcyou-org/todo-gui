@@ -119,8 +119,8 @@ ToDo Applications created using various GUI tools.
 - C#
   - [Avalonia](https://github.com/webcyou-org/todo-gui/tree/main/C%23/Avalonia/ToDo)
   - [Uno Platform](https://github.com/webcyou-org/todo-gui/tree/main/C%23/UnoPlatform/ToDo)
-  - WPF
-  - UWP
+  - [WPF](https://github.com/webcyou-org/todo-gui/tree/main/C%23/WPF/)
+  - [UWP](https://github.com/webcyou-org/todo-gui/tree/main/C%23/UWP/)
   - Prism
   - Xamarin.Forms
   - WinForms
