@@ -6,10 +6,6 @@ ToDo Applications created using various GUI tools.
 
 ## Language
 
-- Dart
-  - [Flutter](https://github.com/webcyou-org/todo-gui/tree/main/Dart/Flutter/todo)
-  - Rikulo UI
-
 - Python
   - [Flet](https://github.com/webcyou-org/todo-gui/tree/main/Python/Flet)
   - [tkinter](https://github.com/webcyou-org/todo-gui/tree/main/Python/tkinter)
@@ -47,16 +43,9 @@ ToDo Applications created using various GUI tools.
   - Nuklear
   - CEF（Chromium Embedded Framework）
 
-- Java
-  - JavaFX
-  - Swing
-  - Compose Multiplatform（Kotlin）
-  - Skiko
-
-- Swift / macOS
-  - SwiftUI
-  - AppKit
-  - Catalyst
+- Dart
+  - [Flutter](https://github.com/webcyou-org/todo-gui/tree/main/Dart/Flutter/todo)
+  - Rikulo UI
 
 - JavaScript
   - [Electron](https://github.com/webcyou-org/todo-gui/tree/main/JavaScript/Electron)
@@ -85,7 +74,7 @@ ToDo Applications created using various GUI tools.
   - [Walk](https://github.com/webcyou-org/todo-gui/tree/main/Go/Walk)
   - [Go-GTK](https://github.com/webcyou-org/todo-gui/tree/main/Go/Go-GTK)
   - [shiny](https://github.com/webcyou-org/todo-gui/tree/main/Go/shiny)
-  - Qt for Go
+  - [Qt for Go](https://github.com/webcyou-org/todo-gui/tree/main/Go/QtforGo)
   - go-sciter
   - nuklear
 
@@ -131,6 +120,17 @@ ToDo Applications created using various GUI tools.
   - Blazor Hybrid
   - ReactiveUI
   - Eto.Forms
+
+- Java
+  - JavaFX
+  - Swing
+  - Compose Multiplatform（Kotlin）
+  - Skiko
+
+- Swift / macOS
+  - SwiftUI
+  - AppKit
+  - Catalyst
 
 - zig
   - Dear ImGui
