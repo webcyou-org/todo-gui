@@ -20,6 +20,7 @@ pub struct AppData {
     pub active_tab: usize,
     pub input_text: String,
     pub next_id: usize,
+    pub input_version: usize,
 }
 
 impl AppData {
@@ -37,6 +38,7 @@ impl AppData {
             active_tab: 0,
             input_text: String::new(),
             next_id: 5,
+            input_version: 0,
         }
     }
 
@@ -73,6 +75,7 @@ impl Model for AppData {
                     });
                     self.next_id += 1;
                     self.input_text = String::new();
+                    self.input_version += 1;
                     self.recompute_filtered();
                 }
             }

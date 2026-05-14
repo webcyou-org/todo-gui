@@ -28,6 +28,5 @@ fn main() -> Result<(), ApplicationError> {
     })
     .title("ToDo")
     .inner_size((800, 600))
-    .min_inner_size(Some((800, 600)))
     .run()
 }
