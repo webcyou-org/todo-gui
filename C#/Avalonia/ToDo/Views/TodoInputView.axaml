@@ -1,0 +1,14 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:ToDo.ViewModels"
+             x:Class="ToDo.Views.TodoInputView"
+             x:DataType="vm:MainViewModel">
+
+    <TextBox Watermark="Add Task"
+             Text="{Binding InputText}">
+        <TextBox.KeyBindings>
+            <KeyBinding Gesture="Return" Command="{Binding AddTodoCommand}"/>
+        </TextBox.KeyBindings>
+    </TextBox>
+
+</UserControl>

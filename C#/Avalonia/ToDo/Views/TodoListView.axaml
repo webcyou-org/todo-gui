@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:ToDo.ViewModels"
+             xmlns:models="using:ToDo.Models"
+             x:Class="ToDo.Views.TodoListView"
+             x:DataType="vm:MainViewModel">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <ItemsControl ItemsSource="{Binding FilteredTodos}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="models:TodoItem">
+                    <Border Background="#2A2A2A"
+                            Height="35"
+                            CornerRadius="4"
+                            Margin="0,0,0,5"
+                            Padding="10,0">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <CheckBox Classes="circular"
+                                      IsChecked="{Binding IsCompleted, Mode=TwoWay}"
+                                      Width="16" Height="16"
+                                      Margin="0,0,18,0"
+                                      VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Task}"
+                                       FontSize="14"
+                                       VerticalAlignment="Center"
+                                       Foreground="{Binding IsCompleted, Converter={StaticResource TextColorConverter}}"
+                                       TextDecorations="{Binding IsCompleted, Converter={StaticResource StrikethroughConverter}}"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </ScrollViewer>
+
+</UserControl>

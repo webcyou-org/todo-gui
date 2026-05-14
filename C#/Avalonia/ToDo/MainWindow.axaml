@@ -1,9 +1,29 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:vm="using:ToDo.ViewModels"
+        xmlns:views="using:ToDo.Views"
         x:Class="ToDo.MainWindow"
-        Title="ToDo">
-    Welcome to Avalonia!
+        x:DataType="vm:MainViewModel"
+        Title="ToDo"
+        Width="800" Height="600"
+        Background="#1C1C1C">
+
+    <StackPanel Margin="24,10">
+        <!-- Title -->
+        <TextBlock Text="ToDo"
+                   Foreground="White"
+                   FontSize="18"
+                   FontWeight="Bold"
+                   Margin="0,0,0,14"/>
+
+        <!-- Input -->
+        <views:TodoInputView Margin="0,0,0,14"/>
+
+        <!-- Tabs -->
+        <views:TabMenuView Margin="0,0,0,3"/>
+
+        <!-- Todo List -->
+        <views:TodoListView/>
+    </StackPanel>
+
 </Window>

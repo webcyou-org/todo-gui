@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:ToDo.ViewModels"
+             x:Class="ToDo.Views.TabMenuView"
+             x:DataType="vm:MainViewModel">
+
+    <StackPanel Orientation="Horizontal">
+        <Button Classes="tab-btn"
+                Content="All"
+                FontWeight="{Binding ActiveTab, Converter={StaticResource TabFontWeightConverter}, ConverterParameter=All}"
+                Command="{Binding SetActiveTabCommand}"
+                CommandParameter="All"/>
+        <Button Classes="tab-btn"
+                Content="Active"
+                FontWeight="{Binding ActiveTab, Converter={StaticResource TabFontWeightConverter}, ConverterParameter=Active}"
+                Command="{Binding SetActiveTabCommand}"
+                CommandParameter="Active"/>
+        <Button Classes="tab-btn"
+                Content="Completed"
+                FontWeight="{Binding ActiveTab, Converter={StaticResource TabFontWeightConverter}, ConverterParameter=Completed}"
+                Command="{Binding SetActiveTabCommand}"
+                CommandParameter="Completed"/>
+    </StackPanel>
+
+</UserControl>
