@@ -139,10 +139,10 @@ ToDo Applications created using various GUI tools.
 - zig
   - [Dear ImGui](https://github.com/webcyou-org/todo-gui/tree/main/Zig/imgui)
   - [raylib](https://github.com/webcyou-org/todo-gui/tree/main/Zig/raylib)
-  - Nuklear
-  - GTK
-  - Qt
-  - wxWidgets
+  - [Qt](https://github.com/webcyou-org/todo-gui/tree/main/Zig/Qt)
+  - [Nuklear](https://github.com/webcyou-org/todo-gui/tree/main/Zig/nuklear)
+  - [GTK](https://github.com/webcyou-org/todo-gui/tree/main/Zig/GTK)
+  - [wxWidgets](https://github.com/webcyou-org/todo-gui/tree/main/Zig/wxWidgets)
   - zgui
   - zig-imgui bindings
   - capy
