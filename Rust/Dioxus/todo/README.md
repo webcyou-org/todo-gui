@@ -29,3 +29,14 @@ cargo run
 ```sh
 dx serve --hot-reload --platform desktop
 ```
+
+## Architecture
+
+Dioxus の React インスパイア宣言的コンポーネント構成。状態は `use_signal` フックで管理し、コンポーネントをファイルで分離する。
+
+```
+src/
+├── main.rs         # エントリーポイント・dioxus::launch・ルートコンポーネント
+├── data.rs         # Todo データモデル・TabFilter・状態型定義
+└── components/     # 入力欄・タブ・Todo リストの Dioxus コンポーネント
+```

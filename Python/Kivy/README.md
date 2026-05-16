@@ -23,3 +23,15 @@ pip install kivy[base]
 ```sh
 python main.py
 ```
+
+## Architecture
+
+Kivy のウィジェットツリーによる宣言的 UI 構成。データモデルとコンポーネントをファイルで分離し、`main.py` がアプリを起動する。
+
+```
+.
+├── main.py         # エントリーポイント・App クラス・ルートウィジェット構築
+├── data.py         # Todo データモデル・TabFilter・状態管理
+├── theme.py        # カラー・フォント定数
+└── components/     # 入力欄・タブ・リストの Kivy ウィジェット部品
+```

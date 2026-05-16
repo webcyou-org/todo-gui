@@ -17,3 +17,13 @@ npm install
 ```sh
 npm start
 ```
+
+## Architecture
+
+Node.js メインプロセスとシステム WebView レンダラーの 2 プロセス構成。DeskGap が IPC を提供し、ネイティブ機能をレンダラーから呼び出せる。
+
+```
+.
+├── index.js        # メインプロセス・DeskGap アプリ起動・ウィンドウ設定
+└── index.html      # レンダラー（HTML/CSS/JS による UI）
+```

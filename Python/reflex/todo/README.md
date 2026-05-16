@@ -26,3 +26,14 @@ reflex run
 ```
 
 ブラウザで `http://localhost:3000` が自動的に開きます。
+
+## Architecture
+
+Reflex のフルスタック Python 構成。状態管理・イベントハンドラーをサーバーサイドの Python クラスで定義し、フロントエンドは Reflex が自動的に React にコンパイルする。
+
+```
+todo/
+├── todo.py         # ルートページ・UI 定義・State クラス（状態管理・CRUD）
+├── rxconfig.py     # Reflex アプリ設定
+└── assets/         # 静的アセット
+```

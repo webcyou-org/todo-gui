@@ -20,3 +20,14 @@ dotnet restore
 ```sh
 dotnet run
 ```
+
+## Architecture
+
+WPF の MVVM パターン。XAML で View を定義し、ViewModel が INotifyPropertyChanged と RelayCommand でデータバインディングを提供する。
+
+| レイヤー | ファイル | 役割 |
+|---------|---------|------|
+| Model | `Models/TabFilter.cs`, `Todo.cs` | Todo データ・フィルター状態 |
+| ViewModel | `ViewModels/MainViewModel.cs`, `RelayCommand.cs` | 状態管理・コマンド定義 |
+| View | `Views/Controls/`, `MainWindow.xaml` | WPF XAML UI・カスタムコントロール |
+| Entry | `App.xaml.cs` | アプリ起動・ルートウィンドウ設定 |

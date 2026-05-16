@@ -33,3 +33,14 @@ npm run tauri dev
 ```sh
 npm run tauri build
 ```
+
+## Architecture
+
+Rust バックエンド（Tauri）と Vue3 フロントエンド（Vite）の 2 層構成。Tauri が軽量ネイティブシェルと IPC を提供し、フロントエンドはシステム WebView で表示される。
+
+```
+.
+├── src/            # Vue3 + Vite フロントエンド（App.vue・コンポーネント）
+└── src-tauri/      # Rust バックエンド（Tauri 設定・ネイティブコマンド定義）
+    └── tauri.conf.json  # ウィンドウ設定・権限定義
+```

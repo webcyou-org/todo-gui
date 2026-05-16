@@ -23,3 +23,15 @@ pip install -U -f https://extras.wxpython.org/wxPython4/extras/macosx/cocoa wxPy
 ```sh
 python main.py
 ```
+
+## Architecture
+
+wxPython の wx.Frame ベース構成。データモデルとウィジェット部品をファイルで分離し、`main.py` がメインウィンドウを構築する。
+
+```
+.
+├── main.py         # エントリーポイント・wx.App・メインウィンドウ構築
+├── data.py         # Todo データモデル・TabFilter・状態管理
+├── theme.py        # カラー・スタイル定数
+└── widgets/        # タブ・入力欄・Todo 行の wxPython ウィジェット部品
+```

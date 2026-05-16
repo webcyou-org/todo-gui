@@ -26,3 +26,14 @@ xcode-select --install
 ```bash
 cargo run
 ```
+
+## Architecture
+
+fltk-rs の FLTK Rust バインディングを使ったシングルパッケージ構成。データモデルとテーマをファイルで分離し、`main.rs` がウィンドウとウィジェットを構築する。
+
+```
+src/
+├── main.rs         # エントリーポイント・app::App・ウィンドウ構築・イベントループ
+├── data.rs         # Todo データモデル・TabFilter・AppState
+└── theme.rs        # カラー・スタイル定数
+```

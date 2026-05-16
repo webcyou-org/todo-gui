@@ -20,3 +20,14 @@ dotnet restore
 ```sh
 dotnet run
 ```
+
+## Architecture
+
+Prism ライブラリを用いた MVVM パターン。DI コンテナと NavigationService により ViewModel と View を疎結合に保ち、コマンド・バインディングで UI ロジックを分離する。
+
+| レイヤー | ファイル | 役割 |
+|---------|---------|------|
+| Model | `Models/TabFilter.cs`, `Todo.cs` | Todo データ・フィルター状態 |
+| ViewModel | `ViewModels/MainWindowViewModel.cs` | コマンド定義・状態管理 (Prism BindableBase) |
+| View | `Views/Controls/`, `MainWindow.xaml` | WPF XAML UI・カスタムコントロール |
+| Entry | `App.xaml.cs` | Prism アプリ起動・DI 設定 |

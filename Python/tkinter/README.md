@@ -35,3 +35,14 @@ tkinter/
     ├── tabs.py           # タブメニュー（All / Active / Completed）
     └── todo_list.py      # Todo リスト（スクロール対応）
 ```
+
+## Architecture
+
+tkinter の Canvas ベース描画とネイティブウィジェットを組み合わせた構成。データモデルとコンポーネントをファイルで分離し、`main.py` がルートウィンドウを構築する。
+
+| レイヤー | ファイル | 役割 |
+|---------|---------|------|
+| Model | `data.py` | Todo・TodoModel・MenuModel・状態管理 |
+| View | `components/` | 入力欄・タブ・リストの tkinter ウィジェット部品 |
+| Entry | `main.py` | Tk ルートウィンドウ構築・レイアウト |
+| Theme | `theme.py` | カラー定数・フォント・描画ユーティリティ |

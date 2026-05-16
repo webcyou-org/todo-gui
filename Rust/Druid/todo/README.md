@@ -22,3 +22,16 @@ cargo run
 cargo build --release
 ./target/release/todo
 ```
+
+## Architecture
+
+Druid のデータ駆動リアクティブ UI パターン。`AppState` を `Data` トレイトで定義し、Lens でフィールドを部分的に参照してウィジェットにバインドする。
+
+```
+src/
+├── main.rs         # エントリーポイント・AppLauncher・ルートウィジェット構築
+├── data.rs         # AppState・Todo・TabFilter（Druid Data/Lens 実装）
+├── lens.rs         # カスタム Lens 定義
+├── theme.rs        # カラー・スタイル定数
+└── widget/         # 入力欄・タブ・Todo リストのカスタムウィジェット
+```

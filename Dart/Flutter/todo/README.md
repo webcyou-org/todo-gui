@@ -30,3 +30,13 @@ flutter run -d linux    # Linux
 flutter run -d windows  # Windows
 flutter run             # 接続デバイスを選択
 ```
+
+## Architecture
+
+Flutter のウィジェットツリーによる宣言的 UI 構成。データモデルを `lib/model.dart` で管理し、単一の `main.dart` からウィジェットを組み立てる。
+
+```
+lib/
+├── main.dart       # エントリーポイント・MaterialApp・画面構成
+└── model.dart      # Todo データモデル・状態管理
+```

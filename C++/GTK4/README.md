@@ -25,3 +25,17 @@ make
 ```sh
 ./todo
 ```
+
+## Architecture
+
+GTK4 C API を直接利用するシングルバイナリ構成。データモデルとウィジェット構築をファイルで分離し、Cairo でカスタム描画を行う。
+
+```
+src/
+├── main.cpp        # エントリーポイント・GtkApplication・ウィンドウ構築
+├── data.h          # Todo データモデル・AppState・TabFilter
+├── app.h           # アプリケーション状態・ウィジェット参照
+├── theme.h         # カラー定数・デザイントークン
+├── cairo_util.h    # Cairo 描画ユーティリティ
+└── widgets/        # 入力欄・タブ・リストの GTK4 ウィジェット部品
+```

@@ -38,3 +38,16 @@ wails dev
 wails build
 # 出力先: build/bin/
 ```
+
+## Architecture
+
+Go バックエンドと Vue3 フロントエンドの 2 層構成。Wails が IPC ブリッジを提供し、フロントエンドから Go のメソッドを透過的に呼び出せる。
+
+```
+.
+├── main.go         # エントリーポイント・Wails アプリ起動
+├── app.go          # Go バックエンド（Todo CRUD メソッド・状態管理）
+├── frontend/       # Vue3 + Vite によるフロントエンド UI
+│   └── src/        # App.vue・コンポーネント・スタイル
+└── wailsjs/        # Wails が自動生成した Go→JS バインディング
+```

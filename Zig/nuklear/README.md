@@ -48,3 +48,18 @@ vendor/
 ## Notes
 
 Zig 0.16.0's `@cImport` translate-C pipeline cannot process SDL2's ARM NEON headers on Apple Silicon. The `nk_app.h/c` wrapper isolates all SDL2 and Nuklear headers inside regular C compilation units (which work fine), exposing a minimal opaque API to Zig.
+
+## Architecture
+
+即時モード GUI パターン。Zig がデータモデルと状態を管理し、C ラッパー（`nk_app.h/c`）が SDL2 + Nuklear の描画を担当する。SDL2 の translate-C 問題を回避するため、Nuklear/SDL2 ヘッダーは C コンパイル単位に隔離する。
+
+```
+src/
+├── main.zig                # エントリーポイント・メインループ
+├── data.zig                # AppState・Todo・TabFilter の状態管理
+├── nk.zig                  # nk_app.h の @cImport
+├── nk_app.h/c              # SDL2 + Nuklear の C ラッパー（Zig 向け最小 API）
+├── nuklear_impl.c          # NK_IMPLEMENTATION・NK_SDL_RENDERER_IMPLEMENTATION
+└── components/             # 入力欄・タブ・Todo リストの Nuklear ウィジェット関数
+vendor/                     # Nuklear ヘッダー（シングルヘッダーライブラリ）
+```

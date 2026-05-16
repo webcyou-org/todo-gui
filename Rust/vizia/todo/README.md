@@ -24,3 +24,15 @@ cargo run
 cargo build --release
 ./target/release/todo
 ```
+
+## Architecture
+
+Vizia の宣言的・リアクティブ UI パターン。`Model` トレイトで状態を定義し、CSS スタイリングとビューコンポーネントを組み合わせる。
+
+```
+src/
+├── main.rs         # エントリーポイント・Application 起動・ルートビュー構築
+├── data.rs         # AppState・Todo・TabFilter・Model・Event 定義
+├── theme.rs        # カラー定数
+└── components/     # 入力欄・タブ・Todo リストの Vizia ビュー部品
+```

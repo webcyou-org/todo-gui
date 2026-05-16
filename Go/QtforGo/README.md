@@ -34,3 +34,14 @@ Go/QtforGo/
 ├── tab_menu.go      # TabMenu (QLabel + ConnectMousePressEvent)
 └── todo_list.go     # TodoList (QScrollArea) + TodoItemWidget (ConnectPaintEvent)
 ```
+
+## Architecture
+
+therecipe/qt バインディングを通じて Qt5 Widgets を Go から操作するシングルパッケージ構成。データモデルとウィジェット部品をファイルで分離し、`main.go` がメインウィンドウを構築する。
+
+| レイヤー | ファイル | 役割 |
+|---------|---------|------|
+| Model | `data.go` | Todo・TabFilter・TodoModel・MenuModel |
+| View | `todo_input.go`, `tab_menu.go`, `todo_list.go` | Qt5 ウィジェット部品 |
+| Entry | `main.go` | QApplication 起動・MainWindow 構築 |
+| Theme | `theme.go` | デザイントークン・カラー定数 |

@@ -23,3 +23,13 @@ go mod download
 ```sh
 go run .
 ```
+
+## Architecture
+
+Go バックエンドと HTML/CSS/JS フロントエンドの 2 層構成。Lorca が Chrome ウィンドウを起動し、Go 側の関数を JavaScript から呼び出せるよう bridge を提供する。
+
+```
+.
+├── main.go             # エントリーポイント・Lorca ウィンドウ起動・Go 関数のバインド
+└── frontend/           # HTML・CSS・JS によるフロントエンド UI
+```

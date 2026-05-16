@@ -18,3 +18,14 @@ pip install TkEasyGUI
 ```sh
 python main.py
 ```
+
+## Architecture
+
+TkEasyGUI のイベント駆動ループ構成。`main.py` がウィンドウレイアウトを定義しイベントを処理する、シンプルなシングルファイルに近い構成。
+
+```
+.
+├── main.py         # エントリーポイント・ウィンドウレイアウト・イベントループ
+├── data.py         # Todo データモデル・TabFilter・状態管理
+└── theme.py        # カラー・スタイル定数
+```

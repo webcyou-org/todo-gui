@@ -110,3 +110,16 @@ To learn more about React Native, take a look at the following resources:
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+## Architecture
+
+React Native の宣言的コンポーネント構成。TypeScript でデータモデルとコンポーネントを分離し、`App.tsx` がルートコンポーネントを定義する。iOS / Android / macOS に単一コードで対応する。
+
+```
+.
+├── App.tsx             # ルートコンポーネント・状態管理
+└── src/
+    ├── data/           # Todo データモデル・TabFilter
+    ├── components/     # 入力欄・タブ・リストのコンポーネント
+    └── theme.ts        # カラー・スタイル定数
+```

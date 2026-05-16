@@ -35,3 +35,16 @@ UPPSRC = /tmp/ultimatepp/uppsrc
 make build
 make run
 ```
+
+## Architecture
+
+U++ の IDE レイアウト記述（`.upp`）を使ったシングルパッケージ構成。データモデルとウィジェット部品をファイルで分離する。
+
+```
+TodoApp/
+├── main.cpp        # エントリーポイント・TopWindow 構築・イベント処理
+├── data.h/cpp      # Todo データモデル・AppState・TabFilter
+├── theme.h         # カラー・スタイル定数
+├── TodoApp.upp     # U++ パッケージ定義
+└── widgets/        # 入力欄・タブ・リストの U++ ウィジェット部品
+```

@@ -54,3 +54,14 @@ Walk/
 Walk の Canvas API には `RoundRect` がないため、  
 Todo 行の背景は角丸なし（仕様値 `4px` は未対応）。  
 入力フィールドのフォーカスボーダーはネイティブ Win32 スタイル。
+
+## Architecture
+
+Walk の Win32 ウィジェットを直接組み立てるシングルパッケージ構成。データモデルとウィジェット部品をファイルで分離し、`main.go` がメインウィンドウを構築する。
+
+| レイヤー | ファイル | 役割 |
+|---------|---------|------|
+| Model | `data.go` | Todo・TabFilter・TodoModel・MenuModel |
+| View | `todo_row.go` | CustomWidget による Todo 行の描画 |
+| Entry | `main.go` | MainWindow 構築・UI ロジック |
+| Theme | `colors.go` | walk.Color カラー定数 |

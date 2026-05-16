@@ -22,3 +22,14 @@ dotnet restore
 ```sh
 dotnet run
 ```
+
+## Architecture
+
+シングルファイル構成に近いシンプルな構造。GTK3 ウィジェットを直接組み立て、データモデルと UI ロジックを C# クラスで管理する。
+
+| レイヤー | ファイル/ディレクトリ | 役割 |
+|---------|---------|------|
+| Model | `src/Models/` | Todo データ・状態モデル |
+| View | `src/Views/` | GtkSharp ウィジェットによる UI 構成 |
+| Components | `src/Components/` | 入力欄・タブ・リストの部品 |
+| Entry | `src/Program.cs` | アプリ起動・ウィンドウ初期化 |

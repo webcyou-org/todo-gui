@@ -24,3 +24,14 @@ xcode-select --install
 ```bash
 cargo run
 ```
+
+## Architecture
+
+rui の宣言的 GPU レンダリング UI パターン。状態は `State` マクロで管理し、ビュー関数がフレームごとに UI ツリーを返す関数型スタイル。
+
+```
+src/
+├── main.rs         # エントリーポイント・rui::rui・ルートビュー定義・状態管理
+├── data.rs         # Todo データモデル・TabFilter・AppState
+└── theme.rs        # カラー定数
+```

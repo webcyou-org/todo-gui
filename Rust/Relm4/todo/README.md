@@ -24,3 +24,15 @@ brew install gtk4
 ```bash
 cargo run
 ```
+
+## Architecture
+
+Relm4 の Elm インスパイア MVC パターン（Model / Update / View）。GTK4 ウィジェットを Relm4 マクロで宣言的に記述し、コンポーネントをファイルで分離する。
+
+```
+src/
+├── main.rs         # エントリーポイント・RelmApp 起動・ルートコンポーネント定義
+├── data.rs         # AppState・Todo・TabFilter・Message 型定義
+├── theme.rs        # カラー・CSS 定数
+└── components/     # 入力欄・タブ・Todo リストの Relm4 コンポーネント
+```

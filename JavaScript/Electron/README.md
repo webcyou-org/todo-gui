@@ -176,3 +176,13 @@ input:focus {
     text-decoration: line-through;
 }
 ```
+
+## Architecture
+
+Electron のメインプロセスと Chromium レンダラーの 2 プロセス構成。各サブディレクトリが独立した実装として、共通の HTML/CSS テンプレートを基に異なるフロントエンドを提供する。
+
+| ディレクトリ | 構成 | 役割 |
+|------------|------|------|
+| `VanillaJS/todo/` | main.js + renderer.js + HTML | Vanilla JS 実装 |
+| `Vue/` | main.js + Vue3 コンポーネント | Vue3 実装 |
+| `React/` | main.js + React コンポーネント | React 実装 |

@@ -29,3 +29,13 @@ neu run
 neu build
 # 出力先: dist/
 ```
+
+## Architecture
+
+軽量な 2 層構成。Neutralinojs が薄いネイティブランタイム（バンドルブラウザなし）を提供し、システム WebView でフロントエンドを表示する。
+
+```
+.
+├── neutralino.config.json  # アプリ設定（エントリポイント・ウィンドウ設定）
+└── resources/              # HTML・CSS・JS によるフロントエンド UI
+```
