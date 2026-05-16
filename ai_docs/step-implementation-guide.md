@@ -320,6 +320,64 @@ textbox > label.placeholder {
 
 ---
 
+## Zig / GTK4
+
+### 前提
+
+- Zig 0.16.0 時点では `@cImport({ @cInclude("gtk/gtk.h"); })` が `translate-c` のクラッシュ（SIGBUS）で動作しない
+- 代替手法: **手動 `extern fn` 宣言** を使う（`bindings.zig` に全宣言を集める）
+
+### 各ステップの要点
+
+**ビルド設定**
+```zig
+mod.linkSystemLibrary("gtk4", .{ .use_pkg_config = .force });
+```
+`pkg-config` で include / lib パスを自動取得する。
+
+**コールバック**
+- `callconv(.C)` は Zig 0.16.0 で廃止（`CallingConvention` が tagged union に変わった）
+- 代替: `export fn cb_name(...)` でC互換の呼び出し規約を得る
+- シグナル登録時: `@ptrCast(@constCast(&cb_name))` で `gpointer` にキャスト
+
+**デザイントークン**
+```zig
+cairo_set_source_rgb(cr, @as(f64, 0x5D)/255.0, @as(f64, 0xC2)/255.0, @as(f64, 0xAF)/255.0);
+```
+hex リテラルはそのまま float 除算できないので `@as(f64, ...)` で明示キャストする。
+
+**打ち消し線**
+- CSS `.todo-text.completed { text-decoration-line: line-through; }` を `gtk_css_provider_load_from_string` で適用
+- ウィジェットに `gtk_widget_add_css_class(lbl, "completed")` を呼ぶだけで反映される
+
+**タブ切り替え**
+- タブインデックスを `@ptrFromInt(i)` で `gpointer` に埋め込み、コールバックで `@intFromPtr(ud)` 取り出す
+
+**ファイル構成**
+```
+src/
+├── main.zig              # エントリー + export fn callbacks + onActivate
+├── bindings.zig          # GTK4/Cairo extern fn 宣言 + 定数
+├── data.zig              # データモデル（純粋Zig、GTK依存なし）
+├── ctx.zig               # グローバル状態 var G: Ctx
+└── components/
+    ├── input.zig         # buildInput(cb) → gpointer
+    ├── tabs.zig          # buildTabs(cb) → gpointer
+    └── todo_list.zig     # export fn drawCb/pressedCb, rebuild(), appendItem()
+```
+
+### Zig/GTK4 固有の注意点
+
+- `translate-c` は GTK4 ヘッダで SIGBUS クラッシュする → `extern fn` 手動宣言が唯一の実用解
+- `callconv(.C)` が使えないため `export fn` を利用する（グローバルシンボルが増えるが問題なし）
+- `@ptrCast` で `const` を落とすときは `@ptrCast(@constCast(ptr))` が必要（Zig 0.16 strict）
+- GTK4 `gtk_css_provider_load_from_string` は GTK 4.12+ のみ存在（`load_from_data` は旧API）
+- `gpointer = ?*anyopaque` で全 GObject ポインタを統一すると型エラーが減る
+
+---
+
+---
+
 ## Step 7 — README.md ドキュメント作成
 
 ### 配置場所
@@ -351,6 +409,64 @@ textbox > label.placeholder {
 ## Run
 
 （起動コマンド）
+
+## File Structure
+
+（ファイル構成ツリー + 各ファイルの一行説明）
+
+## Architecture
+
+（採用パターンと役割分担テーブル）
+
+## Notes
+
+（フレームワーク固有の落とし穴・注意点）
+```
+
+### File Structure セクションの書き方
+
+`src/` ディレクトリのツリーを示し、各ファイルの役割を `#` コメントで補足する。
+
+````markdown
+## File Structure
+
+```
+src/
+├── main.*           # エントリーポイント
+├── data.*           # データモデル
+└── components/
+    ├── input.*      # Input コンポーネント
+    ├── tabs.*       # Tab メニュー
+    └── todo_item.*  # Todo アイテム / リスト
+```
+````
+
+### Architecture セクションの書き方
+
+採用した MV** パターンを一文で示し、レイヤーとファイルの対応を表にまとめる。
+
+```markdown
+## Architecture
+
+MVC パターンを採用。〈フレームワーク固有の一言説明〉。
+
+| レイヤー | ファイル | 役割 |
+|---------|---------|------|
+| Model | `data.*` | 状態管理・ビジネスロジック |
+| View | `...` | UI 描画・イベント受付 |
+| Controller / ViewModel | `main.*` | 入力 → Model への橋渡し |
+```
+
+### Notes セクションの書き方
+
+そのフレームワークを初めて触った開発者が詰まりやすい点を箇条書きで記載する。  
+`step-implementation-guide.md` の実装ナレッジから厳選して転記する。
+
+```markdown
+## Notes
+
+- 〈フレームワーク固有の注意点 1〉
+- 〈フレームワーク固有の注意点 2〉
 ```
 
 ### 種別ごとの典型コマンド
