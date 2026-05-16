@@ -20,18 +20,19 @@ pub const InputState = struct {
     }
 };
 
-pub fn draw(inp: *const InputState, x: f32, y: f32, w: f32) void {
+pub fn draw(inp: *const InputState, x: f32, y: f32, w: f32, font: rl.Font) void {
     const rec = rl.Rectangle{ .x = x, .y = y, .width = w, .height = th.INPUT_H };
     rl.DrawRectangleRounded(rec, th.INPUT_RADIUS / (th.INPUT_H / 2.0), 8, th.C_INPUT);
     if (inp.focused) {
         rl.DrawRectangleRoundedLinesEx(rec, th.INPUT_RADIUS / (th.INPUT_H / 2.0), 8, 1.0, th.C_ACCENT);
     }
-    const tx: i32 = @intFromFloat(x + 16);
-    const ty: i32 = @intFromFloat(y + (th.INPUT_H - @as(f32, @floatFromInt(th.NORMAL_FONT_SIZE))) / 2.0);
+    const fs: f32 = @floatFromInt(th.NORMAL_FONT_SIZE);
+    const tx = x + 16;
+    const ty = y + (th.INPUT_H - fs) / 2.0;
     if (inp.len == 0 and !inp.focused) {
-        rl.DrawText("Add Task", tx, ty, th.NORMAL_FONT_SIZE, th.C_MUTED);
+        rl.DrawTextEx(font, "Add Task", .{ .x = tx, .y = ty }, fs, 1.0, th.C_MUTED);
     } else {
-        rl.DrawText(&inp.buf, tx, ty, th.NORMAL_FONT_SIZE, th.C_WHITE);
+        rl.DrawTextEx(font, &inp.buf, .{ .x = tx, .y = ty }, fs, 1.0, th.C_WHITE);
     }
 }
 

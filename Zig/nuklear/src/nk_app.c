@@ -75,7 +75,7 @@ NkApp* nk_app_create(int width, int height, const char* title) {
 
         struct nk_font* font = nk_font_atlas_add_from_file(
             atlas,
-            "/System/Library/Fonts/Helvetica.ttc",
+            "fonts/Inter.ttf",
             14.0f * app->scale,
             NULL);
 

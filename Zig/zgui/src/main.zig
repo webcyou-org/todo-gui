@@ -23,7 +23,7 @@ extern fn ImGui_ImplGlfw_NewFrame() void;
 extern fn ImGui_ImplOpenGL3_NewFrame() void;
 extern fn ImGui_ImplOpenGL3_RenderDrawData(data_ptr: *anyopaque) void;
 
-const FONT_PATH = "/System/Library/Fonts/Helvetica.ttc";
+const FONT_PATH = "fonts/Inter.ttf";
 
 inline fn cf(v: comptime_int) f32 { return @as(f32, v) / 255.0; }
 

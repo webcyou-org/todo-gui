@@ -17,13 +17,24 @@ pub fn main() !void {
     var input = inp_mod.InputState{};
     var scroll: f32 = 0;
 
+    rl.SetConfigFlags(rl.FLAG_WINDOW_HIGHDPI | rl.FLAG_MSAA_4X_HINT);
     rl.InitWindow(th.WIN_W, th.WIN_H, "ToDo");
     defer rl.CloseWindow();
     rl.SetTargetFPS(60);
 
-    const font = rl.GetFontDefault();
-    const bold_font = rl.LoadFontEx("/System/Library/Fonts/Helvetica.ttc", th.NORMAL_FONT_SIZE, null, 0);
+    // Load fonts at 2x size for HiDPI-quality texture atlas, then render at actual size.
+    // GetWindowScaleDPI returns the display scale (2.0 on Retina, 1.0 on standard).
+    const dpi_scale = rl.GetWindowScaleDPI();
+    const scale: f32 = if (dpi_scale.x > 1.0) dpi_scale.x else 1.0;
+    const font_size_px: c_int = @intFromFloat(@as(f32, @floatFromInt(th.NORMAL_FONT_SIZE)) * scale);
+    const bold_size_px: c_int = @intFromFloat(@as(f32, @floatFromInt(th.TITLE_FONT_SIZE)) * scale);
+
+    const font      = rl.LoadFontEx("fonts/Inter.ttf",     font_size_px, null, 0);
+    defer rl.UnloadFont(font);
+    rl.SetTextureFilter(font.texture, rl.TEXTURE_FILTER_BILINEAR);
+    const bold_font = rl.LoadFontEx("fonts/InterBold.ttf", bold_size_px, null, 0);
     defer rl.UnloadFont(bold_font);
+    rl.SetTextureFilter(bold_font.texture, rl.TEXTURE_FILTER_BILINEAR);
 
     const content_w: f32 = @as(f32, @floatFromInt(th.WIN_W)) - th.PAD_X * 2;
     const title_h: f32   = @floatFromInt(th.TITLE_FONT_SIZE);
@@ -57,7 +68,7 @@ pub fn main() !void {
         rl.DrawTextEx(bold_font, "ToDo", .{ .x = th.PAD_X, .y = th.PAD_Y }, @floatFromInt(th.TITLE_FONT_SIZE), 1.0, th.C_WHITE);
 
         // Input
-        inp_mod.draw(&input, th.PAD_X, input_y, content_w);
+        inp_mod.draw(&input, th.PAD_X, input_y, content_w, font);
 
         // Tabs
         tabs_mod.draw(&state, th.PAD_X, tabs_y, font, bold_font);

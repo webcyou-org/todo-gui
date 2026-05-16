@@ -79,7 +79,7 @@ void* app_init(int w, int h, const char* title) {
     ImGuiIO& io = ImGui::GetIO();
     io.IniFilename = nullptr; // disable imgui.ini
 
-    const char* font_path = "/System/Library/Fonts/Helvetica.ttc";
+    const char* font_path = "fonts/Inter.ttf";
     io.Fonts->AddFontFromFileTTF(font_path, 14.f, nullptr, nullptr);
     g_font_title = io.Fonts->AddFontFromFileTTF(font_path, 18.f, nullptr, nullptr);
     if (!g_font_title) g_font_title = io.FontDefault;
