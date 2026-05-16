@@ -378,6 +378,90 @@ src/
 
 ---
 
+## フォント配置ワークフロー
+
+新しいフレームワークに実装する際、または既存実装のフォントをシステムフォントから差し替える際の標準手順。
+
+### フォント方針
+
+| 用途 | フォント | 備考 |
+|------|---------|------|
+| 基本テキスト | Inter | 可変フォント（opsz,wght） |
+| 日本語テキスト | Noto Sans JP | 可変フォント（wght） |
+
+フォントファイルの原本は `design/font/` に格納されている:
+```
+design/font/
+├── Inter/
+│   └── Inter-VariableFont_opsz,wght.ttf
+└── Noto_Sans_JP/
+    └── NotoSansJP-VariableFont_wght.ttf
+```
+
+### 手順
+
+**1. アプリの `fonts/` ディレクトリへコピー**
+
+各アプリのプロジェクトルート（`build.zig` / `Cargo.toml` / `CMakeLists.txt` などがある階層）に `fonts/` ディレクトリを作成し、ファイルをコピーする:
+
+```sh
+mkdir -p <app_dir>/fonts
+cp design/font/Inter/Inter-VariableFont_opsz,wght.ttf <app_dir>/fonts/Inter.ttf
+cp design/font/Noto_Sans_JP/NotoSansJP-VariableFont_wght.ttf <app_dir>/fonts/NotoSansJP.ttf
+```
+
+ファイル名は `Inter.ttf` / `NotoSansJP.ttf` に短縮する（バリアブルフォントとして引き続き機能する）。
+
+**2. コード内のフォントパスを更新**
+
+システムフォントへの絶対パス（例: `/System/Library/Fonts/Helvetica.ttc`）や `GetFontDefault()` 等の呼び出しをすべて相対パスに置き換える:
+
+```
+"fonts/Inter.ttf"
+```
+
+> **パス解決**: `zig build run` / `cargo run` 等を実行する際のカレントディレクトリはプロジェクトルート（`build.zig` があるディレクトリ）になるため、相対パス `fonts/Inter.ttf` でそのまま解決される。
+
+**3. ビルドして動作確認**
+
+フォントファイルが見つからない場合はランタイムエラーになることが多い。ビルド後に起動して Inter フォントが表示されることを目視確認する。
+
+### フレームワーク別の差し替え箇所
+
+| フレームワーク | ファイル | 差し替え箇所 |
+|---------------|---------|------------|
+| Zig / raylib | `src/main.zig` | `LoadFontEx("/System/...", ...)` → `LoadFontEx("fonts/Inter.ttf", ...)` |
+| Zig / Dear ImGui (C++) | `src/imgui_app.cpp` | `font_path = "/System/..."` → `font_path = "fonts/Inter.ttf"` |
+| Zig / Nuklear (C) | `src/nk_app.c` | `nk_font_atlas_add_from_file(atlas, "/System/...", ...)` → `"fonts/Inter.ttf"` |
+| Zig / zgui | `src/main.zig` | `const FONT_PATH = "/System/..."` → `const FONT_PATH = "fonts/Inter.ttf"` |
+
+### HiDPI（Retina）対応
+
+Retina ディスプレイではフォントを物理ピクセル解像度でベイクしないとぼやける。
+
+**Nuklear (C) の例:**
+```c
+float scale = (float)rw / (float)lw; // レンダラー出力 / 論理ウィンドウサイズ
+struct nk_font* font = nk_font_atlas_add_from_file(
+    atlas, "fonts/Inter.ttf",
+    14.0f * scale,  // 物理ピクセルサイズでベイク
+    NULL);
+nk_sdl_font_stash_end();
+if (font) {
+    font->handle.height /= scale; // Nuklear のレイアウトは論理ピクセルに戻す
+    nk_style_set_font(app->ctx, &font->handle);
+}
+```
+
+物理サイズでテクスチャをベイクし、`handle.height` を scale で割ることで「鮮明なテクスチャ × 正しい論理サイズのレイアウト」を両立できる。
+
+### .gitignore の確認
+
+`fonts/` ディレクトリはソースコードと同様にコミットする（バイナリだが小さく、実行に必須）。  
+`.gitignore` で `fonts/` を除外していないことを確認すること。
+
+---
+
 ## Step 7 — README.md ドキュメント作成
 
 ### 配置場所
