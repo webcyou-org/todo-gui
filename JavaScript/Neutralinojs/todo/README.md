@@ -1,15 +1,31 @@
-# neutralinojs-minimal
+# Neutralinojs Todo
 
-The default template for a Neutralinojs app. It's possible to use your favorite frontend framework by using [these steps](https://neutralino.js.org/docs/getting-started/using-frontend-libraries).
+JavaScript Todo app using [Neutralinojs](https://neutralino.js.org/) — lightweight desktop app framework using the system WebView (no bundled browser engine).
 
-## Contributors
+## Requirements
 
-[![Contributors](https://contrib.rocks/image?repo=neutralinojs/neutralinojs-minimal)](https://github.com/neutralinojs/neutralinojs-minimal/graphs/contributors)
+- Node.js 18+
+- Neutralinojs CLI
 
-## License
+```sh
+npm install -g @neutralinojs/neu
+```
 
-[MIT](LICENSE)
+## Install
 
-## Icon credits
+```sh
+neu update
+```
 
-- `trayIcon.png` - Made by [Freepik](https://www.freepik.com) and downloaded from [Flaticon](https://www.flaticon.com)
+## Run
+
+```sh
+neu run
+```
+
+## Build（配布バイナリ）
+
+```sh
+neu build
+# 出力先: dist/
+```

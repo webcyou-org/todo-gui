@@ -22,6 +22,5 @@ brew install gtk4
 ## Build & Run
 
 ```bash
-cd Rust/Relm4/todo
 cargo run
 ```

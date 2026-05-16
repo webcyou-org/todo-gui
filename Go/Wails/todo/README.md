@@ -1,19 +1,40 @@
-# README
+# Wails Todo
 
-## About
+Go + Vue3 Todo app using [Wails](https://wails.io/) v2 — build desktop apps with Go backend and web frontend.
 
-This is the official Wails Vue-TS template.
+## Requirements
 
-You can configure the project by editing `wails.json`. More information about the project settings can be found
-here: https://wails.io/docs/reference/project-config
+- Go 1.21+
+- Node.js 18+
+- Wails CLI
 
-## Live Development
+```sh
+go install github.com/wailsapp/wails/v2/cmd/wails@latest
+```
 
-To run in live development mode, run `wails dev` in the project directory. This will run a Vite development
-server that will provide very fast hot reload of your frontend changes. If you want to develop in a browser
-and have access to your Go methods, there is also a dev server that runs on http://localhost:34115. Connect
-to this in your browser, and you can call your Go code from devtools.
+macOS は Xcode Command Line Tools が必要:
 
-## Building
+```sh
+xcode-select --install
+```
 
-To build a redistributable, production mode package, use `wails build`.
+## Install
+
+```sh
+wails doctor   # 環境チェック
+```
+
+## Run（開発モード）
+
+```sh
+wails dev
+```
+
+フロントエンドの変更はホットリロードされます。Go コードは `http://localhost:34115` のブラウザ devtools からも呼び出せます。
+
+## Build（配布バイナリ）
+
+```sh
+wails build
+# 出力先: build/bin/
+```

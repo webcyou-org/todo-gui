@@ -1,4 +1,37 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# React Native Todo
+
+[React Native](https://reactnative.dev) を使った TypeScript Todo アプリ。iOS / Android / macOS 対応。
+
+## Requirements
+
+- Node.js 18+
+- macOS: Xcode インストール済み
+- iOS/Android: [React Native 環境セットアップ](https://reactnative.dev/docs/environment-setup) を完了していること
+
+## Install
+
+```sh
+npm install
+
+# iOS の場合（初回のみ）
+cd ios && pod install && cd ..
+```
+
+## Run
+
+```sh
+# Metro バンドラーを起動
+npm start
+
+# 別ターミナルでアプリを起動
+npm run macos    # macOS
+npm run ios      # iOS Simulator
+npm run android  # Android Emulator
+```
+
+---
+
+> 以下は React Native CLI が自動生成したオリジナルの README です。
 
 # Getting Started
 

@@ -1,9 +1,15 @@
-# Todo App — Go / Walk
+# Walk Todo
 
-[Walk](https://github.com/lxn/walk) は Windows 専用の Go GUI ライブラリです。  
-**Windows 環境でのみビルド・実行できます。**
+Go Todo app using [Walk](https://github.com/lxn/walk) — Windows 専用 Go GUI ライブラリ。
 
-## 実行
+> **Windows 専用** — Windows 環境でのみビルド・実行できます。
+
+## Requirements
+
+- Windows
+- Go 1.23+
+
+## Run
 
 ### 1. rsrc ツールのインストール（初回のみ）
 

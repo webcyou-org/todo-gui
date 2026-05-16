@@ -1,37 +1,20 @@
-# Slint Rust Template
+# Slint Todo
 
-A template for a Rust application that's using [Slint](https://slint.rs/) for the user interface.
+Rust Todo app using [Slint](https://slint.rs/) 1.7 — declarative UI framework with `.slint` markup.
 
-## About
+## Requirements
 
-This template helps you get started developing a Rust application with Slint as toolkit
-for the user interface. It demonstrates the integration between the `.slint` UI markup and
-Rust code, how to react to callbacks, get and set properties, and use basic widgets.
+- Rust (stable) 1.70+
 
-## Usage
+```sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
 
-1. Install Rust by following its [getting-started guide](https://www.rust-lang.org/learn/get-started).
-   Once this is done, you should have the `rustc` compiler and the `cargo` build system installed in your `PATH`.
-2. Clone or download this repository:
-    ```
-    git clone https://github.com/slint-ui/slint-rust-template my-project
-    cd my-project    
-    ```
-3. Build with `cargo`:
-    ```
-    cargo build
-    ```
-4. Run the application binary:
-    ```
-    cargo run
-    ```
+## Build & Run
 
-We recommend using an IDE for development, along with our [LSP-based IDE integration for `.slint` files](https://github.com/slint-ui/slint/blob/master/tools/lsp/README.md). You can also load this project directly in [Visual Studio Code](https://code.visualstudio.com) and install our [Slint extension](https://marketplace.visualstudio.com/items?itemName=Slint.slint).
+```sh
+cargo run
+```
 
-## Next Steps
-
-We hope that this template helps you get started, and that you enjoy exploring making user interfaces with Slint. To learn more
-about the Slint APIs and the `.slint` markup language, check out our [online documentation](https://slint.dev/docs).
-
-Don't forget to edit this readme to replace it by yours, and edit the `name =` field in `Cargo.toml` to match the name of your
-project.
+> UI は `ui/` 以下の `.slint` ファイルで定義されています。  
+> VS Code の [Slint 拡張機能](https://marketplace.visualstudio.com/items?itemName=Slint.slint) を入れるとプレビューが使えます。

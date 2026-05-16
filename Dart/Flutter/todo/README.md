@@ -1,10 +1,32 @@
-# ToDo GUI - Flutter application
+# Flutter Todo
+
+Dart Todo app using [Flutter](https://flutter.dev/) — cross-platform UI toolkit.
 
 ![todo](https://user-images.githubusercontent.com/1584153/191999399-373be546-9667-4e0b-92c1-c644bd7ff922.png)
 
-## Getting Started
-### Mac OS
+## Requirements
 
+- Flutter SDK 3.x+
+- macOS: Xcode インストール済み
+
+```sh
+# Flutter SDK のインストール
+brew install flutter
+flutter doctor
 ```
+
+## Run
+
+**macOS:**
+
+```sh
 flutter run -d macos
+```
+
+**その他のプラットフォーム:**
+
+```sh
+flutter run -d linux    # Linux
+flutter run -d windows  # Windows
+flutter run             # 接続デバイスを選択
 ```

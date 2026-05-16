@@ -1,12 +1,27 @@
-## Todo GUI in Electron
+# Electron Todo
+
+[Electron](https://www.electronjs.org/) を使った JavaScript Todo アプリ集。各サブディレクトリに実装があります。
 
 ![todo](https://user-images.githubusercontent.com/1584153/191999399-373be546-9667-4e0b-92c1-c644bd7ff922.png)
 
-### Contents
+## Contents
 
-- [VanillaJS](VanillaJS)
-- [Vue](Vue)
-- [React](React)
+| ディレクトリ | フロントエンド | README |
+|------|------|------|
+| [VanillaJS/todo](VanillaJS/todo) | Vanilla HTML/CSS/JS | [→](VanillaJS/todo/README.md) |
+| [Vue](Vue) | Vue3 | — |
+| [React](React) | React | — |
+
+## Requirements（共通）
+
+- Node.js 18+
+
+## Run（各ディレクトリで）
+
+```sh
+npm install
+npm start
+```
 
 ### Template HTML
 

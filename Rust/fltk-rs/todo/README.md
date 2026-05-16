@@ -24,6 +24,5 @@ xcode-select --install
 ## Build & Run
 
 ```bash
-cd Rust/fltk-rs/todo
 cargo run
 ```

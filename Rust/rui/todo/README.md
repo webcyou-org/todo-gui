@@ -22,6 +22,5 @@ xcode-select --install
 ## Build & Run
 
 ```bash
-cd Rust/rui/todo
 cargo run
 ```

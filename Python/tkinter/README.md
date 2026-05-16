@@ -1,6 +1,13 @@
-# Todo App — Python / tkinter
+# tkinter Todo
 
-## 実行
+Python Todo app using [tkinter](https://docs.python.org/3/library/tkinter.html) — Python の標準 GUI ライブラリ。
+
+## Requirements
+
+- Python 3.9+
+- Tcl/Tk（Python に同梱）
+
+## Run
 
 ```bash
 python3 main.py
