@@ -138,7 +138,7 @@ ToDo Applications created using various GUI tools.
 
 - zig
   - Dear ImGui
-  - raylib
+  - [raylib](https://github.com/webcyou-org/todo-gui/tree/main/Zig/raylib)
   - Nuklear
   - GTK
   - Qt
