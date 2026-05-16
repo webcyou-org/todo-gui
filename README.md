@@ -18,7 +18,7 @@ ToDo Applications created using various GUI tools.
   - [PyForms](https://github.com/webcyou-org/todo-gui/tree/main/Python/PyForms)
   - [PyGTK](https://github.com/webcyou-org/todo-gui/tree/main/Python/PyGTK)
   - [wxPython](https://github.com/webcyou-org/todo-gui/tree/main/Python/wxPython)
-  - PySide
+  - [PySide](https://github.com/webcyou-org/todo-gui/tree/main/Python/PySide)
   - Flexx
   - Azul
   - Dear PyGui
@@ -32,8 +32,7 @@ ToDo Applications created using various GUI tools.
   - [GTKmm](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/GTKmm)
   - [FLTK (Fast Light Toolkit)](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/FLTK)
   - [NanoGUI](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/NanoGUI)
-  - ImGui (Immediate Mode GUI)
-  - Dear ImGui
+  - [Dear ImGui](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/ImGui)
   - [raylib](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/raylib)
   - bgfx + ImGui
   - Ultimate++ (U++)
@@ -105,8 +104,8 @@ ToDo Applications created using various GUI tools.
   - [Uno Platform](https://github.com/webcyou-org/todo-gui/tree/main/C%23/UnoPlatform/ToDo)
   - [WPF](https://github.com/webcyou-org/todo-gui/tree/main/C%23/WPF/)
   - [UWP](https://github.com/webcyou-org/todo-gui/tree/main/C%23/UWP/)
-  - Prism
-  - Xamarin.Forms
+  - [Prism](https://github.com/webcyou-org/todo-gui/tree/main/C%23/Prism/)
+  - [Xamarin.Forms](https://github.com/webcyou-org/todo-gui/tree/main/C%23/Xamarin.Forms/)
   - WinForms
   - GTK#
   - [MAUI](https://github.com/webcyou-org/todo-gui/tree/main/C%23/MAUI/ToDo)
