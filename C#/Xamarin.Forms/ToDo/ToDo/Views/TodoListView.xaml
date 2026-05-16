@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDo.Views.TodoListView"
+             x:Name="todoListRoot">
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout BindableLayout.ItemsSource="{Binding FilteredTodos}"
+                     Spacing="5"
+                     Padding="0,2,0,0">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Frame BackgroundColor="#2A2A2A"
+                           CornerRadius="4"
+                           HeightRequest="35"
+                           Padding="10,0"
+                           HasShadow="False">
+                        <StackLayout Orientation="Horizontal"
+                                     VerticalOptions="Center">
+                            <Frame WidthRequest="16"
+                                   HeightRequest="16"
+                                   CornerRadius="8"
+                                   Padding="0"
+                                   Margin="0,0,18,0"
+                                   HasShadow="False"
+                                   VerticalOptions="Center"
+                                   IsClippedToBounds="True"
+                                   BackgroundColor="{Binding IsCompleted, Converter={StaticResource CheckboxBgConverter}}"
+                                   BorderColor="{Binding IsCompleted, Converter={StaticResource CheckboxBorderConverter}}">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={x:Reference todoListRoot}, Path=BindingContext.ToggleTodoCommand}"
+                                        CommandParameter="{Binding Id}"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                            <Label Text="{Binding Task}"
+                                   FontSize="14"
+                                   VerticalOptions="Center"
+                                   TextColor="{Binding IsCompleted, Converter={StaticResource TextColorConverter}}"
+                                   TextDecorations="{Binding IsCompleted, Converter={StaticResource StrikethroughConverter}}"/>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+    </ScrollView>
+</ContentView>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDo.Views.TabMenuView">
+    <StackLayout Orientation="Horizontal" Spacing="0">
+        <Label Text="All"
+               TextColor="#D2D2D2"
+               FontSize="14"
+               HeightRequest="28"
+               Padding="8,0"
+               VerticalTextAlignment="Center"
+               FontAttributes="{Binding IsAllActive, Converter={StaticResource BoolToFontConverter}}">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding SetTabCommand}" CommandParameter="All"/>
+            </Label.GestureRecognizers>
+        </Label>
+        <Label Text="Active"
+               TextColor="#D2D2D2"
+               FontSize="14"
+               HeightRequest="28"
+               Padding="8,0"
+               VerticalTextAlignment="Center"
+               FontAttributes="{Binding IsActiveTabActive, Converter={StaticResource BoolToFontConverter}}">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding SetTabCommand}" CommandParameter="Active"/>
+            </Label.GestureRecognizers>
+        </Label>
+        <Label Text="Completed"
+               TextColor="#D2D2D2"
+               FontSize="14"
+               HeightRequest="28"
+               Padding="8,0"
+               VerticalTextAlignment="Center"
+               FontAttributes="{Binding IsCompletedActive, Converter={StaticResource BoolToFontConverter}}">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding SetTabCommand}" CommandParameter="Completed"/>
+            </Label.GestureRecognizers>
+        </Label>
+    </StackLayout>
+</ContentView>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{22222222-2222-2222-2222-222222222222}</ProjectGuid>
+    <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ToDo.macOS</RootNamespace>
+    <AssemblyName>ToDo.macOS</AssemblyName>
+    <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <MonoMacInfoPListFile>Info.plist</MonoMacInfoPListFile>
+    <UseXamMacFullFramework>false</UseXamMacFullFramework>
+    <ProvisioningType>automatic</ProvisioningType>
+    <MmpExtraArgs>--registrar=dynamic --link_flags="-Wl,-undefined,dynamic_lookup -F/Volumes/SamsungSSD2TB/development/private/todo-gui/C#/Xamarin.Forms/stub_frameworks"</MmpExtraArgs>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin/Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin/Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Xamarin.Mac" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>/Volumes/SamsungSSD2TB/nuget_cache/packages/xamarin.forms/5.0.0.2515/lib/Xamarin.Mac/Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform">
+      <HintPath>/Volumes/SamsungSSD2TB/nuget_cache/packages/xamarin.forms/5.0.0.2515/lib/Xamarin.Mac/Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform.macOS">
+      <HintPath>/Volumes/SamsungSSD2TB/nuget_cache/packages/xamarin.forms/5.0.0.2515/lib/Xamarin.Mac/Xamarin.Forms.Platform.macOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml">
+      <HintPath>/Volumes/SamsungSSD2TB/nuget_cache/packages/xamarin.forms/5.0.0.2515/lib/Xamarin.Mac/Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="Renderers\DarkEntryRenderer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Info.plist" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../ToDo/ToDo.csproj">
+      <Project>{11111111-1111-1111-1111-111111111111}</Project>
+      <Name>ToDo</Name>
+    </ProjectReference>
+  </ItemGroup>
+
+  <Import Project="/Library/Frameworks/Xamarin.Mac.framework/Versions/Current/lib/msbuild/Xamarin.Mac.CSharp.targets" />
+</Project>

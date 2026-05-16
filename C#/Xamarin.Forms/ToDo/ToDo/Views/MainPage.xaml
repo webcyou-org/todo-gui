@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:ToDo.Views"
+             x:Class="ToDo.Views.MainPage"
+             BackgroundColor="#1C1C1C">
+    <Grid Padding="24,10" RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0"
+               Text="ToDo"
+               TextColor="White"
+               FontSize="18"
+               FontAttributes="Bold"
+               Margin="0,0,0,14"/>
+
+        <views:TodoInputView Grid.Row="1" Margin="0,0,0,14"/>
+
+        <views:TabMenuView Grid.Row="2" Margin="0,0,0,3"/>
+
+        <views:TodoListView Grid.Row="3"/>
+    </Grid>
+</ContentPage>

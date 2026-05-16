@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDo.Views.TodoInputView">
+    <Entry Placeholder="Add Task"
+           PlaceholderColor="#9B9B9B"
+           BackgroundColor="#303030"
+           TextColor="White"
+           HeightRequest="35"
+           Text="{Binding InputText}"
+           Completed="OnEntryCompleted"/>
+</ContentView>
