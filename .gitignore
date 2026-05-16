@@ -114,6 +114,7 @@ artifacts/
 *.dll
 
 # CMake
+build/
 CMakeCache.txt
 CMakeFiles/
 cmake_install.cmake
