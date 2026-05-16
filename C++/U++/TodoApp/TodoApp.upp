@@ -1,0 +1,11 @@
+description "Todo application using Ultimate++";
+
+uses
+	CtrlLib;
+
+file
+	main.cpp,
+	data.cpp;
+
+mainconfig
+	"" = "GUI";
