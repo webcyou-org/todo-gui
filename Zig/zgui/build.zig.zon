@@ -1,0 +1,17 @@
+.{
+    .name = .zgui_todo,
+    .fingerprint = 0x90864ff453ccd22,
+    .version = "0.0.0",
+    .minimum_zig_version = "0.16.0",
+    .dependencies = .{
+        .zgui = .{
+            .url = "https://github.com/zig-gamedev/zgui/archive/refs/heads/main.tar.gz",
+            .hash = "zgui-0.6.0-dev--L6sZJhIbgAjWdK5h6xuVUrsOcD-RdqEOEPf03Zgi4mF",
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+    },
+}

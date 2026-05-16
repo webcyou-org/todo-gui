@@ -143,7 +143,7 @@ ToDo Applications created using various GUI tools.
   - [Nuklear](https://github.com/webcyou-org/todo-gui/tree/main/Zig/nuklear)
   - [GTK](https://github.com/webcyou-org/todo-gui/tree/main/Zig/GTK)
   - [wxWidgets](https://github.com/webcyou-org/todo-gui/tree/main/Zig/wxWidgets)
-  - zgui
+  - [zgui](https://github.com/webcyou-org/todo-gui/tree/main/Zig/zgui)
   - zig-imgui bindings
   - capy
   - dvui
