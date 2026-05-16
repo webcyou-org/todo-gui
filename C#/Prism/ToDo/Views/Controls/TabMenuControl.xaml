@@ -1,0 +1,50 @@
+<UserControl x:Class="ToDo.Views.Controls.TabMenuControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:models="clr-namespace:ToDo.Models">
+    <StackPanel Orientation="Horizontal">
+
+        <Button Content="All"
+                Command="{Binding SetTabCommand}"
+                CommandParameter="{x:Static models:TabFilter.All}">
+            <Button.Style>
+                <Style TargetType="Button" BasedOn="{StaticResource TabButtonStyle}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsAllActive}" Value="True">
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button Content="Active"
+                Command="{Binding SetTabCommand}"
+                CommandParameter="{x:Static models:TabFilter.Active}">
+            <Button.Style>
+                <Style TargetType="Button" BasedOn="{StaticResource TabButtonStyle}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsActiveTabActive}" Value="True">
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button Content="Completed"
+                Command="{Binding SetTabCommand}"
+                CommandParameter="{x:Static models:TabFilter.Completed}">
+            <Button.Style>
+                <Style TargetType="Button" BasedOn="{StaticResource TabButtonStyle}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsCompletedActive}" Value="True">
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+    </StackPanel>
+</UserControl>
