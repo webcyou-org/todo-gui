@@ -2,8 +2,8 @@ from kivy.core.text import LabelBase
 
 LabelBase.register(
     name='UI',
-    fn_regular='/System/Library/Fonts/ヒラギノ角ゴシック W3.ttc',
-    fn_bold='/System/Library/Fonts/ヒラギノ角ゴシック W6.ttc',
+    fn_regular='fonts/NotoSansJP.ttf',
+    fn_bold='fonts/NotoSansJPBold.ttf',
 )
 
 def _hex(h: str):

@@ -91,8 +91,8 @@ int main() {
     float dpi = 1.f;
     glfwGetWindowContentScale(window, &dpi, nullptr);
 
-    const char* font_r = "/Library/Fonts/Microsoft/Arial.ttf";
-    const char* font_b = "/Library/Fonts/Microsoft/Arial Bold.ttf";
+    const char* font_r = "fonts/Inter.ttf";
+    const char* font_b = "fonts/InterBold.ttf";
 
     g_font_regular = io.Fonts->AddFontFromFileTTF(font_r, Theme::FONT_NORMAL * dpi);
     g_font_bold_14 = io.Fonts->AddFontFromFileTTF(font_b, Theme::FONT_NORMAL * dpi);

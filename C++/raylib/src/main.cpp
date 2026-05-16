@@ -7,25 +7,19 @@
 #include "components/todo_item.h"
 
 Font g_font;
+Font g_font_bold;
 
 int main() {
     SetConfigFlags(FLAG_MSAA_4X_HINT);
     InitWindow(800, 600, "ToDo");
     SetTargetFPS(60);
 
-    g_font = GetFontDefault();
-    const char* font_paths[] = {
-        "/System/Library/Fonts/Helvetica.ttc",
-        "/System/Library/Fonts/Supplemental/Arial.ttf",
-        nullptr
-    };
-    for (int i = 0; font_paths[i]; i++) {
-        if (FileExists(font_paths[i])) {
-            Font f = LoadFontEx(font_paths[i], 32, nullptr, 0);
-            if (f.glyphCount > 0) { g_font = f; break; }
-        }
-    }
-    SetTextureFilter(g_font.texture, TEXTURE_FILTER_BILINEAR);
+    g_font      = LoadFontEx("fonts/Inter.ttf",     32, nullptr, 0);
+    g_font_bold = LoadFontEx("fonts/InterBold.ttf", 32, nullptr, 0);
+    if (g_font.glyphCount == 0)      g_font      = GetFontDefault();
+    if (g_font_bold.glyphCount == 0) g_font_bold = g_font;
+    SetTextureFilter(g_font.texture,      TEXTURE_FILTER_BILINEAR);
+    SetTextureFilter(g_font_bold.texture, TEXTURE_FILTER_BILINEAR);
 
     AppState state;
 
