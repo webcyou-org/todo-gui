@@ -103,6 +103,8 @@ obj/
 project.lock.json
 project.fragment.lock.json
 artifacts/
+packages/
+stub_frameworks/
 
 # =============================================================================
 # C++
