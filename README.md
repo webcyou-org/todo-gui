@@ -34,8 +34,8 @@ ToDo Applications created using various GUI tools.
   - [NanoGUI](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/NanoGUI)
   - [Dear ImGui](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/ImGui)
   - [raylib](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/raylib)
-  - bgfx + ImGui
-  - Ultimate++ (U++)
+  - [bgfx + ImGui](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/bgfx-ImGui)
+  - [Ultimate++ (U++)](https://github.com/webcyou-org/todo-gui/tree/main/C%2B%2B/U%2B%2B)
   - CEGUI (Crazy Eddie's GUI)
   - Cinder
   - Azul
@@ -107,7 +107,7 @@ ToDo Applications created using various GUI tools.
   - [Prism](https://github.com/webcyou-org/todo-gui/tree/main/C%23/Prism/)
   - [Xamarin.Forms](https://github.com/webcyou-org/todo-gui/tree/main/C%23/Xamarin.Forms/)
   - WinForms
-  - GTK#
+  - [GTK#])(https://github.com/webcyou-org/todo-gui/tree/main/C%23/GTK%23/)
   - [MAUI](https://github.com/webcyou-org/todo-gui/tree/main/C%23/MAUI/ToDo)
   - Electron.NET
   - OpenTK
