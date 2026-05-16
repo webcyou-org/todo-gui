@@ -25,6 +25,8 @@
 | 4 | Tab メニュー（All / Active / Completed 切り替え） |
 | 5 | Todo リスト（フィルタ連動・チェックボックス・打ち消し線） |
 | 6 | ファイル分割（data / components / widget など） |
+| 7 | README.md ドキュメント作成（セットアップ・ビルド・起動手順） |
+| 8 | git push 前のクリーンアップ（不要ファイル確認・.gitignore 整備） |
 
 ---
 
@@ -313,6 +315,142 @@ textbox > label.placeholder {
 - `FontWeight(700)` が Bold
 - `TextDecorationLine::Strikethrough` で打ち消し線（`vizia::prelude::*` でインポート可能）
 - `ScrollView::new(cx, 0.0, 0.0, false, true, content_fn)` で縦スクロール
+
+---
+
+---
+
+## Step 7 — README.md ドキュメント作成
+
+### 配置場所
+
+- `ToDo/` または `todo/` サブディレクトリがある場合 → その直下
+- ない場合 → フレームワーク名のディレクトリ直下（例: `C++/bgfx-ImGui/README.md`）
+
+### 構成
+
+```markdown
+# <Framework> Todo
+
+一行説明。
+
+## Requirements
+
+- OS制約（Windows専用など）
+- ランタイムバージョン（Python 3.9+、.NET 8.0+ など）
+- 外部ツール（homebrew パッケージ、SDK workload など）
+
+## Install
+
+（依存パッケージの取得コマンド）
+
+## Build
+
+（ビルドが必要な場合のみ記載）
+
+## Run
+
+（起動コマンド）
+```
+
+### 種別ごとの典型コマンド
+
+| 種別 | Install | Build | Run |
+|------|---------|-------|-----|
+| Rust | — | `cargo build` | `cargo run` |
+| Go | `go mod download` | — | `go run .` |
+| C++ / CMake | — | `cmake -B build && cmake --build build` | `./build/<name>` |
+| C++ / Makefile | — | `make` | `./<target>` |
+| C# (.NET) | `dotnet restore` | — | `dotnet run` |
+| Python | `pip install <pkg>` | — | `python main.py` |
+| Node.js | `npm install` | （必要に応じて） | `npm start` / `npm run dev` |
+| Flutter | — | — | `flutter run` |
+
+### 注意事項
+
+- Windows 専用フレームワーク（WPF・WinForms・UWP）は冒頭に `> Windows 専用` と明記する
+- ビルドに数分かかる場合（bgfx、wxWidgets の初回ビルド等）はその旨を記載する
+- homebrew パッケージ名は formula 名そのままを使う（`brew install <name>`）
+
+---
+
+## Step 8 — git push 前のクリーンアップ
+
+### チェックリスト
+
+```sh
+# 1. 未追跡ファイル・変更一覧を確認
+git status
+
+# 2. 最終差分を確認
+git diff HEAD
+```
+
+**ビルド生成物が .gitignore に含まれているか確認する:**
+
+| 環境 | 除外すべきディレクトリ・ファイル |
+|------|-------------------------------|
+| Rust | `target/` |
+| C++ / CMake | `build/`（空ディレクトリは `.gitkeep` で管理） |
+| C# | `bin/`、`obj/` |
+| Node.js | `node_modules/` |
+| Python | `__pycache__/`、`*.pyc`、`.venv/`、`venv/` |
+| Flutter | `build/`、`.dart_tool/` |
+| 全般 | `.DS_Store`、`.idea/`、`*.o`、`*.out` |
+
+**追加してはいけないもの:**
+- APIキー・シークレット（`.env`、`*.pem` 等）
+- コンパイル済みバイナリ（`.exe`、`.app` バンドル等）
+- OS 固有の一時ファイル（`.DS_Store`、`Thumbs.db`）
+
+### .gitignore の整備例
+
+ルートの `.gitignore` に以下を追加・確認する:
+
+```
+# Rust
+**/target/
+
+# C++ build
+**/build/
+
+# .NET
+**/bin/
+**/obj/
+
+# Node.js
+**/node_modules/
+
+# Python
+**/__pycache__/
+**/*.pyc
+**/.venv/
+**/venv/
+
+# Flutter
+**/.dart_tool/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.user
+```
+
+### push 前の最終確認
+
+```sh
+# 追跡されているファイルの一覧
+git ls-files | sort
+
+# 大きなファイルがないか確認（1MB超を検出）
+git ls-files | xargs ls -la 2>/dev/null | awk '$5 > 1000000 {print $5, $9}'
+
+# push
+git push origin main
+```
 
 ---
 
