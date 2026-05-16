@@ -128,7 +128,7 @@ ToDo Applications created using various GUI tools.
   - Kobweb
 
 - Swift / macOS
-  - SwiftUI
+  - [SwiftUI](https://github.com/webcyou-org/todo-gui/tree/main/Swift/TodoApp)
   - AppKit
   - Catalyst
 

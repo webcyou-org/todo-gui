@@ -372,6 +372,18 @@ textbox > label.placeholder {
 - ビルドに数分かかる場合（bgfx、wxWidgets の初回ビルド等）はその旨を記載する
 - homebrew パッケージ名は formula 名そのままを使う（`brew install <name>`）
 
+### ルート README.md のリンク追加
+
+実装完了後、リポジトリルートの `README.md` に対象フレームワークのリンクが未追加の場合は追加する。
+
+```markdown
+- [Compose Multiplatform](https://github.com/webcyou-org/todo-gui/tree/main/Kotlin/ComposeMultiplatform)
+```
+
+- リンク先は `https://github.com/webcyou-org/todo-gui/tree/main/<言語>/<フレームワーク名>` の形式
+- 既にプレーンテキストで列挙されている場合はリンク付きに置き換える
+- 言語セクション内の順序はそのまま維持する
+
 ---
 
 ## Step 8 — git push 前のクリーンアップ
