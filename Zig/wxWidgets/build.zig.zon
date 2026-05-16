@@ -1,0 +1,12 @@
+.{
+    .name = .wxwidgets,
+    .version = "0.0.0",
+    .fingerprint = 0xd4a0b28fc50861a,
+    .minimum_zig_version = "0.16.0",
+    .dependencies = .{},
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+    },
+}
