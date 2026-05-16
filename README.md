@@ -368,6 +368,148 @@ input:focus {
 
 ## GUI Tools official website
 
+### Python
+- [Flet](https://flet.dev/)
+- [tkinter](https://docs.python.org/3/library/tkinter.html)
+- [Kivy](https://kivy.org/)
+- [Remi](https://github.com/dddomodossola/remi)
+- [Reflex](https://reflex.dev/)
+- [PyQt](https://www.riverbankcomputing.com/software/pyqt/)
+- [TkEasyGUI](https://github.com/nicokimura/TkEasyGUI)
+- [Toga](https://toga.readthedocs.io/)
+- [PyForms](https://github.com/UmSenhorQualquer/pyforms)
+- [PyGTK](http://www.pygtk.org/)
+- [wxPython](https://www.wxpython.org/)
+- [PySide](https://doc.qt.io/qtforpython/)
+- [Flexx](https://github.com/flexxui/flexx)
+- [Azul](https://azul.rs/)
+- [Dear PyGui](https://dearpygui.readthedocs.io/)
+- [BeeWare](https://beeware.org/)
+- [Eel](https://github.com/python-eel/Eel)
+
+### C++
+- [Qt](https://www.qt.io/)
+- [wxWidgets](https://www.wxwidgets.org/)
+- [GTK](https://www.gtk.org/)
+- [GTKmm](https://www.gtkmm.org/)
+- [FLTK](https://www.fltk.org/)
+- [NanoGUI](https://github.com/wjakob/nanogui)
+- [Dear ImGui](https://github.com/ocornut/imgui)
+- [raylib](https://www.raylib.com/)
+- [bgfx](https://bkaradzic.github.io/bgfx/)
+- [Ultimate++ (U++)](https://www.ultimatepp.org/)
+- [CEGUI](http://cegui.org.uk/)
+- [Cinder](https://libcinder.org/)
+- [Azul](https://azul.rs/)
+- [Nuklear](https://github.com/Immediate-Mode-UI/Nuklear)
+- [CEF (Chromium Embedded Framework)](https://bitbucket.org/chromiumembedded/cef)
+
+### JavaScript
+- [Electron](https://www.electronjs.org/)
+- [Tauri](https://tauri.app/)
+- [Neutralino.js](https://neutralino.js.org/)
+- [NW.js](https://nwjs.io/)
+- [React Native](https://reactnative.dev/)
+- [Wails](https://wails.io/)
+- [Lorca](https://github.com/zserge/lorca)
+- [Remi](https://github.com/dddomodossola/remi)
+- [Reflex](https://reflex.dev/)
+- [Dioxus](https://dioxuslabs.com/)
+- [Proton Native](https://proton-native.js.org/)
+- [DeskGap](https://deskgap.com/)
+- [Carlo](https://github.com/GoogleChromeLabs/carlo)
+- [Sciter](https://sciter.com/)
+- [Ultralight](https://ultralig.ht/)
+- [Capacitor](https://capacitorjs.com/)
+- [Quasar](https://quasar.dev/)
+
+### Go
+- [Fyne](https://fyne.io/)
+- [Lorca](https://github.com/zserge/lorca)
+- [Wails](https://wails.io/)
+- [Gio](https://gioui.org/)
+- [Walk](https://github.com/lxn/walk)
+- [Go-GTK](https://github.com/mattn/go-gtk)
+- [shiny](https://github.com/golang/exp/tree/master/shiny)
+- [Qt for Go](https://github.com/therecipe/qt)
+- [go-sciter](https://github.com/sciter-sdk/go-sciter)
+- [nuklear (Go)](https://github.com/golang-ui/nuklear)
+
+### Rust
+- [Druid](https://github.com/linebender/druid)
+- [Slint](https://slint.dev/)
+- [Tauri](https://tauri.app/)
+- [Iced](https://iced.rs/)
+- [Dioxus](https://dioxuslabs.com/)
+- [gtk-rs](https://gtk-rs.org/)
+- [egui](https://github.com/emilk/egui)
+- [fltk-rs](https://github.com/fltk-rs/fltk-rs)
+- [Relm4](https://relm4.org/)
+- [vizia](https://github.com/vizia/vizia)
+- [rui](https://github.com/nicksack/rui)
+- [fui](https://github.com/nicksack/fui)
+- [OrbTk](https://github.com/redox-os/orbtk)
+- [Xilem](https://github.com/linebender/xilem)
+- [KAS](https://github.com/kas-gui/kas)
+- [Conrod](https://github.com/PistonDevelopers/conrod)
+- [Azul](https://azul.rs/)
+- [Leptos](https://leptos.dev/)
+- [Makepad](https://makepad.nl/)
+- [Freya](https://freyaui.dev/)
+- [Ribir](https://github.com/RibirX/Ribir)
+- [Masonry](https://github.com/linebender/masonry)
+- [Floem](https://github.com/lapce/floem)
+- [silvia](https://github.com/nicksack/silvia)
+
+### C#
+- [Avalonia](https://avaloniaui.net/)
+- [Uno Platform](https://platform.uno/)
+- [WPF](https://learn.microsoft.com/en-us/dotnet/desktop/wpf/)
+- [UWP](https://learn.microsoft.com/en-us/windows/uwp/)
+- [Prism](https://prismlibrary.com/)
+- [Xamarin.Forms](https://learn.microsoft.com/en-us/xamarin/xamarin-forms/)
+- [WinForms](https://learn.microsoft.com/en-us/dotnet/desktop/winforms/)
+- [GTK#](https://www.mono-project.com/docs/gui/gtksharp/)
+- [MAUI](https://learn.microsoft.com/en-us/dotnet/maui/)
+- [Electron.NET](https://github.com/ElectronNET/Electron.NET)
+- [OpenTK](https://opentk.net/)
+- [Blazor Hybrid](https://learn.microsoft.com/en-us/aspnet/core/blazor/hybrid/)
+- [ReactiveUI](https://reactiveui.net/)
+- [Eto.Forms](https://github.com/picoe/Eto)
+
+### Java
+- [JavaFX](https://openjfx.io/)
+- [Swing](https://docs.oracle.com/javase/tutorial/uiswing/)
+- [Skiko](https://github.com/JetBrains/skiko)
+
+### Kotlin
+- [Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/)
+- [Korge](https://korge.org/)
+- [fritz2](https://www.fritz2.dev/)
+- [Kvision](https://kvision.io/)
+- [Kobweb](https://kobweb.varabyte.com/)
+
+### Swift / macOS
+- [SwiftUI](https://developer.apple.com/xcode/swiftui/)
+- [AppKit](https://developer.apple.com/documentation/appkit)
+- [Catalyst](https://developer.apple.com/mac-catalyst/)
+
+### Dart
+- [Flutter](https://flutter.dev/)
+- [Rikulo UI](https://rikulo.org/)
+
+### Zig
+- [Dear ImGui](https://github.com/ocornut/imgui)
+- [raylib](https://www.raylib.com/)
+- [Qt](https://www.qt.io/)
+- [Nuklear](https://github.com/Immediate-Mode-UI/Nuklear)
+- [GTK](https://www.gtk.org/)
+- [wxWidgets](https://www.wxwidgets.org/)
+- [zgui](https://github.com/zig-gamedev/zig-gamedev)
+- [zig-imgui](https://github.com/nicksack/zig-imgui)
+- [capy](https://github.com/capy-ui/capy)
+- [dvui](https://github.com/david-vanderson/dvui)
+
 ## Author
 
 **Daisuke Takayama**
