@@ -7,7 +7,25 @@ C# Todo app using [Uno Platform](https://platform.uno/) — cross-platform WinUI
 - .NET SDK 8.0+
 - Uno Platform テンプレート
 
+**macOS**
 ```sh
+brew install dotnet
+dotnet workload install uno-wasm-bootstrap
+dotnet tool install -g uno.check
+uno-check
+```
+
+**Windows**
+```sh
+winget install Microsoft.DotNet.SDK.8
+dotnet workload install uno-wasm-bootstrap
+dotnet tool install -g uno.check
+uno-check
+```
+
+**Linux (Ubuntu/Debian)**
+```sh
+sudo apt install dotnet-sdk-8.0
 dotnet workload install uno-wasm-bootstrap
 dotnet tool install -g uno.check
 uno-check

@@ -7,10 +7,21 @@ Python Todo app using [tkinter](https://docs.python.org/3/library/tkinter.html) 
 - Python 3.9+
 - Tcl/Tk（Python に同梱）
 
+Python is available on all platforms:
+- macOS: `brew install python3` (Tcl/Tk bundled)
+- Windows: `winget install Python.Python.3` (Tcl/Tk bundled)
+- Linux: `sudo apt install python3 python3-tk`
+
 ## Run
 
+**macOS / Linux**
 ```bash
 python3 main.py
+```
+
+**Windows**
+```bash
+python main.py
 ```
 
 ### macOS で tkinter が動かない場合

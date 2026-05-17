@@ -9,6 +9,10 @@ C# Todo app using [WPF](https://learn.microsoft.com/dotnet/desktop/wpf/) (Window
 - Windows
 - .NET SDK 8.0+
 
+```sh
+winget install Microsoft.DotNet.SDK.8
+```
+
 ## Install
 
 ```sh

@@ -8,6 +8,10 @@
 - macOS: Xcode インストール済み
 - iOS/Android: [React Native 環境セットアップ](https://reactnative.dev/docs/environment-setup) を完了していること
 
+**macOS**: `brew install node`
+**Windows**: `winget install OpenJS.NodeJS`
+**Linux (Ubuntu/Debian)**: `sudo apt install nodejs npm`
+
 ## Install
 
 ```sh

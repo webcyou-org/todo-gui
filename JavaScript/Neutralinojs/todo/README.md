@@ -7,6 +7,10 @@ JavaScript Todo app using [Neutralinojs](https://neutralino.js.org/) — lightwe
 - Node.js 18+
 - Neutralinojs CLI
 
+**macOS**: `brew install node`
+**Windows**: `winget install OpenJS.NodeJS`
+**Linux (Ubuntu/Debian)**: `sudo apt install nodejs npm`
+
 ```sh
 npm install -g @neutralinojs/neu
 ```

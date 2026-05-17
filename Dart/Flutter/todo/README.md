@@ -7,11 +7,22 @@ Dart Todo app using [Flutter](https://flutter.dev/) — cross-platform UI toolki
 ## Requirements
 
 - Flutter SDK 3.x+
-- macOS: Xcode インストール済み
 
+**macOS** (requires Xcode)
 ```sh
-# Flutter SDK のインストール
 brew install flutter
+flutter doctor
+```
+
+**Windows**
+Download Flutter SDK from https://flutter.dev/docs/get-started/install/windows
+```sh
+flutter doctor
+```
+
+**Linux**
+```sh
+sudo snap install flutter --classic
 flutter doctor
 ```
 

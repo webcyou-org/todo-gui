@@ -5,7 +5,22 @@ C# Todo app using [.NET MAUI](https://learn.microsoft.com/dotnet/maui/) — mult
 ## Requirements
 
 - .NET SDK 8.0+ with MAUI workload
-- macOS: Xcode インストール済み
+
+Download .NET SDK from https://dotnet.microsoft.com/download
+
+**macOS** (requires Xcode):
+```sh
+brew install dotnet
+dotnet workload install maui
+```
+
+**Windows**
+```sh
+winget install Microsoft.DotNet.SDK.8
+dotnet workload install maui
+```
+
+**Linux** — Linux target is not officially supported by .NET MAUI (Windows/macOS only for desktop).
 
 ```sh
 # MAUI workload のインストール

@@ -5,12 +5,21 @@ Python Todo app using [Toga](https://toga.readthedocs.io/) — BeeWare's native 
 ## Requirements
 
 - Python 3.9+
-- macOS: Xcode インストール済み
 
-## Install
-
+**macOS** (requires Xcode):
 ```sh
 pip install toga[cocoa]
+```
+
+**Windows**
+```sh
+pip install toga[winforms]
+```
+
+**Linux (Ubuntu/Debian)**
+```sh
+sudo apt install python3 python3-pip python3-gi python3-gi-cairo gir1.2-gtk-3.0
+pip install toga[gtk]
 ```
 
 ## Run
@@ -18,6 +27,8 @@ pip install toga[cocoa]
 ```sh
 python main.py
 ```
+
+> Windows: use `python` instead of `python3` if needed.
 
 ## Architecture
 

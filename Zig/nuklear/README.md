@@ -5,11 +5,24 @@ A dark-theme Todo application built with [Zig](https://ziglang.org/) 0.16.0 and 
 ## Requirements
 
 - **Zig** 0.16.0
-- **SDL2** (via Homebrew)
+- **SDL2**
 
+**macOS**
 ```sh
-brew install sdl2
+brew install zig sdl2
 ```
+
+**Windows**
+```sh
+winget install zig.zig
+```
+Download SDL2 from https://github.com/libsdl-org/SDL/releases or `winget install SDL.SDL2`
+
+**Linux (Ubuntu/Debian)**
+```sh
+sudo apt install libsdl2-dev
+```
+Install Zig from https://ziglang.org/download/ or `snap install zig --classic --channel 0.16/stable`
 
 ## Build
 

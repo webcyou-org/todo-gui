@@ -6,6 +6,10 @@ JavaScript Todo app using [NW.js](https://nwjs.io/) (formerly node-webkit).
 
 - Node.js 18+
 
+**macOS**: `brew install node`
+**Windows**: `winget install OpenJS.NodeJS`
+**Linux (Ubuntu/Debian)**: `sudo apt install nodejs npm`
+
 ## Install
 
 ```sh

@@ -9,9 +9,18 @@ C++ Todo app using [Qt5](https://www.qt.io/) Widgets.
 
 ## Install
 
+**macOS**
 ```sh
 brew install qt@5
 export PATH="/opt/homebrew/opt/qt@5/bin:$PATH"
+```
+
+**Windows**
+Download Qt Installer from https://www.qt.io/download or `winget install Qt.Qt.6`
+
+**Linux (Ubuntu/Debian)**
+```sh
+sudo apt install qt6-base-dev cmake
 ```
 
 ## Build

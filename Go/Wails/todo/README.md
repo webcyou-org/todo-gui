@@ -12,10 +12,20 @@ Go + Vue3 Todo app using [Wails](https://wails.io/) v2 — build desktop apps wi
 go install github.com/wailsapp/wails/v2/cmd/wails@latest
 ```
 
-macOS は Xcode Command Line Tools が必要:
-
+**macOS** (requires Xcode Command Line Tools):
 ```sh
 xcode-select --install
+brew install go node
+```
+
+**Windows**
+```sh
+winget install GoLang.Go OpenJS.NodeJS
+```
+
+**Linux (Ubuntu/Debian)**
+```sh
+sudo apt install golang-go nodejs npm
 ```
 
 ## Install

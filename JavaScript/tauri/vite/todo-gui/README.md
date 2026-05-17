@@ -6,12 +6,27 @@ JavaScript/Vue3 Todo app using [Tauri](https://tauri.app/) v1 with Vite — ligh
 
 - Node.js 18+
 - Rust (stable)
-- macOS: Xcode Command Line Tools
+
+**macOS** (requires Xcode Command Line Tools):
+```sh
+xcode-select --install
+brew install node
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+**Windows**
+```sh
+winget install OpenJS.NodeJS Rustlang.Rustup
+```
+Also install [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) (required by Rust/Tauri).
+
+**Linux (Ubuntu/Debian)**
+```sh
+sudo apt install nodejs npm curl build-essential libwebkit2gtk-4.1-dev libssl-dev
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
 
 ```sh
-# Rust のインストール
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
 # Tauri CLI
 npm install -g @tauri-apps/cli
 ```

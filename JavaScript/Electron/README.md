@@ -16,6 +16,10 @@
 
 - Node.js 18+
 
+**macOS**: `brew install node`
+**Windows**: `winget install OpenJS.NodeJS`
+**Linux (Ubuntu/Debian)**: `sudo apt install nodejs npm`
+
 ## Run（各ディレクトリで）
 
 ```sh

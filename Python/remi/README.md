@@ -8,8 +8,14 @@ Python Todo app using [remi](https://github.com/rawpython/remi) — browser-base
 
 - Python 3.9+
 
+Python is available on all platforms. Install from https://python.org or:
+- macOS: `brew install python3`
+- Windows: `winget install Python.Python.3`
+- Linux: usually pre-installed; `sudo apt install python3 python3-pip`
+
 ## Install
 
+Works on all platforms:
 ```sh
 pip install remi
 ```
@@ -19,6 +25,8 @@ pip install remi
 ```sh
 python main.py
 ```
+
+> Windows: use `python` instead of `python3` if needed.
 
 ブラウザが自動的に起動します。起動しない場合は `http://localhost:8080` にアクセスしてください。
 

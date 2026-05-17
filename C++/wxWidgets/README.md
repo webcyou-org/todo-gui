@@ -6,12 +6,28 @@ wxWidgets itself is built from source via CMake ExternalProject (`thirdparty/wxw
 ## Requirements
 
 - CMake 3.6+
-- Xcode Command Line Tools (`xcode-select --install`)
 - pkg-config
+- macOS: Xcode Command Line Tools
 
+## Install
+
+**macOS**
 ```sh
+xcode-select --install
 brew install cmake pkg-config
 ```
+
+**Windows**
+```sh
+winget install Kitware.CMake
+```
+wxWidgets is built from source (bundled via CMake ExternalProject — no separate install needed).
+
+**Linux (Ubuntu/Debian)**
+```sh
+sudo apt install cmake build-essential pkg-config libgtk-3-dev
+```
+wxWidgets is built from source (bundled via CMake ExternalProject — no separate install needed).
 
 ## Build
 

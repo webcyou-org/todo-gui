@@ -10,8 +10,17 @@ C++ Todo app using [GTK4](https://gtk.org/).
 
 ## Install
 
+**macOS**
 ```sh
 brew install gtk4 pkg-config
+```
+
+**Windows**
+Install GTK4 via MSYS2: `pacman -S mingw-w64-x86_64-gtk4`
+
+**Linux (Ubuntu/Debian)**
+```sh
+sudo apt install libgtk-4-dev pkg-config
 ```
 
 ## Build

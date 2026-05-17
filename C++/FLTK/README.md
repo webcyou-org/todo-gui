@@ -9,8 +9,20 @@ C++ Todo app using [FLTK](https://www.fltk.org/) (Fast Light Toolkit).
 
 ## Install
 
+**macOS**
 ```sh
 brew install cmake fltk
+```
+
+**Windows**
+```sh
+winget install Kitware.CMake
+```
+Download FLTK from https://www.fltk.org/software.php or `winget install FLTK.FLTK`
+
+**Linux (Ubuntu/Debian)**
+```sh
+sudo apt install cmake build-essential libfltk1.3-dev
 ```
 
 ## Build

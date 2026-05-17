@@ -5,10 +5,21 @@ Go Todo app using [Gio](https://gioui.org/) v0.7 — immediate mode GUI toolkit.
 ## Requirements
 
 - Go 1.23+
-- macOS: Xcode Command Line Tools
 
+**macOS**
 ```sh
 xcode-select --install
+brew install go
+```
+
+**Windows**
+```sh
+winget install GoLang.Go
+```
+
+**Linux (Ubuntu/Debian)**
+```sh
+sudo apt install golang-go
 ```
 
 ## Install
@@ -19,6 +30,7 @@ go mod download
 
 ## Run
 
+Works on all platforms:
 ```sh
 go run .
 ```

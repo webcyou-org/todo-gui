@@ -4,15 +4,27 @@ GTK4 GUI Todo app written in Zig 0.16.0 using manual `extern fn` bindings (no `@
 
 ## Requirements
 
-- macOS (Apple Silicon recommended)
 - [Zig](https://ziglang.org/) 0.16.0
-- GTK4 (`brew install gtk4`)
+- GTK4
 
 ## Install
 
+**macOS**
 ```sh
-brew install gtk4
+brew install zig gtk4
 ```
+
+**Windows**
+```sh
+winget install zig.zig
+```
+Install GTK4 via MSYS2: `pacman -S mingw-w64-x86_64-gtk4`
+
+**Linux (Ubuntu/Debian)**
+```sh
+sudo apt install libgtk-4-dev
+```
+Install Zig from https://ziglang.org/download/ or `snap install zig --classic --channel 0.16/stable`
 
 ## Build
 

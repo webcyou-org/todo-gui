@@ -6,9 +6,12 @@ Rust Todo app using [Slint](https://slint.rs/) 1.7 — declarative UI framework 
 
 - Rust (stable) 1.70+
 
+Install Rust on all platforms via https://rustup.rs/:
 ```sh
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
+
+**Windows**: `winget install Rustlang.Rustup` or download rustup-init.exe from https://rustup.rs/
 
 ## Build & Run
 

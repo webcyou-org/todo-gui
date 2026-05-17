@@ -7,10 +7,23 @@ Go Todo app using [Lorca](https://github.com/zserge/lorca) — builds desktop ap
 - Go 1.20+
 - Google Chrome または Chromium インストール済み
 
+**macOS**
 ```sh
 brew install go
 brew install --cask google-chrome
 ```
+
+**Windows**
+```sh
+winget install GoLang.Go
+winget install Google.Chrome
+```
+
+**Linux (Ubuntu/Debian)**
+```sh
+sudo apt install golang-go
+```
+Install Chrome from https://www.google.com/chrome/ or install Chromium: `sudo apt install chromium-browser`
 
 ## Install
 
@@ -20,6 +33,7 @@ go mod download
 
 ## Run
 
+Works on all platforms:
 ```sh
 go run .
 ```

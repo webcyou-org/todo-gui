@@ -6,8 +6,16 @@ Rust Todo app using [Druid](https://github.com/linebender/druid) 0.8.3 — data-
 
 - Rust (stable) 1.70+
 
+Install Rust on all platforms via https://rustup.rs/:
 ```sh
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+**Windows**: `winget install Rustlang.Rustup` or download rustup-init.exe from https://rustup.rs/
+
+**Linux (Ubuntu/Debian)** — additional dependencies:
+```sh
+sudo apt install libgtk-3-dev libcairo2-dev libpango1.0-dev
 ```
 
 ## Build & Run

@@ -7,12 +7,24 @@ ImGui sources are bundled under `vendor/imgui/`.
 
 - CMake 3.15+
 - GLFW3
-- OpenGL (macOS built-in)
+- OpenGL
 
 ## Install
 
+**macOS**
 ```sh
 brew install cmake glfw
+```
+
+**Windows**
+```sh
+winget install Kitware.CMake
+```
+Download GLFW from https://www.glfw.org/download or `winget install GLFW.GLFW`
+
+**Linux (Ubuntu/Debian)**
+```sh
+sudo apt install cmake build-essential libglfw3-dev
 ```
 
 ## Build

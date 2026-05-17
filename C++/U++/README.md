@@ -5,7 +5,9 @@ C++ Todo app using [U++ (Ultimate++)](https://www.ultimatepp.org/).
 ## Requirements
 
 - U++ フレームワーク（umk ビルドツール + uppsrc）
-- macOS / Linux
+- macOS / Linux / Windows (via MSYS2)
+
+> Windows: MSYS2 環境 (https://www.msys2.org/) を使用してください。
 
 ## Install
 

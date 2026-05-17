@@ -6,9 +6,11 @@ C# Todo app using [Xamarin.Forms](https://learn.microsoft.com/xamarin/xamarin-fo
 
 ## Requirements
 
-- macOS
-- Visual Studio for Mac または .NET SDK + Xamarin workload
-- Xcode インストール済み
+- macOS or Windows
+- macOS: Visual Studio for Mac または .NET SDK + Xamarin workload + Xcode
+- Windows: Visual Studio 2022 with Xamarin workload
+
+Download Visual Studio: https://visualstudio.microsoft.com/
 
 ## Install
 

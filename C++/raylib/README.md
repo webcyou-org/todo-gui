@@ -5,14 +5,24 @@ C++ Todo app using [raylib](https://www.raylib.com/).
 ## Requirements
 
 - clang++
-- raylib
+- raylib 5.5
 - pkg-config
 
 ## Install
 
+**macOS**
 ```sh
 brew install raylib pkg-config
 ```
+
+**Windows**
+Download raylib from https://github.com/raysan5/raylib/releases or `winget install raysan5.raylib`
+
+**Linux (Ubuntu/Debian)**
+```sh
+sudo apt install libraylib-dev pkg-config
+```
+For raylib 5.5, build from source: https://github.com/raysan5/raylib
 
 ## Build
 

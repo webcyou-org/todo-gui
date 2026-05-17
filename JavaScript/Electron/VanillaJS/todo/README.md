@@ -6,6 +6,10 @@ JavaScript Todo app using [Electron](https://www.electronjs.org/) with vanilla H
 
 - Node.js 18+
 
+**macOS**: `brew install node`
+**Windows**: `winget install OpenJS.NodeJS`
+**Linux (Ubuntu/Debian)**: `sudo apt install nodejs npm`
+
 ## Install
 
 ```sh

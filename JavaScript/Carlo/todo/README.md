@@ -9,6 +9,23 @@ Node.js Todo app using [Carlo](https://github.com/GoogleChromeLabs/carlo) — HT
 - Node.js 18+
 - Google Chrome インストール済み
 
+**macOS**
+```sh
+brew install node
+brew install --cask google-chrome
+```
+
+**Windows**
+```sh
+winget install OpenJS.NodeJS Google.Chrome
+```
+
+**Linux (Ubuntu/Debian)**
+```sh
+sudo apt install nodejs npm
+```
+Install Chrome from https://www.google.com/chrome/
+
 ## Install
 
 ```sh

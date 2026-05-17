@@ -6,9 +6,19 @@ C# Todo app using [Avalonia UI](https://avaloniaui.net/) — cross-platform .NET
 
 - .NET SDK 8.0+
 
+**macOS**
 ```sh
-# .NET SDK のインストール（未インストールの場合）
 brew install dotnet@8
+```
+
+**Windows**
+```sh
+winget install Microsoft.DotNet.SDK.8
+```
+
+**Linux (Ubuntu/Debian)**
+```sh
+sudo apt install dotnet-sdk-8.0
 ```
 
 ## Install

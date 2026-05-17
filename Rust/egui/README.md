@@ -6,10 +6,13 @@ Rust Todo app using [egui](https://github.com/emilk/egui) / [eframe](https://git
 
 - Rust (stable) 1.70+
 
+Install Rust on all platforms via https://rustup.rs/:
 ```sh
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 rustup update
 ```
+
+**Windows**: `winget install Rustlang.Rustup` or download rustup-init.exe from https://rustup.rs/
 
 **Linux** の場合は追加で:
 

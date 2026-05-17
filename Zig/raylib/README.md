@@ -4,16 +4,28 @@ Todo application built with [Zig](https://ziglang.org/) 0.16.0 and [raylib](http
 
 ## Requirements
 
-- macOS (arm64 / x86_64)
 - [Zig](https://ziglang.org/) 0.16.0
-- [raylib](https://www.raylib.com/) 5.5 (installed at `/opt/homebrew/Cellar/raylib/5.5`)
+- [raylib](https://www.raylib.com/) 5.5
 
 ## Install
 
+**macOS**
 ```sh
-brew install zig
-brew install raylib
+brew install zig raylib
 ```
+
+**Windows**
+```sh
+winget install zig.zig
+```
+Download raylib from https://github.com/raysan5/raylib/releases or `winget install raysan5.raylib`
+
+**Linux (Ubuntu/Debian)**
+```sh
+sudo apt install libraylib-dev
+```
+For raylib 5.5, build from source: https://github.com/raysan5/raylib
+Install Zig from https://ziglang.org/download/ or `snap install zig --classic --channel 0.16/stable`
 
 ## Build
 

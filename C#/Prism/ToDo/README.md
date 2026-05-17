@@ -9,6 +9,10 @@ C# Todo app using [Prism](https://prismlibrary.com/) with WPF — MVVM framework
 - Windows
 - .NET SDK 8.0+
 
+```sh
+winget install Microsoft.DotNet.SDK.8
+```
+
 ## Install
 
 ```sh

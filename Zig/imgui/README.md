@@ -4,13 +4,25 @@ Todo application built with [Zig](https://ziglang.org/) 0.16.0 and [Dear ImGui](
 
 ## Requirements
 
-- macOS (arm64 / x86_64)
 - [Zig](https://ziglang.org/) 0.16.0
 - [GLFW](https://www.glfw.org/) 3.4
 
+**macOS**
 ```sh
 brew install zig glfw
 ```
+
+**Windows**
+```sh
+winget install zig.zig
+```
+Download GLFW from https://www.glfw.org/download or `winget install GLFW.GLFW`
+
+**Linux (Ubuntu/Debian)**
+```sh
+sudo apt install libglfw3-dev
+```
+Install Zig from https://ziglang.org/download/ or `snap install zig --classic --channel 0.16/stable`
 
 ## Build
 

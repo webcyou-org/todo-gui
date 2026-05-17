@@ -9,6 +9,10 @@ C# Todo app using [Windows Forms](https://learn.microsoft.com/dotnet/desktop/win
 - Windows
 - .NET SDK 8.0+
 
+```sh
+winget install Microsoft.DotNet.SDK.8
+```
+
 ## Install
 
 ```sh

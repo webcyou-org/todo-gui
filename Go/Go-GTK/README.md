@@ -7,8 +7,20 @@ Go Todo app using [go-gtk](https://github.com/mattn/go-gtk) (GTK2 bindings for G
 - Go 1.23+
 - GTK2
 
+**macOS**
 ```sh
-brew install gtk+
+brew install go gtk+
+```
+
+**Windows**
+```sh
+winget install GoLang.Go
+```
+Install GTK2 via MSYS2: `pacman -S mingw-w64-x86_64-gtk2`
+
+**Linux (Ubuntu/Debian)**
+```sh
+sudo apt install golang-go libgtk2.0-dev
 ```
 
 ## Install

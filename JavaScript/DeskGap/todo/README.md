@@ -6,6 +6,10 @@ Node.js Todo app using [DeskGap](https://deskgap.com/) — lightweight Electron 
 
 - Node.js 18+
 
+**macOS**: `brew install node`
+**Windows**: `winget install OpenJS.NodeJS`
+**Linux (Ubuntu/Debian)**: `sudo apt install nodejs npm`
+
 ## Install
 
 ```sh

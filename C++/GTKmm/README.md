@@ -10,8 +10,20 @@ C++ Todo app using [gtkmm](https://gtkmm.org/) 3 (C++ wrappers for GTK).
 
 ## Install
 
+**macOS**
 ```sh
 brew install cmake gtkmm3 pkg-config
+```
+
+**Windows**
+```sh
+winget install Kitware.CMake
+```
+Install gtkmm via MSYS2: `pacman -S mingw-w64-x86_64-gtkmm4`
+
+**Linux (Ubuntu/Debian)**
+```sh
+sudo apt install cmake build-essential libgtkmm-3.0-dev pkg-config
 ```
 
 ## Build

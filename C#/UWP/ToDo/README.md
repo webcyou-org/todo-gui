@@ -9,6 +9,8 @@ C# Todo app using [UWP](https://learn.microsoft.com/windows/uwp/) (Universal Win
 - Windows 10/11
 - Visual Studio 2022 with "Universal Windows Platform development" workload
 
+Download Visual Studio from https://visualstudio.microsoft.com/
+
 ## Build & Run
 
 Visual Studio で `ToDo.sln` を開き、**F5** でビルド・実行してください。

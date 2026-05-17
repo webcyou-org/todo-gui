@@ -7,6 +7,11 @@ Python Todo app using [Reflex](https://reflex.dev/) — full-stack web framework
 - Python 3.9+
 - Node.js 18+ (Reflex のフロントエンドビルドに使用)
 
+Python and Node.js are available on all platforms:
+- macOS: `brew install python3 node`
+- Windows: `winget install Python.Python.3 OpenJS.NodeJS`
+- Linux: `sudo apt install python3 python3-pip nodejs npm`
+
 ## Install
 
 ```sh

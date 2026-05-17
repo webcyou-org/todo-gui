@@ -4,15 +4,29 @@ C++ Todo app using [bgfx](https://github.com/bkaradzic/bgfx) (cross-platform ren
 
 ## Requirements
 
-- macOS (Metal backend)
 - CMake 3.20+
-- Xcode Command Line Tools (`xcode-select --install`)
 - GLFW3
+- macOS: Xcode Command Line Tools (Metal backend)
 
 ## Install
 
+**macOS**
 ```sh
+xcode-select --install
 brew install cmake glfw
+```
+
+**Windows**
+```sh
+winget install Kitware.CMake
+```
+Download GLFW from https://www.glfw.org/download or `winget install GLFW.GLFW`
+
+> Note: bgfx supports DirectX on Windows instead of Metal. You may need to adjust the backend in `src/main.cpp`.
+
+**Linux (Ubuntu/Debian)**
+```sh
+sudo apt install cmake build-essential libglfw3-dev
 ```
 
 bgfx is fetched automatically via CMake FetchContent on first build (requires network access, takes several minutes).
