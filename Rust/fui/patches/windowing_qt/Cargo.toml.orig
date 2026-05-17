@@ -1,0 +1,25 @@
+[package]
+name = "windowing_qt"
+version = "0.17.4"
+authors = ["Marek Gibek <marek-dev@yandex.com>"]
+description = "Implementation of windowing_api using QT Framework"
+keywords = ["windowing", "gui", "framework", "dialog", "tray"]
+categories = ["gui"]
+license = "GPL-3.0-or-later WITH Classpath-exception-2.0"
+repository = "https://github.com/marek-g/rust_windowing"
+documentation = "https://docs.rs/windowing_qt"
+readme = "README.md"
+edition = "2021"
+
+[dependencies]
+windowing_api = { path = "../windowing_api", version = "0.13" }
+thiserror = "2"
+
+[build-dependencies]
+cmake = "0.1"
+cbindgen = "0.28"
+bindgen = "0.71"
+
+[dev-dependencies]
+rust-embed = "8"
+gl = "0.14"

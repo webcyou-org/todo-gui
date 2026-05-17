@@ -1,0 +1,20 @@
+[package]
+name = "todo"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1"
+tokio = { version = "1", features = ["full"] }
+typed-builder = "0.23"
+fui_core = "0.18"
+fui_app = "0.18"
+fui_controls = "0.18"
+fui_macros = "0.18"
+windowing_qt = "0.17"
+windowing_api = "0.13"
+impellers = { version = "0.4.1", features = ["prebuilt_libs"] }
+typemap = "0.3.3"
+
+[patch.crates-io]
+windowing_qt = { path = "../patches/windowing_qt" }
