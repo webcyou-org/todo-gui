@@ -88,16 +88,16 @@ ToDo Applications created using various GUI tools.
   - fui
   - OrbTk
   - Xilem
-  - KAS
-  - Conrod
   - Azul
-  - Leptos
   - Makepad
   - Freya
+  - Leptos
+  - KAS
+  - Conrod
   - Ribir
-  - Masonry
   - Floem
   - silvia
+  - Masonry
 
 - C#
   - [Avalonia](https://github.com/webcyou-org/todo-gui/tree/main/C%23/Avalonia/ToDo)
@@ -446,20 +446,20 @@ input:focus {
 - [fltk-rs](https://github.com/fltk-rs/fltk-rs)
 - [Relm4](https://relm4.org/)
 - [vizia](https://github.com/vizia/vizia)
-- [rui](https://github.com/nicksack/rui)
-- [fui](https://github.com/nicksack/fui)
+- [rui](https://github.com/audulus/rui)
+- [fui](https://github.com/marek-g/rust-fui)
 - [OrbTk](https://github.com/redox-os/orbtk)
 - [Xilem](https://github.com/linebender/xilem)
-- [KAS](https://github.com/kas-gui/kas)
-- [Conrod](https://github.com/PistonDevelopers/conrod)
 - [Azul](https://azul.rs/)
-- [Leptos](https://leptos.dev/)
 - [Makepad](https://makepad.nl/)
 - [Freya](https://freyaui.dev/)
+- [Leptos](https://leptos.dev/)
+- [KAS](https://github.com/kas-gui/kas)
+- [Conrod](https://github.com/PistonDevelopers/conrod)
 - [Ribir](https://github.com/RibirX/Ribir)
-- [Masonry](https://github.com/linebender/masonry)
 - [Floem](https://github.com/lapce/floem)
 - [silvia](https://github.com/nicksack/silvia)
+- [Masonry](https://github.com/linebender/masonry)
 
 ### C#
 - [Avalonia](https://avaloniaui.net/)
