@@ -1,0 +1,8 @@
+[package]
+name = "todo"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+xilem = "0.4"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
