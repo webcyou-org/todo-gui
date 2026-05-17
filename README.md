@@ -85,19 +85,19 @@ ToDo Applications created using various GUI tools.
   - [Relm4](https://github.com/webcyou-org/todo-gui/tree/main/Rust/Relm4/todo/)
   - [vizia](https://github.com/webcyou-org/todo-gui/tree/main/Rust/vizia/todo/)
   - [rui](https://github.com/webcyou-org/todo-gui/tree/main/Rust/rui/todo/)
-  - fui
-  - OrbTk
-  - Xilem
+  - [Xilem](https://github.com/webcyou-org/todo-gui/tree/main/Rust/Xilem/todo)
   - Azul
   - Makepad
   - Freya
   - Leptos
+  - fui
   - Ribir
   - Floem
   - KAS
   - Conrod
   - silvia
   - Masonry
+  - OrbTk
 
 - C#
   - [Avalonia](https://github.com/webcyou-org/todo-gui/tree/main/C%23/Avalonia/ToDo)
@@ -447,19 +447,19 @@ input:focus {
 - [Relm4](https://relm4.org/)
 - [vizia](https://github.com/vizia/vizia)
 - [rui](https://github.com/audulus/rui)
-- [fui](https://github.com/marek-g/rust-fui)
-- [OrbTk](https://github.com/redox-os/orbtk)
 - [Xilem](https://github.com/linebender/xilem)
 - [Azul](https://azul.rs/)
 - [Makepad](https://makepad.nl/)
 - [Freya](https://freyaui.dev/)
 - [Leptos](https://leptos.dev/)
+- [fui](https://github.com/marek-g/rust-fui)
 - [Ribir](https://github.com/RibirX/Ribir)
 - [Floem](https://github.com/lapce/floem)
 - [KAS](https://github.com/kas-gui/kas)
 - [Conrod](https://github.com/PistonDevelopers/conrod)
 - [silvia](https://github.com/nicksack/silvia)
 - [Masonry](https://github.com/linebender/masonry)
+- [OrbTk](https://github.com/redox-os/orbtk)
 
 ### C#
 - [Avalonia](https://avaloniaui.net/)
