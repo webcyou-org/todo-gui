@@ -92,10 +92,10 @@ ToDo Applications created using various GUI tools.
   - Makepad
   - Freya
   - Leptos
-  - KAS
-  - Conrod
   - Ribir
   - Floem
+  - KAS
+  - Conrod
   - silvia
   - Masonry
 
@@ -454,10 +454,10 @@ input:focus {
 - [Makepad](https://makepad.nl/)
 - [Freya](https://freyaui.dev/)
 - [Leptos](https://leptos.dev/)
-- [KAS](https://github.com/kas-gui/kas)
-- [Conrod](https://github.com/PistonDevelopers/conrod)
 - [Ribir](https://github.com/RibirX/Ribir)
 - [Floem](https://github.com/lapce/floem)
+- [KAS](https://github.com/kas-gui/kas)
+- [Conrod](https://github.com/PistonDevelopers/conrod)
 - [silvia](https://github.com/nicksack/silvia)
 - [Masonry](https://github.com/linebender/masonry)
 
