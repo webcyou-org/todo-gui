@@ -86,11 +86,11 @@ ToDo Applications created using various GUI tools.
   - [vizia](https://github.com/webcyou-org/todo-gui/tree/main/Rust/vizia/todo/)
   - [rui](https://github.com/webcyou-org/todo-gui/tree/main/Rust/rui/todo/)
   - [Xilem](https://github.com/webcyou-org/todo-gui/tree/main/Rust/Xilem/todo)
-  - Azul
-  - Makepad
-  - Freya
-  - Leptos
-  - fui
+  - [Azul](https://github.com/webcyou-org/todo-gui/tree/main/Rust/Azul)
+  - [Makepad](https://github.com/webcyou-org/todo-gui/tree/main/Rust/Makepad/todo)
+  - [Freya](https://github.com/webcyou-org/todo-gui/tree/main/Rust/Freya)
+  - [Leptos](https://github.com/webcyou-org/todo-gui/tree/main/Rust/Leptos/todo)
+  - [fui](https://github.com/webcyou-org/todo-gui/tree/main/Rust/fui/todo)
   - Ribir
   - Floem
   - KAS
