@@ -1,0 +1,10 @@
+[package]
+name = "freya-todo"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+freya = "0.3.4"
+
+[profile.release]
+opt-level = 3
