@@ -40,29 +40,31 @@ namespace ToDo.Converters
             => throw new NotImplementedException();
     }
 
-    /// <summary>bool → Checkbox fill (C_ACCENT when checked, Transparent otherwise)</summary>
+    /// <summary>bool → Checkbox fill (Transparent always — checkmark carries the accent)</summary>
     public class BoolToCheckboxFillConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            return (bool)value
-                ? new SolidColorBrush(Color.FromArgb(0xFF, 0x5D, 0xC2, 0xAF)) // C_ACCENT
-                : new SolidColorBrush(Colors.Transparent);
-        }
+            => new SolidColorBrush(Colors.Transparent);
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
             => throw new NotImplementedException();
     }
 
-    /// <summary>bool → Checkbox stroke (C_ACCENT when checked, C_CB_BORDER otherwise)</summary>
+    /// <summary>bool → Checkbox stroke (always C_CB_BORDER)</summary>
     public class BoolToCheckboxStrokeConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            return (bool)value
-                ? new SolidColorBrush(Color.FromArgb(0xFF, 0x5D, 0xC2, 0xAF)) // C_ACCENT
-                : new SolidColorBrush(Color.FromArgb(0xFF, 0xD9, 0xD9, 0xD9)); // C_CB_BORDER
-        }
+            => new SolidColorBrush(Color.FromArgb(0xFF, 0xD9, 0xD9, 0xD9)); // C_CB_BORDER
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+            => throw new NotImplementedException();
+    }
+
+    /// <summary>bool → Visibility (Visible when true)</summary>
+    public class BoolToVisibilityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+            => (bool)value ? Windows.UI.Xaml.Visibility.Visible : Windows.UI.Xaml.Visibility.Collapsed;
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
             => throw new NotImplementedException();

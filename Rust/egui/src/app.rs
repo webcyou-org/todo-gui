@@ -197,8 +197,8 @@ fn paint_todo_row(
     let cb_center = egui::pos2(rect.min.x + 10.0 + cb_radius, rect.center().y);
 
     if is_completed {
-        painter.circle_filled(cb_center, cb_radius, C_ACCENT);
-        let stroke = Stroke::new(1.5, C_WHITE);
+        painter.circle_stroke(cb_center, cb_radius - 0.75, Stroke::new(1.5, C_CB_BORDER));
+        let stroke = Stroke::new(1.5, C_ACCENT);
         // Checkmark proportions matching Fyne/Kivy implementations
         painter.line_segment(
             [

@@ -31,12 +31,11 @@ class TodoItemWidget(QWidget):
         cs = Theme.CB_SIZE
 
         if self._todo.is_completed:
-            p.setBrush(QColor(Theme.ACCENT))
-            p.setPen(Qt.NoPen)
-            p.drawEllipse(cx, cy, cs, cs)
-            p.setPen(QPen(QColor(Theme.WHITE), 1.5, Qt.SolidLine,
-                          Qt.RoundCap, Qt.RoundJoin))
             p.setBrush(Qt.NoBrush)
+            p.setPen(QPen(QColor(Theme.CB_BDR), 2))
+            p.drawEllipse(cx + 1, cy + 1, cs - 2, cs - 2)
+            p.setPen(QPen(QColor(Theme.ACCENT), 1.5, Qt.SolidLine,
+                          Qt.RoundCap, Qt.RoundJoin))
             ccx = cx + cs / 2.0
             ccy = cy + cs / 2.0
             p.drawPolyline(

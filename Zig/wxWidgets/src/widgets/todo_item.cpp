@@ -55,11 +55,11 @@ void TodoItemWidget::OnPaint(wxPaintEvent&) {
     wxRect cb = CbRect();
     bool done = (m_todo.is_completed != 0);
     if (done) {
-        gc->SetBrush(wxBrush(C_ACCENT));
-        gc->SetPen(wxPen(C_ACCENT, 0));
+        gc->SetBrush(*wxTRANSPARENT_BRUSH);
+        gc->SetPen(wxPen(C_CB_BORDER, 1));
         gc->DrawEllipse(cb.x, cb.y, cb.width, cb.height);
 
-        gc->SetPen(wxPen(C_WHITE, 1.5));
+        gc->SetPen(wxPen(C_ACCENT, 1.5));
         gc->SetBrush(*wxTRANSPARENT_BRUSH);
         double cx = cb.x + cb.width  / 2.0;
         double cy = cb.y + cb.height / 2.0;

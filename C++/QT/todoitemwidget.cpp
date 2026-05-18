@@ -24,12 +24,12 @@ void TodoItemWidget::paintEvent(QPaintEvent *) {
     m_cbRect = QRect(cbX, cbY, Theme::CB_SIZE, Theme::CB_SIZE);
 
     if (m_todo.isCompleted) {
-        p.setBrush(Theme::ACCENT);
-        p.setPen(Qt::NoPen);
+        p.setBrush(Qt::NoBrush);
+        p.setPen(QPen(Theme::CB_BORDER, 1));
         p.drawEllipse(m_cbRect);
 
-        // Checkmark
-        p.setPen(QPen(Theme::WHITE, 1.5, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+        // Checkmark in accent color
+        p.setPen(QPen(Theme::ACCENT, 1.5, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
         int cx = cbX + Theme::CB_SIZE / 2;
         int cy = cbY + Theme::CB_SIZE / 2;
         QPolygonF mark;

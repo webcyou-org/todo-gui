@@ -53,11 +53,11 @@ func (r *circleCheckRenderer) MinSize() fyne.Size { return fyne.NewSize(16, 16) 
 
 func (r *circleCheckRenderer) Refresh() {
 	if r.check.checked {
-		r.circle.FillColor = apptheme.ColorAccent
-		r.circle.StrokeColor = apptheme.ColorAccent
-		r.circle.StrokeWidth = 0
-		r.line1.StrokeColor = apptheme.ColorWhite
-		r.line2.StrokeColor = apptheme.ColorWhite
+		r.circle.FillColor = color.Transparent
+		r.circle.StrokeColor = apptheme.ColorCBBorder
+		r.circle.StrokeWidth = 1.5
+		r.line1.StrokeColor = apptheme.ColorAccent
+		r.line2.StrokeColor = apptheme.ColorAccent
 	} else {
 		r.circle.FillColor = color.Transparent
 		r.circle.StrokeColor = apptheme.ColorCBBorder

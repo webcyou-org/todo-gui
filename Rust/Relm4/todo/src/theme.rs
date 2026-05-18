@@ -93,8 +93,9 @@ checkbutton.todo-checkbox check {
 }
 
 checkbutton.todo-checkbox:checked check {
-    border-color: #5DC2AF;
-    background-color: #5DC2AF;
+    border-color: #D9D9D9;
+    background-color: transparent;
     background-image: none;
+    color: #5DC2AF;
 }
 "#;

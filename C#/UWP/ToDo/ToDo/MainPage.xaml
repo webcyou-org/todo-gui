@@ -35,6 +35,7 @@
         <converters:BoolToForegroundConverter      x:Key="BoolToForeground"/>
         <converters:BoolToCheckboxFillConverter    x:Key="BoolToCheckboxFill"/>
         <converters:BoolToCheckboxStrokeConverter  x:Key="BoolToCheckboxStroke"/>
+        <converters:BoolToVisibilityConverter      x:Key="BoolToVisibility"/>
 
         <!--
             Tab button: flat appearance, no hover highlight.
@@ -166,12 +167,19 @@
                                 <Button Style="{StaticResource CheckboxButtonStyle}"
                                         Margin="0,0,18,0"
                                         Click="Checkbox_Click">
-                                    <Ellipse Width="16" Height="16"
-                                             Fill="{Binding IsCompleted,
-                                                   Converter={StaticResource BoolToCheckboxFill}}"
-                                             Stroke="{Binding IsCompleted,
-                                                     Converter={StaticResource BoolToCheckboxStroke}}"
-                                             StrokeThickness="2"/>
+                                    <Grid Width="16" Height="16">
+                                        <Ellipse Width="16" Height="16"
+                                                 Fill="Transparent"
+                                                 Stroke="#D9D9D9"
+                                                 StrokeThickness="2"/>
+                                        <TextBlock Text="✓"
+                                                   Foreground="#5DC2AF"
+                                                   FontSize="10"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Visibility="{Binding IsCompleted,
+                                                               Converter={StaticResource BoolToVisibility}}"/>
+                                    </Grid>
                                 </Button>
 
                                 <!-- Task label: strikethrough + C_MUTED when completed -->

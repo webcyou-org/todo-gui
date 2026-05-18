@@ -100,6 +100,9 @@ pub extern fn gdk_display_get_default() gpointer;
 
 // ── Cairo ─────────────────────────────────────────────────────────────────────
 pub extern fn cairo_arc(cr: gpointer, xc: f64, yc: f64, r: f64, a1: f64, a2: f64) void;
+pub extern fn cairo_new_path(cr: gpointer) void;
+pub extern fn cairo_move_to(cr: gpointer, x: f64, y: f64) void;
+pub extern fn cairo_line_to(cr: gpointer, x: f64, y: f64) void;
 pub extern fn cairo_set_source_rgb(cr: gpointer, r: f64, g2: f64, b: f64) void;
 pub extern fn cairo_set_line_width(cr: gpointer, w: f64) void;
 pub extern fn cairo_fill(cr: gpointer) void;

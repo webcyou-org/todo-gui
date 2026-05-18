@@ -69,17 +69,21 @@ private fun TodoItem(todo: Todo, onToggle: () -> Unit) {
             val r = size.minDimension / 2f
             val center = Offset(r, r)
             if (todo.isCompleted) {
-                drawCircle(color = Theme.ACCENT, radius = r)
-                // Checkmark
+                drawCircle(
+                    color = Theme.CB_BORDER,
+                    radius = r - 1.dp.toPx(),
+                    style = Stroke(width = 2.dp.toPx()),
+                )
+                // Checkmark in accent color
                 val sw = 1.5.dp.toPx()
                 drawLine(
-                    color = androidx.compose.ui.graphics.Color.White,
+                    color = Theme.ACCENT,
                     start = Offset(center.x - r * 0.45f, center.y),
                     end   = Offset(center.x - r * 0.1f,  center.y + r * 0.45f),
                     strokeWidth = sw,
                 )
                 drawLine(
-                    color = androidx.compose.ui.graphics.Color.White,
+                    color = Theme.ACCENT,
                     start = Offset(center.x - r * 0.1f, center.y + r * 0.45f),
                     end   = Offset(center.x + r * 0.5f, center.y - r * 0.4f),
                     strokeWidth = sw,

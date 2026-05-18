@@ -22,24 +22,37 @@
                                     Cursor="Hand">
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">
-                                        <Ellipse Width="16" Height="16" StrokeThickness="2">
-                                            <Ellipse.Style>
-                                                <Style TargetType="Ellipse">
-                                                    <Setter Property="Stroke"
-                                                            Value="{StaticResource BrushCbBorder}" />
-                                                    <Setter Property="Fill" Value="Transparent" />
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding IsCompleted}"
-                                                                     Value="True">
-                                                            <Setter Property="Stroke"
-                                                                    Value="{StaticResource BrushAccent}" />
-                                                            <Setter Property="Fill"
-                                                                    Value="{StaticResource BrushAccent}" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Ellipse.Style>
-                                        </Ellipse>
+                                        <Grid Width="16" Height="16">
+                                            <Ellipse Width="16" Height="16" StrokeThickness="2" Fill="Transparent">
+                                                <Ellipse.Style>
+                                                    <Style TargetType="Ellipse">
+                                                        <Setter Property="Stroke"
+                                                                Value="{StaticResource BrushCbBorder}" />
+                                                        <Style.Triggers>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Ellipse.Style>
+                                            </Ellipse>
+                                            <Path Data="M3,8 L6,11 L13,4"
+                                                  Stroke="{StaticResource BrushAccent}"
+                                                  StrokeThickness="1.5"
+                                                  StrokeStartLineCap="Round"
+                                                  StrokeEndLineCap="Round"
+                                                  StrokeLineJoin="Round"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center">
+                                                <Path.Style>
+                                                    <Style TargetType="Path">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsCompleted}" Value="True">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Path.Style>
+                                            </Path>
+                                        </Grid>
                                     </ControlTemplate>
                                 </Button.Template>
                             </Button>

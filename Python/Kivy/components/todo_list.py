@@ -30,9 +30,9 @@ class _CircleCheckbox(Widget):
         s = self.width  # actual rendered size (dp-scaled)
         with self.canvas:
             if self.is_completed:
+                Color(*C_CB_BORDER)
+                Line(ellipse=(*self.pos, *self.size), width=dp(1.5))
                 Color(*C_ACCENT)
-                Ellipse(pos=self.pos, size=self.size)
-                Color(*C_WHITE)
                 Line(
                     points=[
                         self.x + s * 0.25, self.y + s * 0.50,

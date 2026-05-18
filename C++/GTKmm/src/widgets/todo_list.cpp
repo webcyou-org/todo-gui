@@ -24,13 +24,15 @@ bool TodoItemWidget::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
     double r   = Theme::CB_SIZE / 2.0;
 
     if (todo_.is_completed) {
+        set_color(cr, Theme::CB_BDR);
+        cr->set_line_width(2.0);
+        cr->arc(cx, cy, r - 1, 0, 2 * M_PI);
+        cr->stroke();
         set_color(cr, Theme::ACCENT);
-        cr->arc(cx, cy, r, 0, 2 * M_PI);
-        cr->fill();
-        set_color(cr, Theme::WHITE);
         cr->set_line_width(1.5);
         cr->set_line_cap(Cairo::LINE_CAP_ROUND);
         cr->set_line_join(Cairo::LINE_JOIN_ROUND);
+        cr->begin_new_path();
         cr->move_to(cx - 4, cy);
         cr->line_to(cx - 1, cy + 3);
         cr->line_to(cx + 4, cy - 3);

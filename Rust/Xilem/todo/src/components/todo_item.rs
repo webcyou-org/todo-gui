@@ -11,15 +11,16 @@ fn todo_row(todo: &Todo) -> impl WidgetView<AppState> {
     let is_completed = todo.is_completed;
     let task = todo.task.clone();
 
-    let cb_bg = if is_completed { C_ACCENT } else { Color::TRANSPARENT };
-    let cb_border = if is_completed { C_ACCENT } else { C_CB_BORDER };
+    let cb_border = C_CB_BORDER;
+    let cb_label = if is_completed { "✓" } else { "" };
+    let cb_label_color = if is_completed { C_ACCENT } else { C_SURFACE };
 
     let checkbox = sized_box(
         button(
-            label(""),
+            label(cb_label).color(cb_label_color),
             move |state: &mut AppState| state.toggle(id),
         )
-        .background_color(cb_bg)
+        .background_color(Color::TRANSPARENT)
         .border(cb_border, 2.)
         .corner_radius(8.)
         .padding(0.),

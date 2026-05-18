@@ -62,12 +62,15 @@ pub fn update(state: *data.AppState) void {
         const cb_cx = pos[0] + pad + cb_r;
         const cb_cy = pos[1] + h / 2.0;
         if (todo.is_completed) {
-            dl.addCircleFilled(.{
+            dl.addCircle(.{
                 .p   = .{ cb_cx, cb_cy },
                 .r   = cb_r,
-                .col = ACCENT_COL,
+                .col = CB_BORDER,
                 .num_segments = 32,
+                .thickness = 2,
             });
+            dl.addLine(.{ .p1 = .{ cb_cx - 4.0, cb_cy },       .p2 = .{ cb_cx - 1.0, cb_cy + 3.0 }, .col = ACCENT_COL, .thickness = 1.5 });
+            dl.addLine(.{ .p1 = .{ cb_cx - 1.0, cb_cy + 3.0 }, .p2 = .{ cb_cx + 4.0, cb_cy - 3.0 }, .col = ACCENT_COL, .thickness = 1.5 });
         } else {
             dl.addCircle(.{
                 .p   = .{ cb_cx, cb_cy },

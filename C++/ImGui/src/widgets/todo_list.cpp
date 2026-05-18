@@ -31,15 +31,16 @@ void render_todo_list(TodoModel& model, TabFilter active_tab) {
                         cb_y + Theme::CB_SIZE * 0.5f};
 
         if (todo.is_completed) {
-            dl->AddCircleFilled(cb_c, Theme::CB_RADIUS, Theme::u32(Theme::C_ACCENT));
-            // Checkmark (two-segment line)
+            dl->AddCircle(cb_c, Theme::CB_RADIUS,
+                          Theme::u32(Theme::C_CB_BORDER), 32, 2.f);
+            // Checkmark (two-segment line) in accent color
             float r = Theme::CB_RADIUS;
             dl->AddLine({cb_c.x - r * 0.45f, cb_c.y},
                         {cb_c.x - r * 0.1f,  cb_c.y + r * 0.45f},
-                        IM_COL32(255,255,255,255), 1.5f);
+                        Theme::u32(Theme::C_ACCENT), 1.5f);
             dl->AddLine({cb_c.x - r * 0.1f, cb_c.y + r * 0.45f},
                         {cb_c.x + r * 0.5f, cb_c.y - r * 0.4f},
-                        IM_COL32(255,255,255,255), 1.5f);
+                        Theme::u32(Theme::C_ACCENT), 1.5f);
         } else {
             dl->AddCircle(cb_c, Theme::CB_RADIUS,
                           Theme::u32(Theme::C_CB_BORDER), 32, 2.f);

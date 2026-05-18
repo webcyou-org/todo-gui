@@ -11,15 +11,15 @@ def todo_item(todo: Todo) -> rx.Component:
             rx.box(
                 rx.text(
                     "✓",
-                    color=theme.WHITE,
+                    color=theme.ACCENT,
                     font_size="10px",
-                    font_weight="bold",
                     line_height="1",
                 ),
                 width=theme.CB_SIZE,
                 height=theme.CB_SIZE,
                 border_radius="50%",
-                background_color=theme.ACCENT,
+                background_color="transparent",
+                border=f"2px solid {theme.CB_BDR}",
                 display="flex",
                 align_items="center",
                 justify_content="center",

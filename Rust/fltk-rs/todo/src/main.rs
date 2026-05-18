@@ -279,10 +279,11 @@ fn draw_checkbox(x: i32, y: i32, w: i32, h: i32, checked: bool) {
     draw::draw_rectf(x, y, w, h);
 
     if checked {
+        draw::set_draw_color(C_CB_BORDER);
+        draw::set_line_style(draw::LineStyle::Solid, 2);
+        draw::draw_arc(cx, cy, size, size, 0.0, 360.0);
+        // Checkmark in accent color
         draw::set_draw_color(C_ACCENT);
-        draw::draw_pie(cx, cy, size, size, 0.0, 360.0);
-        // Checkmark
-        draw::set_draw_color(C_WHITE);
         draw::set_line_style(draw::LineStyle::Solid, 2);
         draw::draw_line(mx - 4, my, mx - 1, my + 3);
         draw::draw_line(mx - 1, my + 3, mx + 4, my - 3);

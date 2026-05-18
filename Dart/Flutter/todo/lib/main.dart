@@ -185,11 +185,14 @@ class _TodoListPageState extends State<TodoListPage> {
                             value: _foundTodoList[index].isCheck,
                             controlAffinity: ListTileControlAffinity.leading,
                             activeColor: Colors.black.withOpacity(0),
+                            checkColor: Color.fromRGBO(0x5D, 0xC2, 0xAF, 1),
                             checkboxShape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
-                            side: BorderSide(
-                              color: Color.fromRGBO(217, 217, 217, 1),
-                              width: 2.0,
+                            side: MaterialStateBorderSide.resolveWith(
+                              (states) => BorderSide(
+                                color: Color.fromRGBO(217, 217, 217, 1),
+                                width: 2.0,
+                              ),
                             ),
                             title: Text(_foundTodoList[index].title,
                                 style: TextStyle(

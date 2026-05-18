@@ -67,13 +67,18 @@ func paintTodoRow(canvas *walk.Canvas, bounds walk.Rectangle, todo *Todo) error 
 	cbBounds := walk.Rectangle{X: padL, Y: cbY, Width: cbSize, Height: cbSize}
 
 	if todo.IsCompleted {
-		// Filled circle (accent color)
-		accentBrush, _ := walk.NewSolidColorBrush(colorAccent)
-		defer accentBrush.Dispose()
-		canvas.FillEllipse(accentBrush, cbBounds)
+		// Circle outline in CB border color (outer fill + inner surface cutout)
+		borderBrush, _ := walk.NewSolidColorBrush(colorCBBorder)
+		defer borderBrush.Dispose()
+		bgInner, _ := walk.NewSolidColorBrush(colorSurface)
+		defer bgInner.Dispose()
+		canvas.FillEllipse(borderBrush, cbBounds)
+		canvas.FillEllipse(bgInner, walk.Rectangle{
+			X: padL + 2, Y: cbY + 2, Width: cbSize - 4, Height: cbSize - 4,
+		})
 
-		// Checkmark: two lines forming a tick
-		checkPen, _ := walk.NewCosmeticPen(walk.PenSolid, colorWhite)
+		// Checkmark in accent color
+		checkPen, _ := walk.NewCosmeticPen(walk.PenSolid, colorAccent)
 		defer checkPen.Dispose()
 		canvas.DrawPolyline(checkPen, []walk.Point{
 			{X: padL + 4, Y: cbY + 8},

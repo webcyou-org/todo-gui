@@ -17,8 +17,8 @@ func renderTodoList(rgba *image.RGBA, state *AppState, x, y, w int) {
 		cbCX := x + itemPad + cbR
 		cbCY := y + itemH/2
 		if todo.IsCompleted {
-			fillCircle(rgba, cbCX, cbCY, cbR, colAccent)
-			drawCheckmark(rgba, cbCX, cbCY, colWhite)
+			strokeCircle(rgba, cbCX, cbCY, cbR, max(1, sc(2)), colCBBorder)
+			drawCheckmark(rgba, cbCX, cbCY, colAccent)
 		} else {
 			strokeCircle(rgba, cbCX, cbCY, cbR, max(1, sc(2)), colCBBorder)
 		}

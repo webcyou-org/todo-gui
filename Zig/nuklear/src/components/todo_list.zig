@@ -26,7 +26,11 @@ fn drawItem(app: *c.NkApp, todo: data.Todo) bool {
         .h = CB_R * 2.0,
     };
     if (todo.is_completed) {
-        c.nk_app_draw_fill_circle(app, cb_rect, C_ACCENT);
+        c.nk_app_draw_stroke_circle(app, cb_rect, 2.0, C_CB_BORDER);
+        const cb_cx = bounds.x + PAD + CB_R;
+        const cb_cy = bounds.y + ITEM_H / 2.0;
+        c.nk_app_draw_stroke_line(app, cb_cx - 4, cb_cy, cb_cx - 1, cb_cy + 3, 1.5, C_ACCENT);
+        c.nk_app_draw_stroke_line(app, cb_cx - 1, cb_cy + 3, cb_cx + 4, cb_cy - 3, 1.5, C_ACCENT);
     } else {
         c.nk_app_draw_stroke_circle(app, cb_rect, 2.0, C_CB_BORDER);
     }

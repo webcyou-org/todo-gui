@@ -41,13 +41,13 @@ live_design! {
                 border_radius: 8.0,
                 border_size: 2.0,
                 color: (C_SURFACE),
-                color_active: (C_ACCENT),
+                color_active: (C_SURFACE),
                 border_color_1: (C_CB_BORDER),
                 border_color_2: (C_CB_BORDER),
-                border_color_1_active: (C_ACCENT),
-                border_color_2_active: (C_ACCENT),
+                border_color_1_active: (C_CB_BORDER),
+                border_color_2_active: (C_CB_BORDER),
                 mark_color: #0000,
-                mark_color_active: #FFFFFF,
+                mark_color_active: (C_ACCENT),
             }
         }
 

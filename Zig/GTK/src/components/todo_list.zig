@@ -19,12 +19,23 @@ export fn todo_drawCb(
     const d: *const CbData = @ptrCast(@alignCast(ud.?));
     const done = ctx.G.state.isCompleted(d.id);
 
-    b.cairo_arc(cr, 8.0, 8.0, 6.5, 0.0, 2.0 * std.math.pi);
     if (done) {
+        // Outlined circle in CB border color
+        b.cairo_set_source_rgb(cr, @as(f64, 0xD9)/255.0, @as(f64, 0xD9)/255.0, @as(f64, 0xD9)/255.0);
+        b.cairo_arc(cr, 8.0, 8.0, 6.5, 0.0, 2.0 * std.math.pi);
+        b.cairo_set_line_width(cr, 1.5);
+        b.cairo_stroke(cr);
+        // Checkmark in accent
         b.cairo_set_source_rgb(cr, @as(f64, 0x5D)/255.0, @as(f64, 0xC2)/255.0, @as(f64, 0xAF)/255.0);
-        b.cairo_fill(cr);
+        b.cairo_new_path(cr);
+        b.cairo_move_to(cr, 4.0, 8.0);
+        b.cairo_line_to(cr, 7.0, 11.0);
+        b.cairo_line_to(cr, 12.0, 5.0);
+        b.cairo_set_line_width(cr, 1.5);
+        b.cairo_stroke(cr);
     } else {
         b.cairo_set_source_rgb(cr, @as(f64, 0xD9)/255.0, @as(f64, 0xD9)/255.0, @as(f64, 0xD9)/255.0);
+        b.cairo_arc(cr, 8.0, 8.0, 6.5, 0.0, 2.0 * std.math.pi);
         b.cairo_set_line_width(cr, 2.0);
         b.cairo_stroke(cr);
     }

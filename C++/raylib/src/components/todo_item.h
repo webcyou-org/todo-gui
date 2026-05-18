@@ -7,12 +7,13 @@
 
 static inline void DrawCheckbox(Vector2 center, bool checked) {
     if (checked) {
-        DrawCircleV(center, CB_RADIUS, C_ACCENT);
+        DrawCircleV(center, CB_RADIUS, C_CB_BORDER);
+        DrawCircleV(center, CB_RADIUS - 2.0f, C_SURFACE);
         Vector2 p1 = {center.x - 3.0f, center.y + 0.5f};
         Vector2 p2 = {center.x - 0.5f, center.y + 3.0f};
         Vector2 p3 = {center.x + 3.5f, center.y - 2.5f};
-        DrawLineEx(p1, p2, 1.5f, C_WHITE);
-        DrawLineEx(p2, p3, 1.5f, C_WHITE);
+        DrawLineEx(p1, p2, 1.5f, C_ACCENT);
+        DrawLineEx(p2, p3, 1.5f, C_ACCENT);
     } else {
         DrawCircleV(center, CB_RADIUS, C_CB_BORDER);
         DrawCircleV(center, CB_RADIUS - 2.0f, C_SURFACE);

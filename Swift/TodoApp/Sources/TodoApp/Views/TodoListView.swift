@@ -20,15 +20,25 @@ private struct TodoItemRow: View {
 
     var body: some View {
         HStack(spacing: 0) {
-            Circle()
-                .fill(todo.isCompleted ? Theme.accent : Color.clear)
-                .overlay(
-                    Circle().stroke(
-                        todo.isCompleted ? Theme.accent : Theme.cbBorder,
-                        lineWidth: 2
+            ZStack {
+                Circle()
+                    .fill(Color.clear)
+                    .overlay(
+                        Circle().stroke(
+                            Theme.cbBorder,
+                            lineWidth: 2
+                        )
                     )
-                )
-                .frame(width: 16, height: 16)
+                if todo.isCompleted {
+                    Path { p in
+                        p.move(to: CGPoint(x: 4, y: 8))
+                        p.addLine(to: CGPoint(x: 7, y: 11))
+                        p.addLine(to: CGPoint(x: 12, y: 5))
+                    }
+                    .stroke(Theme.accent, style: StrokeStyle(lineWidth: 1.5, lineCap: .round, lineJoin: .round))
+                }
+            }
+            .frame(width: 16, height: 16)
 
             Spacer().frame(width: 18)
 

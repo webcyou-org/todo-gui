@@ -63,17 +63,29 @@
             <Setter Property="Padding" Value="0"/>
             <Setter Property="Template">
                 <ControlTemplate TargetType="CheckBox">
-                    <Ellipse Name="PART_Ellipse"
-                             Width="16" Height="16"
-                             StrokeThickness="2"
-                             Stroke="#D9D9D9"
-                             Fill="Transparent"/>
+                    <Grid Width="16" Height="16">
+                        <Ellipse Name="PART_Ellipse"
+                                 Width="16" Height="16"
+                                 StrokeThickness="2"
+                                 Stroke="#D9D9D9"
+                                 Fill="Transparent"/>
+                        <Path Name="PART_Check"
+                              Data="M3,8 L6,11 L13,4"
+                              Stroke="#5DC2AF"
+                              StrokeThickness="1.5"
+                              StrokeLineCap="Round"
+                              StrokeLineJoin="Round"
+                              IsVisible="False"/>
+                    </Grid>
                 </ControlTemplate>
             </Setter>
         </Style>
         <Style Selector="CheckBox.circular:checked /template/ Ellipse#PART_Ellipse">
-            <Setter Property="Fill" Value="#5DC2AF"/>
-            <Setter Property="Stroke" Value="#5DC2AF"/>
+            <Setter Property="Fill" Value="Transparent"/>
+            <Setter Property="Stroke" Value="#D9D9D9"/>
+        </Style>
+        <Style Selector="CheckBox.circular:checked /template/ Path#PART_Check">
+            <Setter Property="IsVisible" Value="True"/>
         </Style>
     </Application.Styles>
 

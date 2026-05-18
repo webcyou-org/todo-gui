@@ -7,11 +7,11 @@ from theme import Theme
 def build_checkbox(completed: bool) -> ft.Container:
     if completed:
         return ft.Container(
-            content=ft.Icon(ft.Icons.CHECK, size=10, color=Theme.WHITE),
+            content=ft.Text("✓", size=10, color=Theme.ACCENT),
             width=16,
             height=16,
             border_radius=8,
-            bgcolor=Theme.ACCENT,
+            border=ft.Border.all(2, Theme.CB_BDR),
             alignment=ft.Alignment(0, 0),
         )
     else:

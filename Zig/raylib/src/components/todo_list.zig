@@ -11,7 +11,11 @@ fn drawItem(todo: data.Todo, x: f32, y: f32, w: f32, font: rl.Font) void {
     const cb_cx: i32 = @intFromFloat(x + 10 + th.CB_SIZE / 2);
     const cb_cy: i32 = @intFromFloat(y + th.ITEM_H / 2);
     if (todo.is_completed) {
-        rl.DrawCircle(cb_cx, cb_cy, th.CB_SIZE / 2, th.C_ACCENT);
+        rl.DrawCircleLines(cb_cx, cb_cy, th.CB_SIZE / 2, th.C_CB_BORDER);
+        const cx: f32 = @floatFromInt(cb_cx);
+        const cy: f32 = @floatFromInt(cb_cy);
+        rl.DrawLineEx(.{ .x = cx - 4, .y = cy },       .{ .x = cx - 1, .y = cy + 3 }, 1.5, th.C_ACCENT);
+        rl.DrawLineEx(.{ .x = cx - 1, .y = cy + 3 },   .{ .x = cx + 4, .y = cy - 3 }, 1.5, th.C_ACCENT);
     } else {
         rl.DrawCircleLines(cb_cx, cb_cy, th.CB_SIZE / 2, th.C_CB_BORDER);
     }

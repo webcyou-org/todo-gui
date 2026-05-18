@@ -80,9 +80,9 @@ def _make_todo_row(parent: tk.Widget, todo: Todo, on_toggle):
         # Circular checkbox
         cb = tk.Canvas(row, width=16, height=16, bg=C_SURFACE, highlightthickness=0)
         if todo.is_completed:
-            cb.create_oval(1, 1, 15, 15, fill=C_ACCENT, outline=C_ACCENT)
-            cb.create_line(4, 8, 7, 11, fill=C_WHITE, width=1.5, capstyle=tk.ROUND)
-            cb.create_line(7, 11, 12, 5, fill=C_WHITE, width=1.5, capstyle=tk.ROUND)
+            cb.create_oval(1, 1, 15, 15, fill="", outline=C_CB_BORDER, width=1.5)
+            cb.create_line(4, 8, 7, 11, fill=C_ACCENT, width=1.5, capstyle=tk.ROUND)
+            cb.create_line(7, 11, 12, 5, fill=C_ACCENT, width=1.5, capstyle=tk.ROUND)
         else:
             cb.create_oval(1, 1, 15, 15, fill="", outline=C_CB_BORDER, width=1.5)
 

@@ -34,7 +34,7 @@ namespace ToDo.Converters
     public class CheckboxBgConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) =>
-            (value is bool b && b) ? Color.FromHex("#5DC2AF") : Color.Transparent;
+            Color.Transparent;
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
             throw new NotImplementedException();
@@ -43,7 +43,7 @@ namespace ToDo.Converters
     public class CheckboxBorderConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) =>
-            (value is bool b && b) ? Color.FromHex("#5DC2AF") : Color.FromHex("#D9D9D9");
+            Color.FromHex("#D9D9D9");
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
             throw new NotImplementedException();

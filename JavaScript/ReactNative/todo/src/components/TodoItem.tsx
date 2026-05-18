@@ -15,7 +15,9 @@ export function TodoItem({todo, onToggle}: Props): React.JSX.Element {
         style={[styles.checkbox, todo.isCompleted && styles.checkboxChecked]}
         onPress={() => onToggle(todo)}
         activeOpacity={0.7}
-      />
+      >
+        {todo.isCompleted && <Text style={styles.checkmark}>✓</Text>}
+      </TouchableOpacity>
       <Text
         style={[styles.taskText, todo.isCompleted && styles.taskTextCompleted]}>
         {todo.task}
@@ -41,10 +43,15 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: C.CB_BORDER,
     marginRight: S.CB_MR,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   checkboxChecked: {
-    backgroundColor: C.ACCENT,
-    borderColor: C.ACCENT,
+  },
+  checkmark: {
+    color: C.ACCENT,
+    fontSize: 10,
+    lineHeight: 14,
   },
   taskText: {
     color: C.TEXT,

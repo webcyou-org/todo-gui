@@ -42,10 +42,10 @@ class TodoItem(wx.Panel):
         cx = CB_PAD_L + CB_SIZE / 2
         r = CB_SIZE / 2 - 1
         if self._todo.is_completed:
-            gc.SetBrush(gc.CreateBrush(wx.Brush(C_ACCENT)))
-            gc.SetPen(wx.TRANSPARENT_PEN)
+            gc.SetBrush(wx.TRANSPARENT_BRUSH)
+            gc.SetPen(gc.CreatePen(wx.GraphicsPenInfo(C_CB_BDR).Width(1)))
             gc.DrawEllipse(cx - r, cy - r, r * 2, r * 2)
-            pen = gc.CreatePen(wx.GraphicsPenInfo(C_WHITE).Width(1.5))
+            pen = gc.CreatePen(wx.GraphicsPenInfo(C_ACCENT).Width(1.5))
             gc.SetPen(pen)
             path = gc.CreatePath()
             path.MoveToPoint(cx - 4, cy)

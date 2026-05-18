@@ -52,8 +52,8 @@ static QWidget* createTodoRow(CTodo todo) {
             "QCheckBox { spacing: 0px; margin: 0px; }"
             "QCheckBox::indicator {"
             "  width: 16px; height: 16px; border-radius: 8px;"
-            "  background-color: %1; border: 2px solid %1;"
-            "}").arg(C_ACCENT);
+            "  background-color: transparent; border: 2px solid %1;"
+            "}").arg(C_CB_BORDER);
     } else {
         cbStyle = QString(
             "QCheckBox { spacing: 0px; margin: 0px; }"

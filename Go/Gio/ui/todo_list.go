@@ -3,6 +3,7 @@ package ui
 import (
 	"image"
 
+	"gioui.org/f32"
 	"gioui.org/layout"
 	"gioui.org/op/clip"
 	"gioui.org/op/paint"
@@ -63,13 +64,26 @@ func layoutTodoItem(gtx C, th *material.Theme, todo *data.Todo, click *widget.Cl
 
 func drawCheckbox(gtx C, checked bool) D {
 	size := gtx.Dp(unit.Dp(16))
-	ellipse := clip.Ellipse(image.Rectangle{Max: image.Pt(size, size)})
+	b := gtx.Dp(unit.Dp(2))
 
 	if checked {
-		paint.FillShape(gtx.Ops, theme.ColorAccent, ellipse.Op(gtx.Ops))
+		// Outlined circle in CB border color
+		paint.FillShape(gtx.Ops, theme.ColorCBBorder,
+			clip.Ellipse(image.Rectangle{Max: image.Pt(size, size)}).Op(gtx.Ops))
+		paint.FillShape(gtx.Ops, theme.ColorSurface,
+			clip.Ellipse(image.Rectangle{Min: image.Pt(b, b), Max: image.Pt(size-b, size-b)}).Op(gtx.Ops))
+		// Checkmark in accent
+		s := float32(size) / 16
+		var p clip.Path
+		p.Begin(gtx.Ops)
+		p.MoveTo(f32.Pt(4*s, 8*s))
+		p.LineTo(f32.Pt(7*s, 11*s))
+		p.LineTo(f32.Pt(12*s, 5*s))
+		paint.FillShape(gtx.Ops, theme.ColorAccent,
+			clip.Stroke{Path: p.End(), Width: float32(gtx.Dp(unit.Dp(1.5)))}.Op())
 	} else {
-		paint.FillShape(gtx.Ops, theme.ColorCBBorder, ellipse.Op(gtx.Ops))
-		b := gtx.Dp(unit.Dp(2))
+		paint.FillShape(gtx.Ops, theme.ColorCBBorder,
+			clip.Ellipse(image.Rectangle{Max: image.Pt(size, size)}).Op(gtx.Ops))
 		inner := clip.Ellipse(image.Rectangle{Min: image.Pt(b, b), Max: image.Pt(size-b, size-b)})
 		paint.FillShape(gtx.Ops, theme.ColorSurface, inner.Op(gtx.Ops))
 	}

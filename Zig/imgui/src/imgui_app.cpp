@@ -235,7 +235,9 @@ bool app_draw_todo_item(const char* id_str, const char* text, bool completed) {
     float cb_cx = pos.x + pad + cb_r;
     float cb_cy = pos.y + h / 2.f;
     if (completed) {
-        dl->AddCircleFilled({cb_cx, cb_cy}, cb_r, C_ACCENT, 32);
+        dl->AddCircle({cb_cx, cb_cy}, cb_r, C_CB_BORDER, 32, 2.f);
+        dl->AddLine({cb_cx - 4.f, cb_cy}, {cb_cx - 1.f, cb_cy + 3.f}, C_ACCENT, 1.5f);
+        dl->AddLine({cb_cx - 1.f, cb_cy + 3.f}, {cb_cx + 4.f, cb_cy - 3.f}, C_ACCENT, 1.5f);
     } else {
         dl->AddCircle({cb_cx, cb_cy}, cb_r, C_CB_BORDER, 32, 2.f);
     }

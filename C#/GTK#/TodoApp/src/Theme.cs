@@ -81,11 +81,20 @@ public static class Theme
         .checkbox-circle:hover {
             background-color: transparent;
         }
+        /* Checkmark label inside the checkbox button */
+        .checkbox-circle label.checkbox-check {
+            color: transparent;
+            font-size: 10px;
+            padding: 0;
+        }
         /* Use !important so .todo-item * transparent doesn't win */
         .checkbox-circle.checked,
         .todo-item .checkbox-circle.checked {
-            background-color: #5DC2AF;
-            border-color: #5DC2AF;
+            background-color: transparent;
+            border-color: #D9D9D9;
+        }
+        .checkbox-circle.checked label.checkbox-check {
+            color: #5DC2AF;
         }
         scrolledwindow, viewport {
             background-color: #1C1C1C;

@@ -11,7 +11,7 @@ pub fn build_todo_list(cx: &mut Context) {
                     let is_completed = todo.is_completed;
 
                     HStack::new(cx, |cx| {
-                        Element::new(cx)
+                        Label::new(cx, if is_completed { "✓" } else { "" })
                             .class("checkbox")
                             .toggle_class("checked", is_completed)
                             .on_press(move |cx| cx.emit(AppEvent::ToggleTodo(id)));

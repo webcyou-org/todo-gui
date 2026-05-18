@@ -70,14 +70,14 @@ func newTodoItemWidget(parent *widgets.QWidget, todo Todo, onToggle func(int)) *
 		p.DrawRoundedRect3(w.Rect(), 4, 4, core.Qt__AbsoluteSize)
 
 		if todo.IsCompleted {
-			// Filled circle
-			p.SetBrush(gui.NewQBrush3(T.Accent, core.Qt__SolidPattern))
-			p.SetPen3(core.Qt__NoPen)
+			// Circle outline in CB border color
+			p.SetBrush2(core.Qt__NoBrush)
+			p.SetPen(gui.NewQPen3(T.CBBorder))
 			p.DrawEllipse2(cbRect)
 
-			// Checkmark
+			// Checkmark in accent
 			pen := gui.NewQPen4(
-				gui.NewQBrush3(T.White, core.Qt__SolidPattern),
+				gui.NewQBrush3(T.Accent, core.Qt__SolidPattern),
 				1.5,
 				core.Qt__SolidLine,
 				core.Qt__RoundCap,

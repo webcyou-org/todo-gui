@@ -42,12 +42,11 @@ def build_todo_item(todo: Todo, on_toggle: Callable) -> gui.HBox:
         'box-sizing': 'border-box',
     })
     if todo.is_completed:
-        cb.style['background-color'] = Theme.ACCENT
+        cb.style['border'] = f'2px solid {Theme.CB_BDR}'
         check = gui.Label("✓")
         check.style.update({
-            'color': Theme.WHITE,
+            'color': Theme.ACCENT,
             'font-size': '10px',
-            'font-weight': 'bold',
             'line-height': '1',
             'pointer-events': 'none',
         })

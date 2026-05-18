@@ -22,10 +22,12 @@ void TodoList::drawItem(const Todo& todo, int iy) {
     int cs = Theme::CB_SIZE;
 
     if (todo.isCompleted) {
+        fl_color(Theme::CB_BDR);
+        fl_line_style(FL_SOLID, 2);
+        fl_arc(cx, cy, cs, cs, 0, 360);
+        fl_line_style(0);
         fl_color(Theme::ACCENT);
-        fl_pie(cx, cy, cs, cs, 0, 360);
         double ccx = cx + cs / 2.0, ccy = cy + cs / 2.0;
-        fl_color(Theme::WHITE);
         fl_line_style(FL_SOLID, 1);
         fl_begin_line();
         fl_vertex(ccx - 4, ccy);

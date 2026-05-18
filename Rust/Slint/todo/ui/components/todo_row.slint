@@ -26,15 +26,15 @@ export component TodoRow {
                     y: (parent.height - self.height) / 2;
                     border-radius: 8px;
                     border-width: 1.5px;
-                    border-color: item.is-completed ? #5DC2AF : #D9D9D9;
-                    background: item.is-completed ? #5DC2AF : transparent;
+                    border-color: #D9D9D9;
+                    background: transparent;
 
                     if item.is-completed: Path {
                         width: 10px;
                         height: 8px;
                         x: (parent.width - self.width) / 2;
                         y: (parent.height - self.height) / 2;
-                        stroke: white;
+                        stroke: #5DC2AF;
                         stroke-width: 1.5px;
                         commands: "M 1 4 L 4 7 L 9 1";
                     }

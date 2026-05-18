@@ -103,14 +103,14 @@ internal sealed class TodoItemControl : Control
         var cb = CheckboxRect();
         if (_todo.IsCompleted)
         {
-            using var fill = new SolidBrush(Theme.Accent);
-            g.FillEllipse(fill, cb);
-            // Checkmark
-            using var pen = new Pen(Color.White, 1.5f) { LineJoin = LineJoin.Round };
+            using var pen = new Pen(Theme.CbBorder, 2f);
+            g.DrawEllipse(pen, cb);
+            // Checkmark in accent color
+            using var markPen = new Pen(Theme.Accent, 1.5f) { LineJoin = LineJoin.Round };
             var cx = cb.X + cb.Width / 2f;
             var cy = cb.Y + cb.Height / 2f;
             var r  = cb.Width / 2f;
-            g.DrawLines(pen, new[]
+            g.DrawLines(markPen, new[]
             {
                 new PointF(cx - r * 0.45f, cy),
                 new PointF(cx - r * 0.05f, cy + r * 0.45f),

@@ -53,7 +53,11 @@ struct TodoListCtrl : Ctrl {
             int cb_y  = y + (Theme::ITEM_H() - Theme::CB_SIZE()) / 2;
             Rect cb(cb_x, cb_y, cb_x + Theme::CB_SIZE(), cb_y + Theme::CB_SIZE());
             if(t.is_completed) {
-                w.DrawEllipse(cb, Theme::ACCENT(), DPI(2), Theme::ACCENT());
+                w.DrawEllipse(cb, Theme::SURFACE(), DPI(2), Theme::CB_BORDER());
+                int cx = cb_x + Theme::CB_SIZE() / 2;
+                int cy = y + Theme::ITEM_H() / 2;
+                w.DrawLine(cx - 4, cy, cx - 1, cy + 3, DPI(1), Theme::ACCENT());
+                w.DrawLine(cx - 1, cy + 3, cx + 4, cy - 3, DPI(1), Theme::ACCENT());
             } else {
                 w.DrawEllipse(cb, Theme::BG(), DPI(2), Theme::CB_BORDER());
             }

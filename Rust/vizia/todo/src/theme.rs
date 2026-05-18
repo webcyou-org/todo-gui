@@ -110,10 +110,16 @@ pub const STYLE: &str = r#"
         border-color: #D9D9D9;
         background-color: transparent;
         right: 18px;
+        child-left: 1s;
+        child-right: 1s;
+        child-top: 1s;
+        child-bottom: 1s;
+        font-size: 10px;
     }
 
     .checkbox.checked {
-        background-color: #5DC2AF;
-        border-color: #5DC2AF;
+        background-color: transparent;
+        border-color: #D9D9D9;
+        color: #5DC2AF;
     }
 "#;

@@ -31,6 +31,12 @@
                                         Command="{Binding Source={x:Reference todoListRoot}, Path=BindingContext.ToggleTodoCommand}"
                                         CommandParameter="{Binding Id}"/>
                                 </Frame.GestureRecognizers>
+                                <Label Text="✓"
+                                       TextColor="#5DC2AF"
+                                       FontSize="10"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       IsVisible="{Binding IsCompleted}"/>
                             </Frame>
                             <Label Text="{Binding Task}"
                                    FontSize="14"

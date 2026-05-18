@@ -30,11 +30,11 @@ class TodoItemWidget(QWidget):
         self._cb_rect = QRect(cb_x, cb_y, theme.CB_SIZE, theme.CB_SIZE)
 
         if self._todo.is_completed:
-            p.setBrush(theme.C_ACCENT)
-            p.setPen(Qt.PenStyle.NoPen)
+            p.setBrush(Qt.BrushStyle.NoBrush)
+            p.setPen(QPen(theme.C_CB_BORDER, 1))
             p.drawEllipse(self._cb_rect)
 
-            pen = QPen(theme.C_WHITE, 1.5)
+            pen = QPen(theme.C_ACCENT, 1.5)
             pen.setCapStyle(Qt.PenCapStyle.RoundCap)
             pen.setJoinStyle(Qt.PenJoinStyle.RoundJoin)
             p.setPen(pen)

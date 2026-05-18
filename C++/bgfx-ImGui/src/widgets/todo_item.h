@@ -11,11 +11,11 @@ static inline bool checkbox_circle(int id, bool completed) {
     ImVec2 center   = {p.x + r, p.y + r};
 
     if (completed) {
-        dl->AddCircleFilled(center, r, IM_COL32(0x5D, 0xC2, 0xAF, 255));
+        dl->AddCircle(center, r - 1.f, IM_COL32(0xD9, 0xD9, 0xD9, 255), 0, 2.f);
         dl->AddLine({center.x - 4, center.y},     {center.x - 1, center.y + 3},
-                    IM_COL32(255, 255, 255, 255), 1.5f);
+                    IM_COL32(0x5D, 0xC2, 0xAF, 255), 1.5f);
         dl->AddLine({center.x - 1, center.y + 3}, {center.x + 4, center.y - 3},
-                    IM_COL32(255, 255, 255, 255), 1.5f);
+                    IM_COL32(0x5D, 0xC2, 0xAF, 255), 1.5f);
     } else {
         dl->AddCircle(center, r - 1.f, IM_COL32(0xD9, 0xD9, 0xD9, 255), 0, 2.f);
     }

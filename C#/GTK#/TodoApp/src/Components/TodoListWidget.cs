@@ -46,6 +46,10 @@ public class TodoListWidget : ScrolledWindow
         cbBtn.SetSizeRequest(16, 16);
         cbBtn.Valign = Align.Center;
         cbBtn.Halign = Align.Center;
+        // Checkmark label inside the button
+        var checkLabel = new Label(todo.IsCompleted ? "✓" : "");
+        checkLabel.StyleContext.AddClass("checkbox-check");
+        cbBtn.Add(checkLabel);
 
         var id = todo.Id;
         cbBtn.Clicked += (_, _) => TodoToggled?.Invoke(id);

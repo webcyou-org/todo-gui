@@ -72,8 +72,8 @@ body {
 }
 
 .todo-item .checkbox:checked {
-  background-color: var(--c-accent);
-  border-color: var(--c-accent);
+  background-color: transparent;
+  border-color: var(--c-cb-border);
 }
 
 .todo-item .checkbox:checked::after {
@@ -83,7 +83,7 @@ body {
   top: 1px;
   width: 4px;
   height: 7px;
-  border: 2px solid var(--c-white);
+  border: 2px solid var(--c-accent);
   border-top: none;
   border-left: none;
   transform: rotate(45deg);

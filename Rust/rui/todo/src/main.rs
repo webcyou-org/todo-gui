@@ -71,8 +71,18 @@ fn checkbox_canvas(is_completed: bool) -> impl View {
         let center: LocalPoint = [cx + size / 2.0, cy + size / 2.0].into();
 
         if is_completed {
+            // Outlined circle in CB border color
+            let border_paint2 = vger.color_paint(border);
+            vger.stroke_arc(center, size / 2.0 - 0.75, 1.5, 0.0, std::f32::consts::TAU, border_paint2);
+            // Checkmark in accent
             let paint = vger.color_paint(accent);
-            vger.fill_circle(center, size / 2.0, paint);
+            let mcx = center.x;
+            let mcy = center.y;
+            let p1: LocalPoint = [mcx - 4.0, mcy].into();
+            let p2: LocalPoint = [mcx - 1.0, mcy + 3.0].into();
+            let p3: LocalPoint = [mcx + 4.0, mcy - 3.0].into();
+            vger.stroke_segment(p1, p2, 1.5, paint);
+            vger.stroke_segment(p2, p3, 1.5, paint);
         } else {
             let border_paint = vger.color_paint(border);
             vger.fill_circle(center, size / 2.0, border_paint);

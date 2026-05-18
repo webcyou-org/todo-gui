@@ -15,13 +15,15 @@ void draw_todo_item(GtkDrawingArea*, cairo_t* cr,
     double r  = Theme::CB_SIZE / 2.0;
 
     if (t.is_completed) {
+        cr_color(cr, Theme::CB_BDR);
+        cairo_set_line_width(cr, 2.0);
+        cairo_arc(cr, cx, cy, r - 1, 0, 2 * M_PI);
+        cairo_stroke(cr);
         cr_color(cr, Theme::ACCENT);
-        cairo_arc(cr, cx, cy, r, 0, 2 * M_PI);
-        cairo_fill(cr);
-        cr_color(cr, Theme::WHITE);
         cairo_set_line_width(cr, 1.5);
         cairo_set_line_cap(cr, CAIRO_LINE_CAP_ROUND);
         cairo_set_line_join(cr, CAIRO_LINE_JOIN_ROUND);
+        cairo_new_path(cr);
         cairo_move_to(cr, cx - 4, cy);
         cairo_line_to(cr, cx - 1, cy + 3);
         cairo_line_to(cr, cx + 4, cy - 3);

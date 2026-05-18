@@ -103,8 +103,12 @@ func (app *App) makeCheckbox(todo Todo) *gtk.DrawingArea {
 		}
 
 		if t.IsCompleted {
-			gc.SetRgbFgColor(color(C_ACCENT))
-			d.DrawArc(gc, true, 0, 0, 16, 16, 0, 360*64)
+			// Outlined circle in CB border color
+			gc.SetRgbFgColor(color(C_CB_BORDER))
+			d.DrawArc(gc, false, 0, 0, 15, 15, 0, 360*64)
+			// Checkmark in accent
+			d.DrawLine(gc, 4, 8, 7, 11)
+			d.DrawLine(gc, 7, 11, 12, 5)
 		} else {
 			// Outer ring: fill with border color
 			gc.SetRgbFgColor(color(C_CB_BORDER))

@@ -23,10 +23,12 @@
     <SolidColorBrush x:Key="TextControlBorderBrushFocused"              Color="#5DC2AF"/>
 
     <!-- 値コンバーター -->
-    <converters:BoolToCheckboxBackgroundConverter  x:Key="CheckboxBgConverter"/>
-    <converters:BoolToCheckboxBorderBrushConverter x:Key="CheckboxBorderConverter"/>
-    <converters:BoolToTextDecorationsConverter     x:Key="TextDecorationsConverter"/>
-    <converters:BoolToForegroundConverter          x:Key="ForegroundConverter"/>
+    <converters:BoolToCheckboxBackgroundConverter    x:Key="CheckboxBgConverter"/>
+    <converters:BoolToCheckboxBorderBrushConverter  x:Key="CheckboxBorderConverter"/>
+    <converters:BoolToTextDecorationsConverter       x:Key="TextDecorationsConverter"/>
+    <converters:BoolToForegroundConverter            x:Key="ForegroundConverter"/>
+    <converters:BoolToVisibilityConverter            x:Key="BoolToVisibilityConverter"/>
+    <converters:BoolToCheckmarkForegroundConverter   x:Key="CheckmarkForegroundConverter"/>
   </Page.Resources>
 
   <!-- ScrollViewer > StackPanel: Uno Platform Desktop で最も信頼性が高いレイアウト -->
@@ -95,9 +97,15 @@
                         CornerRadius="8"
                         BorderThickness="2"
                         Margin="0,0,18,0"
-                        Background="{Binding IsCompleted, Converter={StaticResource CheckboxBgConverter}}"
-                        BorderBrush="{Binding IsCompleted, Converter={StaticResource CheckboxBorderConverter}}"
-                        Tapped="Checkbox_Tapped"/>
+                        Background="Transparent"
+                        BorderBrush="#D9D9D9"
+                        Tapped="Checkbox_Tapped">
+                  <TextBlock Text="✓"
+                             FontSize="10"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Foreground="{Binding IsCompleted, Converter={StaticResource CheckmarkForegroundConverter}}"/>
+                </Border>
                 <TextBlock Text="{Binding Task}"
                            FontSize="14"
                            VerticalAlignment="Center"

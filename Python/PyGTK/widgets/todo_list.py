@@ -35,13 +35,15 @@ class TodoItemWidget(Gtk.DrawingArea):
         r = Theme.CB_SIZE / 2.0
 
         if self._todo.is_completed:
+            set_color(cr, Theme.CB_BDR_C)
+            cr.set_line_width(2.0)
+            cr.arc(cx, cy, r - 1, 0, 2 * math.pi)
+            cr.stroke()
             set_color(cr, Theme.ACCENT_C)
-            cr.arc(cx, cy, r, 0, 2 * math.pi)
-            cr.fill()
-            set_color(cr, Theme.WHITE_C)
             cr.set_line_width(1.5)
             cr.set_line_cap(cairo.LINE_CAP_ROUND)
             cr.set_line_join(cairo.LINE_JOIN_ROUND)
+            cr.new_path()
             cr.move_to(cx - 4, cy)
             cr.line_to(cx - 1, cy + 3)
             cr.line_to(cx + 4, cy - 3)

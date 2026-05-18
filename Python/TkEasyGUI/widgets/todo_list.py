@@ -54,12 +54,15 @@ class TodoListWidget:
             cb_cv.place(x=Theme.CB_PAD_L, y=(Theme.ITEM_H - Theme.CB_SIZE) // 2)
 
             if todo.is_completed:
-                cb_cv.create_oval(0, 0, Theme.CB_SIZE, Theme.CB_SIZE,
-                                  fill=Theme.ACCENT, outline="")
+                cb_cv.create_oval(1, 1, Theme.CB_SIZE-1, Theme.CB_SIZE-1,
+                                  fill="", outline=Theme.CB_BDR, width=1.5)
                 cx, cy = Theme.CB_SIZE / 2.0, Theme.CB_SIZE / 2.0
-                cb_cv.create_line(cx-4, cy, cx-1, cy+3, cx+4, cy-3,
-                                  fill=Theme.WHITE, width=1.5,
-                                  joinstyle="round", capstyle="round")
+                cb_cv.create_line(cx-4, cy, cx-1, cy+3,
+                                  fill=Theme.ACCENT, width=1.5,
+                                  capstyle="round")
+                cb_cv.create_line(cx-1, cy+3, cx+4, cy-3,
+                                  fill=Theme.ACCENT, width=1.5,
+                                  capstyle="round")
             else:
                 cb_cv.create_oval(1, 1, Theme.CB_SIZE-1, Theme.CB_SIZE-1,
                                   fill="", outline=Theme.CB_BDR, width=2)

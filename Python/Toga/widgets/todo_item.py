@@ -25,11 +25,11 @@ def _draw(canvas: toga.Canvas, todo: Todo) -> None:
     r  = CB_SIZE // 2 - 1           #  7 — checkbox radius
 
     if todo.is_completed:
-        # Filled accent circle
-        with canvas.fill(color=C_ACCENT):
+        # Outlined circle in CB border color
+        with canvas.stroke(color=C_CB_BDR, line_width=1.5):
             canvas.arc(cx, cy, r)
-        # Checkmark ✓
-        with canvas.stroke(color=C_WHITE, line_width=1.5):
+        # Checkmark ✓ in accent color
+        with canvas.stroke(color=C_ACCENT, line_width=1.5):
             canvas.move_to(cx - 4, cy)
             canvas.line_to(cx - 1, cy + 3)
             canvas.line_to(cx + 4, cy - 3)
