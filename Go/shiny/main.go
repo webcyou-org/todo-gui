@@ -4,6 +4,8 @@ import (
 	"image"
 	"image/color"
 	"math"
+	"os"
+	"time"
 	"unicode/utf8"
 
 	"golang.org/x/exp/shiny/driver/gldriver"
@@ -54,11 +56,43 @@ func mustFace(ttf []byte, sizePt, dpi float64) font.Face {
 	return face
 }
 
+func faceFromFile(path string, sizePt, dpi float64) (font.Face, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	f, err := opentype.Parse(data)
+	if err != nil {
+		return nil, err
+	}
+	return opentype.NewFace(f, &opentype.FaceOptions{
+		Size:    sizePt,
+		DPI:     dpi,
+		Hinting: font.HintingFull,
+	})
+}
+
 func initFonts() {
 	dpi := 72.0 * currentScale
-	faceNormal = mustFace(goregular.TTF, 14, dpi)
-	faceBold14 = mustFace(gobold.TTF, 14, dpi)
-	faceBold18 = mustFace(gobold.TTF, 18, dpi)
+	jp, errJP := faceFromFile("fonts/NotoSansJP.ttf", 14, dpi)
+	b14, errB14 := faceFromFile("fonts/InterBold.ttf", 14, dpi)
+	b18, errB18 := faceFromFile("fonts/InterBold.ttf", 18, dpi)
+
+	if errJP == nil {
+		faceNormal = jp
+	} else {
+		faceNormal = mustFace(goregular.TTF, 14, dpi)
+	}
+	if errB14 == nil {
+		faceBold14 = b14
+	} else {
+		faceBold14 = mustFace(gobold.TTF, 14, dpi)
+	}
+	if errB18 == nil {
+		faceBold18 = b18
+	} else {
+		faceBold18 = mustFace(gobold.TTF, 18, dpi)
+	}
 }
 
 // Hit region registry — rebuilt on every render call.
@@ -104,6 +138,15 @@ func main() {
 			state     = NewAppState()
 			focused   = false
 		)
+
+		// Ticker to drive cursor blinking; sends a paint event every 500 ms.
+		go func() {
+			ticker := time.NewTicker(500 * time.Millisecond)
+			defer ticker.Stop()
+			for range ticker.C {
+				w.Send(paint.Event{})
+			}
+		}()
 
 		// ensureBuf recreates the buffer when the physical dimensions or
 		// scale factor change (e.g. window moved to a different monitor).

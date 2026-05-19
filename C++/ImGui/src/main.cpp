@@ -91,12 +91,24 @@ int main() {
     float dpi = 1.f;
     glfwGetWindowContentScale(window, &dpi, nullptr);
 
-    const char* font_r = "fonts/Inter.ttf";
-    const char* font_b = "fonts/InterBold.ttf";
+    // Japanese glyph ranges for NotoSansJP merge passes
+    static const ImWchar jp_ranges[] = {
+        0x3000, 0x30FF,  // CJK punctuation, hiragana, katakana
+        0x4E00, 0x9FFF,  // CJK ideographs
+        0xFF00, 0xFFEF,  // Fullwidth forms
+        0,
+    };
+    auto addJp = [&](float size) {
+        ImFontConfig fc; fc.MergeMode = true;
+        io.Fonts->AddFontFromFileTTF("fonts/NotoSansJP.ttf", size, &fc, jp_ranges);
+    };
 
-    g_font_regular = io.Fonts->AddFontFromFileTTF(font_r, Theme::FONT_NORMAL * dpi);
-    g_font_bold_14 = io.Fonts->AddFontFromFileTTF(font_b, Theme::FONT_NORMAL * dpi);
-    g_font_bold_18 = io.Fonts->AddFontFromFileTTF(font_b, Theme::FONT_TITLE  * dpi);
+    g_font_regular = io.Fonts->AddFontFromFileTTF("fonts/Inter.ttf",     Theme::FONT_NORMAL * dpi);
+    addJp(Theme::FONT_NORMAL * dpi);
+    g_font_bold_14 = io.Fonts->AddFontFromFileTTF("fonts/InterBold.ttf", Theme::FONT_NORMAL * dpi);
+    addJp(Theme::FONT_NORMAL * dpi);
+    g_font_bold_18 = io.Fonts->AddFontFromFileTTF("fonts/InterBold.ttf", Theme::FONT_TITLE  * dpi);
+    addJp(Theme::FONT_TITLE  * dpi);
 
     if (!g_font_regular) { g_font_regular = io.Fonts->AddFontDefault(); }
     if (!g_font_bold_14) g_font_bold_14 = g_font_regular;
