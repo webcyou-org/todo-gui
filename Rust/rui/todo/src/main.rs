@@ -150,21 +150,30 @@ fn main() {
                                     if has_focus {
                                         match k {
                                             Key::ArrowLeft => {
-                                                if cx[input].cursor > 0 {
-                                                    cx[input].cursor -= 1;
+                                                let cur = cx[input].cursor;
+                                                if cur > 0 {
+                                                    // Move back to the start of the previous char
+                                                    let prev = cx[input].text[..cur]
+                                                        .char_indices().last()
+                                                        .map(|(i, _)| i).unwrap_or(0);
+                                                    cx[input].cursor = prev;
                                                 }
                                             }
                                             Key::ArrowRight => {
-                                                let len = cx[input].text.len();
-                                                if cx[input].cursor < len {
-                                                    cx[input].cursor += 1;
+                                                let cur = cx[input].cursor;
+                                                if let Some(ch) = cx[input].text[cur..].chars().next() {
+                                                    cx[input].cursor = cur + ch.len_utf8();
                                                 }
                                             }
                                             Key::Backspace => {
                                                 let cur = cx[input].cursor;
                                                 if cur > 0 {
-                                                    cx[input].text.remove(cur - 1);
-                                                    cx[input].cursor -= 1;
+                                                    // Find start of previous char and remove it
+                                                    let prev = cx[input].text[..cur]
+                                                        .char_indices().last()
+                                                        .map(|(i, _)| i).unwrap_or(0);
+                                                    cx[input].text.remove(prev);
+                                                    cx[input].cursor = prev;
                                                 }
                                             }
                                             Key::Character(c) => {

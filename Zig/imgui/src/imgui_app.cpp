@@ -3,9 +3,14 @@
 #include "backends/imgui_impl_glfw.h"
 #include "backends/imgui_impl_opengl3.h"
 #include <GLFW/glfw3.h>
+#include <CoreFoundation/CoreFoundation.h>
 #include <cstdio>
 #include <cstring>
 #include <cmath>
+
+extern "C" void ime_setup_window(void* win);
+extern "C" void ime_run_until(double seconds);
+extern "C" bool ime_is_composing();
 
 // Design tokens (mirrors theme.zig)
 #define C_BG        IM_COL32(0x1C, 0x1C, 0x1C, 0xFF)
@@ -26,6 +31,7 @@
 
 static ImFont* g_font_title = nullptr;
 static bool    g_input_was_active = false;
+static bool    g_input_auto_focused = false;
 static int     g_tab_idx = 0;
 
 static void setup_style() {
@@ -72,22 +78,48 @@ void* app_init(int w, int h, const char* title) {
 
     GLFWwindow* win = glfwCreateWindow(w, h, title, nullptr, nullptr);
     glfwMakeContextCurrent(win);
-    glfwSwapInterval(1);
+    glfwSwapInterval(0); // no vsync: avoids blocking the run loop during SwapBuffers
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
     io.IniFilename = nullptr; // disable imgui.ini
 
-    const char* font_path = "fonts/Inter.ttf";
-    io.Fonts->AddFontFromFileTTF(font_path, 14.f, nullptr, nullptr);
-    g_font_title = io.Fonts->AddFontFromFileTTF(font_path, 18.f, nullptr, nullptr);
+    // HiDPI: derive scale from framebuffer vs window ratio (more reliable than content scale API).
+    float dpi = 1.f;
+    {
+        int fb_w = 0, fb_h = 0, win_w = 0, win_h = 0;
+        glfwGetFramebufferSize(win, &fb_w, &fb_h);
+        glfwGetWindowSize(win, &win_w, &win_h);
+        float ratio = (win_w > 0) ? (float)fb_w / (float)win_w : 1.f;
+        float cs = 1.f;
+        glfwGetWindowContentScale(win, &cs, nullptr);
+        dpi = fmaxf(ratio, cs);
+        if (dpi < 1.f) dpi = 1.f;
+    }
+
+    static const ImWchar jp_ranges[] = {
+        0x3000, 0x30FF,  // CJK punctuation, hiragana, katakana
+        0x4E00, 0x9FFF,  // CJK ideographs
+        0xFF00, 0xFFEF,  // Fullwidth forms
+        0,
+    };
+    auto addJp = [&](float size) {
+        ImFontConfig fc; fc.MergeMode = true;
+        io.Fonts->AddFontFromFileTTF("fonts/NotoSansJP.ttf", size, &fc, jp_ranges);
+    };
+    io.Fonts->AddFontFromFileTTF("fonts/Inter.ttf", 14.f * dpi);
+    addJp(14.f * dpi);
+    g_font_title = io.Fonts->AddFontFromFileTTF("fonts/InterBold.ttf", 18.f * dpi);
+    addJp(18.f * dpi);
     if (!g_font_title) g_font_title = io.FontDefault;
+    io.FontGlobalScale = 1.f / dpi;
 
     setup_style();
 
     ImGui_ImplGlfw_InitForOpenGL(win, true);
     ImGui_ImplOpenGL3_Init("#version 330");
+    ime_setup_window(win);
     return win;
 }
 
@@ -96,7 +128,13 @@ bool app_should_close(void* win) {
 }
 
 void app_new_frame(void* win) {
-    glfwPollEvents();
+    // [[NSRunLoop mainRunLoop] runUntilDate:] calls runMode:beforeDate: repeatedly
+    // until the deadline, keeping the loop alive for the FULL frame period.
+    // This lets the IME server (a separate process) deliver insertText: via Mach
+    // port at any point during the ~16 ms window — unlike glfwWaitEventsTimeout
+    // which exits after the first event and leaves the run loop dead during render.
+    ime_run_until(1.0 / 60.0);
+    glfwPollEvents(); // drain any remaining NSApp events after the wait
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
@@ -144,7 +182,9 @@ void app_draw_title(const char* text) {
     if (g_font_title) ImGui::PushFont(g_font_title);
     ImGui::TextColored(ImVec4(1,1,1,1), "%s", text);
     if (g_font_title) ImGui::PopFont();
-    ImGui::Dummy({0, 14.f - ImGui::GetStyle().ItemSpacing.y});
+    float next_y = ImGui::GetItemRectMax().y + 6.f;
+    float next_x = ImGui::GetWindowPos().x + ImGui::GetStyle().WindowPadding.x;
+    ImGui::SetCursorScreenPos({next_x, next_y});
 }
 
 bool app_draw_input(char* buf, int buf_size) {
@@ -153,14 +193,24 @@ bool app_draw_input(char* buf, int buf_size) {
         ? ImVec4(0x5D/255.f, 0xC2/255.f, 0xAF/255.f, 1.f)
         : ImVec4(0,0,0,0);
 
+    // Compute FramePadding.y so input height = 35px (design token INPUT_H).
+    float input_h = 35.f;
+    float pad_y = (input_h - ImGui::GetTextLineHeight()) * 0.5f;
+
     ImGui::PushStyleColor(ImGuiCol_Border, border_col);
     ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 1.f);
+    ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(16.f, pad_y));
     ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1,1,1,1));
 
     float avail = ImGui::GetContentRegionAvail().x;
     ImGui::SetNextItemWidth(avail);
+    if (!g_input_auto_focused) {
+        ImGui::SetKeyboardFocusHere();
+        g_input_auto_focused = true;
+    }
     bool entered = ImGui::InputText("##input", buf, (size_t)buf_size,
                                    ImGuiInputTextFlags_EnterReturnsTrue);
+    if (ime_is_composing()) entered = false;
     bool active = ImGui::IsItemActive();
 
     // Draw placeholder when empty and not active
@@ -174,7 +224,7 @@ bool app_draw_input(char* buf, int buf_size) {
 
     g_input_was_active = active;
     ImGui::PopStyleColor(2);
-    ImGui::PopStyleVar();
+    ImGui::PopStyleVar(2);
     ImGui::Dummy({0, 14.f - ImGui::GetStyle().ItemSpacing.y});
     return entered;
 }
@@ -198,15 +248,20 @@ bool app_draw_tab(const char* label, bool active) {
     float btn_h  = 28.f;
 
     ImGui::PushStyleColor(ImGuiCol_Text, text_col);
+    ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(8.f, ImGui::GetStyle().FramePadding.y));
     bool clicked = ImGui::Button(label, {btn_w, btn_h});
+    ImGui::PopStyleVar();
     ImGui::PopStyleColor();
     (void)fs;
     return clicked;
 }
 
 void app_end_tab_row() {
-    ImGui::NewLine();
-    ImGui::Dummy({0, 3.f - ImGui::GetStyle().ItemSpacing.y});
+    // GetItemRectMax().y is the absolute screen-Y of the bottom of the last tab button.
+    // Position the next item exactly 3px below it, bypassing the accumulated ItemSpacing.
+    float next_y = ImGui::GetItemRectMax().y + 3.f;
+    float next_x = ImGui::GetWindowPos().x + ImGui::GetStyle().WindowPadding.x;
+    ImGui::SetCursorScreenPos({next_x, next_y});
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

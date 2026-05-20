@@ -19,6 +19,7 @@ pub fn update(buf: *[256:0]u8, state: *data.AppState) !void {
     const border_col: [4]f32 = if (g_was_active) C_ACCENT else .{ 0, 0, 0, 0 };
     zgui.pushStyleColor4f(.{ .idx = .border, .c = border_col });
     zgui.pushStyleVar1f(.{ .idx = .frame_border_size, .v = 1.0 });
+    zgui.pushStyleVar2f(.{ .idx = .frame_padding, .v = .{ 16.0, 10.0 } });
     zgui.pushStyleColor4f(.{ .idx = .text, .c = .{ 1, 1, 1, 1 } });
 
     const entered = zgui.inputText("##todo_input", .{
@@ -43,7 +44,7 @@ pub fn update(buf: *[256:0]u8, state: *data.AppState) !void {
 
     g_was_active = is_active;
     zgui.popStyleColor(.{ .count = 2 });
-    zgui.popStyleVar(.{ .count = 1 });
+    zgui.popStyleVar(.{ .count = 2 });
 
     if (entered) {
         const task = std.mem.sliceTo(buf, 0);

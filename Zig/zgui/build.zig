@@ -31,10 +31,11 @@ pub fn build(b: *std.Build) void {
     mod.linkSystemLibrary("glfw", .{});
 
     // macOS frameworks
-    mod.linkFramework("OpenGL",    .{});
-    mod.linkFramework("Cocoa",     .{});
-    mod.linkFramework("IOKit",     .{});
-    mod.linkFramework("CoreVideo", .{});
+    mod.linkFramework("OpenGL",          .{});
+    mod.linkFramework("Cocoa",           .{});
+    mod.linkFramework("IOKit",           .{});
+    mod.linkFramework("CoreVideo",       .{});
+    mod.linkFramework("CoreFoundation",  .{});
 
     // Include paths for imgui backends
     mod.addIncludePath(zgui_dep.path("libs"));
@@ -62,6 +63,10 @@ pub fn build(b: *std.Build) void {
     mod.addCSourceFile(.{
         .file  = zgui_dep.path("libs/imgui/backends/imgui_impl_opengl3.cpp"),
         .flags = backend_flags,
+    });
+    mod.addCSourceFile(.{
+        .file  = b.path("src/ime_mac.mm"),
+        .flags = &[_][]const u8{ "-fno-sanitize=undefined" },
     });
 
     const exe = b.addExecutable(.{ .name = "todo", .root_module = mod });

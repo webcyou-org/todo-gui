@@ -15,6 +15,8 @@ const gl = @cImport({
 });
 
 // ─── bypass zgui's broken @ptrCast(?[:0]const u8) on Zig 0.16.0 ───
+extern fn ime_setup_window(glfwwin: *anyopaque) void;
+extern fn ime_drain_runloop() void;
 extern fn ImGui_ImplGlfw_InitForOpenGL(window: *anyopaque, install_callbacks: bool) bool;
 extern fn ImGui_ImplOpenGL3_Init(glsl_version: ?[*:0]const u8) bool;
 extern fn ImGui_ImplGlfw_Shutdown() void;
@@ -23,7 +25,9 @@ extern fn ImGui_ImplGlfw_NewFrame() void;
 extern fn ImGui_ImplOpenGL3_NewFrame() void;
 extern fn ImGui_ImplOpenGL3_RenderDrawData(data_ptr: *anyopaque) void;
 
-const FONT_PATH = "fonts/Inter.ttf";
+const INTER_FONT_PATH = "fonts/Inter.ttf";
+const JP_FONT_PATH    = "fonts/NotoSansJP.ttf";
+const BOLD_FONT_PATH  = "fonts/InterBold.ttf";
 
 inline fn cf(v: comptime_int) f32 { return @as(f32, v) / 255.0; }
 
@@ -48,13 +52,27 @@ pub fn main() !void {
     defer glfw.glfwDestroyWindow(window);
     glfw.glfwMakeContextCurrent(window);
     glfw.glfwSwapInterval(1);
+    ime_setup_window(window);
 
     zgui.init(allocator);
     defer zgui.deinit();
     zgui.io.setIniFilename(null);
 
-    g_font_body  = zgui.io.addFontFromFile(FONT_PATH, 14.0);
-    g_font_title = zgui.io.addFontFromFile(FONT_PATH, 18.0);
+    // Glyph ranges: pairs of (first, last) codepoints, terminated by 0.
+    const jp_glyph_ranges = [_]zgui.Wchar{
+        0x0020, 0x00FF, // Basic Latin + Latin supplement
+        0x3000, 0x30FF, // CJK symbols, hiragana, katakana
+        0x4E00, 0x9FFF, // CJK ideographs
+        0,
+    };
+    // Body: Inter (Latin) base, then merge NotoSansJP for Japanese glyphs
+    g_font_body = zgui.io.addFontFromFileWithConfig(INTER_FONT_PATH, 16.0, null, null);
+    var merge_cfg = zgui.FontConfig.init();
+    merge_cfg.merge_mode = true;
+    _ = zgui.io.addFontFromFileWithConfig(JP_FONT_PATH, 16.0, merge_cfg, jp_glyph_ranges[0..].ptr);
+
+    // Title: InterBold for the "ToDo" heading
+    g_font_title = zgui.io.addFontFromFileWithConfig(BOLD_FONT_PATH, 18.0, null, null);
 
     // Init backends directly (workaround for zgui @ptrCast bug on Zig 0.16.0)
     _ = ImGui_ImplGlfw_InitForOpenGL(window, true);
@@ -70,6 +88,7 @@ pub fn main() !void {
     var input_buf = std.mem.zeroes([256:0]u8);
 
     while (glfw.glfwWindowShouldClose(window) == 0) {
+        ime_drain_runloop();
         glfw.glfwPollEvents();
 
         var fb_w: c_int = 0;
@@ -102,7 +121,7 @@ pub fn main() !void {
 
         drawTitle();
         try inp_mod.update(&input_buf, &state);
-        tabs_mod.update(&state, g_font_body);
+        tabs_mod.update(&state);
         list_mod.update(&state);
 
         zgui.end();
@@ -119,7 +138,7 @@ pub fn main() !void {
 }
 
 fn drawTitle() void {
-    zgui.pushFont(g_font_title, 18.0);
+    zgui.pushFont(g_font_title, 0.0);
     zgui.textColored(.{ 1, 1, 1, 1 }, "ToDo", .{});
     zgui.popFont();
     zgui.dummy(.{ .w = 0, .h = 9 });

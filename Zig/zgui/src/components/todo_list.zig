@@ -110,7 +110,6 @@ pub fn update(state: *data.AppState) void {
             }
         }
 
-        // margin-bottom 5px
-        zgui.dummy(.{ .w = 0, .h = 5 });
+        zgui.dummy(.{ .w = 0, .h = 2 });
     }
 }

@@ -24,6 +24,12 @@ pub fn build(b: *std.Build) void {
         .root_module = mod,
     });
 
+    // macOS IME support (swizzles GLFWContentView for Kotoeri composition)
+    mod.addCSourceFile(.{
+        .file = b.path("src/ime_mac.mm"),
+        .flags = &.{},
+    });
+
     b.installArtifact(exe);
 
     const run_cmd = b.addRunArtifact(exe);

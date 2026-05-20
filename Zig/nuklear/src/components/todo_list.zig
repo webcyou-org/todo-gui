@@ -62,7 +62,7 @@ fn drawItem(app: *c.NkApp, todo: data.Todo) bool {
 
 pub fn draw(app: *c.NkApp, state: *data.AppState) void {
     const region  = c.nk_app_content_region(app);
-    const used_h: f32 = 18.0 + 14.0 + 35.0 + 14.0 + 28.0 + 3.0;
+    const used_h: f32 = 22.0 + 4.0 + 35.0 + 14.0 + 28.0 + 3.0;
     const list_h  = region.h - used_h - 10.0;
 
     c.nk_app_row_dynamic(app, list_h, 1);
@@ -72,7 +72,7 @@ pub fn draw(app: *c.NkApp, state: *data.AppState) void {
             if (drawItem(app, todo)) {
                 state.toggleCompleted(todo.id);
             }
-            c.nk_app_row_dynamic(app, 5, 1);
+            c.nk_app_row_dynamic(app, 2, 1);
             c.nk_app_spacing(app, 1);
         }
         c.nk_app_group_end(app);

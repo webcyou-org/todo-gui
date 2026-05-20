@@ -3,6 +3,8 @@
 #include <GLFW/glfw3.h>
 #include <GLFW/glfw3native.h>
 
+#include <CoreFoundation/CoreFoundation.h>
+
 #include <bgfx/bgfx.h>
 #include <bgfx/platform.h>
 
@@ -17,18 +19,20 @@
 #include "widgets/tabs.h"
 #include "widgets/todo_item.h"
 
-// Roboto font binary (from bgfx examples)
-#include "imgui/roboto_regular.ttf.h"
-
 #include <cstdlib>
 #include <cstring>
 #include <string>
 
 // ─── App state ───────────────────────────────────────────────────────────────
 
-static TodoModel g_model;
-static TabFilter g_tab   = TabFilter::All;
-static char      g_input[256] = {};
+static TodoModel   g_model;
+static TabFilter   g_tab    = TabFilter::All;
+static char        g_input[256] = {};
+static ImFont*     g_font_bold  = nullptr;
+static GLFWwindow* g_window     = nullptr;
+
+extern "C" void ime_setup_window(void* glfwwin);
+extern "C" void ime_update_cursor(void* glfwwin);
 
 // ─── Style setup ─────────────────────────────────────────────────────────────
 
@@ -78,8 +82,9 @@ static void glfw_scroll_cb(GLFWwindow*, double xoff, double yoff) {
 }
 
 static void glfw_key_cb(GLFWwindow*, int key, int /*scancode*/, int action, int mods) {
-    if (action == GLFW_RELEASE) return;
+    if (action == GLFW_REPEAT) return;
     ImGuiIO& io = ImGui::GetIO();
+    bool pressed = (action == GLFW_PRESS);
     io.AddKeyEvent(ImGuiMod_Ctrl,  (mods & GLFW_MOD_CONTROL) != 0);
     io.AddKeyEvent(ImGuiMod_Shift, (mods & GLFW_MOD_SHIFT)   != 0);
     ImGuiKey ik = ImGuiKey_None;
@@ -100,7 +105,7 @@ static void glfw_key_cb(GLFWwindow*, int key, int /*scancode*/, int action, int 
         case GLFW_KEY_X:         ik = ImGuiKey_X;          break;
         case GLFW_KEY_Z:         ik = ImGuiKey_Z;          break;
     }
-    if (ik != ImGuiKey_None) io.AddKeyEvent(ik, true);
+    if (ik != ImGuiKey_None) io.AddKeyEvent(ik, pressed);
 }
 
 static void glfw_char_cb(GLFWwindow*, unsigned int c) {
@@ -117,8 +122,10 @@ int main() {
     GLFWwindow* window = glfwCreateWindow(
         Theme::WIN_W, Theme::WIN_H, "ToDo", nullptr, nullptr);
     if (!window) { glfwTerminate(); return 1; }
+    g_window = window;
+    ime_setup_window(window);
 
-    // Create CAMetalLayer explicitly. bgfx accepts NSWindow, NSView, or CAMetalLayer.
+    // Create CAMetalLayer. bgfx accepts NSWindow, NSView, or CAMetalLayer.
     // Creating the layer upfront on the main thread avoids a run-loop deadlock where
     // bgfx's render thread tries to dispatch setLayer: to the blocked main run loop.
     // nwh must be set on bgfx::Init (not via bgfx::setPlatformData) for it to be seen.
@@ -159,13 +166,30 @@ int main() {
     ImGuiIO& io = ImGui::GetIO();
     io.IniFilename = nullptr;
     io.DisplaySize = {(float)Theme::WIN_W, (float)Theme::WIN_H};
+    ImGui::GetPlatformIO().Platform_SetImeDataFn =
+        [](ImGuiContext*, ImGuiViewport*, ImGuiPlatformImeData* d) {
+            if (d->WantVisible) ime_update_cursor(g_window);
+        };
 
-    // Load Roboto font from bgfx's bundled TTF data
-    ImFontConfig fc;
-    fc.FontDataOwnedByAtlas = false;
-    io.Fonts->AddFontFromMemoryTTF(
-        const_cast<uint8_t*>(s_robotoRegularTtf),
-        (int)sizeof(s_robotoRegularTtf), 14.f, &fc);
+    static const ImWchar jp_ranges[] = {
+        0x3000, 0x30FF,  // CJK punctuation, hiragana, katakana
+        0x4E00, 0x9FFF,  // CJK ideographs (common kanji)
+        0xFF00, 0xFFEF,  // Fullwidth forms
+        0,
+    };
+    auto addJp = [&](float size) {
+        ImFontConfig fc_jp;
+        fc_jp.MergeMode = true;
+        io.Fonts->AddFontFromFileTTF("fonts/NotoSansJP.ttf", size, &fc_jp, jp_ranges);
+    };
+
+    // Body font: Inter + NotoSansJP merge
+    io.Fonts->AddFontFromFileTTF("fonts/Inter.ttf", 14.f);
+    addJp(14.f);
+
+    // Bold font: InterBold + NotoSansJP merge (used for title)
+    g_font_bold = io.Fonts->AddFontFromFileTTF("fonts/InterBold.ttf", 18.f);
+    addJp(18.f);
 
     setup_style();
 
@@ -180,6 +204,9 @@ int main() {
 
     while (!glfwWindowShouldClose(window)) {
         glfwPollEvents();
+        // Drain IME Mach port messages that GLFW's run loop doesn't process,
+        // suppressing the IMKCFRunLoopWakeUpReliable error on macOS.
+        CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.0, true);
 
         // Update Dear ImGui IO
         double mx, my;
@@ -199,16 +226,9 @@ int main() {
             ImGuiWindowFlags_NoBringToFrontOnFocus);
 
         // ── Title ──────────────────────────────────────────────────────────
-        ImVec2 title_pos  = ImGui::GetCursorScreenPos();
-        float  title_size = 18.f;
-        ImGui::PushFont(nullptr, title_size);
+        ImGui::PushFont(g_font_bold, 0.f);
         ImGui::PushStyleColor(ImGuiCol_Text, col4(1.f, 1.f, 1.f));
         ImGui::TextUnformatted("ToDo");
-        // Pseudo-bold: second pass offset 0.4 px
-        ImGui::GetWindowDrawList()->AddText(
-            ImGui::GetFont(), title_size,
-            {title_pos.x + 0.4f, title_pos.y},
-            IM_COL32(255, 255, 255, 255), "ToDo");
         ImGui::PopStyleColor();
         ImGui::PopFont();
 

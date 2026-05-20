@@ -15,8 +15,9 @@ pub const WIN_H: i32 = 600;
 pub const PAD_X: f32 = 24;
 pub const PAD_Y: f32 = 10;
 
-pub const TITLE_FONT_SIZE: i32 = 18;
-pub const NORMAL_FONT_SIZE: i32 = 14;
+pub const TITLE_FONT_SIZE: i32 = 20;
+pub const NORMAL_FONT_SIZE: i32 = 16;
+pub const LIST_FONT_SIZE:   i32 = 18;
 
 pub const INPUT_H: f32    = 35;
 pub const ITEM_H: f32     = 35;

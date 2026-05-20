@@ -3,6 +3,11 @@ use egui::{FontId, RichText, Sense, Stroke};
 use crate::data::{TabFilter, Todo};
 use crate::theme::*;
 
+#[cfg(target_os = "macos")]
+extern "C" {
+    fn activate_ime();
+}
+
 #[derive(serde::Deserialize, serde::Serialize)]
 #[serde(default)]
 pub struct ToDoApp {
@@ -33,6 +38,8 @@ impl Default for ToDoApp {
 impl ToDoApp {
     pub fn new(cc: &eframe::CreationContext<'_>) -> Self {
         Self::apply_theme(&cc.egui_ctx);
+        #[cfg(target_os = "macos")]
+        unsafe { activate_ime() };
         if let Some(storage) = cc.storage {
             return eframe::get_value(storage, eframe::APP_KEY).unwrap_or_default();
         }
@@ -149,9 +156,13 @@ impl ToDoApp {
                 .rect_stroke(bg_rect, 4.0, Stroke::new(1.0, C_ACCENT));
         }
 
-        // Submit on Enter
+        // Submit on Enter, but not when IME just committed text (its Enter must not submit the form).
+        let just_committed_ime = ui.input(|i| {
+            i.events.iter().any(|e| matches!(e, egui::Event::Ime(egui::ImeEvent::Commit(_))))
+        });
         if input_response.lost_focus()
             && ui.input(|i| i.key_pressed(egui::Key::Enter))
+            && !just_committed_ime
         {
             let task = self.input_text.trim().to_string();
             if !task.is_empty() {

@@ -24,12 +24,15 @@ pub fn build(b: *std.Build) void {
 
     mod.addLibraryPath(.{ .cwd_relative = glfw_lib });
     mod.linkSystemLibrary("glfw",    .{});
-    mod.linkFramework("OpenGL",    .{});
-    mod.linkFramework("Cocoa",     .{});
-    mod.linkFramework("IOKit",     .{});
-    mod.linkFramework("CoreVideo", .{});
+    mod.linkFramework("OpenGL",          .{});
+    mod.linkFramework("Cocoa",           .{});
+    mod.linkFramework("IOKit",           .{});
+    mod.linkFramework("CoreVideo",       .{});
+    mod.linkFramework("CoreFoundation",  .{});
 
     const cpp_flags = &[_][]const u8{ "-std=c++17", "-DGL_SILENCE_DEPRECATION" };
+    const mm_flags  = &[_][]const u8{ "-std=c++17", "-DGL_SILENCE_DEPRECATION",
+                                       "-DGLFW_EXPOSE_NATIVE_COCOA", "-fobjc-arc" };
 
     mod.addCSourceFiles(.{
         .files = &.{
@@ -42,6 +45,11 @@ pub fn build(b: *std.Build) void {
             "src/imgui_app.cpp",
         },
         .flags = cpp_flags,
+    });
+
+    mod.addCSourceFiles(.{
+        .files = &.{ "src/ime_mac.mm" },
+        .flags = mm_flags,
     });
 
     const exe = b.addExecutable(.{ .name = "todo", .root_module = mod });

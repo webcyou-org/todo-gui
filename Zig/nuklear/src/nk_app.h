@@ -60,3 +60,7 @@ int nk_app_mouse_clicked_circle(NkApp* app, float cx, float cy, float r);
 /* Font metrics */
 float nk_app_text_width(NkApp* app, const char* text, int len);
 float nk_app_font_height(NkApp* app);
+
+/* Font switching */
+void nk_app_use_bold_font(NkApp* app);
+void nk_app_use_normal_font(NkApp* app);

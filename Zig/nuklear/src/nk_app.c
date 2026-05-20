@@ -5,6 +5,7 @@
 #include "nk_app.h"
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
 /* Design tokens */
 #define C_BG        nk_rgb(0x1C, 0x1C, 0x1C)
@@ -17,11 +18,14 @@
 #define C_CB_BORDER nk_rgb(0xD9, 0xD9, 0xD9)
 
 struct NkApp {
-    SDL_Window*        window;
-    SDL_Renderer*      renderer;
-    struct nk_context* ctx;
-    float              scale; /* HiDPI pixel ratio (physical / logical) */
-    int                quit;
+    SDL_Window*          window;
+    SDL_Renderer*        renderer;
+    struct nk_context*   ctx;
+    float                scale;
+    int                  quit;
+    struct nk_user_font* font_normal;
+    struct nk_user_font* font_bold;
+    int                  ime_composing; /* 1 while SDL_TEXTEDITING is active */
 };
 
 static struct nk_color to_nk(NkAppColor c) {
@@ -66,24 +70,49 @@ NkApp* nk_app_create(int width, int height, const char* title) {
 
     app->ctx = nk_sdl_init(app->window, app->renderer);
 
-    /* Load a TTF font baked at physical resolution for crisp Retina text.
-       Dividing handle.height by scale gives Nuklear the logical pt size so
-       layout arithmetic stays in logical pixels.                           */
+    /* Enable SDL text input (required for IME on macOS) */
+    SDL_StartTextInput();
+
     {
         struct nk_font_atlas* atlas = NULL;
         nk_sdl_font_stash_begin(&atlas);
 
+        /* Regular font: ASCII + kana + common kanji (first ~8k, covers everyday use) */
+        static const nk_rune jp_ranges[] = {
+            0x0020, 0x00FF,  /* ASCII + Latin supplement */
+            0x3000, 0x30FF,  /* CJK symbols, hiragana, katakana */
+            0x4E00, 0x6FFF,  /* CJK Unified Ideographs (most frequent kanji) */
+            0,
+        };
+        /* Bold font: ASCII + kana only — title never needs kanji */
+        static const nk_rune kana_ranges[] = {
+            0x0020, 0x00FF,
+            0x3000, 0x30FF,
+            0,
+        };
+
+        struct nk_font_config jp_cfg = nk_font_config(0);
+        jp_cfg.range = jp_ranges;
+
+        struct nk_font_config bold_cfg = nk_font_config(0);
+        bold_cfg.range = kana_ranges;
+
         struct nk_font* font = nk_font_atlas_add_from_file(
-            atlas,
-            "fonts/Inter.ttf",
-            14.0f * app->scale,
-            NULL);
+            atlas, "fonts/NotoSansJP-Medium.ttf", 16.0f * app->scale, &jp_cfg);
+
+        struct nk_font* font_bold = nk_font_atlas_add_from_file(
+            atlas, "fonts/NotoSansJP-Bold.ttf", 20.0f * app->scale, &bold_cfg);
 
         nk_sdl_font_stash_end();
 
         if (font) {
             font->handle.height /= app->scale;
-            nk_style_set_font(app->ctx, &font->handle);
+            app->font_normal = &font->handle;
+            nk_style_set_font(app->ctx, app->font_normal);
+        }
+        if (font_bold) {
+            font_bold->handle.height /= app->scale;
+            app->font_bold = &font_bold->handle;
         }
     }
 
@@ -168,11 +197,52 @@ void nk_app_set_style(NkApp* app) {
 
 int nk_app_poll_events(NkApp* app) {
     SDL_Event event;
+    /* Buffer Return keypresses while IME is composing.
+       macOS sends SDL_KEYDOWN(RETURN) before SDL_TEXTINPUT for the same
+       keypress, so we defer the Return until we know whether a TEXTINPUT
+       follows in the same batch (IME commit → discard) or not (real submit). */
+    int return_buffered = 0;
+
     nk_input_begin(app->ctx);
     while (SDL_PollEvent(&event)) {
         if (event.type == SDL_QUIT) app->quit = 1;
+
+        if (event.type == SDL_TEXTEDITING) {
+            app->ime_composing = (event.edit.text[0] != '\0');
+            nk_sdl_handle_event(&event);
+            continue;
+        }
+
+        /* TEXTINPUT in the same batch as a buffered Return → Return was for
+           IME confirmation; cancel it and process the text instead. */
+        if (event.type == SDL_TEXTINPUT && return_buffered) {
+            return_buffered = 0;
+            app->ime_composing = 0;
+            nk_sdl_handle_event(&event);
+            continue;
+        }
+
+        /* Buffer Return while IME is active; decide after seeing the full batch. */
+        if (event.type == SDL_KEYDOWN &&
+            event.key.keysym.sym == SDLK_RETURN &&
+            app->ime_composing) {
+            return_buffered = 1;
+            continue;
+        }
+
         nk_sdl_handle_event(&event);
     }
+
+    /* No TEXTINPUT followed the buffered Return → it is a real submit. */
+    if (return_buffered) {
+        SDL_Event fake = {0};
+        fake.type = SDL_KEYDOWN;
+        fake.key.keysym.sym = SDLK_RETURN;
+        nk_sdl_handle_event(&fake);
+        fake.type = SDL_KEYUP;
+        nk_sdl_handle_event(&fake);
+    }
+
     nk_input_end(app->ctx);
     return app->quit;
 }
@@ -327,4 +397,12 @@ float nk_app_text_width(NkApp* app, const char* text, int len) {
 
 float nk_app_font_height(NkApp* app) {
     return app->ctx->style.font->height;
+}
+
+void nk_app_use_bold_font(NkApp* app) {
+    if (app->font_bold) nk_style_set_font(app->ctx, app->font_bold);
+}
+
+void nk_app_use_normal_font(NkApp* app) {
+    if (app->font_normal) nk_style_set_font(app->ctx, app->font_normal);
 }

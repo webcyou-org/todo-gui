@@ -41,6 +41,9 @@ opt-level = 2 # fast and small wasm
 opt-level = 2
 
 
+[build-dependencies]
+cc = "1"
+
 [patch.crates-io]
 
 # If you want to use the bleeding edge version of egui and eframe:

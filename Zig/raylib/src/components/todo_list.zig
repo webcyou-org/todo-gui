@@ -8,21 +8,19 @@ fn drawItem(todo: data.Todo, x: f32, y: f32, w: f32, font: rl.Font) void {
     rl.DrawRectangleRounded(rec, th.ITEM_RADIUS / (th.ITEM_H / 2.0), 8, th.C_SURFACE);
 
     // Circular checkbox
-    const cb_cx: i32 = @intFromFloat(x + 10 + th.CB_SIZE / 2);
-    const cb_cy: i32 = @intFromFloat(y + th.ITEM_H / 2);
+    const cx: f32 = x + 10 + th.CB_SIZE / 2;
+    const cy: f32 = y + th.ITEM_H / 2;
+    const r_outer = th.CB_SIZE / 2;
+    const r_inner = r_outer - 1.5;
+    rl.DrawRing(.{ .x = cx, .y = cy }, r_inner, r_outer, 0, 360, 36, th.C_CB_BORDER);
     if (todo.is_completed) {
-        rl.DrawCircleLines(cb_cx, cb_cy, th.CB_SIZE / 2, th.C_CB_BORDER);
-        const cx: f32 = @floatFromInt(cb_cx);
-        const cy: f32 = @floatFromInt(cb_cy);
-        rl.DrawLineEx(.{ .x = cx - 4, .y = cy },       .{ .x = cx - 1, .y = cy + 3 }, 1.5, th.C_ACCENT);
-        rl.DrawLineEx(.{ .x = cx - 1, .y = cy + 3 },   .{ .x = cx + 4, .y = cy - 3 }, 1.5, th.C_ACCENT);
-    } else {
-        rl.DrawCircleLines(cb_cx, cb_cy, th.CB_SIZE / 2, th.C_CB_BORDER);
+        rl.DrawLineEx(.{ .x = cx - 4, .y = cy },     .{ .x = cx - 1, .y = cy + 3 }, 2.0, th.C_ACCENT);
+        rl.DrawLineEx(.{ .x = cx - 1, .y = cy + 3 }, .{ .x = cx + 4, .y = cy - 3 }, 2.0, th.C_ACCENT);
     }
 
     // Task text
     const text_x = x + 10 + th.CB_SIZE + th.CB_MARGIN_RIGHT;
-    const fs: f32 = @floatFromInt(th.NORMAL_FONT_SIZE);
+    const fs: f32 = @floatFromInt(th.LIST_FONT_SIZE);
     const text_y = y + (th.ITEM_H - fs) / 2.0;
     const color = if (todo.is_completed) th.C_MUTED else th.C_TEXT;
 

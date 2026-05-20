@@ -27,9 +27,11 @@ pub fn main() !void {
         c.nk_app_frame_begin(app);
 
         // Title
-        c.nk_app_row_dynamic(app, 18, 1);
+        c.nk_app_use_bold_font(app);
+        c.nk_app_row_dynamic(app, 22, 1);
         c.nk_app_label_colored(app, "ToDo", C_WHITE, 1);
-        c.nk_app_row_dynamic(app, 14, 1);
+        c.nk_app_use_normal_font(app);
+        c.nk_app_row_dynamic(app, 4, 1);
         c.nk_app_spacing(app, 1);
 
         // Input

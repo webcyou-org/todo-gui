@@ -42,7 +42,7 @@ set(DEAR_IMGUI_SRCS
 # ─── Target ──────────────────────────────────────────────────────────────────
 set(PLATFORM_SRCS "")
 if(APPLE)
-    list(APPEND PLATFORM_SRCS src/metal_window.mm)
+    list(APPEND PLATFORM_SRCS src/metal_window.mm src/ime_mac.mm)
 endif()
 
 add_executable(todo
@@ -75,9 +75,16 @@ if(APPLE)
         "-framework Cocoa"
         "-framework QuartzCore"
         "-framework IOKit"
+        "-framework CoreFoundation"
     )
 else()
     target_link_libraries(todo PRIVATE bgfx bx bimg glfw)
 endif()
 
 target_compile_options(todo PRIVATE -Wall -Wextra -Wno-unused-parameter)
+
+# Copy fonts to build directory so the executable can find them via relative path.
+add_custom_command(TARGET todo POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/fonts $<TARGET_FILE_DIR:todo>/fonts
+)
