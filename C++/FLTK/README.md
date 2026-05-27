@@ -38,16 +38,16 @@ cmake --build build
 open build/main.app
 ```
 
-> macOS でビルドすると `.app` バンドルが生成されます。
+> Building on macOS produces a `.app` bundle.
 
 ## Architecture
 
-単一ファイルに近いシンプルな構成。FLTK ウィジェットを直接組み立て、データとロジックを C++ クラスで一体管理する。
+A near-single-file simple structure. FLTK widgets are assembled directly, with data and logic managed together in a C++ class.
 
 ```
 src/
-├── main.cpp        # エントリーポイント・ウィンドウ構築・イベントループ
-├── data.h          # Todo データモデル・AppState・TabFilter
-├── theme.h         # カラー定数・デザイントークン
-└── widgets/        # 入力欄・タブ・リストの FLTK ウィジェット部品
+├── main.cpp        # entry point · window construction · event loop
+├── data.h          # Todo data model · AppState · TabFilter
+├── theme.h         # color constants · design tokens
+└── widgets/        # FLTK widget components for input, tabs, and list
 ```

@@ -2,7 +2,7 @@
 
 C# Todo app using [UWP](https://learn.microsoft.com/windows/uwp/) (Universal Windows Platform).
 
-> **Windows 専用** — UWP は Windows でのみ動作します。
+> **Windows only** — UWP runs on Windows only.
 
 ## Requirements
 
@@ -13,15 +13,15 @@ Download Visual Studio from https://visualstudio.microsoft.com/
 
 ## Build & Run
 
-Visual Studio で `ToDo.sln` を開き、**F5** でビルド・実行してください。
+Open `ToDo.sln` in Visual Studio and press **F5** to build and run.
 
 ## Architecture
 
-UWP の MVVM パターン。XAML ページが View を担い、ViewModel が INotifyPropertyChanged でデータバインディングを提供する。
+UWP MVVM pattern. XAML pages handle the View, and the ViewModel provides data bindings via INotifyPropertyChanged.
 
-| レイヤー | ファイル | 役割 |
-|---------|---------|------|
-| Model | `ToDo/Models/Todo.cs` | Todo データモデル |
-| ViewModel | `ToDo/ViewModels/MainViewModel.cs` | 状態管理・コマンド定義 |
-| View | `ToDo/MainPage.xaml`, `ToDo/Converters/` | UWP XAML UI・値コンバーター |
-| Entry | `ToDo/App.xaml.cs` | アプリ起動・ナビゲーション設定 |
+| Layer | File | Role |
+|-------|------|------|
+| Model | `ToDo/Models/Todo.cs` | Todo data model |
+| ViewModel | `ToDo/ViewModels/MainViewModel.cs` | state management · command definitions |
+| View | `ToDo/MainPage.xaml`, `ToDo/Converters/` | UWP XAML UI · value converters |
+| Entry | `ToDo/App.xaml.cs` | app launch · navigation configuration |

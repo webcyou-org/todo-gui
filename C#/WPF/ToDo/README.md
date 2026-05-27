@@ -2,7 +2,7 @@
 
 C# Todo app using [WPF](https://learn.microsoft.com/dotnet/desktop/wpf/) (Windows Presentation Foundation).
 
-> **Windows 専用** — WPF は Windows でのみ動作します。
+> **Windows only** — WPF runs on Windows only.
 
 ## Requirements
 
@@ -27,11 +27,11 @@ dotnet run
 
 ## Architecture
 
-WPF の MVVM パターン。XAML で View を定義し、ViewModel が INotifyPropertyChanged と RelayCommand でデータバインディングを提供する。
+WPF MVVM pattern. The View is defined in XAML, and the ViewModel provides data bindings via INotifyPropertyChanged and RelayCommand.
 
-| レイヤー | ファイル | 役割 |
-|---------|---------|------|
-| Model | `Models/TabFilter.cs`, `Todo.cs` | Todo データ・フィルター状態 |
-| ViewModel | `ViewModels/MainViewModel.cs`, `RelayCommand.cs` | 状態管理・コマンド定義 |
-| View | `Views/Controls/`, `MainWindow.xaml` | WPF XAML UI・カスタムコントロール |
-| Entry | `App.xaml.cs` | アプリ起動・ルートウィンドウ設定 |
+| Layer | File | Role |
+|-------|------|------|
+| Model | `Models/TabFilter.cs`, `Todo.cs` | Todo data · filter state |
+| ViewModel | `ViewModels/MainViewModel.cs`, `RelayCommand.cs` | state management · command definitions |
+| View | `Views/Controls/`, `MainWindow.xaml` | WPF XAML UI · custom controls |
+| Entry | `App.xaml.cs` | app launch · root window configuration |

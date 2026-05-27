@@ -38,13 +38,13 @@ make
 
 ## Architecture
 
-即時モード描画パターン。raylib のフレームループ内で毎フレーム UI を描画し、状態は `AppState` 構造体で一元管理する。
+Immediate Mode drawing pattern. The UI is drawn every frame within raylib's frame loop, and state is centrally managed in an `AppState` struct.
 
 ```
 src/
-├── main.cpp        # エントリーポイント・ウィンドウ初期化・メインループ
-├── data.h          # AppState・Todo・TabFilter
-├── theme.h         # カラー・フォント定数
-├── draw_helpers.h  # 丸角矩形などの描画ユーティリティ
-└── components/     # 入力欄・タブ・リストの描画コンポーネント
+├── main.cpp        # entry point · window initialization · main loop
+├── data.h          # AppState · Todo · TabFilter
+├── theme.h         # color and font constants
+├── draw_helpers.h  # drawing utilities such as rounded rectangles
+└── components/     # drawing components for input, tabs, and list
 ```

@@ -18,7 +18,7 @@ Works on all platforms:
 pip install kivy
 ```
 
-macOS で OpenGL 警告が出る場合:
+If you see OpenGL warnings on macOS:
 
 ```sh
 pip install kivy[base]
@@ -34,12 +34,12 @@ python main.py
 
 ## Architecture
 
-Kivy のウィジェットツリーによる宣言的 UI 構成。データモデルとコンポーネントをファイルで分離し、`main.py` がアプリを起動する。
+A declarative UI structure using Kivy's widget tree. Data model and components are separated into files; `main.py` launches the app.
 
 ```
 .
-├── main.py         # エントリーポイント・App クラス・ルートウィジェット構築
-├── data.py         # Todo データモデル・TabFilter・状態管理
-├── theme.py        # カラー・フォント定数
-└── components/     # 入力欄・タブ・リストの Kivy ウィジェット部品
+├── main.py         # entry point · App class · root widget construction
+├── data.py         # Todo data model · TabFilter · state management
+├── theme.py        # color and font constants
+└── components/     # Kivy widget components for input, tabs, and list
 ```

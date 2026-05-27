@@ -22,16 +22,16 @@ npm install
 npm run dev
 ```
 
-> `src/package.json` でアプリのエントリポイント（`main`）とウィンドウ設定が定義されています。
+> The app entry point (`main`) and window configuration are defined in `src/package.json`.
 
 ## Architecture
 
-NW.js の Node.js 統合ブラウザウィンドウ構成。`src/package.json` でエントリポイントとウィンドウ設定を定義し、HTML/CSS/JS で UI を実装する。
+An NW.js Node.js-integrated browser window structure. The entry point and window configuration are defined in `src/package.json`, and the UI is implemented in HTML/CSS/JS.
 
 ```
 src/
-├── package.json    # NW.js アプリ設定（main・ウィンドウサイズ等）
-├── views/          # HTML ページ
-├── styles/         # CSS スタイルシート
-└── app/            # JavaScript アプリロジック
+├── package.json    # NW.js app configuration (main, window size, etc.)
+├── views/          # HTML pages
+├── styles/         # CSS stylesheets
+└── app/            # JavaScript app logic
 ```

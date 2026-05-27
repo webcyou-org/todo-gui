@@ -31,7 +31,7 @@ wxWidgets is built from source (bundled via CMake ExternalProject — no separat
 
 ## Build
 
-初回ビルドは wxWidgets のコンパイルを含むため数分かかります。
+The first build takes several minutes as it includes compiling wxWidgets.
 
 ```sh
 cmake -B build -DCMAKE_BUILD_TYPE=Release
@@ -46,13 +46,13 @@ cmake --build build
 
 ## Architecture
 
-純 C++ 実装。wxWidgets ウィジェットを継承・組み合わせてイベント駆動 UI を構築し、データモデルとウィジェット部品をファイルで分離する。wxWidgets 本体は CMake ExternalProject でソースビルドする。
+Pure C++ implementation. An event-driven UI is built by inheriting and composing wxWidgets widgets, with data model and widget components separated into files. The wxWidgets library itself is built from source via CMake ExternalProject.
 
 ```
 src/
-├── main.cpp        # エントリーポイント・wxApp・メインウィンドウ構築
-├── data.h          # Todo データモデル・AppState・TabFilter
-├── theme.h         # カラー・スタイル定数
-└── widgets/        # 入力欄・タブ・リストの wxWidgets ウィジェット部品
-thirdparty/wxwidgets/   # wxWidgets ソース（CMake ExternalProject）
+├── main.cpp        # entry point · wxApp · main window construction
+├── data.h          # Todo data model · AppState · TabFilter
+├── theme.h         # color and style constants
+└── widgets/        # wxWidgets widget components for input, tabs, and list
+thirdparty/wxwidgets/   # wxWidgets source (CMake ExternalProject)
 ```

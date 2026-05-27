@@ -13,7 +13,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 **Windows**: `winget install Rustlang.Rustup` or download rustup-init.exe from https://rustup.rs/
 
-> Vizia は git リポジトリから直接取得されます（`Cargo.toml` 参照）。
+> Vizia is fetched directly from its git repository (see `Cargo.toml`).
 
 ## Build & Run
 
@@ -21,7 +21,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo run
 ```
 
-本番ビルド:
+Production build:
 
 ```sh
 cargo build --release
@@ -30,12 +30,12 @@ cargo build --release
 
 ## Architecture
 
-Vizia の宣言的・リアクティブ UI パターン。`Model` トレイトで状態を定義し、CSS スタイリングとビューコンポーネントを組み合わせる。
+Vizia's declarative, reactive UI pattern. State is defined with the `Model` trait; CSS styling and view components are combined.
 
 ```
 src/
-├── main.rs         # エントリーポイント・Application 起動・ルートビュー構築
-├── data.rs         # AppState・Todo・TabFilter・Model・Event 定義
-├── theme.rs        # カラー定数
-└── components/     # 入力欄・タブ・Todo リストの Vizia ビュー部品
+├── main.rs         # entry point · Application launch · root view construction
+├── data.rs         # AppState · Todo · TabFilter · Model · Event definitions
+├── theme.rs        # color constants
+└── components/     # Vizia view parts for input, tabs, and Todo list
 ```

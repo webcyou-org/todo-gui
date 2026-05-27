@@ -32,12 +32,12 @@ python main.py
 
 ## Architecture
 
-Toga の BeeWare 宣言的ウィジェット構成。データモデルとウィジェット部品をファイルで分離し、`main.py` がアプリを起動する。
+A declarative widget structure using Toga's BeeWare framework. Data model and widget components are separated into files; `main.py` launches the app.
 
 ```
 .
-├── main.py         # エントリーポイント・toga.App・メインウィンドウ構築
-├── data.py         # Todo データモデル・TabFilter・状態管理
-├── theme.py        # カラー・スタイル定数
-└── widgets/        # 入力欄・タブ・Todo 行の Toga ウィジェット部品
+├── main.py         # entry point · toga.App · main window construction
+├── data.py         # Todo data model · TabFilter · state management
+├── theme.py        # color and style constants
+└── widgets/        # Toga widget components for input, tabs, and Todo rows
 ```

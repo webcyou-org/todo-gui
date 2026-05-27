@@ -14,7 +14,7 @@ rustup update
 
 **Windows**: `winget install Rustlang.Rustup` or download rustup-init.exe from https://rustup.rs/
 
-**Linux** の場合は追加で:
+**Linux** — additional dependencies:
 
 ```sh
 sudo apt-get install libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev libxkbcommon-dev libssl-dev
@@ -28,13 +28,13 @@ cargo run --release
 
 ## Architecture
 
-egui の即時モード GUI パターン。毎フレーム `update` 関数を呼び出して UI を宣言的に描画し、状態は `App` 構造体で一元管理する。
+egui's immediate mode GUI pattern. The `update` function is called every frame to declaratively render the UI; state is centrally managed in the `App` struct.
 
 ```
 src/
-├── main.rs         # エントリーポイント・eframe::run_native・App 起動
-├── lib.rs          # App 構造体・eframe::App 実装（update 関数）
-├── data.rs         # Todo データモデル・TabFilter・状態管理
-├── app.rs          # UI 描画ロジック（egui ウィジェット呼び出し）
-└── theme.rs        # カラー・スタイル定数
+├── main.rs         # entry point · eframe::run_native · App launch
+├── lib.rs          # App struct · eframe::App implementation (update function)
+├── data.rs         # Todo data model · TabFilter · state management
+├── app.rs          # UI rendering logic (egui widget calls)
+└── theme.rs        # color and style constants
 ```

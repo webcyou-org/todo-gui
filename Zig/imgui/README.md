@@ -49,13 +49,13 @@ The C++ wrapper (`src/imgui_app.cpp`) exposes a minimal C API that the Zig code 
 
 ## Architecture
 
-即時モード GUI パターン。Zig がデータモデルと状態を管理し、C++ ラッパーが Dear ImGui を GLFW + OpenGL3 で描画する。`@cImport` で C API を呼び出す。
+Immediate Mode GUI pattern. Zig manages the data model and state; a C++ wrapper renders Dear ImGui via GLFW + OpenGL3. The C API is called from Zig via `@cImport`.
 
 ```
 src/
-├── main.zig        # エントリーポイント・ウィンドウ初期化・メインループ
-├── data.zig        # AppState・Todo・TabFilter の状態管理
-├── imgui_app.h/cpp # Dear ImGui + GLFW + OpenGL3 の C++ ラッパー（最小 C API）
-└── components/     # 入力欄・タブ・Todo リストの ImGui ウィジェット関数（Zig）
-vendor/imgui/       # Dear ImGui ソース（C++/ImGui からシムリンク）
+├── main.zig        # entry point · window initialization · main loop
+├── data.zig        # AppState · Todo · TabFilter state management
+├── imgui_app.h/cpp # C++ wrapper for Dear ImGui + GLFW + OpenGL3 (minimal C API)
+└── components/     # ImGui widget functions for input, tabs, and Todo list (Zig)
+vendor/imgui/       # Dear ImGui sources (symlinked from C++/ImGui)
 ```

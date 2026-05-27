@@ -2,7 +2,7 @@
 
 C# Todo app using [Prism](https://prismlibrary.com/) with WPF — MVVM framework for .NET.
 
-> **Windows 専用** — WPF は Windows でのみ動作します。
+> **Windows only** — WPF runs on Windows only.
 
 ## Requirements
 
@@ -27,11 +27,11 @@ dotnet run
 
 ## Architecture
 
-Prism ライブラリを用いた MVVM パターン。DI コンテナと NavigationService により ViewModel と View を疎結合に保ち、コマンド・バインディングで UI ロジックを分離する。
+MVVM pattern using the Prism library. The DI container and NavigationService keep the ViewModel and View loosely coupled; commands and bindings separate UI logic.
 
-| レイヤー | ファイル | 役割 |
-|---------|---------|------|
-| Model | `Models/TabFilter.cs`, `Todo.cs` | Todo データ・フィルター状態 |
-| ViewModel | `ViewModels/MainWindowViewModel.cs` | コマンド定義・状態管理 (Prism BindableBase) |
-| View | `Views/Controls/`, `MainWindow.xaml` | WPF XAML UI・カスタムコントロール |
-| Entry | `App.xaml.cs` | Prism アプリ起動・DI 設定 |
+| Layer | File | Role |
+|-------|------|------|
+| Model | `Models/TabFilter.cs`, `Todo.cs` | Todo data · filter state |
+| ViewModel | `ViewModels/MainWindowViewModel.cs` | command definitions · state management (Prism BindableBase) |
+| View | `Views/Controls/`, `MainWindow.xaml` | WPF XAML UI · custom controls |
+| Entry | `App.xaml.cs` | Prism app launch · DI configuration |

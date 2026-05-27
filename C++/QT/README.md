@@ -38,11 +38,11 @@ open QT.app
 
 ## Architecture
 
-Qt5 Widgets の MVC パターン。`QAbstractListModel` をサブクラス化してデータモデルを実装し、カスタムウィジェットで UI を描画する。
+MVC pattern using Qt5 Widgets. The data model is implemented by subclassing `QAbstractListModel`, and the UI is rendered using custom widgets.
 
-| レイヤー | ファイル | 役割 |
-|---------|---------|------|
-| Model | `data.h`, `todomodel.h/cpp` | Todo データ・QAbstractListModel 実装 |
-| View | `mainwindow.h/cpp`, `todoitemwidget.h/cpp` | Qt Widgets UI・カスタム行ウィジェット |
-| Entry | `main.cpp` | QApplication 起動・MainWindow 生成 |
-| Theme | `theme.h` | カラー・スタイル定数 |
+| Layer | File | Role |
+|-------|------|------|
+| Model | `data.h`, `todomodel.h/cpp` | Todo data · QAbstractListModel implementation |
+| View | `mainwindow.h/cpp`, `todoitemwidget.h/cpp` | Qt Widgets UI · custom row widget |
+| Entry | `main.cpp` | QApplication startup · MainWindow creation |
+| Theme | `theme.h` | color and style constants |

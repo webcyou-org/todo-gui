@@ -24,7 +24,7 @@ sudo apt install libgtk-3-dev libcairo2-dev libpango1.0-dev
 cargo run
 ```
 
-本番ビルド:
+Production build:
 
 ```sh
 cargo build --release
@@ -33,13 +33,13 @@ cargo build --release
 
 ## Architecture
 
-Druid のデータ駆動リアクティブ UI パターン。`AppState` を `Data` トレイトで定義し、Lens でフィールドを部分的に参照してウィジェットにバインドする。
+Druid's data-driven reactive UI pattern. `AppState` is defined with the `Data` trait; fields are partially referenced via Lens and bound to widgets.
 
 ```
 src/
-├── main.rs         # エントリーポイント・AppLauncher・ルートウィジェット構築
-├── data.rs         # AppState・Todo・TabFilter（Druid Data/Lens 実装）
-├── lens.rs         # カスタム Lens 定義
-├── theme.rs        # カラー・スタイル定数
-└── widget/         # 入力欄・タブ・Todo リストのカスタムウィジェット
+├── main.rs         # entry point · AppLauncher · root widget construction
+├── data.rs         # AppState · Todo · TabFilter (Druid Data/Lens implementation)
+├── lens.rs         # custom Lens definitions
+├── theme.rs        # color and style constants
+└── widget/         # custom widgets for input, tabs, and Todo list
 ```

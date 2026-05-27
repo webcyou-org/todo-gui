@@ -28,11 +28,11 @@ python main.py
 
 ## Architecture
 
-PyForms のフォームベース構成。`BaseWidget` を継承したフォームクラスが UI とロジックを統合し、PyQt5 バックエンドでウィジェットをレンダリングする。
+A form-based structure using PyForms. A form class inheriting `BaseWidget` integrates UI and logic, with the PyQt5 backend rendering the widgets.
 
 ```
 .
-├── main.py         # エントリーポイント・PyForms アプリ起動・TodoForm 定義
-├── data.py         # Todo データモデル・TabFilter・状態管理
-└── theme.py        # カラー・スタイル定数
+├── main.py         # entry point · PyForms app launch · TodoForm definition
+├── data.py         # Todo data model · TabFilter · state management
+└── theme.py        # color and style constants
 ```

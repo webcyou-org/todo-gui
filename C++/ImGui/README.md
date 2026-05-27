@@ -42,13 +42,13 @@ cmake --build build
 
 ## Architecture
 
-即時モード GUI（Immediate Mode）パターン。毎フレーム描画関数を呼び出し、状態は `AppState` 構造体で一元管理する。ImGui ソースは `vendor/imgui/` にバンドルされている。
+Immediate Mode GUI pattern. Drawing functions are called every frame, and state is centrally managed in an `AppState` struct. ImGui sources are bundled in `vendor/imgui/`.
 
 ```
 src/
-├── main.cpp        # エントリーポイント・GLFW ウィンドウ・メインループ
-├── data.h          # AppState・Todo・TabFilter の状態管理
-├── theme.h         # カラー・スタイル定数
-└── widgets/        # 入力欄・タブ・リストの ImGui ウィジェット関数
-vendor/imgui/       # Dear ImGui ソース（バンドル）
+├── main.cpp        # entry point · GLFW window · main loop
+├── data.h          # state management for AppState, Todo, and TabFilter
+├── theme.h         # color and style constants
+└── widgets/        # ImGui widget functions for input, tabs, and list
+vendor/imgui/       # Dear ImGui sources (bundled)
 ```

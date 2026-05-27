@@ -37,11 +37,11 @@ dotnet run
 
 ## Architecture
 
-シングルファイル構成に近いシンプルな構造。GTK3 ウィジェットを直接組み立て、データモデルと UI ロジックを C# クラスで管理する。
+A simple near-single-file structure. GTK3 widgets are assembled directly, with the data model and UI logic managed in C# classes.
 
-| レイヤー | ファイル/ディレクトリ | 役割 |
-|---------|---------|------|
-| Model | `src/Models/` | Todo データ・状態モデル |
-| View | `src/Views/` | GtkSharp ウィジェットによる UI 構成 |
-| Components | `src/Components/` | 入力欄・タブ・リストの部品 |
-| Entry | `src/Program.cs` | アプリ起動・ウィンドウ初期化 |
+| Layer | File/Directory | Role |
+|-------|----------------|------|
+| Model | `src/Models/` | Todo data · state model |
+| View | `src/Views/` | UI structure via GtkSharp widgets |
+| Components | `src/Components/` | input field · tabs · list components |
+| Entry | `src/Program.cs` | app launch · window initialization |

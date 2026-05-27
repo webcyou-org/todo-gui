@@ -1,6 +1,6 @@
 # ToDo - fltk-rs
 
-Rust + [fltk-rs](https://github.com/fltk-rs/fltk-rs) (FLTK) で実装した ToDo アプリケーション。
+Todo application implemented with Rust + [fltk-rs](https://github.com/fltk-rs/fltk-rs) (FLTK).
 
 ## Requirements
 
@@ -38,11 +38,11 @@ cargo run
 
 ## Architecture
 
-fltk-rs の FLTK Rust バインディングを使ったシングルパッケージ構成。データモデルとテーマをファイルで分離し、`main.rs` がウィンドウとウィジェットを構築する。
+Single-package structure using fltk-rs FLTK Rust bindings. Data model and theme are separated into files; `main.rs` constructs the window and widgets.
 
 ```
 src/
-├── main.rs         # エントリーポイント・app::App・ウィンドウ構築・イベントループ
-├── data.rs         # Todo データモデル・TabFilter・AppState
-└── theme.rs        # カラー・スタイル定数
+├── main.rs         # entry point · app::App · window construction · event loop
+├── data.rs         # Todo data model · TabFilter · AppState
+└── theme.rs        # color and style constants
 ```

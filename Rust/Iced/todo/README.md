@@ -19,7 +19,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo run
 ```
 
-本番ビルド:
+Production build:
 
 ```sh
 cargo build --release
@@ -28,12 +28,12 @@ cargo build --release
 
 ## Architecture
 
-Iced の Elm アーキテクチャ（State / Message / Update / View）パターン。状態・スタイル・ビューをファイルで分離し、イミュータブルな状態更新でリアクティブ UI を実現する。
+Iced's Elm architecture (State / Message / Update / View) pattern. State, style, and view are separated into files; immutable state updates drive a reactive UI.
 
 ```
 src/
-├── main.rs         # エントリーポイント・iced::run・Application 実装
-├── state.rs        # AppState・Todo・TabFilter・Message・update ロジック
-├── view.rs         # view 関数・Element ツリー構築
-└── style.rs        # カスタムスタイル・カラー定数
+├── main.rs         # entry point · iced::run · Application implementation
+├── state.rs        # AppState · Todo · TabFilter · Message · update logic
+├── view.rs         # view function · Element tree construction
+└── style.rs        # custom styles · color constants
 ```

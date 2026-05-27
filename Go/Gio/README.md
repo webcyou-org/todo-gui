@@ -37,12 +37,12 @@ go run .
 
 ## Architecture
 
-Gio の即時モード UI パターン。フレームイベントごとに `layout` 関数を呼び出して UI を宣言的に描画し、状態は `data/` パッケージで管理する。
+Gio's immediate mode UI pattern. The `layout` function is called on every frame event to declaratively render the UI; state is managed in the `data/` package.
 
 ```
 .
-├── main.go         # エントリーポイント・app.Window・イベントループ
-├── data/           # Todo データモデル・TabFilter・状態管理
-├── ui/             # 入力欄・タブ・リストの Gio レイアウト関数
-└── theme/          # カラー・フォント定数
+├── main.go         # entry point · app.Window · event loop
+├── data/           # Todo data model · TabFilter · state management
+├── ui/             # Gio layout functions for input, tabs, and list
+└── theme/          # color and font constants
 ```

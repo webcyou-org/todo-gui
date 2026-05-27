@@ -59,13 +59,13 @@ patches/
 
 ## Architecture
 
-MVVM パターン。`MainViewModel` が状態管理と UI 生成を担い、fui の `Property<T>` と `ObservableVec<T>` でリアクティブなデータバインディングを実現する。
+MVVM pattern. `MainViewModel` manages state and UI generation; fui's `Property<T>` and `ObservableVec<T>` provide reactive data binding.
 
 ```
 src/
-├── main.rs         # MainViewModel (ViewModel トレイト実装) + Tokio エントリーポイント
+├── main.rs         # MainViewModel (ViewModel trait implementation) + Tokio entry point
 ├── data.rs         # TabFilter (All / Active / Completed)
-└── components/     # UI パーツ（入力欄・タブ・Todo アイテム）を返す関数
+└── components/     # functions returning UI parts (input, tabs, Todo items)
 ```
 
-fui は Tokio (current_thread) + Qt (windowing) + Impeller (renderer) の 3 層構成。ViewModel は非同期タスクスレッドで動作し、Qt GUI スレッドと内部チャンネルで通信する。
+fui uses a three-layer structure: Tokio (current_thread) + Qt (windowing) + Impeller (renderer). The ViewModel runs on an async task thread and communicates with the Qt GUI thread via internal channels.

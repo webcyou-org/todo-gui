@@ -2,7 +2,7 @@
 
 C# Todo app using [Windows Forms](https://learn.microsoft.com/dotnet/desktop/winforms/) (.NET WinForms).
 
-> **Windows 専用** — WinForms は Windows でのみ動作します。
+> **Windows only** — WinForms runs on Windows only.
 
 ## Requirements
 
@@ -27,11 +27,11 @@ dotnet run
 
 ## Architecture
 
-WinForms のコードビハインド構成。データモデルをシンプルなクラスで管理し、Form イベントハンドラーが UI ロジックを担当する。
+WinForms code-behind structure. The data model is managed in simple classes, and Form event handlers handle UI logic.
 
-| レイヤー | ファイル | 役割 |
-|---------|---------|------|
-| Model | `Models/Todo.cs`, `TodoModel.cs` | Todo データ・リスト管理 |
-| View | `Views/MainForm.cs`, `Views/Controls/` | WinForms UI・カスタムコントロール |
-| Entry | `Program.cs` | アプリ起動・Form 生成 |
-| Theme | `Theme.cs` | カラー定数・デザイントークン |
+| Layer | File | Role |
+|-------|------|------|
+| Model | `Models/Todo.cs`, `TodoModel.cs` | Todo data · list management |
+| View | `Views/MainForm.cs`, `Views/Controls/` | WinForms UI · custom controls |
+| Entry | `Program.cs` | app launch · Form creation |
+| Theme | `Theme.cs` | color constants · design tokens |

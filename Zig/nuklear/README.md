@@ -64,15 +64,15 @@ Zig 0.16.0's `@cImport` translate-C pipeline cannot process SDL2's ARM NEON head
 
 ## Architecture
 
-即時モード GUI パターン。Zig がデータモデルと状態を管理し、C ラッパー（`nk_app.h/c`）が SDL2 + Nuklear の描画を担当する。SDL2 の translate-C 問題を回避するため、Nuklear/SDL2 ヘッダーは C コンパイル単位に隔離する。
+Immediate Mode GUI pattern. Zig manages the data model and state; the C wrapper (`nk_app.h/c`) handles SDL2 + Nuklear rendering. To avoid SDL2's translate-C issue, Nuklear/SDL2 headers are isolated in C compilation units.
 
 ```
 src/
-├── main.zig                # エントリーポイント・メインループ
-├── data.zig                # AppState・Todo・TabFilter の状態管理
-├── nk.zig                  # nk_app.h の @cImport
-├── nk_app.h/c              # SDL2 + Nuklear の C ラッパー（Zig 向け最小 API）
-├── nuklear_impl.c          # NK_IMPLEMENTATION・NK_SDL_RENDERER_IMPLEMENTATION
-└── components/             # 入力欄・タブ・Todo リストの Nuklear ウィジェット関数
-vendor/                     # Nuklear ヘッダー（シングルヘッダーライブラリ）
+├── main.zig                # entry point · main loop
+├── data.zig                # AppState · Todo · TabFilter state management
+├── nk.zig                  # @cImport for nk_app.h
+├── nk_app.h/c              # C wrapper for SDL2 + Nuklear (minimal API for Zig)
+├── nuklear_impl.c          # NK_IMPLEMENTATION · NK_SDL_RENDERER_IMPLEMENTATION
+└── components/             # Nuklear widget functions for input, tabs, and Todo list
+vendor/                     # Nuklear headers (single-header library)
 ```

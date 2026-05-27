@@ -46,14 +46,14 @@ cmake --build build
 
 ## Architecture
 
-即時モード GUI パターン。bgfx が Metal（macOS）でレンダリングを担い、Dear ImGui が UI を描画する。GLFW でウィンドウ・入力を管理し、状態は `AppState` 構造体で一元管理する。
+Immediate Mode GUI pattern. bgfx handles rendering via Metal (macOS), while Dear ImGui draws the UI. GLFW manages the window and input, and state is centrally managed in an `AppState` struct.
 
 ```
 src/
-├── main.cpp                # エントリーポイント・bgfx/GLFW 初期化・メインループ
-├── data.h                  # AppState・Todo・TabFilter
-├── theme.h                 # カラー・スタイル定数
-├── imgui_bgfx_backend.h/cpp# bgfx 用 ImGui レンダリングバックエンド
-├── metal_window.h/mm       # macOS Metal ネイティブウィンドウ取得
-└── widgets/                # 入力欄・タブ・リストの ImGui ウィジェット関数
+├── main.cpp                # entry point · bgfx/GLFW initialization · main loop
+├── data.h                  # AppState · Todo · TabFilter
+├── theme.h                 # color and style constants
+├── imgui_bgfx_backend.h/cpp# ImGui rendering backend for bgfx
+├── metal_window.h/mm       # macOS Metal native window acquisition
+└── widgets/                # ImGui widget functions for input, tabs, and list
 ```

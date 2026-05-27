@@ -42,13 +42,13 @@ zig build run
 
 ## Architecture
 
-GTK4 を手書き `extern fn` バインディングで呼び出すシングルパッケージ構成（`@cImport` は GTK4 のヘッダー複雑性で使用不可）。データとコンポーネントをファイルで分離する。
+A single-package structure that calls GTK4 via hand-written `extern fn` bindings (`@cImport` cannot be used due to GTK4's header complexity). Data and components are separated into files.
 
 ```
 src/
-├── main.zig        # エントリーポイント・GtkApplication・ウィンドウ構築
-├── data.zig        # AppState・Todo・TabFilter の状態管理
-├── bindings.zig    # GTK4 手書き extern fn バインディング
-├── ctx.zig         # コールバック用コンテキスト型
-└── components/     # 入力欄・タブ・Todo リストの GTK4 ウィジェット部品
+├── main.zig        # entry point · GtkApplication · window construction
+├── data.zig        # AppState · Todo · TabFilter state management
+├── bindings.zig    # GTK4 hand-written extern fn bindings
+├── ctx.zig         # context types for callbacks
+└── components/     # GTK4 widget components for input, tabs, and Todo list
 ```

@@ -1,7 +1,7 @@
 # Zig / wxWidgets Todo
 
-Zig + wxWidgets 3.3 で実装したダークテーマ Todo アプリ。  
-データモデル・CRUD ロジックを Zig で実装し、wxWidgets UI を C++ ラッパー経由で呼び出す構成。
+Dark-theme Todo app implemented with Zig + wxWidgets 3.3.  
+Data model and CRUD logic are implemented in Zig; the wxWidgets UI is called via a C++ wrapper.
 
 ## Architecture
 
@@ -29,12 +29,12 @@ brew install wxwidgets
 zig build
 ```
 
-初回ビルドはリンク処理に数秒かかります。
+The first build takes a few seconds due to link processing.
 
 ## Run
 
 ```sh
 zig build run
-# または
+# or
 ./zig-out/bin/todo
 ```

@@ -21,13 +21,13 @@ cargo install dioxus-cli
 
 ## Run
 
-**デスクトップアプリとして起動（推奨）:**
+**Launch as a desktop app (recommended):**
 
 ```sh
 cargo run
 ```
 
-**ホットリロード付き開発モード:**
+**Development mode with hot reload:**
 
 ```sh
 dx serve --hot-reload --platform desktop
@@ -35,11 +35,11 @@ dx serve --hot-reload --platform desktop
 
 ## Architecture
 
-Dioxus の React インスパイア宣言的コンポーネント構成。状態は `use_signal` フックで管理し、コンポーネントをファイルで分離する。
+React-inspired declarative component structure using Dioxus. State is managed with `use_signal` hooks; components are separated into files.
 
 ```
 src/
-├── main.rs         # エントリーポイント・dioxus::launch・ルートコンポーネント
-├── data.rs         # Todo データモデル・TabFilter・状態型定義
-└── components/     # 入力欄・タブ・Todo リストの Dioxus コンポーネント
+├── main.rs         # entry point · dioxus::launch · root component
+├── data.rs         # Todo data model · TabFilter · state type definitions
+└── components/     # Dioxus components for input, tabs, and Todo list
 ```

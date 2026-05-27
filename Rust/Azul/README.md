@@ -2,8 +2,8 @@
 
 Rust Todo app using [Azul](https://azul.rs/) — a functional, reactive GUI framework built on Mozilla WebRender.
 
-> **注意: macOS ARM64 (Apple Silicon) でのビルドには追加手順が必要です。**
-> 詳細は [Notes](#notes) を参照してください。
+> **Note: Building on macOS ARM64 (Apple Silicon) requires additional steps.**
+> See [Notes](#notes) for details.
 
 ## Requirements
 
@@ -15,7 +15,7 @@ Rust Todo app using [Azul](https://azul.rs/) — a functional, reactive GUI fram
 cargo run
 ```
 
-本番ビルド:
+Production build:
 
 ```sh
 cargo build --release
@@ -25,45 +25,42 @@ cargo build --release
 
 ```
 src/
-├── main.rs              # エントリーポイント + layout() + ウィンドウ設定
-├── data.rs              # データモデル (Todo, TabFilter, AppState, ToggleData)
-├── theme.rs             # デザイントークン定数
+├── main.rs              # entry point + layout() + window setup
+├── data.rs              # data model (Todo, TabFilter, AppState, ToggleData)
+├── theme.rs             # design token constants
 └── components/
     ├── mod.rs
-    ├── input.rs         # Input コンポーネント + Enter キー追加ロジック
-    ├── tabs.rs          # Tab メニュー (All / Active / Completed)
-    └── todo_list.rs     # TodoItem + TodoList + チェックボックストグル
+    ├── input.rs         # Input component + Enter key add logic
+    ├── tabs.rs          # Tab menu (All / Active / Completed)
+    └── todo_list.rs     # TodoItem + TodoList + checkbox toggle
 ```
 
 ## Architecture
 
-MVC パターンを採用。Azul の `extern "C"` コールバック + `RefAny` 型消去により状態を管理する。
+MVC pattern. State is managed via Azul's `extern "C"` callbacks and `RefAny` type erasure.
 
-| レイヤー | ファイル | 役割 |
-|---------|---------|------|
-| Model | `src/data.rs` | 状態管理・ビジネスロジック |
-| View | `src/main.rs`, `src/components/` | DOM 構築・`layout()` 関数 |
-| Controller | `extern "C"` コールバック関数 | イベント → AppState 更新 |
+| Layer | File | Role |
+|-------|------|------|
+| Model | `src/data.rs` | state management · business logic |
+| View | `src/main.rs`, `src/components/` | DOM construction · `layout()` function |
+| Controller | `extern "C"` callback functions | event → AppState update |
 
 ## Notes
 
-### macOS ARM64 でのビルド方法
+### Building on macOS ARM64
 
-Azul 1.0.0-alpha4 は pre-built バイナリへの動的リンクを前提としていますが、
-macOS ARM64 向けバイナリが公式リリースに含まれていないため、
-本実装は **git ソース + `link-static` フィーチャー** でビルドします。
+Azul 1.0.0-alpha4 assumes dynamic linking against pre-built binaries, but no macOS ARM64 binary is included in the official release. This implementation builds using **git source + the `link-static` feature**.
 
-`link-static` ビルドには **生成コード** (`dll_api_static.rs`) が必要です。
-初回ビルド前に以下の手順で生成してください:
+The `link-static` build requires **generated code** (`dll_api_static.rs`). Run the following steps before the first build:
 
 ```sh
-# 1. azul リポジトリをクローン
+# 1. Clone the azul repository
 git clone https://github.com/fschutt/azul /tmp/azul-src
 
-# 2. コードジェネレータを実行
+# 2. Run the code generator
 cd /tmp/azul-src/doc && cargo run --release -- codegen all
 
-# 3. 生成ファイルを cargo git キャッシュにコピー
+# 3. Copy the generated files to the cargo git cache
 AZUL_CHECKOUT=$(ls -d ~/.cargo/git/checkouts/azul-*/e57d9e9*/ 2>/dev/null | head -1)
 mkdir -p "$AZUL_CHECKOUT/target/codegen/v2"
 cp /tmp/azul-src/target/codegen/v2/dll_api_static.rs  "$AZUL_CHECKOUT/target/codegen/v2/"
@@ -71,17 +68,17 @@ cp /tmp/azul-src/target/codegen/v2/dll_api_build.rs   "$AZUL_CHECKOUT/target/cod
 cp /tmp/azul-src/target/codegen/v2/dll_api_dynamic.rs "$AZUL_CHECKOUT/target/codegen/v2/"
 cp /tmp/azul-src/target/codegen/v2/reexports.rs       "$AZUL_CHECKOUT/target/codegen/v2/"
 
-# 4. 通常通りビルド
+# 4. Build normally
 cargo run
 ```
 
-### Azul 固有の注意点
+### Azul-specific notes
 
-- `azul 0.1.0` (crates.io) は名前予約の空パッケージ — 使用不可
-- `link-static` は WebRender 等 263 パッケージをまとめてビルドするため初回ビルドに数分かかる
-- `extern "C"` コールバック必須: Azul の状態はすべて `RefAny` で型消去されて渡される
-- 複数アイテムに個別の状態を渡すには `ToggleData { app: RefAny, id: usize }` のようなラッパーを `RefAny` でネストする
-- `AzString::from("literal")` で `Into<AzString>` の型推論を明示的に解決する必要がある場合がある
-- `with_inline_style(&format!(...))` は型エラーになる → `.as_str()` か変数経由で渡す
-- `TextInputState`, `OnTextInputReturn`, `TextInputValid`, `CheckBoxState` は `azul::widgets` から import
-- `VirtualKeyCode` は `azul::dom` から import
+- `azul 0.1.0` (crates.io) is a name-reservation stub — do not use
+- `link-static` builds WebRender and 263 other packages together; the first build takes several minutes
+- `extern "C"` callbacks are required: all Azul state is passed via `RefAny` type erasure
+- To pass individual state to multiple items, nest a wrapper like `ToggleData { app: RefAny, id: usize }` inside `RefAny`
+- `AzString::from("literal")` may be needed to explicitly resolve `Into<AzString>` type inference
+- `with_inline_style(&format!(...))` causes a type error — pass via `.as_str()` or a variable instead
+- `TextInputState`, `OnTextInputReturn`, `TextInputValid`, `CheckBoxState` are imported from `azul::widgets`
+- `VirtualKeyCode` is imported from `azul::dom`

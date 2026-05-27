@@ -5,7 +5,7 @@ Python Todo app using [Reflex](https://reflex.dev/) — full-stack web framework
 ## Requirements
 
 - Python 3.9+
-- Node.js 18+ (Reflex のフロントエンドビルドに使用)
+- Node.js 18+ (used for Reflex's frontend build)
 
 Python and Node.js are available on all platforms:
 - macOS: `brew install python3 node`
@@ -18,7 +18,7 @@ Python and Node.js are available on all platforms:
 pip install reflex
 ```
 
-## Initialize (初回のみ)
+## Initialize (first time only)
 
 ```sh
 reflex init
@@ -30,15 +30,15 @@ reflex init
 reflex run
 ```
 
-ブラウザで `http://localhost:3000` が自動的に開きます。
+The browser opens `http://localhost:3000` automatically.
 
 ## Architecture
 
-Reflex のフルスタック Python 構成。状態管理・イベントハンドラーをサーバーサイドの Python クラスで定義し、フロントエンドは Reflex が自動的に React にコンパイルする。
+A full-stack Python structure using Reflex. State management and event handlers are defined as server-side Python classes; Reflex automatically compiles the frontend to React.
 
 ```
 todo/
-├── todo.py         # ルートページ・UI 定義・State クラス（状態管理・CRUD）
-├── rxconfig.py     # Reflex アプリ設定
-└── assets/         # 静的アセット
+├── todo.py         # root page · UI definition · State class (state management · CRUD)
+├── rxconfig.py     # Reflex app configuration
+└── assets/         # static assets
 ```

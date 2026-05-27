@@ -5,7 +5,7 @@ Python Todo app using [TkEasyGUI](https://github.com/kujirahand/tkeasygui-python
 ## Requirements
 
 - Python 3.9+
-- Tcl/Tk（Python に同梱）
+- Tcl/Tk (bundled with Python)
 
 Python is available on all platforms. Install from https://python.org or:
 - macOS: `brew install python3` (Tcl/Tk bundled)
@@ -29,11 +29,11 @@ python main.py
 
 ## Architecture
 
-TkEasyGUI のイベント駆動ループ構成。`main.py` がウィンドウレイアウトを定義しイベントを処理する、シンプルなシングルファイルに近い構成。
+An event-driven loop structure using TkEasyGUI. `main.py` defines the window layout and handles events, in a simple near-single-file structure.
 
 ```
 .
-├── main.py         # エントリーポイント・ウィンドウレイアウト・イベントループ
-├── data.py         # Todo データモデル・TabFilter・状態管理
-└── theme.py        # カラー・スタイル定数
+├── main.py         # entry point · window layout · event loop
+├── data.py         # Todo data model · TabFilter · state management
+└── theme.py        # color and style constants
 ```

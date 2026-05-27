@@ -28,12 +28,12 @@ python main.py
 
 ## Architecture
 
-PyQt6 の Qt6 Widgets を直接組み立てるシングルパッケージ構成。データモデルとコンポーネントをファイルで分離し、`main.py` がメインウィンドウを構築する。
+A single-package structure that assembles Qt6 Widgets directly via PyQt6. Data model and components are separated into files; `main.py` constructs the main window.
 
 ```
 .
-├── main.py         # エントリーポイント・QApplication・ウィンドウ構築
-├── data.py         # Todo データモデル・TabFilter・状態管理
-├── theme.py        # カラー・スタイル定数
-└── components/     # タブメニュー・入力欄・Todo リストの Qt6 ウィジェット部品
+├── main.py         # entry point · QApplication · window construction
+├── data.py         # Todo data model · TabFilter · state management
+├── theme.py        # color and style constants
+└── components/     # Qt6 widget components for tab menu, input, and Todo list
 ```

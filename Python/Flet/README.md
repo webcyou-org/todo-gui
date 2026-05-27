@@ -28,12 +28,12 @@ python main.py
 
 ## Architecture
 
-Flet の宣言的 Flutter ベース UI をシングルファイルに近い構成で実装。データモデルとコンポーネントをファイルで分離し、`main.py` がページを構築する。
+A near-single-file declarative Flutter-based UI using Flet. Data model and components are separated into files; `main.py` constructs the page.
 
 ```
 .
-├── main.py         # エントリーポイント・flet.app・ページ構築
-├── data.py         # Todo データモデル・TabFilter・状態管理
-├── theme.py        # カラー・スタイル定数
-└── components/     # 入力欄・タブ・リストの Flet コンポーネント
+├── main.py         # entry point · flet.app · page construction
+├── data.py         # Todo data model · TabFilter · state management
+├── theme.py        # color and style constants
+└── components/     # Flet components for input, tabs, and list
 ```

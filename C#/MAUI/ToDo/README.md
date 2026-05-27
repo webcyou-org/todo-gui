@@ -23,7 +23,7 @@ dotnet workload install maui
 **Linux** — Linux target is not officially supported by .NET MAUI (Windows/macOS only for desktop).
 
 ```sh
-# MAUI workload のインストール
+# Install MAUI workload
 dotnet workload install maui
 ```
 
@@ -45,15 +45,15 @@ dotnet build ToDo/ToDo.csproj -t:Run -f net8.0-maccatalyst
 dotnet build ToDo/ToDo.csproj -t:Run -f net8.0-ios
 ```
 
-> Windows では `-f net8.0-windows10.0.19041.0` を指定してください。
+> On Windows, specify `-f net8.0-windows10.0.19041.0`.
 
 ## Architecture
 
-.NET MAUI の MVVM パターンを採用。XAML で UI を記述し、ViewModel がデータバインディングを介して Model と連携する。複数プラットフォームに単一コードベースで対応する。
+.NET MAUI MVVM pattern. The UI is written in XAML, and the ViewModel communicates with the Model via data bindings. A single codebase targets multiple platforms.
 
-| レイヤー | ファイル | 役割 |
-|---------|---------|------|
-| Model | `ToDo/Todo.cs`, `TabFilter.cs` | Todo データ・フィルター状態 |
-| ViewModel | — | `MainPage.xaml.cs` がコードビハインドとして UI ロジックを担当 |
-| View | `ToDo/MainPage.xaml`, `AppShell.xaml` | MAUI XAML による UI 定義 |
-| Entry | `ToDo/MauiProgram.cs` | アプリ起動・サービス登録 |
+| Layer | File | Role |
+|-------|------|------|
+| Model | `ToDo/Todo.cs`, `TabFilter.cs` | Todo data · filter state |
+| ViewModel | — | `MainPage.xaml.cs` acts as code-behind handling UI logic |
+| View | `ToDo/MainPage.xaml`, `AppShell.xaml` | UI definition in MAUI XAML |
+| Entry | `ToDo/MauiProgram.cs` | app launch · service registration |

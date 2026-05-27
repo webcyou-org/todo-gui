@@ -1,8 +1,8 @@
 # Walk Todo
 
-Go Todo app using [Walk](https://github.com/lxn/walk) — Windows 専用 Go GUI ライブラリ。
+Go Todo app using [Walk](https://github.com/lxn/walk) — Windows-only Go GUI library.
 
-> **Windows 専用** — Windows 環境でのみビルド・実行できます。
+> **Windows only** — can only be built and run on Windows.
 
 ## Requirements
 
@@ -11,57 +11,57 @@ Go Todo app using [Walk](https://github.com/lxn/walk) — Windows 専用 Go GUI 
 
 ## Run
 
-### 1. rsrc ツールのインストール（初回のみ）
+### 1. Install rsrc tool (first time only)
 
-マニフェストを埋め込むための `rsrc` ツールを取得する。
+Fetch the `rsrc` tool for embedding the manifest.
 
 ```powershell
 go install github.com/akavel/rsrc@latest
 ```
 
-### 2. リソースファイルの生成
+### 2. Generate resource file
 
 ```powershell
 go generate
 ```
 
-`todo.manifest` から `rsrc.syso` が生成される。
+`rsrc.syso` is generated from `todo.manifest`.
 
-### 3. ビルド & 実行
+### 3. Build & Run
 
 ```powershell
 go build -ldflags="-H windowsgui" -o todo.exe .
 ./todo.exe
 ```
 
-`-H windowsgui` を付けないとコンソールウィンドウが余分に開く。
+Without `-H windowsgui`, an extra console window opens.
 
-## ファイル構成
+## File Structure
 
 ```
 Walk/
-├── main.go        # エントリーポイント・MainWindow・UI ロジック
-├── data.go        # データモデル（Todo, TabFilter, TodoModel, MenuModel）
-├── colors.go      # デザイントークン（walk.Color 定数）
-├── todo_row.go    # CustomWidget による Todo 行の描画
-├── todo.manifest  # DPI 認識マニフェスト
+├── main.go        # entry point · MainWindow · UI logic
+├── data.go        # data model (Todo, TabFilter, TodoModel, MenuModel)
+├── colors.go      # design tokens (walk.Color constants)
+├── todo_row.go    # Todo row rendering via CustomWidget
+├── todo.manifest  # DPI-awareness manifest
 ├── go.mod
 └── go.sum
 ```
 
-## 既知の制約
+## Known Limitations
 
-Walk の Canvas API には `RoundRect` がないため、  
-Todo 行の背景は角丸なし（仕様値 `4px` は未対応）。  
-入力フィールドのフォーカスボーダーはネイティブ Win32 スタイル。
+Walk's Canvas API has no `RoundRect`,  
+so Todo row backgrounds have no rounded corners (the spec value of `4px` is not supported).  
+The input field focus border uses the native Win32 style.
 
 ## Architecture
 
-Walk の Win32 ウィジェットを直接組み立てるシングルパッケージ構成。データモデルとウィジェット部品をファイルで分離し、`main.go` がメインウィンドウを構築する。
+A single-package structure that assembles Win32 widgets directly using Walk. Data model and widget components are separated into files; `main.go` constructs the main window.
 
-| レイヤー | ファイル | 役割 |
-|---------|---------|------|
-| Model | `data.go` | Todo・TabFilter・TodoModel・MenuModel |
-| View | `todo_row.go` | CustomWidget による Todo 行の描画 |
-| Entry | `main.go` | MainWindow 構築・UI ロジック |
-| Theme | `colors.go` | walk.Color カラー定数 |
+| Layer | File | Role |
+|-------|------|------|
+| Model | `data.go` | Todo · TabFilter · TodoModel · MenuModel |
+| View | `todo_row.go` | Todo row rendering via CustomWidget |
+| Entry | `main.go` | MainWindow construction · UI logic |
+| Theme | `colors.go` | walk.Color color constants |

@@ -1,18 +1,18 @@
 # Electron Todo
 
-[Electron](https://www.electronjs.org/) を使った JavaScript Todo アプリ集。各サブディレクトリに実装があります。
+A collection of JavaScript Todo apps using [Electron](https://www.electronjs.org/). Each subdirectory contains an implementation.
 
 ![todo](https://user-images.githubusercontent.com/1584153/191999399-373be546-9667-4e0b-92c1-c644bd7ff922.png)
 
 ## Contents
 
-| ディレクトリ | フロントエンド | README |
-|------|------|------|
+| Directory | Frontend | README |
+|-----------|----------|--------|
 | [VanillaJS/todo](VanillaJS/todo) | Vanilla HTML/CSS/JS | [→](VanillaJS/todo/README.md) |
 | [Vue](Vue) | Vue3 | — |
 | [React](React) | React | — |
 
-## Requirements（共通）
+## Requirements (common)
 
 - Node.js 18+
 
@@ -20,7 +20,7 @@
 **Windows**: `winget install OpenJS.NodeJS`
 **Linux (Ubuntu/Debian)**: `sudo apt install nodejs npm`
 
-## Run（各ディレクトリで）
+## Run (in each directory)
 
 ```sh
 npm install
@@ -183,10 +183,10 @@ input:focus {
 
 ## Architecture
 
-Electron のメインプロセスと Chromium レンダラーの 2 プロセス構成。各サブディレクトリが独立した実装として、共通の HTML/CSS テンプレートを基に異なるフロントエンドを提供する。
+A two-process structure with an Electron main process and a Chromium renderer. Each subdirectory provides an independent implementation with a different frontend based on the common HTML/CSS template.
 
-| ディレクトリ | 構成 | 役割 |
-|------------|------|------|
-| `VanillaJS/todo/` | main.js + renderer.js + HTML | Vanilla JS 実装 |
-| `Vue/` | main.js + Vue3 コンポーネント | Vue3 実装 |
-| `React/` | main.js + React コンポーネント | React 実装 |
+| Directory | Structure | Role |
+|-----------|-----------|------|
+| `VanillaJS/todo/` | main.js + renderer.js + HTML | Vanilla JS implementation |
+| `Vue/` | main.js + Vue3 components | Vue3 implementation |
+| `React/` | main.js + React components | React implementation |

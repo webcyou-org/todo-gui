@@ -1,11 +1,11 @@
 # tkinter Todo
 
-Python Todo app using [tkinter](https://docs.python.org/3/library/tkinter.html) — Python の標準 GUI ライブラリ。
+Python Todo app using [tkinter](https://docs.python.org/3/library/tkinter.html) — Python's standard GUI library.
 
 ## Requirements
 
 - Python 3.9+
-- Tcl/Tk（Python に同梱）
+- Tcl/Tk (bundled with Python)
 
 Python is available on all platforms:
 - macOS: `brew install python3` (Tcl/Tk bundled)
@@ -24,36 +24,36 @@ python3 main.py
 python main.py
 ```
 
-### macOS で tkinter が動かない場合
+### If tkinter doesn't work on macOS
 
-pyenv の Python は tcl-tk との依存関係で tkinter が動作しないことがある。  
-Homebrew で Python と tkinter を別途インストールして実行する。
+Python installed via pyenv may not have tkinter due to a dependency issue with tcl-tk.  
+Install Python and tkinter separately via Homebrew and run from there.
 
 ```bash
 brew install python-tk@3.9
 python3.9 main.py
 ```
 
-## ファイル構成
+## File Structure
 
 ```
 tkinter/
-├── main.py               # エントリーポイント・ルートウィンドウ
-├── data.py               # データモデル（Todo, TodoModel, MenuModel）
-├── theme.py              # カラー定数・フォント・描画ユーティリティ
+├── main.py               # entry point · root window
+├── data.py               # data model (Todo, TodoModel, MenuModel)
+├── theme.py              # color constants · font · drawing utilities
 └── components/
-    ├── todo_input.py     # 入力フィールド
-    ├── tabs.py           # タブメニュー（All / Active / Completed）
-    └── todo_list.py      # Todo リスト（スクロール対応）
+    ├── todo_input.py     # input field
+    ├── tabs.py           # tab menu (All / Active / Completed)
+    └── todo_list.py      # Todo list (scroll-enabled)
 ```
 
 ## Architecture
 
-tkinter の Canvas ベース描画とネイティブウィジェットを組み合わせた構成。データモデルとコンポーネントをファイルで分離し、`main.py` がルートウィンドウを構築する。
+A structure combining tkinter Canvas-based drawing with native widgets. Data model and components are separated into files; `main.py` constructs the root window.
 
-| レイヤー | ファイル | 役割 |
-|---------|---------|------|
-| Model | `data.py` | Todo・TodoModel・MenuModel・状態管理 |
-| View | `components/` | 入力欄・タブ・リストの tkinter ウィジェット部品 |
-| Entry | `main.py` | Tk ルートウィンドウ構築・レイアウト |
-| Theme | `theme.py` | カラー定数・フォント・描画ユーティリティ |
+| Layer | File | Role |
+|-------|------|------|
+| Model | `data.py` | Todo · TodoModel · MenuModel · state management |
+| View | `components/` | tkinter widget components for input, tabs, and list |
+| Entry | `main.py` | Tk root window construction · layout |
+| Theme | `theme.py` | color constants · font · drawing utilities |

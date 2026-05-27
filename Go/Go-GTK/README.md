@@ -37,14 +37,14 @@ go run .
 
 ## Architecture
 
-GTK2 バインディングを直接呼び出すシングルパッケージ構成。データモデルとウィジェット関数をファイルで分離し、`main.go` がウィンドウを構築する。
+A single-package structure that calls GTK2 bindings directly. Data model and widget functions are separated into files; `main.go` constructs the window.
 
 ```
 .
-├── main.go         # エントリーポイント・gtk.Init・ウィンドウ構築
-├── data.go         # Todo データモデル・TabFilter・状態管理
-├── input.go        # 入力フィールドウィジェット
-├── tabs.go         # タブメニューウィジェット
-├── todo_list.go    # Todo リストウィジェット
-└── theme.go        # カラー・スタイル定数
+├── main.go         # entry point · gtk.Init · window construction
+├── data.go         # Todo data model · TabFilter · state management
+├── input.go        # input field widget
+├── tabs.go         # tab menu widget
+├── todo_list.go    # Todo list widget
+└── theme.go        # color and style constants
 ```

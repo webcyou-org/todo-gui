@@ -65,12 +65,12 @@ fonts/
 
 ## Architecture
 
-即時モード GUI パターン。Zig がデータモデルと状態を管理し、zgui（Dear ImGui の Zig バインディング）が GLFW + OpenGL3 で UI を描画する。
+Immediate Mode GUI pattern. Zig manages the data model and state; zgui (the Zig binding for Dear ImGui) renders the UI via GLFW + OpenGL3.
 
 ```
 src/
-├── main.zig        # エントリーポイント・GLFW ウィンドウ・zgui 初期化・メインループ
-├── data.zig        # AppState・Todo・TabFilter の状態管理
-└── components/     # 入力欄・タブ・Todo リストの zgui ウィジェット関数
-fonts/              # Inter・Noto Sans JP フォント
+├── main.zig        # entry point · GLFW window · zgui initialization · main loop
+├── data.zig        # AppState · Todo · TabFilter state management
+└── components/     # zgui widget functions for input, tabs, and Todo list
+fonts/              # Inter · Noto Sans JP fonts
 ```

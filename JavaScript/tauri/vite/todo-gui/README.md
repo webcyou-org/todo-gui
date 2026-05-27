@@ -37,13 +37,13 @@ npm install -g @tauri-apps/cli
 npm install
 ```
 
-## Run（開発モード）
+## Run (development mode)
 
 ```sh
 npm run tauri dev
 ```
 
-## Build（本番バイナリ）
+## Build (production binary)
 
 ```sh
 npm run tauri build
@@ -51,11 +51,11 @@ npm run tauri build
 
 ## Architecture
 
-Rust バックエンド（Tauri）と Vue3 フロントエンド（Vite）の 2 層構成。Tauri が軽量ネイティブシェルと IPC を提供し、フロントエンドはシステム WebView で表示される。
+A two-layer structure with a Rust backend (Tauri) and a Vue3 frontend (Vite). Tauri provides a lightweight native shell and IPC, with the frontend displayed via the system WebView.
 
 ```
 .
-├── src/            # Vue3 + Vite フロントエンド（App.vue・コンポーネント）
-└── src-tauri/      # Rust バックエンド（Tauri 設定・ネイティブコマンド定義）
-    └── tauri.conf.json  # ウィンドウ設定・権限定義
+├── src/            # Vue3 + Vite frontend (App.vue · components)
+└── src-tauri/      # Rust backend (Tauri configuration · native command definitions)
+    └── tauri.conf.json  # window configuration · permission definitions
 ```

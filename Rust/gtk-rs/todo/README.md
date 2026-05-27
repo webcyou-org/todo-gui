@@ -1,6 +1,6 @@
 # ToDo - gtk-rs
 
-Rust + [gtk-rs](https://gtk-rs.org/) (GTK4) で実装した ToDo アプリケーション。
+Todo application implemented with Rust + [gtk-rs](https://gtk-rs.org/) (GTK4).
 
 ## Requirements
 
@@ -33,11 +33,11 @@ cargo run
 
 ## Architecture
 
-gtk-rs の GTK4 Rust バインディングを使ったシングルパッケージ構成。データモデルとテーマをファイルで分離し、`main.rs` が GTK4 アプリケーションを構築する。
+Single-package structure using gtk-rs GTK4 Rust bindings. Data model and theme are separated into files; `main.rs` constructs the GTK4 application.
 
 ```
 src/
-├── main.rs         # エントリーポイント・gtk::Application・ウィンドウ構築
-├── data.rs         # Todo データモデル・TabFilter・AppState
-└── theme.rs        # カラー・CSS 定数
+├── main.rs         # entry point · gtk::Application · window construction
+├── data.rs         # Todo data model · TabFilter · AppState
+└── theme.rs        # color and CSS constants
 ```

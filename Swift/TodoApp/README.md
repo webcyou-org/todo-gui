@@ -5,7 +5,7 @@ Swift Todo app using [SwiftUI](https://developer.apple.com/xcode/swiftui/) — A
 ## Requirements
 
 - macOS 14+
-- Xcode Command Line Tools または Xcode
+- Xcode Command Line Tools or Xcode
 
 ```sh
 xcode-select --install
@@ -23,7 +23,7 @@ swift build
 swift run
 ```
 
-または:
+Or:
 
 ```sh
 .build/debug/TodoApp
@@ -31,11 +31,11 @@ swift run
 
 ## Architecture
 
-SwiftUI の宣言的 View + `@Observable` モデルによる MVVM パターン。状態変化が自動的に View を再描画する。
+SwiftUI declarative View + `@Observable` model MVVM pattern. State changes automatically re-render Views.
 
 ```
 Sources/TodoApp/
-├── main.swift          # エントリーポイント・NSApplication 起動
-├── Views/              # SwiftUI View（ContentView・TabMenuView・TodoInputView・TodoListView）
-└── Models/             # AppState・Todo・TabFilter（@Observable 状態管理）
+├── main.swift          # entry point · NSApplication launch
+├── Views/              # SwiftUI Views (ContentView · TabMenuView · TodoInputView · TodoListView)
+└── Models/             # AppState · Todo · TabFilter (@Observable state management)
 ```

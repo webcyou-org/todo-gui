@@ -24,10 +24,10 @@ npm start
 
 ## Architecture
 
-Node.js メインプロセスとシステム WebView レンダラーの 2 プロセス構成。DeskGap が IPC を提供し、ネイティブ機能をレンダラーから呼び出せる。
+A two-process structure with a Node.js main process and a system WebView renderer. DeskGap provides IPC so that native features can be called from the renderer.
 
 ```
 .
-├── index.js        # メインプロセス・DeskGap アプリ起動・ウィンドウ設定
-└── index.html      # レンダラー（HTML/CSS/JS による UI）
+├── index.js        # main process · DeskGap app launch · window configuration
+└── index.html      # renderer (UI via HTML/CSS/JS)
 ```

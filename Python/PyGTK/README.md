@@ -37,12 +37,12 @@ python main.py
 
 ## Architecture
 
-PyGObject（GTK3 バインディング）を使ったシングルパッケージ構成。データモデルとウィジェット部品をファイルで分離し、`main.py` がウィンドウを構築する。
+A single-package structure using PyGObject (GTK3 bindings). Data model and widget components are separated into files; `main.py` constructs the window.
 
 ```
 .
-├── main.py         # エントリーポイント・Gtk.Application・ウィンドウ構築
-├── data.py         # Todo データモデル・TabFilter・状態管理
-├── theme.py        # カラー・CSS 定数
-└── widgets/        # 入力欄・タブ・リストの GTK3 ウィジェット部品
+├── main.py         # entry point · Gtk.Application · window construction
+├── data.py         # Todo data model · TabFilter · state management
+├── theme.py        # color and CSS constants
+└── widgets/        # GTK3 widget components for input, tabs, and list
 ```

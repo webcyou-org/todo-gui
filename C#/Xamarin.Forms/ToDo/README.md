@@ -2,19 +2,19 @@
 
 C# Todo app using [Xamarin.Forms](https://learn.microsoft.com/xamarin/xamarin-forms/) targeting macOS via Xamarin.Mac.
 
-> macOS ビルドには CHIP.framework スタブが必要です（`stub_frameworks/` を参照）。
+> A CHIP.framework stub is required for macOS builds (see `stub_frameworks/`).
 
 ## Requirements
 
 - macOS or Windows
-- macOS: Visual Studio for Mac または .NET SDK + Xamarin workload + Xcode
+- macOS: Visual Studio for Mac or .NET SDK + Xamarin workload + Xcode
 - Windows: Visual Studio 2022 with Xamarin workload
 
 Download Visual Studio: https://visualstudio.microsoft.com/
 
 ## Install
 
-`stub_frameworks/CHIP.framework` を `/Library/Frameworks/` にコピーしてください（Xcode 26 / macOS 26 SDK 対応のワークアラウンド）:
+Copy `stub_frameworks/CHIP.framework` to `/Library/Frameworks/` (workaround for Xcode 26 / macOS 26 SDK):
 
 ```sh
 sudo cp -R ../stub_frameworks/CHIP.framework /Library/Frameworks/
@@ -22,9 +22,9 @@ sudo cp -R ../stub_frameworks/CHIP.framework /Library/Frameworks/
 
 ## Build & Run
 
-Visual Studio for Mac で `ToDo.sln` を開き、**ToDo.macOS** ターゲットを選択して実行してください。
+Open `ToDo.sln` in Visual Studio for Mac, select the **ToDo.macOS** target, and run.
 
-または CLI で:
+Or via CLI:
 ```sh
 cd ToDo.macOS
 msbuild /p:Configuration=Debug
@@ -32,11 +32,11 @@ msbuild /p:Configuration=Debug
 
 ## Architecture
 
-Xamarin.Forms の MVVM パターン。XAML で共有 UI を定義し、ViewModel が INotifyPropertyChanged でバインディングを提供する。プラットフォーム固有処理は `ToDo.macOS` プロジェクトが担当する。
+Xamarin.Forms MVVM pattern. The shared UI is defined in XAML, and the ViewModel provides bindings via INotifyPropertyChanged. The `ToDo.macOS` project handles platform-specific code.
 
-| レイヤー | ファイル | 役割 |
-|---------|---------|------|
-| Model | `ToDo/Models/TodoItem.cs` | Todo データモデル |
-| ViewModel | `ToDo/ViewModels/MainViewModel.cs`, `RelayCommand.cs` | 状態管理・コマンド定義 |
+| Layer | File | Role |
+|-------|------|------|
+| Model | `ToDo/Models/TodoItem.cs` | Todo data model |
+| ViewModel | `ToDo/ViewModels/MainViewModel.cs`, `RelayCommand.cs` | state management · command definitions |
 | View | `ToDo/Views/MainPage.xaml`, `TabMenuView.xaml`, `TodoInputView.xaml`, `TodoListView.xaml` | Xamarin.Forms XAML UI |
-| Platform | `ToDo.macOS/` | macOS ネイティブ起動・エントリポイント |
+| Platform | `ToDo.macOS/` | macOS native launch · entry point |

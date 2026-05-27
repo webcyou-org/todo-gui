@@ -24,12 +24,12 @@ npm start
 
 ## Architecture
 
-Electron のメインプロセスと Chromium レンダラーの 2 プロセス構成。Vanilla HTML/CSS/JS でフロントエンドを実装し、IPC なしにシンプルに完結する。
+A two-process structure with an Electron main process and a Chromium renderer. The frontend is implemented in vanilla HTML/CSS/JS, keeping it simple and self-contained without IPC.
 
 ```
 .
-├── main.js         # メインプロセス・BrowserWindow 起動・ウィンドウ設定
-├── renderer.js     # レンダラープロセス・Todo ロジック・DOM 操作
-├── index.html      # アプリ画面 HTML
-└── src/            # CSS・追加 JS アセット
+├── main.js         # main process · BrowserWindow launch · window configuration
+├── renderer.js     # renderer process · Todo logic · DOM manipulation
+├── index.html      # app screen HTML
+└── src/            # CSS and additional JS assets
 ```

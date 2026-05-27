@@ -1,6 +1,6 @@
 # ToDo - rui
 
-Rust + [rui](https://github.com/audulus/rui) (GPU-rendered declarative UI) で実装した ToDo アプリケーション。
+Todo application implemented with Rust + [rui](https://github.com/audulus/rui) (GPU-rendered declarative UI).
 
 ## Requirements
 
@@ -36,11 +36,11 @@ cargo run
 
 ## Architecture
 
-rui の宣言的 GPU レンダリング UI パターン。状態は `State` マクロで管理し、ビュー関数がフレームごとに UI ツリーを返す関数型スタイル。
+rui's declarative GPU-rendered UI pattern. State is managed with the `State` macro; view functions return a UI tree each frame in a functional style.
 
 ```
 src/
-├── main.rs         # エントリーポイント・rui::rui・ルートビュー定義・状態管理
-├── data.rs         # Todo データモデル・TabFilter・AppState
-└── theme.rs        # カラー定数
+├── main.rs         # entry point · rui::rui · root view definition · state management
+├── data.rs         # Todo data model · TabFilter · AppState
+└── theme.rs        # color constants
 ```

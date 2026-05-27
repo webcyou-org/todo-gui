@@ -19,27 +19,27 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo run
 ```
 
-本番ビルド:
+Production build:
 
 ```sh
 cargo build --release
 ./target/release/todo
 ```
 
-> ホットリロードを有効にするには nightly が必要:
+> To enable hot reload, nightly is required:
 > ```sh
 > MAKEPAD=lines cargo +nightly run
 > ```
 
 ## Architecture
 
-Makepad の `live_design!` DSL で UI レイアウト・スタイルを宣言し、Rust の `MatchEvent` / `Widget` トレイトでロジックを実装する 2 層構成。カスタムウィジェットは `#[derive(Live, LiveHook, Widget)]` で定義する。
+Two-layer structure: UI layout and style declared with Makepad's `live_design!` DSL, logic implemented in Rust via the `MatchEvent` / `Widget` traits. Custom widgets are defined with `#[derive(Live, LiveHook, Widget)]`.
 
 ```
 src/
-├── main.rs                 # エントリーポイント・App ウィジェット・live_design・イベント処理
-├── data.rs                 # Todo・TabFilter・AppData データモデル
+├── main.rs                 # entry point · App widget · live_design · event handling
+├── data.rs                 # Todo · TabFilter · AppData data model
 └── components/
     ├── mod.rs
-    └── todo_list.rs        # TodoList カスタムウィジェット（PortalList ベース）
+    └── todo_list.rs        # TodoList custom widget (PortalList-based)
 ```

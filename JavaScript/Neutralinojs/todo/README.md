@@ -27,19 +27,19 @@ neu update
 neu run
 ```
 
-## Build（配布バイナリ）
+## Build (distribution binary)
 
 ```sh
 neu build
-# 出力先: dist/
+# Output: dist/
 ```
 
 ## Architecture
 
-軽量な 2 層構成。Neutralinojs が薄いネイティブランタイム（バンドルブラウザなし）を提供し、システム WebView でフロントエンドを表示する。
+A lightweight two-layer structure. Neutralinojs provides a thin native runtime (no bundled browser) and displays the frontend via the system WebView.
 
 ```
 .
-├── neutralino.config.json  # アプリ設定（エントリポイント・ウィンドウ設定）
-└── resources/              # HTML・CSS・JS によるフロントエンド UI
+├── neutralino.config.json  # app configuration (entry point · window settings)
+└── resources/              # frontend UI in HTML, CSS, and JS
 ```

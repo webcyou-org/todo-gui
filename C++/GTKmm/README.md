@@ -41,13 +41,13 @@ cmake --build build
 
 ## Architecture
 
-gtkmm の C++ ウィジェットクラスを継承・組み合わせるオブジェクト指向構成。データモデルとウィジェット部品をファイルで分離する。
+An object-oriented structure that inherits and composes gtkmm C++ widget classes. Data model and widget components are separated into files.
 
 ```
 src/
-├── main.cpp        # エントリーポイント・Gtk::Application・ウィンドウ構築
-├── data.h          # Todo データモデル・AppState・TabFilter
-├── theme.h         # カラー定数・デザイントークン
-├── cairo_util.h    # Cairo 描画ユーティリティ
-└── widgets/        # 入力欄 (todo_input)・タブ (tab_menu)・リスト (todo_list)
+├── main.cpp        # entry point · Gtk::Application · window construction
+├── data.h          # Todo data model · AppState · TabFilter
+├── theme.h         # color constants · design tokens
+├── cairo_util.h    # Cairo drawing utilities
+└── widgets/        # widget components for input (todo_input) · tabs (tab_menu) · list (todo_list)
 ```

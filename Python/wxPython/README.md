@@ -18,7 +18,7 @@ Python is available on all platforms. Install from https://python.org or:
 pip install wxPython
 ```
 
-macOS でインストールに失敗する場合は wheel を指定してください:
+If installation fails on macOS, specify the wheel explicitly:
 ```sh
 pip install -U -f https://extras.wxpython.org/wxPython4/extras/macosx/cocoa wxPython
 ```
@@ -45,12 +45,12 @@ python main.py
 
 ## Architecture
 
-wxPython の wx.Frame ベース構成。データモデルとウィジェット部品をファイルで分離し、`main.py` がメインウィンドウを構築する。
+A wx.Frame-based structure using wxPython. Data model and widget components are separated into files; `main.py` constructs the main window.
 
 ```
 .
-├── main.py         # エントリーポイント・wx.App・メインウィンドウ構築
-├── data.py         # Todo データモデル・TabFilter・状態管理
-├── theme.py        # カラー・スタイル定数
-└── widgets/        # タブ・入力欄・Todo 行の wxPython ウィジェット部品
+├── main.py         # entry point · wx.App · main window construction
+├── data.py         # Todo data model · TabFilter · state management
+├── theme.py        # color and style constants
+└── widgets/        # wxPython widget components for tabs, input, and Todo rows
 ```

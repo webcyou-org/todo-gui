@@ -5,7 +5,7 @@ Go Todo app using [Lorca](https://github.com/zserge/lorca) — builds desktop ap
 ## Requirements
 
 - Go 1.20+
-- Google Chrome または Chromium インストール済み
+- Google Chrome or Chromium installed
 
 **macOS**
 ```sh
@@ -40,10 +40,10 @@ go run .
 
 ## Architecture
 
-Go バックエンドと HTML/CSS/JS フロントエンドの 2 層構成。Lorca が Chrome ウィンドウを起動し、Go 側の関数を JavaScript から呼び出せるよう bridge を提供する。
+A two-layer structure with a Go backend and an HTML/CSS/JS frontend. Lorca launches a Chrome window and provides a bridge so that Go functions can be called from JavaScript.
 
 ```
 .
-├── main.go             # エントリーポイント・Lorca ウィンドウ起動・Go 関数のバインド
-└── frontend/           # HTML・CSS・JS によるフロントエンド UI
+├── main.go             # entry point · Lorca window launch · Go function binding
+└── frontend/           # frontend UI in HTML, CSS, and JS
 ```

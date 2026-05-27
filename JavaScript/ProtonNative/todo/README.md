@@ -24,10 +24,10 @@ npm start
 
 ## Architecture
 
-React ライクな宣言的構文でネイティブウィジェットを操作するシングルファイル構成。`app.js` がコンポーネントツリーを定義し、ProtonNative がネイティブ UI にマッピングする。
+A single-file structure that manipulates native widgets using React-like declarative syntax. `app.js` defines the component tree, and ProtonNative maps it to native UI.
 
 ```
 .
-├── index.js        # エントリーポイント・ProtonNative App 起動
-└── app.js          # React ライクコンポーネントによる UI 定義・状態管理
+├── index.js        # entry point · ProtonNative App launch
+└── app.js          # UI definition and state management via React-like components
 ```

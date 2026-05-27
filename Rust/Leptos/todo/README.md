@@ -1,12 +1,12 @@
 # Leptos Todo
 
-Rust + [Leptos](https://leptos.dev/) (v0.6) による Todo アプリ。WebAssembly (CSR) でブラウザ上で動作する。
+Rust + [Leptos](https://leptos.dev/) (v0.6) Todo app. Runs in the browser via WebAssembly (CSR).
 
 ## Requirements
 
 - Rust (stable)
 - `wasm32-unknown-unknown` target
-- `trunk` ビルドツール
+- `trunk` build tool
 
 ```sh
 rustup target add wasm32-unknown-unknown
@@ -19,7 +19,7 @@ cargo install trunk
 trunk serve
 ```
 
-ブラウザで `http://localhost:8080` を開く。
+Open `http://localhost:8080` in a browser.
 
 ## Build
 
@@ -27,35 +27,35 @@ trunk serve
 trunk build --release
 ```
 
-`dist/` に最適化済み WASM + HTML が生成される。
+Outputs optimized WASM + HTML to `dist/`.
 
 ## File Structure
 
 ```
 src/
-├── lib.rs               # App コンポーネント + CSS + エントリーポイント
-├── data.rs              # データモデル (Todo / TabFilter)
+├── lib.rs               # App component + CSS + entry point
+├── data.rs              # data model (Todo / TabFilter)
 └── components/
     ├── mod.rs
-    ├── input.rs         # TodoInput コンポーネント
-    ├── tabs.rs          # TabMenu コンポーネント
-    └── todo_list.rs     # TodoList コンポーネント
+    ├── input.rs         # TodoInput component
+    ├── tabs.rs          # TabMenu component
+    └── todo_list.rs     # TodoList component
 ```
 
 ## Architecture
 
-MVVM パターンを採用。Leptos のリアクティブシグナルが ViewModel の役割を担う。
+MVVM pattern. Leptos reactive signals serve as the ViewModel.
 
-| レイヤー | ファイル | 役割 |
-|---------|---------|------|
-| Model | `data.rs` | データ構造・ビジネスロジック |
-| ViewModel | `lib.rs` (App) | `RwSignal` による状態管理 |
-| View | `components/` | UI 描画・イベント受付 |
+| Layer | File | Role |
+|-------|------|------|
+| Model | `data.rs` | data structures · business logic |
+| ViewModel | `lib.rs` (App) | state management via `RwSignal` |
+| View | `components/` | UI rendering · event handling |
 
 ## Notes
 
-- Leptos CSR は `[lib] crate-type = ["cdylib", "rlib"]` と `src/lib.rs` が必要
-- 状態シグナル (`RwSignal<T>`) は `Copy` なのでコンポーネント props に直接渡せる
-- `create_memo` でフィルタ済みリストを派生させ、`For` コンポーネントで効率的に差分更新
-- フォーカス時ボーダーは CSS `:focus` 擬似クラスで対応（Druid より遥かにシンプル）
-- 打ち消し線は `text-decoration: line-through` の CSS 1 行で実現
+- Leptos CSR requires `[lib] crate-type = ["cdylib", "rlib"]` and `src/lib.rs`
+- State signals (`RwSignal<T>`) are `Copy` so they can be passed directly as component props
+- Use `create_memo` to derive the filtered list and `For` component for efficient diffing
+- Focus border handled via CSS `:focus` pseudo-class (far simpler than Druid)
+- Strikethrough achieved with a single CSS line: `text-decoration: line-through`

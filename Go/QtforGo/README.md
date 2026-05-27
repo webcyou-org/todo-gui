@@ -1,47 +1,47 @@
 # Go / therecipe-qt Todo App
 
-## ビルド (Intel Mac のみ)
+## Build (Intel Mac only)
 
 ```bash
-# vendor ディレクトリを用意
+# Prepare vendor directory
 go mod vendor
 
-# Qt@5 の場所を指定してビルド
+# Build specifying Qt@5 location
 QT_DIR=/usr/local/opt/qt5 QT_HOMEBREW=true qtdeploy build desktop .
 open deploy/darwin/QtforGo.app
 ```
 
-## Apple Silicon での制約 (実行不可)
+## Constraints on Apple Silicon (cannot run)
 
-`therecipe/qt` は 2020 年以降メンテナンスが停止しており、Apple Silicon + macOS 14+ では動作しない。
+`therecipe/qt` has not been maintained since 2020 and does not work on Apple Silicon + macOS 14+.
 
-| 問題 | 詳細 |
-|------|------|
-| アーキテクチャ不一致 | `qtdeploy` が `GOARCH=amd64` を強制。Homebrew の Qt@5 は `arm64` のみ |
-| AGL フレームワーク | macOS 10.14 で削除された `AGL.framework` をリンカが要求 |
-| `qtdeploy` ハードコード | `cmd.go:720` で `"GOARCH": "amd64"` が強制されており上書き不可 |
+| Issue | Details |
+|-------|---------|
+| Architecture mismatch | `qtdeploy` forces `GOARCH=amd64`. Homebrew's Qt@5 is arm64 only |
+| AGL framework | The linker requires `AGL.framework`, which was removed in macOS 10.14 |
+| `qtdeploy` hardcode | `"GOARCH": "amd64"` is forced in `cmd.go:720` and cannot be overridden |
 
-`go build ./...` は通る（CGo リンクが走らないため）。
+`go build ./...` succeeds (because CGo linking is not invoked).
 
-## ファイル構成
+## File Structure
 
 ```
 Go/QtforGo/
-├── main.go          # エントリーポイント + MainWindow
-├── theme.go         # デザイントークン（initTheme で QApplication 後に初期化）
+├── main.go          # entry point + MainWindow
+├── theme.go         # design tokens (initialized in initTheme after QApplication)
 ├── data.go          # Todo, TabFilter, TodoModel, MenuModel
-├── todo_input.go    # Input ウィジェット (QLineEdit + QSS)
+├── todo_input.go    # Input widget (QLineEdit + QSS)
 ├── tab_menu.go      # TabMenu (QLabel + ConnectMousePressEvent)
 └── todo_list.go     # TodoList (QScrollArea) + TodoItemWidget (ConnectPaintEvent)
 ```
 
 ## Architecture
 
-therecipe/qt バインディングを通じて Qt5 Widgets を Go から操作するシングルパッケージ構成。データモデルとウィジェット部品をファイルで分離し、`main.go` がメインウィンドウを構築する。
+A single-package structure that manipulates Qt5 Widgets from Go via therecipe/qt bindings. Data model and widget components are separated into files; `main.go` constructs the main window.
 
-| レイヤー | ファイル | 役割 |
-|---------|---------|------|
-| Model | `data.go` | Todo・TabFilter・TodoModel・MenuModel |
-| View | `todo_input.go`, `tab_menu.go`, `todo_list.go` | Qt5 ウィジェット部品 |
-| Entry | `main.go` | QApplication 起動・MainWindow 構築 |
-| Theme | `theme.go` | デザイントークン・カラー定数 |
+| Layer | File | Role |
+|-------|------|------|
+| Model | `data.go` | Todo · TabFilter · TodoModel · MenuModel |
+| View | `todo_input.go`, `tab_menu.go`, `todo_list.go` | Qt5 widget components |
+| Entry | `main.go` | QApplication startup · MainWindow construction |
+| Theme | `theme.go` | design tokens · color constants |

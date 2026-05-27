@@ -2,7 +2,7 @@
 
 Python Todo app using [remi](https://github.com/rawpython/remi) — browser-based GUI toolkit.
 
-アプリ起動後、ブラウザで `http://localhost:8080` を開いてください。
+After launching the app, open `http://localhost:8080` in your browser.
 
 ## Requirements
 
@@ -28,16 +28,16 @@ python main.py
 
 > Windows: use `python` instead of `python3` if needed.
 
-ブラウザが自動的に起動します。起動しない場合は `http://localhost:8080` にアクセスしてください。
+The browser opens automatically. If it doesn't, navigate to `http://localhost:8080`.
 
 ## Architecture
 
-remi のブラウザ WebSocket ベース構成。Python でウィジェットを定義すると remi が HTML に変換し、ブラウザ（または組み込み WebView）で表示する。状態とロジックはすべてサーバーサイド Python で管理する。
+A browser WebSocket-based structure using remi. Widgets defined in Python are converted to HTML by remi and displayed in a browser (or embedded WebView). All state and logic are managed server-side in Python.
 
 ```
 .
-├── main.py         # エントリーポイント・remi.start・App クラス・ウィジェット定義
-├── data.py         # Todo データモデル・TabFilter・状態管理
-├── theme.py        # カラー・CSS 定数
-└── widgets/        # 入力欄・タブ・リストの remi ウィジェット部品
+├── main.py         # entry point · remi.start · App class · widget definitions
+├── data.py         # Todo data model · TabFilter · state management
+├── theme.py        # color and CSS constants
+└── widgets/        # remi widget components for input, tabs, and list
 ```

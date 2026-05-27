@@ -1,7 +1,7 @@
 # Zig / Qt Todo
 
-Zig + Qt6 Widgets で実装した Todo アプリ。  
-Zig がデータモデルを管理し、Qt6 C++ が UI を担当する。C ブリッジ経由で双方向通信を行う。
+Todo app implemented with Zig + Qt6 Widgets.  
+Zig manages the data model, Qt6 C++ handles the UI, and the two communicate bidirectionally via a C bridge.
 
 ## Requirements
 
@@ -19,7 +19,7 @@ zig build
 
 ```sh
 zig build run
-# または
+# or
 ./zig-out/bin/todo
 ```
 
@@ -27,30 +27,30 @@ zig build run
 
 ```
 src/
-├── main.zig       # エントリーポイント + C コールバック + pushUI()
-├── data.zig       # AppState / Todo / TabFilter データモデル
-├── qt_bridge.h    # Zig↔Qt の C インターフェース宣言
-├── qt_app.cpp     # Qt6 Widgets による全 UI 実装
-└── theme.h        # デザイントークン定数（色・サイズ）
+├── main.zig       # entry point + C callbacks + pushUI()
+├── data.zig       # AppState / Todo / TabFilter data model
+├── qt_bridge.h    # C interface declarations for Zig↔Qt
+├── qt_app.cpp     # full UI implementation via Qt6 Widgets
+└── theme.h        # design token constants (colors · sizes)
 ```
 
 ## Architecture
 
-MVC パターンを採用。Zig がデータモデルを保持し、Qt6 C++ が View を担当する。  
-C 関数ブリッジ（`qt_bridge.h`）を介してコールバックを双方向に呼び出す。
+MVC pattern. Zig holds the data model, Qt6 C++ handles the View.  
+Callbacks are called bidirectionally via the C function bridge (`qt_bridge.h`).
 
-| レイヤー | ファイル | 役割 |
-|---------|---------|------|
-| Model | `data.zig` | AppState・Todo リスト・TabFilter の状態管理 |
-| View | `qt_app.cpp` | Qt Widgets による UI 描画・イベント受付 |
-| Controller | `main.zig` | `export fn` コールバックで Qt→Zig 橋渡し、`pushUI()` で Zig→Qt 更新 |
+| Layer | File | Role |
+|-------|------|------|
+| Model | `data.zig` | AppState · Todo list · TabFilter state management |
+| View | `qt_app.cpp` | UI rendering and event handling via Qt Widgets |
+| Controller | `main.zig` | `export fn` callbacks bridge Qt→Zig; `pushUI()` pushes Zig→Qt updates |
 
 ## Notes
 
-- `callconv(.c)` **小文字** — Zig 0.14 以降の C 呼び出し規約（`.C` 大文字は廃止）
-- `export fn` + `extern fn` で双方向 C ブリッジを構築、Q_OBJECT / MOC 不要
-- 全シグナルをラムダ接続 `connect(widget, &Signal, lambda)` → カスタム Q_OBJECT クラス不要
-- `QStyleFactory::create("Fusion")` — macOS ネイティブスタイルを Fusion に切り替えることで QStyleSheet が完全に適用される
-- `deleteLater()` — シグナルハンドラ内からウィジェットを安全に削除するための Qt 慣用句
-- プレースホルダーテキスト色は `QPalette::PlaceholderText` で設定（stylesheet の `color` では効かない場合あり）
-- `on_ready` コールバック — Qt 側の UI セットアップ完了後に呼ばれ、初期データを `qt_update_todos` で流し込む
+- `callconv(.c)` **lowercase** — C calling convention in Zig 0.14+ (`.C` uppercase is deprecated)
+- Bidirectional C bridge built with `export fn` + `extern fn` — no Q_OBJECT / MOC needed
+- All signals connected via lambda `connect(widget, &Signal, lambda)` — no custom Q_OBJECT class required
+- `QStyleFactory::create("Fusion")` — switches from the macOS native style to Fusion so that QStyleSheet is fully applied
+- `deleteLater()` — Qt idiom for safely deleting a widget from within a signal handler
+- Placeholder text color set via `QPalette::PlaceholderText` (the `color` property in stylesheet may not work)
+- `on_ready` callback — called after Qt-side UI setup completes; pumps initial data via `qt_update_todos`

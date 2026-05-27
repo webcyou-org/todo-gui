@@ -37,15 +37,15 @@ go run .
 
 ## Architecture
 
-shiny の低レベルウィンドウ API を使った即時描画構成。フレームイベントで画面全体を再描画し、状態は `data.go` で管理する。
+An immediate-drawing structure using shiny's low-level window API. The entire screen is redrawn on each frame event; state is managed in `data.go`.
 
 ```
 .
-├── main.go         # エントリーポイント・shiny ウィンドウ・イベントループ
-├── data.go         # Todo データモデル・TabFilter・AppState
-├── render.go       # 画面全体のレンダリング関数
-├── draw.go         # 基本図形描画ユーティリティ
-├── widget_input.go # 入力フィールドウィジェット
-├── widget_tabs.go  # タブメニューウィジェット
-└── widget_todo.go  # Todo リストウィジェット
+├── main.go         # entry point · shiny window · event loop
+├── data.go         # Todo data model · TabFilter · AppState
+├── render.go       # full-screen rendering function
+├── draw.go         # basic shape drawing utilities
+├── widget_input.go # input field widget
+├── widget_tabs.go  # tab menu widget
+└── widget_todo.go  # Todo list widget
 ```

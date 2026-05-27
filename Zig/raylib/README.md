@@ -47,13 +47,13 @@ Or run the built binary directly:
 
 ## Architecture
 
-即時モード描画パターン。毎フレーム描画関数を呼び出して UI を構築し、状態は `data.zig` で一元管理する。raylib の `@cImport` バインディングで C API を呼び出す。
+Immediate Mode drawing pattern. Drawing functions are called every frame to construct the UI; state is centrally managed in `data.zig`. The raylib C API is called via `@cImport` bindings.
 
 ```
 src/
-├── main.zig        # エントリーポイント・raylib 初期化・メインループ
-├── data.zig        # AppState・Todo・TabFilter の状態管理
-├── raylib.zig      # raylib @cImport バインディング
-├── theme.zig       # カラー・フォント定数
-└── components/     # 入力欄・タブ・Todo リストの描画コンポーネント
+├── main.zig        # entry point · raylib initialization · main loop
+├── data.zig        # AppState · Todo · TabFilter state management
+├── raylib.zig      # raylib @cImport bindings
+├── theme.zig       # color and font constants
+└── components/     # drawing components for input, tabs, and Todo list
 ```

@@ -34,20 +34,20 @@ flutter doctor
 flutter run -d macos
 ```
 
-**その他のプラットフォーム:**
+**Other platforms:**
 
 ```sh
 flutter run -d linux    # Linux
 flutter run -d windows  # Windows
-flutter run             # 接続デバイスを選択
+flutter run             # select connected device
 ```
 
 ## Architecture
 
-Flutter のウィジェットツリーによる宣言的 UI 構成。データモデルを `lib/model.dart` で管理し、単一の `main.dart` からウィジェットを組み立てる。
+A declarative UI structure using Flutter's widget tree. The data model is managed in `lib/model.dart`; widgets are assembled from a single `main.dart`.
 
 ```
 lib/
-├── main.dart       # エントリーポイント・MaterialApp・画面構成
-└── model.dart      # Todo データモデル・状態管理
+├── main.dart       # entry point · MaterialApp · screen layout
+└── model.dart      # Todo data model · state management
 ```

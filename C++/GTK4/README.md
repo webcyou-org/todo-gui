@@ -37,14 +37,14 @@ make
 
 ## Architecture
 
-GTK4 C API を直接利用するシングルバイナリ構成。データモデルとウィジェット構築をファイルで分離し、Cairo でカスタム描画を行う。
+A single-binary structure that directly uses the GTK4 C API. Data model and widget construction are separated into files, with custom drawing performed via Cairo.
 
 ```
 src/
-├── main.cpp        # エントリーポイント・GtkApplication・ウィンドウ構築
-├── data.h          # Todo データモデル・AppState・TabFilter
-├── app.h           # アプリケーション状態・ウィジェット参照
-├── theme.h         # カラー定数・デザイントークン
-├── cairo_util.h    # Cairo 描画ユーティリティ
-└── widgets/        # 入力欄・タブ・リストの GTK4 ウィジェット部品
+├── main.cpp        # entry point · GtkApplication · window construction
+├── data.h          # Todo data model · AppState · TabFilter
+├── app.h           # application state · widget references
+├── theme.h         # color constants · design tokens
+├── cairo_util.h    # Cairo drawing utilities
+└── widgets/        # GTK4 widget components for input, tabs, and list
 ```

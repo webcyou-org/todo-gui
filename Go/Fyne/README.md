@@ -37,12 +37,12 @@ go run .
 
 ## Architecture
 
-データとテーマを専用パッケージに分離し、`main.go` がアプリウィンドウを構築する構成。Fyne のウィジェット API で UI を組み立てる。
+Data and theme are separated into dedicated packages; `main.go` constructs the app window. The UI is assembled using Fyne's widget API.
 
 ```
 .
-├── main.go         # エントリーポイント・fyne.App・ウィンドウ構築
-├── data/           # Todo データモデル・TabFilter・状態管理
-├── ui/             # 入力欄・タブ・リストの Fyne ウィジェット
-└── apptheme/       # カスタムテーマ・カラー定数
+├── main.go         # entry point · fyne.App · window construction
+├── data/           # Todo data model · TabFilter · state management
+├── ui/             # Fyne widget components for input, tabs, and list
+└── apptheme/       # custom theme · color constants
 ```

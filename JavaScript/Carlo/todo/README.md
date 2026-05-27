@@ -2,12 +2,12 @@
 
 Node.js Todo app using [Carlo](https://github.com/GoogleChromeLabs/carlo) — HTML/CSS UI over Chrome via Node.js.
 
-> Carlo は Chrome/Chromium をランタイムとして使用します。
+> Carlo uses Chrome/Chromium as its runtime.
 
 ## Requirements
 
 - Node.js 18+
-- Google Chrome インストール済み
+- Google Chrome installed
 
 **macOS**
 ```sh
@@ -40,11 +40,11 @@ node index.js
 
 ## Architecture
 
-Node.js バックエンドと HTML/CSS/JS フロントエンドの 2 層構成。Carlo が Chrome ウィンドウを起動し、Node.js の関数をフロントエンドから呼び出せるよう bridge を提供する。
+A two-layer structure with a Node.js backend and an HTML/CSS/JS frontend. Carlo launches a Chrome window and provides a bridge so that Node.js functions can be called from the frontend.
 
 ```
 .
-├── index.js        # エントリーポイント・Carlo ウィンドウ起動・Go 関数バインド
-├── index.html      # フロントエンド HTML
-└── style.css       # フロントエンドスタイル
+├── index.js        # entry point · Carlo window launch · Node.js function binding
+├── index.html      # frontend HTML
+└── style.css       # frontend styles
 ```

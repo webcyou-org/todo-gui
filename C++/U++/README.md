@@ -4,29 +4,29 @@ C++ Todo app using [U++ (Ultimate++)](https://www.ultimatepp.org/).
 
 ## Requirements
 
-- U++ フレームワーク（umk ビルドツール + uppsrc）
+- U++ framework (umk build tool + uppsrc)
 - macOS / Linux / Windows (via MSYS2)
 
-> Windows: MSYS2 環境 (https://www.msys2.org/) を使用してください。
+> Windows: Please use the MSYS2 environment (https://www.msys2.org/).
 
 ## Install
 
-[U++ 公式サイト](https://www.ultimatepp.org/www$uppweb$download$en-us.html) からソースを取得し、`/tmp/ultimatepp/` 以下に展開してください。
+Obtain the source from the [U++ official website](https://www.ultimatepp.org/www$uppweb$download$en-us.html) and extract it under `/tmp/ultimatepp/`.
 
 ```sh
-# ソース取得（例）
+# Get source (example)
 git clone https://github.com/ultimatepp/ultimatepp /tmp/ultimatepp
 cd /tmp/ultimatepp
-# umk のビルド
+# Build umk
 cd uppsrc/umk && make
 ```
 
-詳細は [U++ on Linux/macOS ガイド](https://www.ultimatepp.org/app$ide$install$en-us.html) を参照してください。
+For details, refer to the [U++ on Linux/macOS guide](https://www.ultimatepp.org/app$ide$install$en-us.html).
 
-環境変数の確認（Makefile 参照）:
+Check environment variables (see Makefile):
 
 ```sh
-# デフォルト値
+# Default values
 UMK   = /tmp/ultimatepp/umk
 UPPSRC = /tmp/ultimatepp/uppsrc
 ```
@@ -40,13 +40,13 @@ make run
 
 ## Architecture
 
-U++ の IDE レイアウト記述（`.upp`）を使ったシングルパッケージ構成。データモデルとウィジェット部品をファイルで分離する。
+A single-package structure using U++ IDE layout description (`.upp`). Data model and widget components are separated into files.
 
 ```
 TodoApp/
-├── main.cpp        # エントリーポイント・TopWindow 構築・イベント処理
-├── data.h/cpp      # Todo データモデル・AppState・TabFilter
-├── theme.h         # カラー・スタイル定数
-├── TodoApp.upp     # U++ パッケージ定義
-└── widgets/        # 入力欄・タブ・リストの U++ ウィジェット部品
+├── main.cpp        # entry point · TopWindow construction · event handling
+├── data.h/cpp      # Todo data model · AppState · TabFilter
+├── theme.h         # color and style constants
+├── TodoApp.upp     # U++ package definition
+└── widgets/        # U++ widget components for input, tabs, and list
 ```
